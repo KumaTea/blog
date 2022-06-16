@@ -30,4 +30,5 @@ data-flex-basis="447px"
 &lt;p>我把参数加粗放在这里：&lt;/p>
 &lt;!-- raw HTML omitted -->
 &lt;hr>
-&lt;p>原帖链接：[https://steamcommunity.com/app/431960/discussions/2/3418809548706728583/]&lt;/p></description></item></channel></rss>
+&lt;p>原帖链接：&lt;a class="link" href="https://steamcommunity.com/app/431960/discussions/2/3418809548706728583/" target="_blank" rel="noopener"
+>社区帖子&lt;/a>&lt;/p></description></item></channel></rss>
