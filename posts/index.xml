@@ -1,2 +1,22 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on 酷玛阁</title><link>https://blog.kmtea.eu/posts/</link><description>Recent content in Posts on 酷玛阁</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Tue, 31 May 2022 01:21:50 +0800</lastBuildDate><atom:link href="https://blog.kmtea.eu/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Hello World</title><link>https://blog.kmtea.eu/p/hello-world/</link><pubDate>Tue, 31 May 2022 01:21:50 +0800</pubDate><guid>https://blog.kmtea.eu/p/hello-world/</guid><description>&lt;h1 id="hello-world">Hello World&lt;/h1>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on 酷玛阁</title><link>https://blog.kmtea.eu/posts/</link><description>Recent content in Posts on 酷玛阁</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Thu, 16 Jun 2022 20:00:00 +0800</lastBuildDate><atom:link href="https://blog.kmtea.eu/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Wallpaper Engine 刷时长</title><link>https://blog.kmtea.eu/p/wallpaper-engine-%E5%88%B7%E6%97%B6%E9%95%BF/</link><pubDate>Thu, 16 Jun 2022 20:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/wallpaper-engine-%E5%88%B7%E6%97%B6%E9%95%BF/</guid><description>&lt;img src="https://blog.kmtea.eu/cover.jpg" alt="Featured image of post Wallpaper Engine 刷时长" />&lt;h1 id="wallpaper-engine-游戏中">Wallpaper Engine 游戏中&lt;/h1>
+&lt;p>我一直是个游戏时长爱好者，喜欢看自己主页上游戏时间一点点多起来（哪怕没有真的在玩）。&lt;/p>
+&lt;p>以前用过 &lt;a class="link" href="https://github.com/JustArchiNET/ArchiSteamFarm" target="_blank" rel="noopener"
+>ArchiSteamFarm&lt;/a>
+来挂游戏，但是因为它会强制加群就弃用了。&lt;/p>
+&lt;hr>
+&lt;p>于是带着这个需求我去 Steam 社区提问了下：&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/img/01-q.jpg"
+loading="lazy"
+alt="Question"
+>&lt;/p>
+&lt;p>提问前遵循了 issue 的基本规则（先搜索提问列表以及查阅文档那些）。&lt;/p>
+&lt;p>开发者一开始说对不起做不到，但是很快就修改了：&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/img/02-a.jpg"
+loading="lazy"
+alt="Answer"
+>&lt;/p>
+&lt;p>我把参数加粗放在这里：&lt;/p>
+&lt;!-- raw HTML omitted -->
+&lt;hr>
+&lt;p>原帖链接：https://steamcommunity.com/app/431960/discussions/2/3418809548706728583/&lt;/p></description></item><item><title>Hello World</title><link>https://blog.kmtea.eu/p/hello-world/</link><pubDate>Tue, 31 May 2022 01:21:50 +0800</pubDate><guid>https://blog.kmtea.eu/p/hello-world/</guid><description>&lt;h1 id="hello-world">Hello World&lt;/h1>
 &lt;p>This is my first post!&lt;/p></description></item></channel></rss>
