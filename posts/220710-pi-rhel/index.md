@@ -70,7 +70,7 @@ Red Hat 去年宣布 [RHEL 个人订阅白送了](https://developers.redhat.com/
 一般 [Raspberry Pi Imager](https://www.raspberrypi.com/software/#:~:text=Pi%20OS%20using-,Raspberry%C2%A0Pi%C2%A0Imager,-Raspberry%20Pi%20Imager)
 就好了，但我更喜欢 [Etcher](https://etcher.io) 。
 
-下载的图像压缩成 `xz` 格式了，但不用解压，直接开刷！
+下载的镜像压缩成 `xz` 格式了，但不用解压，直接开刷！
 
 ![Flashing](img/005-flash.jpg)
 
@@ -80,7 +80,7 @@ Oracle Linux 的根文件系统 (rootfs) 是 `btrfs` ，
 卡得出奇，卡的批爆！合起来写炸了我5个内存卡和U盘！就为了这篇！
 所以别用内存卡！用固态！！！
 
-或者可以考虑下换成 `f2fs` 。
+或者要是你有办法，可以考虑下换成 `f2fs` 格式。
 
 然后接上树莓派，插电，开机！
 
@@ -88,15 +88,15 @@ Oracle Linux 的根文件系统 (rootfs) 是 `btrfs` ，
 
 ![DHCP](img/006-dhcp.jpg)
 
-`ssh` 连上，用户名 `root` ，密码 `oracle` 。
+`ssh` 连上，用户名 `root` ，密码 `oracle` ，接着修改密码。
 
 ![SSH](img/007-first-ssh.jpg)
 
 ## 系统准备
 
-###扩展分区
+### 扩展分区
 
-解压缩后的固件大小约为 3.89GB ，装完了剩下大约300MB。
+解压后的固件大小约为 3.89GB ，装完了剩下大约300MB。
 这点地方塞牙缝 (`dnf uodate`) 都不够，先要用 `parted` 扩展分区。
 
 没自带，先安装：
@@ -134,9 +134,9 @@ btrfs filesystem resize max /
 dnf update -y kernel-uek
 ```
 
-![更新kernel-uek](img/010-kernel-uek.jpg)
+![更新 kernel-uek](img/010-kernel-uek.jpg)
 
-## 补丁和运行 "convert2rhel"。
+## 魔改 `convert2rhel`
 
 开始偷梁换柱之前先看看 `os-release` 怀念一下：
 
@@ -146,9 +146,9 @@ cat /etc/os-release
 
 ![os-release](img/011-os-release.jpg)
 
-###安装`convert2rhel`。
+### 安装`convert2rhel`
 
-参照 [换到 Red Hat 吧](https://www.redhat.com/en/blog/introduction-convert2rhel-now-officially-supported-convert-rhel-systems-rhel) ，
+参照 [一键换到 Red Hat](https://www.redhat.com/en/blog/introduction-convert2rhel-now-officially-supported-convert-rhel-systems-rhel) ，
 第一步是添加证书和仓库。
 
 ```shell
@@ -233,7 +233,7 @@ subscription-manager register
 
 ## 替换 repo
 
-先鸟尽弓藏兔死狗烹。
+鸟尽弓藏兔死狗烹属于是。
 
 ```shell
 mv /etc/yum.repos.d/convert2rhel.repo /etc/yum.repos.d/convert2rhel.repo.bak
@@ -252,7 +252,7 @@ dnf remove convert2rhel -y
 dnf remove oraclelinux-release oraclelinux-release-el8 || rpm -e --nodeps oraclelinux-release oraclelinux-release-el8
 ```
 
-###重新安装本地安装的软件包
+### 重新安装本地安装的软件包
 
 ```shell
 cd /usr/share/convert2rhel/subscription-manager
