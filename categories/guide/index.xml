@@ -82,7 +82,7 @@ data-flex-basis="426px"
 >Raspberry Pi Imager&lt;/a>
 就好了，但我更喜欢 &lt;a class="link" href="https://etcher.io" target="_blank" rel="noopener"
 >Etcher&lt;/a> 。&lt;/p>
-&lt;p>下载的图像压缩成 &lt;code>xz&lt;/code> 格式了，但不用解压，直接开刷！&lt;/p>
+&lt;p>下载的镜像压缩成 &lt;code>xz&lt;/code> 格式了，但不用解压，直接开刷！&lt;/p>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/220710-pi-rhel/img/005-flash.jpg"
 width="1205"
 height="759"
@@ -97,7 +97,7 @@ data-flex-basis="381px"
 &lt;p>Oracle Linux 的根文件系统 (rootfs) 是 &lt;code>btrfs&lt;/code> ，
 卡得出奇，卡的批爆！合起来写炸了我5个内存卡和U盘！就为了这篇！
 所以别用内存卡！用固态！！！&lt;/p>
-&lt;p>或者可以考虑下换成 &lt;code>f2fs&lt;/code> 。&lt;/p>
+&lt;p>或者要是你有办法，可以考虑下换成 &lt;code>f2fs&lt;/code> 格式。&lt;/p>
 &lt;p>然后接上树莓派，插电，开机！&lt;/p>
 &lt;p>进入路由的 DHCP 客户端页面，找到 IP 地址，刚出来那个。&lt;/p>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/220710-pi-rhel/img/006-dhcp.jpg"
@@ -110,7 +110,7 @@ class="gallery-image"
 data-flex-grow="177"
 data-flex-basis="426px"
 >&lt;/p>
-&lt;p>&lt;code>ssh&lt;/code> 连上，用户名 &lt;code>root&lt;/code> ，密码 &lt;code>oracle&lt;/code> 。&lt;/p>
+&lt;p>&lt;code>ssh&lt;/code> 连上，用户名 &lt;code>root&lt;/code> ，密码 &lt;code>oracle&lt;/code> ，接着修改密码。&lt;/p>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/220710-pi-rhel/img/007-first-ssh.jpg"
 width="1920"
 height="1080"
@@ -122,8 +122,8 @@ data-flex-grow="177"
 data-flex-basis="426px"
 >&lt;/p>
 &lt;h2 id="系统准备">系统准备&lt;/h2>
-&lt;p>###扩展分区&lt;/p>
-&lt;p>解压缩后的固件大小约为 3.89GB ，装完了剩下大约300MB。
+&lt;h3 id="扩展分区">扩展分区&lt;/h3>
+&lt;p>解压后的固件大小约为 3.89GB ，装完了剩下大约300MB。
 这点地方塞牙缝 (&lt;code>dnf uodate&lt;/code>) 都不够，先要用 &lt;code>parted&lt;/code> 扩展分区。&lt;/p>
 &lt;p>没自带，先安装：&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
@@ -195,12 +195,12 @@ width="1092"
 height="482"
 srcset="https://blog.kmtea.eu/p/220710-pi-rhel/img/010-kernel-uek_hu55d4fd3a8cc485e66c3fe717b6c45a2e_49710_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/220710-pi-rhel/img/010-kernel-uek_hu55d4fd3a8cc485e66c3fe717b6c45a2e_49710_1024x0_resize_q75_box.jpg 1024w"
 loading="lazy"
-alt="更新kernel-uek"
+alt="更新 kernel-uek"
 class="gallery-image"
 data-flex-grow="226"
 data-flex-basis="543px"
 >&lt;/p>
-&lt;h2 id="补丁和运行-convert2rhel">补丁和运行 &amp;ldquo;convert2rhel&amp;rdquo;。&lt;/h2>
+&lt;h2 id="魔改-convert2rhel">魔改 &lt;code>convert2rhel&lt;/code>&lt;/h2>
 &lt;p>开始偷梁换柱之前先看看 &lt;code>os-release&lt;/code> 怀念一下：&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -220,9 +220,9 @@ class="gallery-image"
 data-flex-grow="177"
 data-flex-basis="426px"
 >&lt;/p>
-&lt;p>###安装&lt;code>convert2rhel&lt;/code>。&lt;/p>
+&lt;h3 id="安装convert2rhel">安装&lt;code>convert2rhel&lt;/code>&lt;/h3>
 &lt;p>参照 &lt;a class="link" href="https://www.redhat.com/en/blog/introduction-convert2rhel-now-officially-supported-convert-rhel-systems-rhel" target="_blank" rel="noopener"
->换到 Red Hat 吧&lt;/a> ，
+>一键换到 Red Hat&lt;/a> ，
 第一步是添加证书和仓库。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -381,7 +381,7 @@ data-flex-basis="426px"
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;h2 id="替换-repo">替换 repo&lt;/h2>
-&lt;p>先鸟尽弓藏兔死狗烹。&lt;/p>
+&lt;p>鸟尽弓藏兔死狗烹属于是。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -419,7 +419,7 @@ data-flex-basis="751px"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dnf remove oraclelinux-release oraclelinux-release-el8 &lt;span class="o">||&lt;/span> rpm -e --nodeps oraclelinux-release oraclelinux-release-el8
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>###重新安装本地安装的软件包&lt;/p>
+&lt;/div>&lt;h3 id="重新安装本地安装的软件包">重新安装本地安装的软件包&lt;/h3>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
