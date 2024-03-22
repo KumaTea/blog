@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>JavaScript on 酷玛阁 | KumaTea's Blog</title><link>https://blog.kmtea.eu/tags/javascript/</link><description>Recent content in JavaScript on 酷玛阁 | KumaTea's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sat, 23 Mar 2024 01:00:00 +0800</lastBuildDate><atom:link href="https://blog.kmtea.eu/tags/javascript/index.xml" rel="self" type="application/rss+xml"/><item><title>考公报名，但是 JS &amp; Python 赋能</title><link>https://blog.kmtea.eu/p/240323-civil-exam-sign/</link><pubDate>Sat, 23 Mar 2024 01:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/240323-civil-exam-sign/</guid><description>&lt;img src="https://blog.kmtea.eu/p/240323-civil-exam-sign/img/cover.jpg" alt="Featured image of post 考公报名，但是 JS &amp; Python 赋能" />&lt;h1 id="考公报名但是-js--python-赋能">考公报名，但是 JS &amp;amp; Python 赋能&lt;/h1>
 &lt;h2 id="前言">前言&lt;/h2>
-&lt;p>2023年3月，我第一次报考广东省公务员考试，
-首次尝试有很多不熟练的地方；&lt;/p>
-&lt;p>今年1月，我&lt;del>闲着也是闲着&lt;/del>又报了一次，
+&lt;p>去年3月，我第一次报考广东省公务员，
+人生地不熟，也没有进面；
+今年1月，我&lt;del>闲着也是闲着&lt;/del>又报了一次，
 这次在报名阶段加入了一些自己的小技巧，
 现分享给大家。&lt;/p>
 &lt;p>另外，本次报考依然没有任何准备，
@@ -19,8 +19,8 @@ data-flex-grow="159"
 data-flex-basis="382px"
 >&lt;/p>
 &lt;p>不对考试结果抱任何希望，
-但一旦有幸进入面试，
-就会厚着脸皮去然后写(笔试)速通经验以及面试速通失败经验。&lt;/p>
+但一旦有幸进入面试就会厚着脸皮去，
+然后写(笔试)速通经验以及面试速通失败经验。&lt;/p>
 &lt;h2 id="职位筛选">职位筛选&lt;/h2>
 &lt;p>报名的第一步是从公告最下方附件下载职位表：&lt;/p>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/240323-civil-exam-sign/img/02-main.jpg"
@@ -44,8 +44,8 @@ data-flex-grow="193"
 data-flex-basis="464px"
 >&lt;/p>
 &lt;h3 id="初筛">初筛&lt;/h3>
-&lt;p>打开 Excel, 启用编辑，以启用接下来的排序功能。&lt;/p>
-&lt;p>排序操作简单，不再赘述。&lt;/p>
+&lt;p>打开 Excel, 启用编辑，以启用接下来的筛选功能。&lt;/p>
+&lt;p>筛选操作简单，不再赘述。&lt;/p>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/240323-civil-exam-sign/img/04-filter.jpg"
 width="1580"
 height="864"
@@ -405,6 +405,12 @@ class="gallery-image"
 data-flex-grow="62"
 data-flex-basis="149px"
 >&lt;/p>
+&lt;h2 id="其他技巧">其他技巧&lt;/h2>
+&lt;p>本文所述技巧基于越迟报名，获取信息越多的前提，
+但是需要审核个人信息通过后才能成功报名。&lt;/p>
+&lt;p>因此，&lt;strong>一定要&lt;/strong>先在左侧个人信息页面填好！！！
+填好提交之后就会上报审核，与报名分开，
+这样最后一天报名，提交后就直接通过，不用再等待审核。&lt;/p>
 &lt;h2 id="结语">结语&lt;/h2>
 &lt;p>报名阶段自动化，最多只是筛选出相对容易上岸的职位，
 美其名曰赢在起跑线上，但最终能否冲线还要看自己的体能。&lt;/p>
