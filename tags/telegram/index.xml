@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Telegram on 酷玛阁 | KumaTea's Blog</title><link>https://blog.kmtea.eu/tags/telegram/</link><description>Recent content in Telegram on 酷玛阁 | KumaTea's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Thu, 23 Jun 2022 18:00:00 +0800</lastBuildDate><atom:link href="https://blog.kmtea.eu/tags/telegram/index.xml" rel="self" type="application/rss+xml"/><item><title>Nexmo 虚拟手机号浅探</title><link>https://blog.kmtea.eu/p/220623-nexmo/</link><pubDate>Thu, 23 Jun 2022 18:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/220623-nexmo/</guid><description>&lt;img src="https://blog.kmtea.eu/p/220623-nexmo/img/cover.jpg" alt="Featured image of post Nexmo 虚拟手机号浅探" />&lt;h1 id="nexmo-虚拟手机号浅探">Nexmo 虚拟手机号浅探&lt;/h1>
+&lt;blockquote>
+&lt;p>最低成本：6.5元&lt;/p>
+&lt;/blockquote>
+&lt;h3 id="前情提要">前情提要&lt;/h3>
+&lt;p>5月，我的 Telegram 被误封了。众所周知，Telegram
+和微信一样不存在客服，因此我只能重新注册一个账号。&lt;/p>
+&lt;p>想起来18年似乎注册过一个叫 &lt;a class="link" href="https://www.nexmo.com" target="_blank" rel="noopener"
+>Nexmo&lt;/a>
+的虚拟号码平台，还充值了10欧元，
+但当时因为需要编程才能使用，就放置了。&lt;/p>
+&lt;p>这次重新登录，发现已经可以不用写代码，于是欣然注册，分享如下。&lt;/p>
+&lt;h3 id="0-准备工作">0. 准备工作&lt;/h3>
+&lt;p>注册及充值略（因为是四年前 😩&lt;/p>
+&lt;p>&lt;a class="link" href="https://dashboard.nexmo.com/sign-up" target="_blank" rel="noopener"
+>sign up&lt;/a>&lt;/p>
+&lt;ul>
+&lt;li>支持 支付宝 / 微信 / 银联&lt;/li>
+&lt;li>&lt;strong>Nexmo 最低充值金额为 10 欧元&lt;/strong>，建议拼车&lt;/li>
+&lt;/ul>
+&lt;h2 id="1-选用号码">1. 选用号码&lt;/h2>
+&lt;p>注册完毕并充值后，进入
+&lt;a class="link" href="https://dashboard.nexmo.com/" target="_blank" rel="noopener"
+>主页&lt;/a>&lt;/p>
+&lt;img alt="dashboard" src="img/001-dashboard.jpg" width="640"/>
+&lt;p>点击左侧 &lt;strong>构建和管理&lt;/strong> - &lt;strong>号码&lt;/strong> - &lt;strong>&lt;a class="link" href="https://dashboard.nexmo.com/buy-numbers" target="_blank" rel="noopener"
+>购买号码&lt;/a>&lt;/strong>&lt;/p>
+&lt;img alt="number" src="img/002-number.jpg" width="640"/>
+&lt;p>选择 &lt;code>国家/地区&lt;/code> 为 &lt;strong>United States (+1)&lt;/strong>，
+&lt;code>功能&lt;/code> 为 &lt;strong>SMS&lt;/strong>，
+类型为 &lt;strong>Any&lt;/strong>&lt;/p>
+&lt;p>下方的 &lt;code>Number&lt;/code> 如果有想要的数字可以填写，
+临时号码留空即可&lt;/p>
+&lt;img alt="select" src="img/003-select.jpg" width="640"/>
+&lt;p>选择一个你喜欢的号码，点击 &lt;strong>购买&lt;/strong>&lt;/p>
+&lt;img alt="confirm" src="img/004-confirm.jpg" width="640"/>
+&lt;p>你应该能在 &lt;strong>构建和管理&lt;/strong> - &lt;strong>号码&lt;/strong> - &lt;strong>&lt;a class="link" href="https://dashboard.nexmo.com/your-numbers" target="_blank" rel="noopener"
+>您的号码&lt;/a>&lt;/strong>
+看见刚刚购买的号码&lt;/p>
+&lt;img alt="status" src="img/005-status.jpg" width="640"/>
+&lt;h2 id="2-注册-google-voice">2. 注册 Google Voice&lt;/h2>
+&lt;p>打开 &lt;a class="link" href="https://voice.google.com" target="_blank" rel="noopener"
+>Google Voice&lt;/a> ，
+进入 &lt;a class="link" href="https://voice.google.com/u/0/settings" target="_blank" rel="noopener"
+>设置&lt;/a> ，
+点击 &lt;strong>New linked number&lt;/strong> 按钮&lt;/p>
+&lt;img alt="gv" src="img/006-gv.jpg" width="640"/>
+&lt;p>填入刚才购买的号码，点击 &lt;strong>Send code&lt;/strong>&lt;/p>
+&lt;p>回到 &lt;strong>日志&lt;/strong> - &lt;strong>&lt;a class="link" href="https://dashboard.nexmo.com/sms/logs" target="_blank" rel="noopener"
+>短信日志&lt;/a>&lt;/strong>&lt;/p>
+&lt;img alt="log" src="img/007-log.jpg" width="640"/>
+&lt;p>更改 &lt;code>指示&lt;/code> 为 &lt;strong>入站&lt;/strong>，点击 &lt;strong>搜索&lt;/strong>&lt;/p>
+&lt;img alt="query" src="img/008-query.jpg" width="640"/>
+&lt;p>再把验证码填入 Google Voice，完成验证&lt;/p>
+&lt;hr>
+&lt;h3 id="后记">后记&lt;/h3>
+&lt;p>正如前文所述，
+Nexmo 的正规用法是编程和使用 API，
+因此如果有能力，可以搭建 Webhook，
+甚至可以实现转发到 Telegram 的效果&lt;/p>
+&lt;img alt="flask" src="img/009-flask.jpg" width="640"/>
+&lt;img alt="response" src="img/010-response.jpg" width="640"/>
+&lt;h3 id="discussion">Discussion&lt;/h3>
+&lt;ul>
+&lt;li>「全网最低成本」指每个虚拟手机号每月租用成本为 0.9 欧元，约合人民币 6.5 元&lt;/li>
+&lt;li>作者申明没有收到任何资助，且无利益相关（废话）&lt;/li>
+&lt;/ul></description></item></channel></rss>

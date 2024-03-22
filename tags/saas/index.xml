@@ -1,0 +1,811 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>SaaS on 酷玛阁 | KumaTea's Blog</title><link>https://blog.kmtea.eu/tags/saas/</link><description>Recent content in SaaS on 酷玛阁 | KumaTea's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 13 Oct 2023 16:00:00 +0800</lastBuildDate><atom:link href="https://blog.kmtea.eu/tags/saas/index.xml" rel="self" type="application/rss+xml"/><item><title>SaaS 平台 Python 应用部署实战</title><link>https://blog.kmtea.eu/p/231013-saas/</link><pubDate>Fri, 13 Oct 2023 16:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/231013-saas/</guid><description>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/cover.jpg" alt="Featured image of post SaaS 平台 Python 应用部署实战" />&lt;h1 id="saas-平台-python-应用部署实战">SaaS 平台 Python 应用部署实战&lt;/h1>
+&lt;p>如果你还不知道，
+现在各大云服务巨头都提供了
+&lt;strong>永久免费&lt;/strong> 的 Serverless 服务，
+适合托管一些很小的应用。&lt;/p>
+&lt;p>想把去年写的一个 Telegram 超轻量 bot
+部署到 Azure Functions 上，
+结果被微软念经一样的文档气得不轻，
+遂决定写一篇 walkthrough 记录下。&lt;/p>
+&lt;p>本教程所使用的代码放在
+&lt;a class="link" href="https://github.com/KumaTea/KumaLiteBot" target="_blank" rel="noopener"
+>KumaTea/KumaLiteBot&lt;/a>
+这个 repo 里。&lt;/p>
+&lt;p>目前示例 bot &lt;a class="link" href="https://t.me/KumaLiteBot" target="_blank" rel="noopener"
+>Kuma 发癫 Bot&lt;/a>
+托管在 Azure 上面。&lt;/p>
+&lt;h2 id="google-cloud-functions">Google Cloud Functions&lt;/h2>
+&lt;p>谷歌的配置过程是最直观、方便、省心的，
+其实这个bot之前就托管在谷歌云上，
+但是因为有&lt;a class="link" href="#%e5%b0%8f%e6%8f%90%e7%a4%ba" >隐性收费&lt;/a>就关掉了。
+只能说贵有贵的道理。&lt;/p>
+&lt;h3 id="创建-functions">创建 Functions&lt;/h3>
+&lt;p>先进入 Functions 界面&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/GCP-01-create-01.jpg"
+width="2559"
+height="1440"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/GCP-01-create-01_hu8f7601b4aa7ef982d36e9ea236d4255a_86279_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/GCP-01-create-01_hu8f7601b4aa7ef982d36e9ea236d4255a_86279_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p>
+&lt;p>点蓝色的创建&lt;/p>
+&lt;p>基础信息，喜欢的名字就好&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/GCP-01-create-02.jpg"
+width="1298"
+height="1226"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/GCP-01-create-02_huca32a306715f4d565150c888226d1c91_47530_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/GCP-01-create-02_huca32a306715f4d565150c888226d1c91_47530_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="105"
+data-flex-basis="254px"
+>&lt;/p>
+&lt;p>Region 这里，一般根据最多人访问的地区来选&lt;/p>
+&lt;p>因为我是 Telegram Bot,
+选择 API 所在地荷兰阿姆斯特丹&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/GCP-01-create-03.jpg"
+width="1042"
+height="750"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/GCP-01-create-03_hub680be1ac1c771c8c96fc37265942216_21406_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/GCP-01-create-03_hub680be1ac1c771c8c96fc37265942216_21406_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="138"
+data-flex-basis="333px"
+>&lt;/p>
+&lt;p>Trigger 这里 Auth 选择允许未认证调用&lt;/p>
+&lt;p>你也不想每次打开都要输密码吧&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/GCP-01-create-04.jpg"
+width="1187"
+height="1110"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/GCP-01-create-04_huf5651caa11be78b0d199414c8fec4562_51990_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/GCP-01-create-04_huf5651caa11be78b0d199414c8fec4562_51990_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="106"
+data-flex-basis="256px"
+>&lt;/p>
+&lt;p>下面配置按需求选，
+我的 bot 用不到默认的 256 MB 就选了最小的&lt;/p>
+&lt;p>环境变量记得
+&lt;a class="link" href="#%e5%85%b6%e4%bb%96%e8%ae%be%e7%bd%ae" >在 &lt;strong>SECURITY AND IMAGE REPO&lt;/strong> 设置&lt;/a>&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/GCP-01-create-05.jpg"
+width="999"
+height="810"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/GCP-01-create-05_huf297125d5256f3b612c834c83e41bb1b_35382_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/GCP-01-create-05_huf297125d5256f3b612c834c83e41bb1b_35382_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="123"
+data-flex-basis="296px"
+>&lt;/p>
+&lt;p>如果弹出启用 API 允许即可&lt;/p>
+&lt;h3 id="录入代码">录入代码&lt;/h3>
+&lt;p>选择语言和版本&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/GCP-02-code-01.jpg"
+width="1116"
+height="803"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/GCP-02-code-01_hu82a4e544139a942bce36f3441c098878_45446_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/GCP-02-code-01_hu82a4e544139a942bce36f3441c098878_45446_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="138"
+data-flex-basis="333px"
+>&lt;/p>
+&lt;p>右边编辑器可以粘贴自己的代码了。&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/GCP-02-code-02.jpg"
+width="1593"
+height="1105"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/GCP-02-code-02_hu750f96de88b8f8765281bcba74a9bfba_75185_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/GCP-02-code-02_hu750f96de88b8f8765281bcba74a9bfba_75185_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="144"
+data-flex-basis="345px"
+>&lt;/p>
+&lt;p>注意，
+&lt;strong>Entry point&lt;/strong> 这里要写的是你程序的入口，
+一般是 &lt;code>main&lt;/code>&lt;/p>
+&lt;p>主函数示例：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="nd">@functions_framework.http&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">request&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">res&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">try&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="ow">not&lt;/span> &lt;span class="n">request&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">method&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="s2">&amp;#34;POST&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="s1">&amp;#39;I am working!&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">update&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">Update&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">de_json&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">request&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">get_json&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">force&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="kc">True&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="n">bot&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="n">update&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">inline_query&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">res&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">inline&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">request&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">elif&lt;/span> &lt;span class="n">update&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">message&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">msg&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">update&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">message&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="n">msg&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">chat&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">id&lt;/span> &lt;span class="o">&amp;gt;&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">res&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">msg&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">reply_text&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">nonsense_reply&lt;/span>&lt;span class="p">())&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">else&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">logger&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">info&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;Unknown type. Ignoring...&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">except&lt;/span> &lt;span class="ne">Exception&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">e&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">logger&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">debug&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nb">str&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">request&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">get_json&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">force&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="kc">True&lt;/span>&lt;span class="p">)))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">logger&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">error&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nb">str&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">e&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="n">res&lt;/span> &lt;span class="k">if&lt;/span> &lt;span class="nb">type&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">res&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="ow">is&lt;/span> &lt;span class="nb">str&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="s1">&amp;#39;&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;code>request&lt;/code> 就是一个标准的 &lt;code>flask.request&lt;/code> 对象，
+非常友好，与楼下高下立判&lt;/p>
+&lt;p>然后点击左侧 &lt;code>requirements.txt&lt;/code>&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/GCP-02-code-03.jpg"
+width="1194"
+height="598"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/GCP-02-code-03_hu3a814f7c50e492d1b565e11abb697f59_20331_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/GCP-02-code-03_hu3a814f7c50e492d1b565e11abb697f59_20331_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="199"
+data-flex-basis="479px"
+>&lt;/p>
+&lt;p>把依赖贴进去，就可以点下面的 &lt;strong>Deploy&lt;/strong> 了&lt;/p>
+&lt;h3 id="其他设置">其他设置&lt;/h3>
+&lt;p>可以看到这里我失败了，因为忘了设置环境变量&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/GCP-03-settings-01.jpg"
+width="1779"
+height="934"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/GCP-03-settings-01_hu5749168a4f3611a5d7e021770fb14ab9_61559_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/GCP-03-settings-01_hu5749168a4f3611a5d7e021770fb14ab9_61559_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="190"
+data-flex-basis="457px"
+>&lt;/p>
+&lt;p>我需要的变量是认证的 &lt;code>BOT_TOKEN&lt;/code>,
+&lt;strong>安全地&lt;/strong> 设置这个变量会很麻烦，介绍如下&lt;/p>
+&lt;p>点击上方 Edit&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/GCP-03-settings-02.jpg"
+width="1075"
+height="796"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/GCP-03-settings-02_huf85c585620725b683d76ddfbf9fa4b7b_36822_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/GCP-03-settings-02_huf85c585620725b683d76ddfbf9fa4b7b_36822_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="135"
+data-flex-basis="324px"
+>&lt;/p>
+&lt;p>进入 SECURITY AND IMAGE REPO&lt;/p>
+&lt;p>点击 ADD A SECRET REFERENCE&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/GCP-03-settings-03.jpg"
+width="1385"
+height="708"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/GCP-03-settings-03_hubd56bb3b635de7d7d6a60e8b750e75a7_27349_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/GCP-03-settings-03_hubd56bb3b635de7d7d6a60e8b750e75a7_27349_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="195"
+data-flex-basis="469px"
+>&lt;/p>
+&lt;p>这个时候会发现创建是灰的&lt;/p>
+&lt;p>就需要先启用这个什么 Secret API&lt;/p>
+&lt;p>点击左边 ENTER SECRET MANUALLY 就会弹出带你去的窗口&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/GCP-03-settings-04.jpg"
+width="1069"
+height="588"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/GCP-03-settings-04_hu380be5e14ec8f0922047d07295221261_18644_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/GCP-03-settings-04_hu380be5e14ec8f0922047d07295221261_18644_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="181"
+data-flex-basis="436px"
+>&lt;/p>
+&lt;p>启用后回来刷新重新进入修改，就能看到可以创建了，右边会弹出窗口&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/GCP-03-settings-05.jpg"
+width="1106"
+height="1325"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/GCP-03-settings-05_hu5a031d85529d19f20c24ff4286124419_76538_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/GCP-03-settings-05_hu5a031d85529d19f20c24ff4286124419_76538_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="83"
+data-flex-basis="200px"
+>&lt;/p>
+&lt;p>Name 随便写，下面的 value 填你的 token&lt;/p>
+&lt;p>然后 CREATE SECRET&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/GCP-03-settings-06.jpg"
+width="1044"
+height="1096"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/GCP-03-settings-06_hued1db015340e599955ce3d23a1458994_39594_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/GCP-03-settings-06_hued1db015340e599955ce3d23a1458994_39594_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="95"
+data-flex-basis="228px"
+>&lt;/p>
+&lt;p>Reference method 选中暴露为环境变量&lt;/p>
+&lt;p>下面环境变量输入你需要的，比如 &lt;code>BOT_TOKEN&lt;/code>&lt;/p>
+&lt;p>至于上面提示没有权限，实测没有影响&lt;/p>
+&lt;hr>
+&lt;p>这是安全的方法，那么有没有不安全的呢？&lt;/p>
+&lt;p>当然有&lt;/p>
+&lt;p>&lt;del>首先 Cloud Functions v1 就没有这么多幺蛾子&lt;/del>&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/GCP-03-settings-07.jpg"
+width="1181"
+height="958"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/GCP-03-settings-07_hu1e295f81ed99222f2d0ed93914a3429a_40167_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/GCP-03-settings-07_hu1e295f81ed99222f2d0ed93914a3429a_40167_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="123"
+data-flex-basis="295px"
+>&lt;/p>
+&lt;p>只要在创建或者修改里面
+&lt;strong>RUNTIME&lt;/strong> 下面 environment variables 里面填就好了&lt;/p>
+&lt;p>当然你也可以直接写进代码里&lt;/p>
+&lt;h3 id="完成">完成&lt;/h3>
+&lt;p>OK, 这就完了&lt;/p>
+&lt;p>GCP 会自动开始 build 并部署&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/GCP-04-done-01.jpg"
+width="1664"
+height="1016"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/GCP-04-done-01_hu9b4b7051ba18c794d28e692f41bef1f1_50307_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/GCP-04-done-01_hu9b4b7051ba18c794d28e692f41bef1f1_50307_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="163"
+data-flex-basis="393px"
+>&lt;/p>
+&lt;p>可以看见已经成功运行&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/GCP-04-done-02.jpg"
+width="1409"
+height="657"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/GCP-04-done-02_hu95e6c6b091daea977a1789360cf1a095_41032_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/GCP-04-done-02_hu95e6c6b091daea977a1789360cf1a095_41032_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="214"
+data-flex-basis="514px"
+>&lt;/p>
+&lt;h4 id="小提示">小提示&lt;/h4>
+&lt;p>Cloud Functions 有免费额度，
+&lt;strong>但 Storage 没有&lt;/strong>。&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/GCP-04-done-03.jpg"
+width="1657"
+height="713"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/GCP-04-done-03_hube27bb3aacd612a16194b8dc92fbec18_43683_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/GCP-04-done-03_hube27bb3aacd612a16194b8dc92fbec18_43683_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="232"
+data-flex-basis="557px"
+>&lt;/p>
+&lt;p>部署完成后可以直接删掉自动生成的 buckets 避免扣钱，
+完全不影响 bot 运行&lt;/p>
+&lt;h2 id="aws-lambda">AWS Lambda&lt;/h2>
+&lt;p>AWS Lambda 比 GCP Cloud Functions
+多一步手动上传依赖的步骤&lt;/p>
+&lt;h3 id="创建-lambda">创建 Lambda&lt;/h3>
+&lt;p>在开始之前，记得先在右上角选择你想要的地区&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/AWS-01-create-01.jpg"
+width="908"
+height="570"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/AWS-01-create-01_hua36c83af745a6d68ccf06d1d9380b779_24456_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/AWS-01-create-01_hua36c83af745a6d68ccf06d1d9380b779_24456_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="159"
+data-flex-basis="382px"
+>&lt;/p>
+&lt;p>AWS 和别人不一样，它是先选地区，在这里创建的所有资源都会在这个区域&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/AWS-01-create-02.jpg"
+width="2534"
+height="1325"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/AWS-01-create-02_hucf2bd0d4880065bded082083803c3a7b_93475_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/AWS-01-create-02_hucf2bd0d4880065bded082083803c3a7b_93475_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="191"
+data-flex-basis="458px"
+>&lt;/p>
+&lt;p>右上角黄色按钮创建&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/AWS-01-create-03.jpg"
+width="1705"
+height="1160"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/AWS-01-create-03_huf5e4639b4bcdbbc3cecfe85ab1b82fbd_66003_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/AWS-01-create-03_huf5e4639b4bcdbbc3cecfe85ab1b82fbd_66003_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="146"
+data-flex-basis="352px"
+>&lt;/p>
+&lt;p>名字，语言和版本，架构&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/AWS-01-create-04.jpg"
+width="1860"
+height="1052"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/AWS-01-create-04_huccf1947ef9e27b5287e825a961b6e04e_73808_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/AWS-01-create-04_huccf1947ef9e27b5287e825a961b6e04e_73808_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="176"
+data-flex-basis="424px"
+>&lt;/p>
+&lt;p>下方高级设置，要勾上 Enable Function URL,
+这样才能从 URL 访问；&lt;/p>
+&lt;p>Auth type 选 None&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/AWS-01-create-05.jpg"
+width="2386"
+height="1181"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/AWS-01-create-05_hu333fd9a7118979701925570601e6404b_67480_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/AWS-01-create-05_hu333fd9a7118979701925570601e6404b_67480_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="202"
+data-flex-basis="484px"
+>&lt;/p>
+&lt;h3 id="填入代码">填入代码&lt;/h3>
+&lt;p>向下拉，把代码粘贴进编辑器，保存即可&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/AWS-02-code-01.jpg"
+width="1614"
+height="1169"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/AWS-02-code-01_huc67a63ea16af3a4b152c1f74d364389a_95035_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/AWS-02-code-01_huc67a63ea16af3a4b152c1f74d364389a_95035_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="138"
+data-flex-basis="331px"
+>&lt;/p>
+&lt;p>主函数示例：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="nf">lambda_handler&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">event&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">context&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">res&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s1">&amp;#39;statusCode&amp;#39;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">200&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s1">&amp;#39;body&amp;#39;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s1">&amp;#39;&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">method&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">event&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;requestContext&amp;#39;&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="s1">&amp;#39;http&amp;#39;&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="s1">&amp;#39;method&amp;#39;&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">try&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="ow">not&lt;/span> &lt;span class="n">method&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="s2">&amp;#34;POST&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">res&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;body&amp;#39;&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;I am working!&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="n">res&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">update&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">Update&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">de_json&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">json&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">loads&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">event&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;body&amp;#39;&lt;/span>&lt;span class="p">]),&lt;/span> &lt;span class="n">bot&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="n">update&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">inline_query&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">res&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;body&amp;#39;&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nb">str&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">inline&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">update&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">elif&lt;/span> &lt;span class="n">update&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">message&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">msg&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">update&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">message&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="n">msg&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">chat&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">id&lt;/span> &lt;span class="o">&amp;gt;&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">res&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;body&amp;#39;&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nb">str&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">msg&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">reply_text&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">nonsense_reply&lt;/span>&lt;span class="p">()))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">else&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">logger&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">info&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;Unknown type. Ignoring...&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">except&lt;/span> &lt;span class="ne">Exception&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">e&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">logger&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">error&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nb">str&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">event&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">logger&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">error&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nb">str&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">e&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="n">res&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;code>event&lt;/code> 示例&lt;/p>
+&lt;span style="font-size: 0.5em">
+&lt;blockquote>
+&lt;ul>
+&lt;li>
+&lt;p>GET: &lt;code>{'version': '2.0', 'routeKey': '$default', 'rawPath': '/', 'rawQueryString': 'key=value', 'headers': {'sec-fetch-mode': 'navigate', 'x-amzn-tls-version': 'TLSv1.2', 'sec-fetch-site': 'none', 'accept-language': 'en-US,en;q=0.9', 'x-forwarded-proto': 'https', 'x-forwarded-port': '443', 'x-forwarded-for': '103.172.80.149', 'sec-fetch-user': '?1', 'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7', 'x-amzn-tls-cipher-suite': 'ECDHE-RSA-AES128-GCM-SHA256', 'sec-ch-ua': '&amp;quot;Google Chrome&amp;quot;;v=&amp;quot;117&amp;quot;, &amp;quot;Not;A=Brand&amp;quot;;v=&amp;quot;8&amp;quot;, &amp;quot;Chromium&amp;quot;;v=&amp;quot;117&amp;quot;', 'sec-ch-ua-mobile': '?0', 'x-amzn-trace-id': 'Root=1-65284b56-7a462eea204cb5a45d3c0668', 'sec-ch-ua-platform': '&amp;quot;Windows&amp;quot;', 'host': '7o22cfijy5jiujzbih6aov5yvy0hasni.lambda-url.eu-central-1.on.aws', 'upgrade-insecure-requests': '1', 'accept-encoding': 'gzip, deflate, br', 'sec-fetch-dest': 'document', 'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36'}, 'queryStringParameters': {'key': 'value'}, 'requestContext': {'accountId': 'anonymous', 'apiId': '7o22cfijy5jiujzbih6aov5yvy0hasni', 'domainName': '7o22cfijy5jiujzbih6aov5yvy0hasni.lambda-url.eu-central-1.on.aws', 'domainPrefix': '7o22cfijy5jiujzbih6aov5yvy0hasni', 'http': {'method': 'GET', 'path': '/', 'protocol': 'HTTP/1.1', 'sourceIp': '103.172.80.149', 'userAgent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36'}, 'requestId': '90551f3b-4891-4b37-9aeb-71e2fae50ad1', 'routeKey': '$default', 'stage': '$default', 'time': '12/Oct/2023:19:39:02 +0000', 'timeEpoch': 1697139542555}, 'isBase64Encoded': False}&lt;/code>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>POST: &lt;code>{'version': '2.0', 'routeKey': '$default', 'rawPath': '/', 'rawQueryString': '', 'headers': {'content-length': '372', 'x-amzn-tls-cipher-suite': 'ECDHE-RSA-AES128-GCM-SHA256', 'x-amzn-tls-version': 'TLSv1.2', 'x-amzn-trace-id': 'Root=1-65284b9f-3fff13e27bc794f95e3dbc98', 'x-forwarded-proto': 'https', 'host': '7o22cfijy5jiujzbih6aov5yvy0hasni.lambda-url.eu-central-1.on.aws', 'x-forwarded-port': '443', 'content-type': 'application/json', 'x-forwarded-for': '91.108.6.19', 'accept-encoding': 'gzip, deflate'}, 'requestContext': {'accountId': 'anonymous', 'apiId': '7o22cfijy5jiujzbih6aov5yvy0hasni', 'domainName': '7o22cfijy5jiujzbih6aov5yvy0hasni.lambda-url.eu-central-1.on.aws', 'domainPrefix': '7o22cfijy5jiujzbih6aov5yvy0hasni', 'http': {'method': 'POST', 'path': '/', 'protocol': 'HTTP/1.1', 'sourceIp': '91.108.6.19', 'userAgent': None}, 'requestId': '9fc841ed-6d28-461e-a657-565813752326', 'routeKey': '$default', 'stage': '$default', 'time': '12/Oct/2023:19:40:15 +0000', 'timeEpoch': 1697139615123}, 'body': '{&amp;quot;update_id&amp;quot;:11992905,\n&amp;quot;message&amp;quot;:{&amp;quot;message_id&amp;quot;:20,&amp;quot;from&amp;quot;:{&amp;quot;id&amp;quot;:5273618487,&amp;quot;is_bot&amp;quot;:false,&amp;quot;first_name&amp;quot;:&amp;quot;Kuma&amp;quot;,&amp;quot;last_name&amp;quot;:&amp;quot;Tea&amp;quot;,&amp;quot;username&amp;quot;:&amp;quot;realKumaTea&amp;quot;,&amp;quot;language_code&amp;quot;:&amp;quot;en&amp;quot;},&amp;quot;chat&amp;quot;:{&amp;quot;id&amp;quot;:5273618487,&amp;quot;first_name&amp;quot;:&amp;quot;Kuma&amp;quot;,&amp;quot;last_name&amp;quot;:&amp;quot;Tea&amp;quot;,&amp;quot;username&amp;quot;:&amp;quot;realKumaTea&amp;quot;,&amp;quot;type&amp;quot;:&amp;quot;private&amp;quot;},&amp;quot;date&amp;quot;:1697139614,&amp;quot;text&amp;quot;:&amp;quot;/start&amp;quot;,&amp;quot;entities&amp;quot;:[{&amp;quot;offset&amp;quot;:0,&amp;quot;length&amp;quot;:6,&amp;quot;type&amp;quot;:&amp;quot;bot_command&amp;quot;}]}}', 'isBase64Encoded': False}&lt;/code>&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;/blockquote>
+&lt;/span>
+&lt;p>Lambda 回传的 &lt;code>response['body']&lt;/code> 必须是 str 类型，
+否则会报 &lt;code>[ERROR] Runtime.MarshalError: Unable to marshal response&lt;/code>&lt;/p>
+&lt;h3 id="上传依赖">上传依赖&lt;/h3>
+&lt;p>这个时候如果直接部署会报错：找不到依赖&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/AWS-03-deps-01.jpg"
+width="2064"
+height="1108"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/AWS-03-deps-01_hu2051c144ebb02f4b3460945ce95f0f4e_120792_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/AWS-03-deps-01_hu2051c144ebb02f4b3460945ce95f0f4e_120792_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="186"
+data-flex-basis="447px"
+>&lt;/p>
+&lt;p>AWS Lambda 奇葩的设计导致我们不能上传
+&lt;code>requirements.txt&lt;/code> 让它自己安装，
+必须自己手动下载依赖并上传。&lt;/p>
+&lt;p>首先需要找一台 Linux 机器，运行 docker&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">docker run -it --rm --name &lt;span class="nb">test&lt;/span> python:3.11-slim /bin/bash
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/AWS-03-deps-02.jpg"
+width="1734"
+height="957"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/AWS-03-deps-02_hu2b05b431b1f28368395091b89dda3154_40251_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/AWS-03-deps-02_hu2b05b431b1f28368395091b89dda3154_40251_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="181"
+data-flex-basis="434px"
+>&lt;/p>
+&lt;p>然后安装所需依赖&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">apt update -qq &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> apt install zip -y -qq
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> /tmp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mkdir python
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">pip install &lt;span class="s2">&amp;#34;python-telegram-bot&amp;lt;20&amp;#34;&lt;/span> -t python -q
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">zip -r python.zip python
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/AWS-03-deps-03.jpg"
+width="1734"
+height="957"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/AWS-03-deps-03_hua2da8b07370c43712064d0997b4b1b21_134484_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/AWS-03-deps-03_hua2da8b07370c43712064d0997b4b1b21_134484_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="181"
+data-flex-basis="434px"
+>&lt;/p>
+&lt;p>再把生成的 &lt;code>python.zip&lt;/code> 复制出来&lt;/p>
+&lt;p>记得新开个 shell 别傻乎乎把 docker 退了&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">docker cp test:/tmp/python.zip .
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Docker 容器这个时候可以关了&lt;/p>
+&lt;p>继续下拉，在 Layers 这里点击 &lt;strong>Add a layer&lt;/strong>&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/AWS-03-deps-04.jpg"
+width="2376"
+height="936"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/AWS-03-deps-04_hu51f2c2b70e2c4d0a65975f796abfc5f0_60347_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/AWS-03-deps-04_hu51f2c2b70e2c4d0a65975f796abfc5f0_60347_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="253"
+data-flex-basis="609px"
+>&lt;/p>
+&lt;p>点 &lt;code>AWS layers&lt;/code> 上面那行小字 &lt;code>create a new layer&lt;/code>&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/AWS-03-deps-05.jpg"
+width="1629"
+height="1155"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/AWS-03-deps-05_hu905241744194ef7906296d9a1cf64903_58182_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/AWS-03-deps-05_hu905241744194ef7906296d9a1cf64903_58182_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="141"
+data-flex-basis="338px"
+>&lt;/p>
+&lt;p>随便写，上传，提交&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/AWS-03-deps-06.jpg"
+width="1508"
+height="1175"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/AWS-03-deps-06_huc945a5898365fc01ef4dcb8f7556fd0a_44727_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/AWS-03-deps-06_huc945a5898365fc01ef4dcb8f7556fd0a_44727_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="128"
+data-flex-basis="308px"
+>&lt;/p>
+&lt;p>重新回到 Lambda dashboard，拉到下面，
+点开熟悉的 Add a layer，
+选择 Custom layers，选刚刚创建的，右下角 Add&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/AWS-03-deps-07.jpg"
+width="1587"
+height="1162"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/AWS-03-deps-07_hucbb9a77fc06aae3f5f69cbc5b0232f42_60010_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/AWS-03-deps-07_hucbb9a77fc06aae3f5f69cbc5b0232f42_60010_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="136"
+data-flex-basis="327px"
+>&lt;/p>
+&lt;p>最后点 Code Source 旁边的 Deploy&lt;/p>
+&lt;h3 id="其他设置-1">其他设置&lt;/h3>
+&lt;p>环境变量在下方 Configuration - Environment variables 里面，
+设置简单不再赘述。&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/AWS-04-settings-01.jpg"
+width="1762"
+height="1139"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/AWS-04-settings-01_hu86d99ebd08e268a409b3cda948ebcfea_41722_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/AWS-04-settings-01_hu86d99ebd08e268a409b3cda948ebcfea_41722_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="154"
+data-flex-basis="371px"
+>&lt;/p>
+&lt;h3 id="完成-1">完成&lt;/h3>
+&lt;p>已成功运行&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/AWS-05-done-01.jpg"
+width="2389"
+height="1189"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/AWS-05-done-01_hu19cdee1a8c364715c7c71eaa20462ac5_72929_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/AWS-05-done-01_hu19cdee1a8c364715c7c71eaa20462ac5_72929_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="200"
+data-flex-basis="482px"
+>&lt;/p>
+&lt;h2 id="azure-functions">Azure Functions&lt;/h2>
+&lt;p>Azure 更是重量级，Web 端功能复杂甚至缺失，
+必须使用 VS Code 才能完整部署&lt;/p>
+&lt;h3 id="准备">准备&lt;/h3>
+&lt;p>你需要安装一个 &lt;a class="link" href="https://code.visualstudio.com/" target="_blank" rel="noopener"
+>VS Code&lt;/a>&lt;/p>
+&lt;p>然后安装 &lt;a class="link" href="https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions" target="_blank" rel="noopener"
+>Azure Functions 插件&lt;/a>&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/Azure-00-prep-01.jpg"
+width="1822"
+height="1014"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/Azure-00-prep-01_hu3d421cf0d6a937f6cd852313d61431c4_77995_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/Azure-00-prep-01_hu3d421cf0d6a937f6cd852313d61431c4_77995_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="179"
+data-flex-basis="431px"
+>&lt;/p>
+&lt;p>安装好之后，会在左边栏看到一个 A 图标&lt;/p>
+&lt;p>点击并登录，直到看到你使用的产品都列出了&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/Azure-00-prep-02.jpg"
+width="540"
+height="577"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/Azure-00-prep-02_hua73e382bd496b7b2428c98ed9eb5159d_20543_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/Azure-00-prep-02_hua73e382bd496b7b2428c98ed9eb5159d_20543_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="93"
+data-flex-basis="224px"
+>&lt;/p>
+&lt;h3 id="创建-functions-1">创建 Functions&lt;/h3>
+&lt;p>左下角 Workspace，鼠标移上去会有一个 Functions 图标出现&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/Azure-01-create-01.jpg"
+width="573"
+height="343"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/Azure-01-create-01_hu2d8540622f0cd0f1a4f8b154f117d07f_11705_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/Azure-01-create-01_hu2d8540622f0cd0f1a4f8b154f117d07f_11705_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="167"
+data-flex-basis="400px"
+>&lt;/p>
+&lt;p>点击第二个 Create New Project&lt;/p>
+&lt;p>回到上方，选择一个空文件夹&lt;/p>
+&lt;p>语言根据需要选，模型默认 V2, Python 环境可以选择有的也可以跳过&lt;/p>
+&lt;p>Template 选择 HTTP Trigger&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/Azure-01-create-02.jpg"
+width="915"
+height="423"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/Azure-01-create-02_hu8edb09072f624114885cc67742ed5f1d_16529_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/Azure-01-create-02_hu8edb09072f624114885cc67742ed5f1d_16529_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="216"
+data-flex-basis="519px"
+>&lt;/p>
+&lt;p>Trigger 名称是你的 API 路径，这里我改成了 &lt;code>bot&lt;/code>&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/Azure-01-create-03.jpg"
+width="926"
+height="212"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/Azure-01-create-03_hu900d428a304cdd99c2b4c0a4ee5637c8_11025_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/Azure-01-create-03_hu900d428a304cdd99c2b4c0a4ee5637c8_11025_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="436"
+data-flex-basis="1048px"
+>&lt;/p>
+&lt;p>然后认证选择 Anonymous&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/Azure-01-create-04.jpg"
+width="917"
+height="220"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/Azure-01-create-04_hu03ab7ef6cc018a12a326e09f59482144_10168_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/Azure-01-create-04_hu03ab7ef6cc018a12a326e09f59482144_10168_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="416"
+data-flex-basis="1000px"
+>&lt;/p>
+&lt;p>就可以打开生成的代码文件编辑了&lt;/p>
+&lt;h3 id="填入代码-1">填入代码&lt;/h3>
+&lt;p>首先这个 Create New Function 是没有用的&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/Azure-02-code-01.jpg"
+width="515"
+height="317"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/Azure-02-code-01_hud8b54b12d4f1bb7b76bd5d15ad433064_12002_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/Azure-02-code-01_hud8b54b12d4f1bb7b76bd5d15ad433064_12002_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="162"
+data-flex-basis="389px"
+>&lt;/p>
+&lt;p>它不过是在你的代码里加一个入口，可以自己写&lt;/p>
+&lt;p>把代码贴进去就好了，不赘叙&lt;/p>
+&lt;p>主函数示例：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="nd">@app.route&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">route&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;bot&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">auth_level&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">func&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">AuthLevel&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">ANONYMOUS&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">req&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">res&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">try&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="ow">not&lt;/span> &lt;span class="n">req&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">method&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="s2">&amp;#34;POST&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="s1">&amp;#39;I am working!&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">update&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">Update&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">de_json&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">req&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">get_json&lt;/span>&lt;span class="p">(),&lt;/span> &lt;span class="n">bot&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="n">update&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">inline_query&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">res&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">inline&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">update&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">elif&lt;/span> &lt;span class="n">update&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">message&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">msg&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">update&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">message&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="n">msg&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">chat&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">id&lt;/span> &lt;span class="o">&amp;gt;&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">res&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">msg&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">reply_text&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">nonsense_reply&lt;/span>&lt;span class="p">())&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">else&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">logger&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">info&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;Unknown type. Ignoring...&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">except&lt;/span> &lt;span class="ne">Exception&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">e&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">logger&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">debug&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nb">str&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">req&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">get_json&lt;/span>&lt;span class="p">()))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">logger&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">error&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nb">str&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">e&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="n">res&lt;/span> &lt;span class="k">if&lt;/span> &lt;span class="nb">type&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">res&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="ow">is&lt;/span> &lt;span class="nb">str&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="s1">&amp;#39;&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>这里要特别注意的是，
+入口参数 &lt;strong>必须是 &lt;code>req&lt;/code>&lt;/strong>，
+如果不一致，部署后会找不到 HTTP Trigger!!!&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/Azure-02-code-02.jpg"
+width="812"
+height="418"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/Azure-02-code-02_hu7bf1d025b625ad9295b8031f2a39945b_29995_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/Azure-02-code-02_hu7bf1d025b625ad9295b8031f2a39945b_29995_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="194"
+data-flex-basis="466px"
+>&lt;/p>
+&lt;p>微软没有任何文档提到这一点！我是怎么发现的呢？&lt;/p>
+&lt;p>原先一直用的是 &lt;code>request&lt;/code> 当入口，
+因为一直部署失败，乱翻文档，在 &lt;a class="link" href="https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-http-webhook-trigger#decorators" target="_blank" rel="noopener"
+>HTTP Trigger&lt;/a> 看到这么一句&lt;/p>
+&lt;blockquote>
+&lt;p>&lt;code>trigger_arg_name&lt;/code> Argument name for HttpRequest, defaults to &amp;lsquo;req&amp;rsquo;.&lt;/p>
+&lt;/blockquote>
+&lt;p>没事限制参数干嘛？我就改成 &lt;code>req&lt;/code> 居然就成功了&lt;/p>
+&lt;h3 id="部署和设置">部署和设置&lt;/h3>
+&lt;p>工作区 Azure 图标 - Create Function App in Azure&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/Azure-03-deploy-01.jpg"
+width="802"
+height="382"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/Azure-03-deploy-01_huc1363681792a972641bc727c72fb9142_25066_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/Azure-03-deploy-01_huc1363681792a972641bc727c72fb9142_25066_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="209"
+data-flex-basis="503px"
+>&lt;/p>
+&lt;p>会需要你填写一个唯一的不重复的名字，因为这个到时候会写到 API 的 URL 里面&lt;/p>
+&lt;p>我这里用的是 &lt;code>kmlt&lt;/code>&lt;/p>
+&lt;p>然后选择环境和地区，完成和等待创建即可&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/Azure-03-deploy-02.jpg"
+width="907"
+height="590"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/Azure-03-deploy-02_hufccc9bb3ebb0f3f087cc10c9cbd96f15_22837_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/Azure-03-deploy-02_hufccc9bb3ebb0f3f087cc10c9cbd96f15_22837_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="153"
+data-flex-basis="368px"
+>&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/Azure-03-deploy-03.jpg"
+width="908"
+height="587"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/Azure-03-deploy-03_huf4e1f00a0aaaf83524bbb28e0c63da57_19144_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/Azure-03-deploy-03_huf4e1f00a0aaaf83524bbb28e0c63da57_19144_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="154"
+data-flex-basis="371px"
+>&lt;/p>
+&lt;p>随后上方可见刚刚创建的 Function App&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/Azure-03-deploy-04.jpg"
+width="457"
+height="294"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/Azure-03-deploy-04_huc929c7247bf6181b2dcdbc61913c4122_11568_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/Azure-03-deploy-04_huc929c7247bf6181b2dcdbc61913c4122_11568_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="155"
+data-flex-basis="373px"
+>&lt;/p>
+&lt;hr>
+&lt;p>创建好，部署之前，
+如果你有环境变量需要设置，
+点开
+Azure -
+Resources -
+Function App -
+kmlt,
+在 &lt;strong>&lt;code>Application Settings&lt;/code>&lt;/strong> 上右键，
+在弹出窗口中分别填入环境变量的名字和值&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/Azure-03-deploy-05.jpg"
+width="498"
+height="254"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/Azure-03-deploy-05_hu7feeeb8b92db1776344df6ec333e0355_12145_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/Azure-03-deploy-05_hu7feeeb8b92db1776344df6ec333e0355_12145_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="196"
+data-flex-basis="470px"
+>&lt;/p>
+&lt;hr>
+&lt;p>完成后，点击 Functions 图标，选择
+&lt;strong>Deploy to Function App&amp;hellip;&lt;/strong>&lt;/p>
+&lt;p>上方选择刚创建的，
+弹出警告点 Deploy&lt;/p>
+&lt;p>右下角会开始输出部署 log&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/Azure-03-deploy-06.jpg"
+width="1088"
+height="482"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/Azure-03-deploy-06_hu4be2708c9bfee9df3b02fa43cd384f4f_46451_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/Azure-03-deploy-06_hu4be2708c9bfee9df3b02fa43cd384f4f_46451_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="225"
+data-flex-basis="541px"
+>&lt;/p>
+&lt;h3 id="完成-2">完成&lt;/h3>
+&lt;p>完成后 log 会显示你的 Trigger URL&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/Azure-04-done-01.jpg"
+width="1201"
+height="514"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/Azure-04-done-01_hu5440e30cec6a5cedf59d83229698e255_57622_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/Azure-04-done-01_hu5440e30cec6a5cedf59d83229698e255_57622_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="233"
+data-flex-basis="560px"
+>&lt;/p>
+&lt;p>可以打开 URL 测试&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/Azure-04-done-02.jpg"
+width="2560"
+height="1262"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/Azure-04-done-02_hueac658ee1a5d080df2c064d5f9ae3626_82954_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/Azure-04-done-02_hueac658ee1a5d080df2c064d5f9ae3626_82954_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="202"
+data-flex-basis="486px"
+>&lt;/p>
+&lt;h2 id="总结">总结&lt;/h2>
+&lt;p>平心而论，
+Azure 的部署过程其实是很方便的，
+尤其是对于那些用惯了 VS Code 的人来说。&lt;/p>
+&lt;p>然而由于微软的文档过于语焉不详才让我吃了那么多苦头，
+甚至没有这件事就没有这篇发奋而作的 blog，
+笑死。&lt;/p></description></item></channel></rss>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Wallpaper Engine on 酷玛阁 | KumaTea's Blog</title><link>https://blog.kmtea.eu/tags/wallpaper-engine/</link><description>Recent content in Wallpaper Engine on 酷玛阁 | KumaTea's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Thu, 16 Jun 2022 20:00:00 +0800</lastBuildDate><atom:link href="https://blog.kmtea.eu/tags/wallpaper-engine/index.xml" rel="self" type="application/rss+xml"/><item><title>Wallpaper Engine 刷时长</title><link>https://blog.kmtea.eu/p/220616-we-in-game/</link><pubDate>Thu, 16 Jun 2022 20:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/220616-we-in-game/</guid><description>&lt;img src="https://blog.kmtea.eu/p/220616-we-in-game/img/cover.jpg" alt="Featured image of post Wallpaper Engine 刷时长" />&lt;h1 id="wallpaper-engine-刷时长">Wallpaper Engine 刷时长&lt;/h1>
+&lt;p>我一直是个游戏时长爱好者，喜欢看自己主页上游戏时间一点点多起来（哪怕没有真的在玩）。&lt;/p>
+&lt;p>以前用过 &lt;a class="link" href="https://github.com/JustArchiNET/ArchiSteamFarm" target="_blank" rel="noopener"
+>ArchiSteamFarm&lt;/a>
+来挂游戏，但是因为它会强制加群就弃用了。&lt;/p>
+&lt;hr>
+&lt;p>于是带着这个需求我去 Steam 社区提问了下：&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/220616-we-in-game/img/01-q.jpg"
+width="1920"
+height="969"
+srcset="https://blog.kmtea.eu/p/220616-we-in-game/img/01-q_hu4952091e653e74659434fc387e442cb5_156325_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/220616-we-in-game/img/01-q_hu4952091e653e74659434fc387e442cb5_156325_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="Question"
+class="gallery-image"
+data-flex-grow="198"
+data-flex-basis="475px"
+>&lt;/p>
+&lt;p>提问前遵循了 issue 的基本规则（先搜索提问列表以及查阅文档那些）。&lt;/p>
+&lt;p>开发者一开始说对不起做不到，但是很快就修改了：&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/220616-we-in-game/img/02-a.jpg"
+width="1452"
+height="779"
+srcset="https://blog.kmtea.eu/p/220616-we-in-game/img/02-a_hu6dbe75f721e437f5d534e3700dccf0ea_86269_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/220616-we-in-game/img/02-a_hu6dbe75f721e437f5d534e3700dccf0ea_86269_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="Answer"
+class="gallery-image"
+data-flex-grow="186"
+data-flex-basis="447px"
+>&lt;/p>
+&lt;p>我把参数加粗放在这里：&lt;/p>
+&lt;div style="text-align: center">&lt;h1>&lt;code>-steamtrackhours&lt;/code>&lt;/h1>&lt;/div>
+&lt;hr>
+&lt;p>原帖链接：&lt;a class="link" href="https://steamcommunity.com/app/431960/discussions/2/3418809548706728583/" target="_blank" rel="noopener"
+>社区帖子&lt;/a>&lt;/p></description></item></channel></rss>

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Apple Pay on 酷玛阁 | KumaTea's Blog</title><link>https://blog.kmtea.eu/tags/apple-pay/</link><description>Recent content in Apple Pay on 酷玛阁 | KumaTea's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sat, 17 Jun 2023 15:00:00 +0800</lastBuildDate><atom:link href="https://blog.kmtea.eu/tags/apple-pay/index.xml" rel="self" type="application/rss+xml"/><item><title>Apple Pay 绑卡失败原因速查</title><link>https://blog.kmtea.eu/p/230617-apple-pay/</link><pubDate>Sat, 17 Jun 2023 15:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/230617-apple-pay/</guid><description>&lt;img src="https://blog.kmtea.eu/p/230617-apple-pay/img/err-invalid.jpg" alt="Featured image of post Apple Pay 绑卡失败原因速查" />&lt;h1 id="apple-pay-绑卡失败原因速查">Apple Pay 绑卡失败原因速查&lt;/h1>
+&lt;p>先上目前绑卡截图镇楼&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230617-apple-pay/img/apple-wallet.jpg"
+width="1125"
+height="1125"
+srcset="https://blog.kmtea.eu/p/230617-apple-pay/img/apple-wallet_hua7f6b146b03b3aeda88b05a5ab6e3e92_87969_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/230617-apple-pay/img/apple-wallet_hua7f6b146b03b3aeda88b05a5ab6e3e92_87969_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="100"
+data-flex-basis="240px"
+>&lt;/p>
+&lt;h2 id="常见错误">常见错误&lt;/h2>
+&lt;h3 id="你的发卡机构尚不支持此卡片">你的发卡机构尚不支持此卡片&lt;/h3>
+&lt;blockquote>
+&lt;p>Your issuer does not yet offer support for this card&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230617-apple-pay/img/err-not-support.jpg"
+width="1125"
+height="633"
+srcset="https://blog.kmtea.eu/p/230617-apple-pay/img/err-not-support_hu3f684642fb43a78ba5c3cb21896070ec_30635_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/230617-apple-pay/img/err-not-support_hu3f684642fb43a78ba5c3cb21896070ec_30635_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p>
+&lt;ul>
+&lt;li>正在绑定的是中国大陆发行的非银联卡&lt;/li>
+&lt;/ul>
+&lt;h3 id="卡的设备限制">卡的设备限制&lt;/h3>
+&lt;blockquote>
+&lt;p>Card device limit&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230617-apple-pay/img/err-limit.jpg"
+width="1125"
+height="1125"
+srcset="https://blog.kmtea.eu/p/230617-apple-pay/img/err-limit_hu774a6ef4580768a8310444706670b8ec_40540_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/230617-apple-pay/img/err-limit_hu774a6ef4580768a8310444706670b8ec_40540_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="100"
+data-flex-basis="240px"
+>&lt;/p>
+&lt;ul>
+&lt;li>如果确认已解绑多余设备， &lt;a class="link" href="https://discussionschinese.apple.com/thread/253116288?answerId=255886195322#255886195322" target="_blank" rel="noopener"
+>可尝试等待3天&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h3 id="卡信息无效">卡信息无效&lt;/h3>
+&lt;blockquote>
+&lt;p>Invalid card&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230617-apple-pay/img/err-invalid.jpg"
+width="1125"
+height="632"
+srcset="https://blog.kmtea.eu/p/230617-apple-pay/img/err-invalid_huf3c10c93b5b3d869ba6a8349297c4b96_19310_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/230617-apple-pay/img/err-invalid_huf3c10c93b5b3d869ba6a8349297c4b96_19310_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="178"
+data-flex-basis="427px"
+>&lt;/p>
+&lt;ul>
+&lt;li>该卡号今日 &lt;a class="link" href="https://www.jimmytian.com/archives/solve-apple-pay-cant-add-boc-card.html#0x03-%E5%86%8D%E6%AC%A1%E6%89%93%E7%94%B5%E8%AF%9D%E5%88%B0%E9%93%B6%E8%81%94" target="_blank" rel="noopener"
+>已失败5次&lt;/a> ，明日再试&lt;/li>
+&lt;/ul>
+&lt;h3 id="未添加此卡">未添加此卡&lt;/h3>
+&lt;blockquote>
+&lt;p>Could not add card&lt;/p>
+&lt;p>Card not added&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230617-apple-pay/img/err-could-not-add.jpg"
+width="1125"
+height="633"
+srcset="https://blog.kmtea.eu/p/230617-apple-pay/img/err-could-not-add_hub4e6861b94828d4b95554214ae3c882f_22138_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/230617-apple-pay/img/err-could-not-add_hub4e6861b94828d4b95554214ae3c882f_22138_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230617-apple-pay/img/err-not-added.jpg"
+width="1125"
+height="633"
+srcset="https://blog.kmtea.eu/p/230617-apple-pay/img/err-not-added_huc5c2ee01629463b98d808532d6840f1b_20038_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/230617-apple-pay/img/err-not-added_huc5c2ee01629463b98d808532d6840f1b_20038_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p>
+&lt;ul>
+&lt;li>原因不明，建议跟客服对线
+&lt;ul>
+&lt;li>关于中行疑难杂症，请见下文&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="客服聊天记录">客服聊天记录&lt;/h2>
+&lt;p>建议：先找银联问错误代码，再找对应银行；&lt;/p>
+&lt;p>银联首选云闪付线上客服，银行首选电话客服。&lt;/p>
+&lt;h3 id="银联">银联&lt;/h3>
+&lt;blockquote>
+&lt;p>碰到绑不上的问题可以先向银联咨询错误代码&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230617-apple-pay/img/chat-up-agent.jpg"
+width="1125"
+height="1784"
+srcset="https://blog.kmtea.eu/p/230617-apple-pay/img/chat-up-agent_hu0a84dcdbde5573e3398f0077566ae77f_51072_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/230617-apple-pay/img/chat-up-agent_hu0a84dcdbde5573e3398f0077566ae77f_51072_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="63"
+data-flex-basis="151px"
+>&lt;/p>
+&lt;h3 id="中国银行">中国银行&lt;/h3>
+&lt;blockquote>
+&lt;p>中行电话客服才有足够权限，在线客服只能问到通用信息&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230617-apple-pay/img/chat-boc-bot.jpg"
+width="1125"
+height="1150"
+srcset="https://blog.kmtea.eu/p/230617-apple-pay/img/chat-boc-bot_hu72fb0c4dd3869938b83612b4ce8f1a50_58359_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/230617-apple-pay/img/chat-boc-bot_hu72fb0c4dd3869938b83612b4ce8f1a50_58359_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="97"
+data-flex-basis="234px"
+>&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230617-apple-pay/img/chat-boc-agent.jpg"
+width="1125"
+height="1536"
+srcset="https://blog.kmtea.eu/p/230617-apple-pay/img/chat-boc-agent_hu0cf36a1639c6b04e7fb2f7b182727353_87950_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/230617-apple-pay/img/chat-boc-agent_hu0cf36a1639c6b04e7fb2f7b182727353_87950_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="73"
+data-flex-basis="175px"
+>&lt;/p>
+&lt;ul>
+&lt;li>每人无论单个或多个设备，最多存在 &lt;strong>3张&lt;/strong> 已绑定的中行借记卡 (即包含 &lt;a class="link" href="https://www.jimmytian.com/archives/solve-apple-pay-cant-add-boc-card.html#comment-201" target="_blank" rel="noopener"
+>同一张卡绑定3台设备的情况&lt;/a>)&lt;/li>
+&lt;li>&lt;a class="link" href="https://www.jimmytian.com/archives/solve-apple-pay-cant-add-boc-card.html#comment-212" target="_blank" rel="noopener"
+>有评论&lt;/a> 称，中行最多绑定两张卡。 &lt;strong>我自己的情况正是这样&lt;/strong>&lt;/li>
+&lt;li>所有银行卡合计超出上限 (新版 iOS &lt;a class="link" href="https://t.me/DocOfCard/2019" target="_blank" rel="noopener"
+>据说移除了&lt;/a> 这个上限)&lt;/li>
+&lt;/ul>
+&lt;h2 id="参考资料">参考资料&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a class="link" href="https://www.jimmytian.com/archives/solve-apple-pay-cant-add-boc-card.html" target="_blank" rel="noopener"
+>中国银行绑定 Apple Pay 失败的解决方法&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;blockquote>
+&lt;p>我与该博主相似的地方有：&lt;/p>
+&lt;ul>
+&lt;li>第一次绑卡时收到了银联的风控电话&lt;/li>
+&lt;li>绑卡失败代码都是 93608&lt;/li>
+&lt;/ul>
+&lt;/blockquote>
+&lt;ul>
+&lt;li>&lt;a class="link" href="https://discussionschinese.apple.com/thread/253116288" target="_blank" rel="noopener"
+>钱包解绑银行卡后无法再重新绑定，提示设备限制&lt;/a>&lt;/li>
+&lt;/ul></description></item></channel></rss>

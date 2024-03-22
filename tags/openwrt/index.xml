@@ -1,0 +1,603 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>OpenWrt on 酷玛阁 | KumaTea's Blog</title><link>https://blog.kmtea.eu/tags/openwrt/</link><description>Recent content in OpenWrt on 酷玛阁 | KumaTea's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Tue, 27 Dec 2022 17:00:00 +0800</lastBuildDate><atom:link href="https://blog.kmtea.eu/tags/openwrt/index.xml" rel="self" type="application/rss+xml"/><item><title>PVE 更新 OpenWrt 教程</title><link>https://blog.kmtea.eu/p/221227-pve-openwrt/</link><pubDate>Tue, 27 Dec 2022 17:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/221227-pve-openwrt/</guid><description>&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/cover.jpg" alt="Featured image of post PVE 更新 OpenWrt 教程" />&lt;h1 id="pve-更新-openwrt">PVE 更新 OpenWrt&lt;/h1>
+&lt;h2 id="准备工作">准备工作&lt;/h2>
+&lt;ul>
+&lt;li>
+&lt;p>OpenWrt 固件
+&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/01-firmware.jpg"
+width="933"
+height="373"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/01-firmware_hu8e4e04a9903c905527aea117356e9523_36602_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/01-firmware_hu8e4e04a9903c905527aea117356e9523_36602_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="Firmware"
+class="gallery-image"
+data-flex-grow="250"
+data-flex-basis="600px"
+>&lt;/p>
+&lt;ul>
+&lt;li>建议编译时 &lt;strong>不要&lt;/strong> 选中 &lt;code>gzip&lt;/code> 压缩，否则容易出现各种奇妙的问题&lt;/li>
+&lt;li>一般情况下不选用名称带有 &lt;code>rootfs&lt;/code> 的固件&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>USB 网卡 (可选)
+&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/02-usb.jpg"
+width="1280"
+height="720"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/02-usb_hu24bb9d46a15e3e5957272eda3d810bbd_117561_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/02-usb_hu24bb9d46a15e3e5957272eda3d810bbd_117561_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="USB Ethernet"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p>
+&lt;ul>
+&lt;li>如果你和我一样把全部网口都直通了，则需要在更新时使用其他的方式连接到 PVE&lt;/li>
+&lt;li>PVE 默认不会自动启用新插入的网卡，你可能需要
+&lt;code>ifup enx00xxxxxxxxxx &amp;amp;&amp;amp; ip link set dev enx00xxxxxxxxxx up&lt;/code>
+其中网卡名 &lt;code>enx00xxxxxxxxxx&lt;/code> 可以在 &lt;code>ifconfig&lt;/code> 查询
+&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/03-ifup.jpg"
+width="1920"
+height="1080"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/03-ifup_hu97dad670c4ca60988cb7b9d68620cd9d_57745_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/03-ifup_hu97dad670c4ca60988cb7b9d68620cd9d_57745_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="ifup"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="为什么不能用正常方式升级">为什么不能用正常方式升级？&lt;/h2>
+&lt;p>众所周知，OpenWrt 正常升级方式是在 &lt;code>系统&lt;/code> - &lt;code>备份升级&lt;/code> 中升级：&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/04-upgrade.jpg"
+width="1892"
+height="934"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/04-upgrade_hu07ea250d21de23cd3dc011d24b1525f7_54003_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/04-upgrade_hu07ea250d21de23cd3dc011d24b1525f7_54003_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="Upgrade"
+class="gallery-image"
+data-flex-grow="202"
+data-flex-basis="486px"
+>&lt;/p>
+&lt;p>但你会发现 x86 固件是不包含 &lt;code>sysupgrade&lt;/code> 固件的：&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/05-checksum.jpg"
+width="1313"
+height="535"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/05-checksum_hu61c0b4870c5252d807474774a552972c_45405_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/05-checksum_hu61c0b4870c5252d807474774a552972c_45405_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="Checksum"
+class="gallery-image"
+data-flex-grow="245"
+data-flex-basis="589px"
+>&lt;/p>
+&lt;p>所以，对于运行在 Proxmox VE 中的 OpenWrt 虚拟机，我们只能通过手动方式升级&lt;/p>
+&lt;hr>
+&lt;p>在开始之前，请确保你划分了一块虚拟硬盘作为 &lt;code>overlay&lt;/code> 分区放置配置。&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/06-overlay.jpg"
+width="1920"
+height="1080"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/06-overlay_hu496d56b6802810a226c12f367f4f8133_124677_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/06-overlay_hu496d56b6802810a226c12f367f4f8133_124677_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="overlay"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p>
+&lt;p>如果没有，我强烈建议你花十分钟搜下教程
+(关键词 &lt;code>extroot overlay&lt;/code>)
+完成这件事， &lt;strong>功在当代利在千秋&lt;/strong>&lt;/p>
+&lt;h2 id="上传新固件">上传新固件&lt;/h2>
+&lt;p>上传到 &lt;code>local&lt;/code> - &lt;code>ISO&lt;/code>&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/07-upload.jpg"
+width="1920"
+height="1080"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/07-upload_hudd9a95979472a06f1937b22db409d9d2_80601_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/07-upload_hudd9a95979472a06f1937b22db409d9d2_80601_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="Upload firmware"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p>
+&lt;p>推荐检查 &lt;code>sha256sum&lt;/code>&lt;/p>
+&lt;h2 id="更换系统固件">更换系统固件&lt;/h2>
+&lt;ol>
+&lt;li>在以非目标 OpenWrt 内网的方式连接 PVE 的情况下，关闭虚拟机 &lt;br>
+&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/08-shutdown.jpg"
+width="1920"
+height="1080"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/08-shutdown_hud7dc4685595cfaf916347d5f9421aacc_88661_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/08-shutdown_hud7dc4685595cfaf916347d5f9421aacc_88661_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="Shutdown"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>
+可以用 PVE 的 &lt;code>Shutdown&lt;/code> 按钮，也可以在 Console 输入 &lt;code>poweroff&lt;/code> &lt;br>&lt;/li>
+&lt;li>选中系统盘 &lt;br>
+&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/09-select.jpg"
+width="1085"
+height="434"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/09-select_hu25daed2a7865e770512ee66f467c48ef_31893_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/09-select_hu25daed2a7865e770512ee66f467c48ef_31893_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="Select"
+class="gallery-image"
+data-flex-grow="250"
+data-flex-basis="600px"
+>
+点击 &lt;code>Detach&lt;/code> 并确认 &lt;br>
+&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/10-detach.jpg"
+width="939"
+height="387"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/10-detach_huf998fbe0e0aef7b92bb49a81611c6ad2_19197_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/10-detach_huf998fbe0e0aef7b92bb49a81611c6ad2_19197_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="Detach"
+class="gallery-image"
+data-flex-grow="242"
+data-flex-basis="582px"
+>
+再在下方找到 &lt;code>Unused Disk 0&lt;/code> 并 &lt;code>Remove&lt;/code> 删除 &lt;br>
+&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/11-remove.jpg"
+width="1288"
+height="730"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/11-remove_hud69c0c108b82e63b281f908dbea82cec_41846_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/11-remove_hud69c0c108b82e63b281f908dbea82cec_41846_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="Remove"
+class="gallery-image"
+data-flex-grow="176"
+data-flex-basis="423px"
+>&lt;/li>
+&lt;li>导入新固件 &lt;br>
+来到 &lt;strong>PVE 的 Console&lt;/strong> 输入： &lt;br>
+&lt;code>qm importdisk 101 /var/lib/vz/template/iso/openwrt-x86-64-generic-squashfs-combined-efi.img local-lvm&lt;/code> &lt;br>
+其中 &lt;code>101&lt;/code> 是你的 OpenWrt 虚拟机 ID
+&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/12-import.jpg"
+width="1920"
+height="1080"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/12-import_hu2c89a0ea4a310c7bd36f87f2c6c0e6b2_160471_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/12-import_hu2c89a0ea4a310c7bd36f87f2c6c0e6b2_160471_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="Import"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>
+随后一个新的 &lt;code>Unused Disk 0&lt;/code> 出现了
+&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/13-disk.jpg"
+width="1576"
+height="819"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/13-disk_hu76113ddb93a145cc5f63fa929b8cbe2d_86370_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/13-disk_hu76113ddb93a145cc5f63fa929b8cbe2d_86370_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="Found new Unused"
+class="gallery-image"
+data-flex-grow="192"
+data-flex-basis="461px"
+>&lt;/li>
+&lt;li>启用新系统盘 &lt;br>
+选中新的 &lt;code>Unused Disk 0&lt;/code> 并点击 &lt;code>Edit&lt;/code>，确认即可 &lt;br>
+&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/14-edit.jpg"
+width="1398"
+height="562"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/14-edit_hu16ff1633747892088e88b8728d43d3e4_32802_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/14-edit_hu16ff1633747892088e88b8728d43d3e4_32802_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="Attach Unused Disk 0"
+class="gallery-image"
+data-flex-grow="248"
+data-flex-basis="597px"
+>&lt;/li>
+&lt;li>启动虚拟机&lt;/li>
+&lt;/ol>
+&lt;h2 id="恢复配置">恢复配置&lt;/h2>
+&lt;ol>
+&lt;li>按一下回车激活 Console &lt;br>
+&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/15-console.jpg"
+width="1920"
+height="1080"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/15-console_hu2ab3a4f22632ad58cad2465494a7bcba_111342_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/15-console_hu2ab3a4f22632ad58cad2465494a7bcba_111342_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="Activate console"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/li>
+&lt;li>此时，原先的 &lt;code>overlay&lt;/code> 会被自动挂载为 &lt;code>/mnt/sda1&lt;/code> (有时是 &lt;code>sdb1&lt;/code>) &lt;br>
+我们可以发现，该目录下 &lt;code>etc&lt;/code> 内含有一 &lt;code>.extroot-uuid&lt;/code> 文件。 &lt;br>
+&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/16-cleanup.jpg"
+width="977"
+height="445"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/16-cleanup_huf29fe62ff5827cf9b259b501939c84a0_26087_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/16-cleanup_huf29fe62ff5827cf9b259b501939c84a0_26087_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="Cleanup"
+class="gallery-image"
+data-flex-grow="219"
+data-flex-basis="526px"
+>
+这一文件会误导系统读取正确的 UUID 并导致无法挂载！ &lt;br>
+使用 &lt;code>rm -rf /mnt/sda1/etc&lt;/code> 将之删除。 &lt;br>
+&lt;code>/etc/fstab&lt;/code> 也是没用的： &lt;code>rm -f /etc/fstab&lt;/code>&lt;/li>
+&lt;li>查看自动生成的 &lt;code>/etc/config/fstab&lt;/code> &lt;br>
+&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/17-old-fstab.jpg"
+width="912"
+height="724"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/17-old-fstab_hu4ed30a0f2b22ad729cf7c80f653550d2_34560_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/17-old-fstab_hu4ed30a0f2b22ad729cf7c80f653550d2_34560_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="Old fstab"
+class="gallery-image"
+data-flex-grow="125"
+data-flex-basis="302px"
+>&lt;/li>
+&lt;/ol>
+&lt;ul>
+&lt;li>去掉用不到的 &lt;code>boot&lt;/code> 挂载&lt;/li>
+&lt;li>把 &lt;code>sda1&lt;/code> 的 UUID 移动到 &lt;code>overlay&lt;/code> 配置下
+&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/18-new-fstab.jpg"
+width="1250"
+height="838"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/18-new-fstab_hu722882836f70c5db95529e9392ee6cb3_38960_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/18-new-fstab_hu722882836f70c5db95529e9392ee6cb3_38960_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="New fstab"
+class="gallery-image"
+data-flex-grow="149"
+data-flex-basis="357px"
+>
+保存后重启&lt;/li>
+&lt;/ul>
+&lt;ol start="4">
+&lt;li>把修改的 &lt;code>/etc/config/fstab&lt;/code> 同步到配置分区 &lt;br>
+&lt;code>cp -a /etc/config/fstab /mnt/sda1/upper/etc/config/&lt;/code>
+&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/19-sync-fstab.jpg"
+width="1297"
+height="331"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/19-sync-fstab_hua9444a693589a9994f5d13e8bb9b5ff8_18853_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/19-sync-fstab_hua9444a693589a9994f5d13e8bb9b5ff8_18853_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="Sync config"
+class="gallery-image"
+data-flex-grow="391"
+data-flex-basis="940px"
+>&lt;/li>
+&lt;/ol>
+&lt;h2 id="完成">完成&lt;/h2>
+&lt;ol>
+&lt;li>重启&lt;/li>
+&lt;li>检查 &lt;code>df -h&lt;/code>，可发现配置分区已成功挂载！
+&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/20-reboot.jpg"
+width="1920"
+height="1080"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/20-reboot_hufbc06ac70859a8c632ff8a68ec3e1e87_69313_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/20-reboot_hufbc06ac70859a8c632ff8a68ec3e1e87_69313_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="Reboot"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/li>
+&lt;/ol>
+&lt;h2 id="references">References&lt;/h2>
+&lt;p>我被万恶的 &lt;code>.extroot-uuid&lt;/code> 困扰了几个月之久，直到看到了
+&lt;a class="link" href="https://forum.openwrt.org/t/solved-extroot-not-working-on-18-06/16723/2" target="_blank" rel="noopener"
+>这篇帖子&lt;/a>&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/21-forum.jpg"
+width="1077"
+height="1280"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/21-forum_huc3b7e49d830a4409ff1c8a990966c57c_49369_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/21-forum_huc3b7e49d830a4409ff1c8a990966c57c_49369_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="Solution"
+class="gallery-image"
+data-flex-grow="84"
+data-flex-basis="201px"
+>&lt;/p>
+&lt;p>因此写这篇教程广而告之。&lt;/p></description></item><item><title>Add glibc to OpenWrt</title><link>https://blog.kmtea.eu/p/221003-glibc-openwrt-en/</link><pubDate>Mon, 03 Oct 2022 16:30:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/221003-glibc-openwrt-en/</guid><description>&lt;img src="https://blog.kmtea.eu/p/221003-glibc-openwrt/img/cover.jpg" alt="Featured image of post Add glibc to OpenWrt" />&lt;h1 id="add-glibc-to-openwrt">Add glibc to OpenWrt&lt;/h1>
+&lt;blockquote>
+&lt;p>&lt;a class="link" href="https://blog.kmtea.eu/p/221003-glibc-openwrt/" >中文版&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;p>I&amp;rsquo;m trying to replace &lt;code>traceroute&lt;/code> with a tool called
+&lt;a class="link" href="https://www.ipip.net/download.html" target="_blank" rel="noopener"
+>BestTrace&lt;/a>,
+but an error was raised during execution:&lt;/p>
+&lt;blockquote>
+&lt;p>Failed to execute process &amp;lsquo;./besttrace&amp;rsquo;. Reason:&lt;/p>
+&lt;p>The file &amp;lsquo;./besttrace&amp;rsquo; does not exist or could not be executed.&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/221003-glibc-openwrt/img/01-error.jpg"
+loading="lazy"
+alt="Error"
+>&lt;/p>
+&lt;p>Check the executable with &lt;code>file&lt;/code>:&lt;/p>
+&lt;blockquote>
+&lt;p>besttrace: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), dynamically linked, &lt;strong>interpreter /lib64/ld-linux-x86-64.so.2&lt;/strong>, Go BuildID=1c1dnBC1TKT-wnm6J_Ek/Csaj2Jrm0niZmmJ8paMZ/_hoguDO-XKYO0IWEnHWa/H2kGhpM-teit7NepUJE5, not stripped&lt;/p>
+&lt;/blockquote>
+&lt;p>Noticed that, &lt;code>interpreter /lib64/ld-linux-x86-64.so.2&lt;/code>,
+which means the arch &lt;code>x86-64&lt;/code> is correct, but &lt;code>glibc&lt;/code> runtime is missing.&lt;/p>
+&lt;p>Since 2015, &lt;a class="link" href="https://news.ycombinator.com/item?id=9941076" target="_blank" rel="noopener"
+>for consideration of the space and speed of embedded devices&lt;/a>,
+OpenWrt has swutched to &lt;a class="link" href="https://musl.libc.org/" target="_blank" rel="noopener"
+>musl&lt;/a> from uClibc as C library.&lt;/p>
+&lt;p>Whereas nowadays most software are using &lt;code>glibc&lt;/code>, which cannot be run on OpenWrt.&lt;/p>
+&lt;h2 id="solution">Solution&lt;/h2>
+&lt;p>Just copy &lt;code>ld-linux-x86-64.so.2&lt;/code> here!&lt;/p>
+&lt;h3 id="docker">Docker&lt;/h3>
+&lt;p>If Docker is installed:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#!/usr/bin/env bash
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">set&lt;/span> -ex
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># working directory&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># change to /opt, /usr/share or something else if you like&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">WK_DIR&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;/root/data&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mkdir -p &lt;span class="nv">$WK_DIR&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> &lt;span class="nv">$WK_DIR&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># pull Ubuntu&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker pull ubuntu:jammy
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># start a container&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker run -itd --name glibc ubuntu:jammy
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># copy libs&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker cp -a glibc:/lib/x86_64-linux-gnu .
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># link&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ln -s &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$WK_DIR&lt;/span>&lt;span class="s2">/x86_64-linux-gnu&amp;#34;&lt;/span> /lib/x86_64-linux-gnu &lt;span class="o">||&lt;/span> &lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;Link already exists.&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ln -s &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$WK_DIR&lt;/span>&lt;span class="s2">/x86_64-linux-gnu/ld-linux-x86-64.so.2&amp;#34;&lt;/span> /lib/ld-linux-x86-64.so.2 &lt;span class="o">||&lt;/span> &lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;Link already exists.&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># cleanup&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker stop glibc
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker rm glibc
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker rmi ubuntu:jammy
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>This means you can always get the latest libs,
+and switch to other distros you like.&lt;/p>
+&lt;h3 id="directly">Directly&lt;/h3>
+&lt;blockquote>
+&lt;p>Note: glibc v2.35, packed on 2022-10-03, could be outdated.&lt;/p>
+&lt;/blockquote>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#!/usr/bin/env bash
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">set&lt;/span> -ex
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># working directory&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># change to /opt, /usr/share or something else if you like&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">WK_DIR&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;/root/data&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mkdir -p &lt;span class="nv">$WK_DIR&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> &lt;span class="nv">$WK_DIR&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># download&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">wget &lt;span class="s2">&amp;#34;https://github.com/KumaTea/blog/releases/download/221003/glibc.tar.gz&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># decompress&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tar -xzf glibc.tar.gz
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># link&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ln -s &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$WK_DIR&lt;/span>&lt;span class="s2">/x86_64-linux-gnu&amp;#34;&lt;/span> /lib/x86_64-linux-gnu &lt;span class="o">||&lt;/span> &lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;Link already exists.&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ln -s &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$WK_DIR&lt;/span>&lt;span class="s2">/x86_64-linux-gnu/ld-linux-x86-64.so.2&amp;#34;&lt;/span> /lib/ld-linux-x86-64.so.2 &lt;span class="o">||&lt;/span> &lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;Link already exists.&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># cleanup&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">rm -f glibc.tar.gz
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;hr>
+&lt;p>After these instructions the program can be run successfully.&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/221003-glibc-openwrt/img/02-done.jpg"
+loading="lazy"
+alt="Done"
+>&lt;/p></description></item><item><title>向 OpenWrt 添加 glibc</title><link>https://blog.kmtea.eu/p/221003-glibc-openwrt/</link><pubDate>Mon, 03 Oct 2022 15:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/221003-glibc-openwrt/</guid><description>&lt;img src="https://blog.kmtea.eu/p/221003-glibc-openwrt/img/cover.jpg" alt="Featured image of post 向 OpenWrt 添加 glibc" />&lt;h1 id="向-openwrt-添加-glibc">向 OpenWrt 添加 glibc&lt;/h1>
+&lt;blockquote>
+&lt;p>&lt;a class="link" href="https://blog.kmtea.eu/p/221003-glibc-openwrt-en/" >English version&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;p>今天试图在 OpenWrt 软路由上使用
+&lt;a class="link" href="https://www.ipip.net/download.html" target="_blank" rel="noopener"
+>BestTrace&lt;/a> 替换 &lt;code>traceroute&lt;/code>，
+但下载完成后运行却出现了错误：&lt;/p>
+&lt;blockquote>
+&lt;p>Failed to execute process &amp;lsquo;./besttrace&amp;rsquo;. Reason:&lt;/p>
+&lt;p>The file &amp;lsquo;./besttrace&amp;rsquo; does not exist or could not be executed.&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/221003-glibc-openwrt/img/01-error.jpg"
+width="1188"
+height="791"
+srcset="https://blog.kmtea.eu/p/221003-glibc-openwrt/img/01-error_hu9f0dc1f574c7e52e614e17b4333ce26e_222214_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/221003-glibc-openwrt/img/01-error_hu9f0dc1f574c7e52e614e17b4333ce26e_222214_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="Error"
+class="gallery-image"
+data-flex-grow="150"
+data-flex-basis="360px"
+>&lt;/p>
+&lt;p>使用 &lt;code>file&lt;/code> 检查文件：&lt;/p>
+&lt;blockquote>
+&lt;p>besttrace: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), dynamically linked, &lt;strong>interpreter /lib64/ld-linux-x86-64.so.2&lt;/strong>, Go BuildID=1c1dnBC1TKT-wnm6J_Ek/Csaj2Jrm0niZmmJ8paMZ/_hoguDO-XKYO0IWEnHWa/H2kGhpM-teit7NepUJE5, not stripped&lt;/p>
+&lt;/blockquote>
+&lt;p>注意到 &lt;code>interpreter /lib64/ld-linux-x86-64.so.2&lt;/code>，
+说明架构 &lt;code>x86-64&lt;/code> 无误，但缺少了 &lt;code>glibc&lt;/code> 运行库。&lt;/p>
+&lt;p>自 2015 以后，&lt;a class="link" href="https://news.ycombinator.com/item?id=9941076" target="_blank" rel="noopener"
+>为了嵌入式设备的体积及运行速度考虑&lt;/a> ，
+OpenWrt 使用 &lt;a class="link" href="https://musl.libc.org/" target="_blank" rel="noopener"
+>musl&lt;/a> 作为 C 运行库。&lt;/p>
+&lt;p>然而现在大部分软件都使用 &lt;code>glibc&lt;/code>，在 OpenWrt 上就不能运行了。&lt;/p>
+&lt;h2 id="解决方案">解决方案&lt;/h2>
+&lt;p>只要把 &lt;code>ld-linux-x86-64.so.2&lt;/code> 复制进来就好了！&lt;/p>
+&lt;h3 id="docker">Docker&lt;/h3>
+&lt;p>如果安装了 Docker
+可以使用如下脚本：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#!/usr/bin/env bash
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">set&lt;/span> -ex
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># working directory&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># change to /opt, /usr/share or something else if you like&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">WK_DIR&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;/root/data&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mkdir -p &lt;span class="nv">$WK_DIR&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> &lt;span class="nv">$WK_DIR&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># pull Ubuntu&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker pull ubuntu:jammy
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># start a container&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker run -itd --name glibc ubuntu:jammy
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># copy libs&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker cp -a glibc:/lib/x86_64-linux-gnu .
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># link&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ln -s &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$WK_DIR&lt;/span>&lt;span class="s2">/x86_64-linux-gnu&amp;#34;&lt;/span> /lib/x86_64-linux-gnu &lt;span class="o">||&lt;/span> &lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;Link already exists.&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ln -s &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$WK_DIR&lt;/span>&lt;span class="s2">/x86_64-linux-gnu/ld-linux-x86-64.so.2&amp;#34;&lt;/span> /lib/ld-linux-x86-64.so.2 &lt;span class="o">||&lt;/span> &lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;Link already exists.&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># cleanup&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker stop glibc
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker rm glibc
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker rmi ubuntu:jammy
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>你也可以换用 Debian 或者任意你喜欢的发行版&lt;/p>
+&lt;h3 id="直装">直装&lt;/h3>
+&lt;blockquote>
+&lt;p>注：于 2022-10-03 打包的 glibc v2.35，可能过时&lt;/p>
+&lt;/blockquote>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#!/usr/bin/env bash
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">set&lt;/span> -ex
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># working directory&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># change to /opt, /usr/share or something else if you like&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">WK_DIR&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;/root/data&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mkdir -p &lt;span class="nv">$WK_DIR&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> &lt;span class="nv">$WK_DIR&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># download&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">wget &lt;span class="s2">&amp;#34;https://github.com/KumaTea/blog/releases/download/221003/glibc.tar.gz&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># decompress&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tar -xzf glibc.tar.gz
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># link&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ln -s &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$WK_DIR&lt;/span>&lt;span class="s2">/x86_64-linux-gnu&amp;#34;&lt;/span> /lib/x86_64-linux-gnu &lt;span class="o">||&lt;/span> &lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;Link already exists.&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ln -s &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$WK_DIR&lt;/span>&lt;span class="s2">/x86_64-linux-gnu/ld-linux-x86-64.so.2&amp;#34;&lt;/span> /lib/ld-linux-x86-64.so.2 &lt;span class="o">||&lt;/span> &lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;Link already exists.&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># cleanup&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">rm -f glibc.tar.gz
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;hr>
+&lt;p>操作完成后程序已可成功运行。&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/221003-glibc-openwrt/img/02-done.jpg"
+width="1188"
+height="463"
+srcset="https://blog.kmtea.eu/p/221003-glibc-openwrt/img/02-done_hue2df103dc8e875126ac11f59bd712c6a_109975_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/221003-glibc-openwrt/img/02-done_hue2df103dc8e875126ac11f59bd712c6a_109975_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="Done"
+class="gallery-image"
+data-flex-grow="256"
+data-flex-basis="615px"
+>&lt;/p></description></item></channel></rss>

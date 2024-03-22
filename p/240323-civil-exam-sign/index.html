@@ -1,0 +1,235 @@
+<!doctype html><html lang=zh-cn dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="赢在起跑线上 (大概)"><title>考公报名，但是 JS & Python 赋能</title>
+<link rel=canonical href=https://blog.kmtea.eu/p/240323-civil-exam-sign/><link rel=stylesheet href=/scss/style.min.4a0121c2c61555b9757016915d77a47e0043a3d1f5dbdc1757a19c614c6dcd33.css><meta property='og:title' content="考公报名，但是 JS & Python 赋能"><meta property='og:description' content="赢在起跑线上 (大概)"><meta property='og:url' content='https://blog.kmtea.eu/p/240323-civil-exam-sign/'><meta property='og:site_name' content="酷玛阁 | KumaTea's Blog"><meta property='og:type' content='article'><meta property='article:section' content='Posts'><meta property='article:tag' content='Python'><meta property='article:tag' content='JavaScript'><meta property='article:tag' content='Excel'><meta property='article:tag' content='Exams'><meta property='article:published_time' content='2024-03-23T01:00:00+08:00'><meta property='article:modified_time' content='2024-03-23T01:00:00+08:00'><meta property='og:image' content='https://blog.kmtea.eu/p/240323-civil-exam-sign/img/cover.jpg'><meta name=twitter:site content="@KumaTea0"><meta name=twitter:creator content="@KumaTea0"><meta name=twitter:title content="考公报名，但是 JS & Python 赋能"><meta name=twitter:description content="赢在起跑线上 (大概)"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content='https://blog.kmtea.eu/p/240323-civil-exam-sign/img/cover.jpg'><link rel="shortcut icon" href=//kmtea.eu/res/2206/avatar.png><script async src="https://www.googletagmanager.com/gtag/js?id=G-P86D5805EG"></script><script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-P86D5805EG",{anonymize_ip:!1})}</script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3876653977265938" crossorigin=anonymous></script></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切换菜单>
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=//kmtea.eu/res/2206/avatar.png width=300 height=300 class=site-logo loading=lazy alt=Avatar></a></figure><div class=site-meta><h1 class=site-name><a href=/>酷玛阁 | KumaTea's Blog</a></h1><h2 class=site-description></h2></div></header><ol class=menu id=main-menu><li><a href=/about/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>
+<span>关于</span></a></li><li><a href=/archives/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>归档</span></a></li><li><a href=/search/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
+<span>搜索</span></a></li><li><a href=/links/><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M10 14a3.5 3.5.0 005 0l4-4a3.5 3.5.0 00-5-5l-.5.5"/><path d="M14 10a3.5 3.5.0 00-5 0l-4 4a3.5 3.5.0 005 5l.5-.5"/></svg>
+<span>联系</span></a></li><li class=menu-bottom-section><ol class=menu><li id=dark-mode-toggle><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>暗色模式</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">目录</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#前言>前言</a></li><li><a href=#职位筛选>职位筛选</a><ol><li><a href=#初筛>初筛</a></li><li><a href=#相对难度>相对难度</a></li></ol></li><li><a href=#人数监视>人数监视</a><ol><li><a href=#official-approach>Official Approach</a></li><li><a href=#自动化查询>自动化查询</a><ol><li><a href=#获取--javascript>获取 / JavaScript</a></li><li><a href=#处理--python>处理 / Python</a></li></ol></li></ol></li><li><a href=#结语>结语</a></li></ol></nav></div></section></aside><main class="main full-width"><article class="has-image main-article"><header class=article-header><div class=article-image><a href=/p/240323-civil-exam-sign/><img src=/p/240323-civil-exam-sign/img/cover_hu78e97b68d1a9fe5009f3ff9f0173dbbb_895935_800x0_resize_q75_box.jpg srcset="/p/240323-civil-exam-sign/img/cover_hu78e97b68d1a9fe5009f3ff9f0173dbbb_895935_800x0_resize_q75_box.jpg 800w, /p/240323-civil-exam-sign/img/cover_hu78e97b68d1a9fe5009f3ff9f0173dbbb_895935_1600x0_resize_q75_box.jpg 1600w" width=800 height=335 loading=lazy alt="Featured image of post 考公报名，但是 JS & Python 赋能"></a></div><div class=article-details><header class=article-category><a href=/categories/records/>Records</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/p/240323-civil-exam-sign/>考公报名，但是 JS & Python 赋能</a></h2><h3 class=article-subtitle>赢在起跑线上 (大概)</h3></div><footer class=article-time><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published>03-23</time></div></footer></div></header><section class=article-content><h1 id=考公报名但是-js--python-赋能>考公报名，但是 JS & Python 赋能</h1><h2 id=前言>前言</h2><p>2023年3月，我第一次报考广东省公务员考试，
+首次尝试有很多不熟练的地方；</p><p>今年1月，我<del>闲着也是闲着</del>又报了一次，
+这次在报名阶段加入了一些自己的小技巧，
+现分享给大家。</p><p>另外，本次报考依然没有任何准备，
+如果硬要说有就是<strong>考前1天花1元重金</strong>买了2套冲刺卷，
+但只是看了一眼题型。</p><p><img src=/p/240323-civil-exam-sign/img/01-pay.jpg width=1080 height=678 srcset="/p/240323-civil-exam-sign/img/01-pay_huab809fb96650e95ac46b2a779f4e1f44_26660_480x0_resize_q75_box.jpg 480w, /p/240323-civil-exam-sign/img/01-pay_huab809fb96650e95ac46b2a779f4e1f44_26660_1024x0_resize_q75_box.jpg 1024w" loading=lazy alt=pay class=gallery-image data-flex-grow=159 data-flex-basis=382px></p><p>不对考试结果抱任何希望，
+但一旦有幸进入面试，
+就会厚着脸皮去然后写(笔试)速通经验以及面试速通失败经验。</p><h2 id=职位筛选>职位筛选</h2><p>报名的第一步是从公告最下方附件下载职位表：</p><p><img src=/p/240323-civil-exam-sign/img/02-main.jpg width=1600 height=900 srcset="/p/240323-civil-exam-sign/img/02-main_huf9255c3c59e40c26f7b33c073bc0a106_101739_480x0_resize_q75_box.jpg 480w, /p/240323-civil-exam-sign/img/02-main_huf9255c3c59e40c26f7b33c073bc0a106_101739_1024x0_resize_q75_box.jpg 1024w" loading=lazy alt=main class=gallery-image data-flex-grow=177 data-flex-basis=426px></p><p><img src=/p/240323-civil-exam-sign/img/03-attach.jpg width=727 height=376 srcset="/p/240323-civil-exam-sign/img/03-attach_hub69ed4438d54ce81102da15355f4ed04_46925_480x0_resize_q75_box.jpg 480w, /p/240323-civil-exam-sign/img/03-attach_hub69ed4438d54ce81102da15355f4ed04_46925_1024x0_resize_q75_box.jpg 1024w" loading=lazy alt=attach class=gallery-image data-flex-grow=193 data-flex-basis=464px></p><h3 id=初筛>初筛</h3><p>打开 Excel, 启用编辑，以启用接下来的排序功能。</p><p>排序操作简单，不再赘述。</p><p><img src=/p/240323-civil-exam-sign/img/04-filter.jpg width=1580 height=864 srcset="/p/240323-civil-exam-sign/img/04-filter_hu37f77c757919de8ad2b8ec72e4801ef9_220102_480x0_resize_q75_box.jpg 480w, /p/240323-civil-exam-sign/img/04-filter_hu37f77c757919de8ad2b8ec72e4801ef9_220102_1024x0_resize_q75_box.jpg 1024w" loading=lazy alt=filter class=gallery-image data-flex-grow=182 data-flex-basis=438px></p><h3 id=相对难度>相对难度</h3><p>本节通过 Excel 公式，计算每个职位的相对难度。</p><p><img src=/p/240323-civil-exam-sign/img/05-difficulty.jpg width=1097 height=536 srcset="/p/240323-civil-exam-sign/img/05-difficulty_hu1aacaa2dafe244bc99c79a10c75b0f17_58982_480x0_resize_q75_box.jpg 480w, /p/240323-civil-exam-sign/img/05-difficulty_hu1aacaa2dafe244bc99c79a10c75b0f17_58982_1024x0_resize_q75_box.jpg 1024w" loading=lazy alt=difficulty class=gallery-image data-flex-grow=204 data-flex-basis=491px></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl># 总分
+</span></span><span class=line><span class=cl>Rn = Sn + Tn + Un + Vn + Wn + Xn + Yn
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl># 综合类比执法类难度更大
+</span></span><span class=line><span class=cl>Sn = IF(Fn=&#34;综合管理类职位&#34;,1,0)
+</span></span><span class=line><span class=cl># 竞争人数，拿最大值3减
+</span></span><span class=line><span class=cl>Tn = MAX(0, 3-Gn)
+</span></span><span class=line><span class=cl># 限制专业则报名人数少，竞争小
+</span></span><span class=line><span class=cl>Un = IF(Kn=&#34;不限&#34;,2,0)
+</span></span><span class=line><span class=cl># 当年应届 &lt; 应届 &lt; 非应届
+</span></span><span class=line><span class=cl>Vn = IF(Nn=&#34;2024届高校毕业生&#34;,0,IF(Nn=&#34;否&#34;, 2, 1))
+</span></span><span class=line><span class=cl># 本科 &lt; 本科以上
+</span></span><span class=line><span class=cl># 本科就是只能本科，本科以上则硕士博士也能来报名
+</span></span><span class=line><span class=cl>Wn = IF(Hn=&#34;本科&#34;,0,1)
+</span></span><span class=line><span class=cl># 是否限制性别
+</span></span><span class=line><span class=cl>Xn = IF(ISNUMBER(SEARCH(X$3,En)),0,1)
+</span></span><span class=line><span class=cl># 是否要求夜班
+</span></span><span class=line><span class=cl>Yn = IF(OR(ISNUMBER(SEARCH(&#34;夜&#34;, En)), ISNUMBER(SEARCH(&#34;24&#34;, En))),0,1)
+</span></span></code></pre></td></tr></table></div></div><p>这样，就可以根据难度排序，选出理论上最容易考的职位了</p><p><img src=/p/240323-civil-exam-sign/img/06-rank.jpg width=972 height=1126 srcset="/p/240323-civil-exam-sign/img/06-rank_hu9a9177777f2f8732940daa56db0d79cd_386752_480x0_resize_q75_box.jpg 480w, /p/240323-civil-exam-sign/img/06-rank_hu9a9177777f2f8732940daa56db0d79cd_386752_1024x0_resize_q75_box.jpg 1024w" loading=lazy alt=rank class=gallery-image data-flex-grow=86 data-flex-basis=207px></p><h2 id=人数监视>人数监视</h2><p>筛选出可以报名的职位，
+正式报名之前，
+最重要的参考依据就是每天下午 16:00 公布的已报名人数。</p><p>毕竟相对难度只是理论值，
+而一个难度拉满的职位如果只有1人报考，
+那么就等于保送。</p><h3 id=official-approach>Official Approach</h3><p>查询报名人数，首先打开左侧职位报名统计页面：</p><p><img src=/p/240323-civil-exam-sign/img/07-population.jpg width=1600 height=900 srcset="/p/240323-civil-exam-sign/img/07-population_hu1c8a100fde5558da3e1fd99a20d7ae06_133784_480x0_resize_q75_box.jpg 480w, /p/240323-civil-exam-sign/img/07-population_hu1c8a100fde5558da3e1fd99a20d7ae06_133784_1024x0_resize_q75_box.jpg 1024w" loading=lazy alt=population class=gallery-image data-flex-grow=177 data-flex-basis=426px></p><p>然而，每页最多显示 50 条数据，
+寻找目标职位需要通过职位代码定位，
+也就是说需要多次翻页：</p><p><img src=/p/240323-civil-exam-sign/img/08-query.jpg width=1600 height=900 srcset="/p/240323-civil-exam-sign/img/08-query_hubdac9bf6a08b30faa384ff5d84c8ef42_173653_480x0_resize_q75_box.jpg 480w, /p/240323-civil-exam-sign/img/08-query_hubdac9bf6a08b30faa384ff5d84c8ef42_173653_1024x0_resize_q75_box.jpg 1024w" loading=lazy alt=query class=gallery-image data-flex-grow=177 data-flex-basis=426px></p><p>而且，如果翻页过于频繁还会弹窗拒绝：</p><p><img src=/p/240323-civil-exam-sign/img/09-rate-limit.jpg width=1600 height=900 srcset="/p/240323-civil-exam-sign/img/09-rate-limit_hu898c2b1b5519657c163ab7399b3d4206_72858_480x0_resize_q75_box.jpg 480w, /p/240323-civil-exam-sign/img/09-rate-limit_hu898c2b1b5519657c163ab7399b3d4206_72858_1024x0_resize_q75_box.jpg 1024w" loading=lazy alt="rate limit" class=gallery-image data-flex-grow=177 data-flex-basis=426px></p><p>也就是说，如果筛选了60个职位，
+每次查询至少需要1分钟，
+则完成一轮查询需要1小时！</p><h3 id=自动化查询>自动化查询</h3><h4 id=获取--javascript>获取 / JavaScript</h4><p>首先开启开发者工具，
+进行一次查询，查看请求：</p><p><img src=/p/240323-civil-exam-sign/img/10-dev-tools.jpg width=1843 height=1157 srcset="/p/240323-civil-exam-sign/img/10-dev-tools_hu1d024fe1f1c70145f1f3ee60013baf3a_234261_480x0_resize_q75_box.jpg 480w, /p/240323-civil-exam-sign/img/10-dev-tools_hu1d024fe1f1c70145f1f3ee60013baf3a_234261_1024x0_resize_q75_box.jpg 1024w" loading=lazy alt=DevTools class=gallery-image data-flex-grow=159 data-flex-basis=382px></p><p>右键请求，点击 <code>copy as fetch</code>
+(复制为 JavaScript, 可以直接在控制台运行)，
+然后稍加修改，包装为 Function:</p><p><img src=/p/240323-civil-exam-sign/img/11-func.jpg width=1600 height=900 srcset="/p/240323-civil-exam-sign/img/11-func_hu7ffbe2d2e481966ada898b2875b03f48_113321_480x0_resize_q75_box.jpg 480w, /p/240323-civil-exam-sign/img/11-func_hu7ffbe2d2e481966ada898b2875b03f48_113321_1024x0_resize_q75_box.jpg 1024w" loading=lazy alt=func class=gallery-image data-flex-grow=177 data-flex-basis=426px></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kr>const</span> <span class=nx>HEADERS</span> <span class=o>=</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;accept&#34;</span><span class=o>:</span> <span class=s2>&#34;application/json, text/javascript, */*; q=0.01&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;accept-language&#34;</span><span class=o>:</span> <span class=s2>&#34;en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;content-type&#34;</span><span class=o>:</span> <span class=s2>&#34;application/x-www-form-urlencoded; charset=UTF-8&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;sec-ch-ua&#34;</span><span class=o>:</span> <span class=s2>&#34;\&#34;Not_A Brand\&#34;;v=\&#34;8\&#34;, \&#34;Chromium\&#34;;v=\&#34;120\&#34;, \&#34;Google Chrome\&#34;;v=\&#34;120\&#34;&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;sec-ch-ua-mobile&#34;</span><span class=o>:</span> <span class=s2>&#34;?0&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;sec-ch-ua-platform&#34;</span><span class=o>:</span> <span class=s2>&#34;\&#34;Windows\&#34;&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;sec-fetch-dest&#34;</span><span class=o>:</span> <span class=s2>&#34;empty&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;sec-fetch-mode&#34;</span><span class=o>:</span> <span class=s2>&#34;cors&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;sec-fetch-site&#34;</span><span class=o>:</span> <span class=s2>&#34;same-origin&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;x-requested-with&#34;</span><span class=o>:</span> <span class=s2>&#34;XMLHttpRequest&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=p>};</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>URL</span> <span class=o>=</span> <span class=s2>&#34;https://ggfw.hrss.gd.gov.cn/gwyks/exam/details/spQuery.do&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>REF</span> <span class=o>=</span> <span class=s2>&#34;https://ggfw.hrss.gd.gov.cn/gwyks/center.do?nvt=1&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kr>async</span> <span class=kd>function</span> <span class=nx>stat</span><span class=p>(</span><span class=nx>cityCode</span><span class=p>,</span> <span class=nx>totalPages</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=kd>let</span> <span class=nx>res</span> <span class=o>=</span> <span class=p>[];</span>
+</span></span><span class=line><span class=cl>  <span class=k>for</span> <span class=p>(</span><span class=kd>let</span> <span class=nx>page</span> <span class=o>=</span> <span class=mi>1</span><span class=p>;</span> <span class=nx>page</span> <span class=o>&lt;=</span> <span class=nx>totalPages</span><span class=p>;</span> <span class=nx>page</span><span class=o>++</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=kd>let</span> <span class=nx>rawData</span> <span class=o>=</span> <span class=kr>await</span> <span class=nx>fetch</span><span class=p>(</span><span class=nx>URL</span><span class=p>,</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=s2>&#34;headers&#34;</span><span class=o>:</span> <span class=nx>HEADERS</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=s2>&#34;referrer&#34;</span><span class=o>:</span> <span class=nx>REF</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=s2>&#34;referrerPolicy&#34;</span><span class=o>:</span> <span class=s2>&#34;strict-origin-when-cross-origin&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=s2>&#34;body&#34;</span><span class=o>:</span> <span class=sb>`bfa001=202401&amp;bab301=</span><span class=si>${</span><span class=nx>cityCode</span><span class=si>}</span><span class=sb>&amp;page=</span><span class=si>${</span><span class=nx>page</span><span class=si>}</span><span class=sb>&amp;rows=50`</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=s2>&#34;method&#34;</span><span class=o>:</span> <span class=s2>&#34;POST&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=s2>&#34;mode&#34;</span><span class=o>:</span> <span class=s2>&#34;cors&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=s2>&#34;credentials&#34;</span><span class=o>:</span> <span class=s2>&#34;include&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=p>});</span>
+</span></span><span class=line><span class=cl>    <span class=kd>let</span> <span class=nx>data</span> <span class=o>=</span> <span class=kr>await</span> <span class=nx>rawData</span><span class=p>.</span><span class=nx>json</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>    <span class=nx>res</span> <span class=o>=</span> <span class=nx>res</span><span class=p>.</span><span class=nx>concat</span><span class=p>(</span><span class=nx>data</span><span class=p>.</span><span class=nx>rows</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=sb>`page </span><span class=si>${</span><span class=nx>page</span><span class=si>}</span><span class=sb> done, </span><span class=si>${</span><span class=nx>data</span><span class=p>.</span><span class=nx>rows</span><span class=p>.</span><span class=nx>length</span><span class=si>}</span><span class=sb> items added, total </span><span class=si>${</span><span class=nx>res</span><span class=p>.</span><span class=nx>length</span><span class=si>}</span><span class=sb> items`</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=kr>await</span> <span class=k>new</span> <span class=nb>Promise</span><span class=p>(</span><span class=nx>r</span> <span class=p>=&gt;</span> <span class=nx>setTimeout</span><span class=p>(</span><span class=nx>r</span><span class=p>,</span> <span class=mi>2000</span><span class=p>));</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=k>return</span> <span class=nx>res</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>查询城市代码后调用：</p><p><img src=/p/240323-civil-exam-sign/img/12-running.jpg width=1600 height=900 srcset="/p/240323-civil-exam-sign/img/12-running_hub53d29312f2295fa211ebe6f703dbd30_110514_480x0_resize_q75_box.jpg 480w, /p/240323-civil-exam-sign/img/12-running_hub53d29312f2295fa211ebe6f703dbd30_110514_1024x0_resize_q75_box.jpg 1024w" loading=lazy alt=running class=gallery-image data-flex-grow=177 data-flex-basis=426px></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kd>let</span> <span class=nx>gz</span> <span class=o>=</span> <span class=kr>await</span> <span class=nx>stat</span><span class=p>(</span><span class=s2>&#34;01&#34;</span><span class=p>,</span> <span class=mi>30</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nx>JSON</span><span class=p>.</span><span class=nx>stringify</span><span class=p>(</span><span class=nx>gz</span><span class=p>);</span>
+</span></span></code></pre></td></tr></table></div></div><p>点击右下角 Copy 按钮即可复制：</p><p><img src=/p/240323-civil-exam-sign/img/13-copy.jpg width=1600 height=900 srcset="/p/240323-civil-exam-sign/img/13-copy_hu11c4693814909bb7c66de556628ca3fa_419020_480x0_resize_q75_box.jpg 480w, /p/240323-civil-exam-sign/img/13-copy_hu11c4693814909bb7c66de556628ca3fa_419020_1024x0_resize_q75_box.jpg 1024w" loading=lazy alt=copy class=gallery-image data-flex-grow=177 data-flex-basis=426px></p><h4 id=处理--python>处理 / Python</h4><p>先将筛选出的职位代码保存到 <code>query.txt</code>，
+随后即可编写代码，打印职位对应的报名人数：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>import</span> <span class=nn>json</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>JOB_KEY</span> <span class=o>=</span> <span class=s1>&#39;bfe301&#39;</span>
+</span></span><span class=line><span class=cl><span class=n>POP_KEY</span> <span class=o>=</span> <span class=s1>&#39;aab119&#39;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>save_all</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>    <span class=n>gz</span> <span class=o>=</span> <span class=n>json</span><span class=o>.</span><span class=n>loads</span><span class=p>(</span><span class=nb>eval</span><span class=p>(</span><span class=nb>input</span><span class=p>(</span><span class=s1>&#39;gz: &#39;</span><span class=p>)))</span>
+</span></span><span class=line><span class=cl>    <span class=n>sz</span> <span class=o>=</span> <span class=n>json</span><span class=o>.</span><span class=n>loads</span><span class=p>(</span><span class=nb>eval</span><span class=p>(</span><span class=nb>input</span><span class=p>(</span><span class=s1>&#39;sz: &#39;</span><span class=p>)))</span>
+</span></span><span class=line><span class=cl>    <span class=n>data</span> <span class=o>=</span> <span class=n>gz</span> <span class=o>+</span> <span class=n>sz</span>
+</span></span><span class=line><span class=cl>    <span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=s1>&#39;all.json&#39;</span><span class=p>,</span> <span class=s1>&#39;w&#39;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>json</span><span class=o>.</span><span class=n>dump</span><span class=p>(</span><span class=n>data</span><span class=p>,</span> <span class=n>f</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>data</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>get_fmt_data</span><span class=p>(</span><span class=n>data</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>fmt</span> <span class=o>=</span> <span class=p>{}</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>item</span> <span class=ow>in</span> <span class=n>data</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>fmt</span><span class=p>[</span><span class=n>item</span><span class=p>[</span><span class=n>JOB_KEY</span><span class=p>]]</span> <span class=o>=</span> <span class=n>item</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>fmt</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>get_query</span><span class=p>():</span>
+</span></span><span class=line><span class=cl>    <span class=k>with</span> <span class=nb>open</span><span class=p>(</span><span class=s1>&#39;query.txt&#39;</span><span class=p>,</span> <span class=s1>&#39;r&#39;</span><span class=p>)</span> <span class=k>as</span> <span class=n>f</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>query</span> <span class=o>=</span> <span class=n>f</span><span class=o>.</span><span class=n>readlines</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=n>query</span> <span class=o>=</span> <span class=p>[</span><span class=n>i</span><span class=o>.</span><span class=n>strip</span><span class=p>()</span> <span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=n>query</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>query</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s1>&#39;__main__&#39;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>all_data</span> <span class=o>=</span> <span class=n>save_all</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=n>fmt_data</span> <span class=o>=</span> <span class=n>get_fmt_data</span><span class=p>(</span><span class=n>all_data</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>to_query</span> <span class=o>=</span> <span class=n>get_query</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s1>&#39;Total: </span><span class=si>{</span><span class=nb>len</span><span class=p>(</span><span class=n>to_query</span><span class=p>)</span><span class=si>}</span><span class=s1>&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=n>to_query</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=n>i</span> <span class=ow>in</span> <span class=n>fmt_data</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=nb>print</span><span class=p>(</span><span class=n>fmt_data</span><span class=p>[</span><span class=n>i</span><span class=p>][</span><span class=n>POP_KEY</span><span class=p>])</span>
+</span></span><span class=line><span class=cl>        <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=nb>print</span><span class=p>(</span><span class=s1>&#39;?&#39;</span><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div><p>运行后，输入数据，控制台就会按照顺序打印出职位代码和对应的报名人数。</p><p>粘贴到 Excel 中，就可以直观查看与比较相对难度与报考人数：</p><p><img src=/p/240323-civil-exam-sign/img/14-result.jpg width=693 height=1109 srcset="/p/240323-civil-exam-sign/img/14-result_hu171fef2761ae6cca6feb5a92e4c0fc40_240152_480x0_resize_q75_box.jpg 480w, /p/240323-civil-exam-sign/img/14-result_hu171fef2761ae6cca6feb5a92e4c0fc40_240152_1024x0_resize_q75_box.jpg 1024w" loading=lazy alt=result class=gallery-image data-flex-grow=62 data-flex-basis=149px></p><h2 id=结语>结语</h2><p>报名阶段自动化，最多只是筛选出相对容易上岸的职位，
+美其名曰赢在起跑线上，但最终能否冲线还要看自己的体能。</p><p>另外，本文只是提供了一种减少重复操作的思路，
+数据一天只会更新一次，请勿频繁查询，<strong>以免违反相关法律规定。</strong></p><p>虽然机构应该有自己的编程大手子，
+看不上我的这些蹩脚代码，但还是声明，严禁商用。</p></section><footer class=article-footer><section class=article-tags><a href=/tags/python/>Python</a>
+<a href=/tags/javascript/>JavaScript</a>
+<a href=/tags/excel/>Excel</a>
+<a href=/tags/exams/>Exams</a></section><section class=article-copyright><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg>
+<span>Licensed under CC BY-NC-SA 4.0</span></section></footer></article><aside class=related-content--wrapper><h2 class=section-title>相关文章</h2><div class=related-content><div class="flex article-list--tile"><article class=has-image><a href=/p/231106-genshin-size/><div class=article-image><img src=/p/231106-genshin-size/img/cover.aa5e8e5cd011c08186e0fb36aaaa2045_hudae929d862a6b1f27714c9b94b7bd55d_165280_250x150_fill_q75_box_smart1.jpg width=250 height=150 loading=lazy alt="Featured image of post 原神各版本体积" data-key=231106-genshin-size data-hash="md5-ql6OXNARwIGG4Ps2qqogRQ=="></div><div class=article-details><h2 class=article-title>原神各版本体积</h2></div></a></article></div></div></aside><div class=disqus-container><div id=disqus_thread></div><script>window.disqus_config=function(){},function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("disqus_thread").innerHTML="Disqus comments not available by default when the website is previewed locally.";return}var t=document,e=t.createElement("script");e.async=!0,e.src="//kumatea.disqus.com/embed.js",e.setAttribute("data-timestamp",+new Date),(t.head||t.body).appendChild(e)}()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div><style>.disqus-container{background-color:var(--card-background);border-radius:var(--card-border-radius);box-shadow:var(--shadow-l1);padding:var(--card-padding)}</style><script>window.addEventListener("onColorSchemeChange",e=>{typeof DISQUS=="object"&&DISQUS.reset({reload:!0})})</script><footer class=site-footer><section class=copyright>&copy;
+2022 -
+2024 酷玛阁 | KumaTea's Blog</section><section class=powerby>使用 <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> 构建<br>主题 <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.24.2>Stack</a></b> 由 <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a> 设计</section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script><script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script></body></html>
