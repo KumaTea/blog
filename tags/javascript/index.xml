@@ -44,8 +44,7 @@ data-flex-grow="193"
 data-flex-basis="464px"
 >&lt;/p>
 &lt;h3 id="初筛">初筛&lt;/h3>
-&lt;p>打开 Excel, 启用编辑，以启用接下来的筛选功能。&lt;/p>
-&lt;p>筛选操作简单，不再赘述。&lt;/p>
+&lt;p>打开 Excel, 启用编辑，以启用接下来的筛选功能。操作简单，不再赘述。&lt;/p>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/240323-civil-exam-sign/img/04-filter.jpg"
 width="1580"
 height="864"
@@ -393,8 +392,8 @@ data-flex-basis="426px"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;?&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>运行后，输入数据，控制台就会按照顺序打印出职位代码和对应的报名人数。&lt;/p>
-&lt;p>粘贴到 Excel 中，就可以直观查看与比较相对难度与报考人数：&lt;/p>
+&lt;/div>&lt;p>运行后，输入数据，控制台就会按照顺序打印出职位代码对应的人数。&lt;/p>
+&lt;p>粘贴到 Excel 中，就可以直观查看与比较两者：&lt;/p>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/240323-civil-exam-sign/img/14-result.jpg"
 width="693"
 height="1109"
@@ -408,8 +407,8 @@ data-flex-basis="149px"
 &lt;h2 id="其他技巧">其他技巧&lt;/h2>
 &lt;p>本文所述技巧基于越迟报名，获取信息越多的前提，
 但是需要审核个人信息通过后才能成功报名。&lt;/p>
-&lt;p>因此，&lt;strong>一定要&lt;/strong>先在左侧个人信息页面填好！！！
-填好提交之后就会上报审核，与报名分开，
+&lt;p>因此，&lt;strong>一定要&lt;/strong>先点击左侧 &lt;code>个人信息&lt;/code> 按钮，填好保存！！！
+提交之后就会上报审核，与报名分开，
 这样最后一天报名，提交后就直接通过，不用再等待审核。&lt;/p>
 &lt;h2 id="结语">结语&lt;/h2>
 &lt;p>报名阶段自动化，最多只是筛选出相对容易上岸的职位，

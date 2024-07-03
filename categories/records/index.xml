@@ -44,8 +44,7 @@ data-flex-grow="193"
 data-flex-basis="464px"
 >&lt;/p>
 &lt;h3 id="初筛">初筛&lt;/h3>
-&lt;p>打开 Excel, 启用编辑，以启用接下来的筛选功能。&lt;/p>
-&lt;p>筛选操作简单，不再赘述。&lt;/p>
+&lt;p>打开 Excel, 启用编辑，以启用接下来的筛选功能。操作简单，不再赘述。&lt;/p>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/240323-civil-exam-sign/img/04-filter.jpg"
 width="1580"
 height="864"
@@ -393,8 +392,8 @@ data-flex-basis="426px"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;?&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>运行后，输入数据，控制台就会按照顺序打印出职位代码和对应的报名人数。&lt;/p>
-&lt;p>粘贴到 Excel 中，就可以直观查看与比较相对难度与报考人数：&lt;/p>
+&lt;/div>&lt;p>运行后，输入数据，控制台就会按照顺序打印出职位代码对应的人数。&lt;/p>
+&lt;p>粘贴到 Excel 中，就可以直观查看与比较两者：&lt;/p>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/240323-civil-exam-sign/img/14-result.jpg"
 width="693"
 height="1109"
@@ -408,8 +407,8 @@ data-flex-basis="149px"
 &lt;h2 id="其他技巧">其他技巧&lt;/h2>
 &lt;p>本文所述技巧基于越迟报名，获取信息越多的前提，
 但是需要审核个人信息通过后才能成功报名。&lt;/p>
-&lt;p>因此，&lt;strong>一定要&lt;/strong>先在左侧个人信息页面填好！！！
-填好提交之后就会上报审核，与报名分开，
+&lt;p>因此，&lt;strong>一定要&lt;/strong>先点击左侧 &lt;code>个人信息&lt;/code> 按钮，填好保存！！！
+提交之后就会上报审核，与报名分开，
 这样最后一天报名，提交后就直接通过，不用再等待审核。&lt;/p>
 &lt;h2 id="结语">结语&lt;/h2>
 &lt;p>报名阶段自动化，最多只是筛选出相对容易上岸的职位，
@@ -435,10 +434,116 @@ data-flex-basis="560px"
 &lt;ul>
 &lt;li>整体突破70GB: &lt;a class="link" href="#40" >4.0&lt;/a>&lt;/li>
 &lt;li>本体突破70GB: &lt;a class="link" href="#44" >4.4&lt;/a>&lt;/li>
+&lt;li>首次降低体积: &lt;a class="link" href="#46" >4.6&lt;/a>&lt;/li>
 &lt;/ul>
 &lt;/li>
 &lt;/ul>
 &lt;h2 id="4x">4.x&lt;/h2>
+&lt;h3 id="47">4.7&lt;/h3>
+&lt;ul>
+&lt;li>
+&lt;p>游戏数据&lt;/p>
+&lt;p>&lt;code>YuanShen_Data&lt;/code>: 59.95 GB (+ 2.24 GB)&lt;/p>
+&lt;p>含语音: 77.84 GB&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>语音&lt;/p>
+&lt;p>zh / en / ja / ko: 13.65 / 15.94 / 17.90 / 13.40 GB (+ 0 ~ 100 MB)&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>差分包&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>语言&lt;/th>
+&lt;th>文件名&lt;/th>
+&lt;th>大小&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>/&lt;/td>
+&lt;td>&lt;code>game_4.6.0_4.7.0_hdiff_xrMCwjTting6IubX.zip&lt;/code>&lt;/td>
+&lt;td>24.36 GiB&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>zh&lt;/td>
+&lt;td>&lt;code>zh-cn_4.6.0_4.7.0_hdiff_mRiPScjVzsZHlx1u.zip&lt;/code>&lt;/td>
+&lt;td>513.59 MiB&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>en&lt;/td>
+&lt;td>&lt;code>en-us_4.6.0_4.7.0_hdiff_PeQspaEOWljGHcbS.zip&lt;/code>&lt;/td>
+&lt;td>607.33 MiB&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>ja&lt;/td>
+&lt;td>&lt;code>ja-jp_4.6.0_4.7.0_hdiff_rLT1nMcAam4wgqxe.zip&lt;/code>&lt;/td>
+&lt;td>579.81 MiB&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>ko&lt;/td>
+&lt;td>&lt;code>ko-kr_4.6.0_4.7.0_hdiff_ck7wjJfSXVi1svAb.zip&lt;/code>&lt;/td>
+&lt;td>458.70 MiB&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="46">4.6&lt;/h3>
+&lt;blockquote>
+&lt;p>该版本数据丢失，数值为估算&lt;/p>
+&lt;/blockquote>
+&lt;ul>
+&lt;li>
+&lt;p>游戏数据&lt;/p>
+&lt;p>&lt;code>YuanShen_Data&lt;/code>: 57.71 GB (- 15.16 GB)&lt;/p>
+&lt;p>含语音: 75.60 GB&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>语音&lt;/p>
+&lt;p>zh / en / ja / ko: 13.65 / 15.96 / 17.88 / 13.41 GB (+ 900 ~ 1200 MB)&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>差分包&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>语言&lt;/th>
+&lt;th>文件名&lt;/th>
+&lt;th>大小&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>/&lt;/td>
+&lt;td>&lt;code>game_4.5.0_4.6.0_hdiff_kiOtCmQKDxTEojvz.zip&lt;/code>&lt;/td>
+&lt;td>28.42 GiB&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>zh&lt;/td>
+&lt;td>&lt;code>zh-cn_4.5.0_4.6.0_hdiff_2a7jHyNe6YWsM3Ob.zip&lt;/code>&lt;/td>
+&lt;td>306.68 MiB&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>en&lt;/td>
+&lt;td>&lt;code>en-us_4.5.0_4.6.0_hdiff_zY5rUsWHTdvLp76g.zip&lt;/code>&lt;/td>
+&lt;td>399.28 MiB&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>ja&lt;/td>
+&lt;td>&lt;code>ja-jp_4.5.0_4.6.0_hdiff_Vq30AS1O9cWPbQHt.zip&lt;/code>&lt;/td>
+&lt;td>338.69 MiB&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>ko&lt;/td>
+&lt;td>&lt;code>ko-kr_4.5.0_4.6.0_hdiff_DBGoIMRpaQvgleCc.zip&lt;/code>&lt;/td>
+&lt;td>273.97 MiB&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;/li>
+&lt;/ul>
 &lt;h3 id="45">4.5&lt;/h3>
 &lt;blockquote>
 &lt;p>该版本开始不配图，懒了&lt;/p>

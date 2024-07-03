@@ -44,8 +44,7 @@ data-flex-grow="193"
 data-flex-basis="464px"
 >&lt;/p>
 &lt;h3 id="初筛">初筛&lt;/h3>
-&lt;p>打开 Excel, 启用编辑，以启用接下来的筛选功能。&lt;/p>
-&lt;p>筛选操作简单，不再赘述。&lt;/p>
+&lt;p>打开 Excel, 启用编辑，以启用接下来的筛选功能。操作简单，不再赘述。&lt;/p>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/240323-civil-exam-sign/img/04-filter.jpg"
 width="1580"
 height="864"
@@ -393,8 +392,8 @@ data-flex-basis="426px"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;?&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;p>运行后，输入数据，控制台就会按照顺序打印出职位代码和对应的报名人数。&lt;/p>
-&lt;p>粘贴到 Excel 中，就可以直观查看与比较相对难度与报考人数：&lt;/p>
+&lt;/div>&lt;p>运行后，输入数据，控制台就会按照顺序打印出职位代码对应的人数。&lt;/p>
+&lt;p>粘贴到 Excel 中，就可以直观查看与比较两者：&lt;/p>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/240323-civil-exam-sign/img/14-result.jpg"
 width="693"
 height="1109"
@@ -408,8 +407,8 @@ data-flex-basis="149px"
 &lt;h2 id="其他技巧">其他技巧&lt;/h2>
 &lt;p>本文所述技巧基于越迟报名，获取信息越多的前提，
 但是需要审核个人信息通过后才能成功报名。&lt;/p>
-&lt;p>因此，&lt;strong>一定要&lt;/strong>先在左侧个人信息页面填好！！！
-填好提交之后就会上报审核，与报名分开，
+&lt;p>因此，&lt;strong>一定要&lt;/strong>先点击左侧 &lt;code>个人信息&lt;/code> 按钮，填好保存！！！
+提交之后就会上报审核，与报名分开，
 这样最后一天报名，提交后就直接通过，不用再等待审核。&lt;/p>
 &lt;h2 id="结语">结语&lt;/h2>
 &lt;p>报名阶段自动化，最多只是筛选出相对容易上岸的职位，
@@ -693,10 +692,116 @@ data-flex-basis="560px"
 &lt;ul>
 &lt;li>整体突破70GB: &lt;a class="link" href="#40" >4.0&lt;/a>&lt;/li>
 &lt;li>本体突破70GB: &lt;a class="link" href="#44" >4.4&lt;/a>&lt;/li>
+&lt;li>首次降低体积: &lt;a class="link" href="#46" >4.6&lt;/a>&lt;/li>
 &lt;/ul>
 &lt;/li>
 &lt;/ul>
 &lt;h2 id="4x">4.x&lt;/h2>
+&lt;h3 id="47">4.7&lt;/h3>
+&lt;ul>
+&lt;li>
+&lt;p>游戏数据&lt;/p>
+&lt;p>&lt;code>YuanShen_Data&lt;/code>: 59.95 GB (+ 2.24 GB)&lt;/p>
+&lt;p>含语音: 77.84 GB&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>语音&lt;/p>
+&lt;p>zh / en / ja / ko: 13.65 / 15.94 / 17.90 / 13.40 GB (+ 0 ~ 100 MB)&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>差分包&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>语言&lt;/th>
+&lt;th>文件名&lt;/th>
+&lt;th>大小&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>/&lt;/td>
+&lt;td>&lt;code>game_4.6.0_4.7.0_hdiff_xrMCwjTting6IubX.zip&lt;/code>&lt;/td>
+&lt;td>24.36 GiB&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>zh&lt;/td>
+&lt;td>&lt;code>zh-cn_4.6.0_4.7.0_hdiff_mRiPScjVzsZHlx1u.zip&lt;/code>&lt;/td>
+&lt;td>513.59 MiB&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>en&lt;/td>
+&lt;td>&lt;code>en-us_4.6.0_4.7.0_hdiff_PeQspaEOWljGHcbS.zip&lt;/code>&lt;/td>
+&lt;td>607.33 MiB&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>ja&lt;/td>
+&lt;td>&lt;code>ja-jp_4.6.0_4.7.0_hdiff_rLT1nMcAam4wgqxe.zip&lt;/code>&lt;/td>
+&lt;td>579.81 MiB&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>ko&lt;/td>
+&lt;td>&lt;code>ko-kr_4.6.0_4.7.0_hdiff_ck7wjJfSXVi1svAb.zip&lt;/code>&lt;/td>
+&lt;td>458.70 MiB&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="46">4.6&lt;/h3>
+&lt;blockquote>
+&lt;p>该版本数据丢失，数值为估算&lt;/p>
+&lt;/blockquote>
+&lt;ul>
+&lt;li>
+&lt;p>游戏数据&lt;/p>
+&lt;p>&lt;code>YuanShen_Data&lt;/code>: 57.71 GB (- 15.16 GB)&lt;/p>
+&lt;p>含语音: 75.60 GB&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>语音&lt;/p>
+&lt;p>zh / en / ja / ko: 13.65 / 15.96 / 17.88 / 13.41 GB (+ 900 ~ 1200 MB)&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>差分包&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>语言&lt;/th>
+&lt;th>文件名&lt;/th>
+&lt;th>大小&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>/&lt;/td>
+&lt;td>&lt;code>game_4.5.0_4.6.0_hdiff_kiOtCmQKDxTEojvz.zip&lt;/code>&lt;/td>
+&lt;td>28.42 GiB&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>zh&lt;/td>
+&lt;td>&lt;code>zh-cn_4.5.0_4.6.0_hdiff_2a7jHyNe6YWsM3Ob.zip&lt;/code>&lt;/td>
+&lt;td>306.68 MiB&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>en&lt;/td>
+&lt;td>&lt;code>en-us_4.5.0_4.6.0_hdiff_zY5rUsWHTdvLp76g.zip&lt;/code>&lt;/td>
+&lt;td>399.28 MiB&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>ja&lt;/td>
+&lt;td>&lt;code>ja-jp_4.5.0_4.6.0_hdiff_Vq30AS1O9cWPbQHt.zip&lt;/code>&lt;/td>
+&lt;td>338.69 MiB&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>ko&lt;/td>
+&lt;td>&lt;code>ko-kr_4.5.0_4.6.0_hdiff_DBGoIMRpaQvgleCc.zip&lt;/code>&lt;/td>
+&lt;td>273.97 MiB&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;/li>
+&lt;/ul>
 &lt;h3 id="45">4.5&lt;/h3>
 &lt;blockquote>
 &lt;p>该版本开始不配图，懒了&lt;/p>
@@ -2344,8 +2449,11 @@ data-flex-basis="175px"
 &lt;li>图片下方的数字是 Tweet ID&lt;/li>
 &lt;/ul>
 &lt;h2 id="汇总">汇总&lt;/h2>
-&lt;p>该表格为现有在用卡统计，非办卡统计；
-包含未提及卡，不包含已销户卡。&lt;/p>
+&lt;ol>
+&lt;li>该表格为现有在用卡统计&lt;/li>
+&lt;li>包含未提及卡，不包含已销户卡&lt;/li>
+&lt;li>双标卡每张计数 0.5&lt;/li>
+&lt;/ol>
 &lt;table>
 &lt;thead>
 &lt;tr>
@@ -2359,21 +2467,21 @@ data-flex-basis="175px"
 &lt;tbody>
 &lt;tr>
 &lt;td>中行&lt;/td>
-&lt;td>储3&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>储3 信.5&lt;/td>
+&lt;td>信.5&lt;/td>
 &lt;td>储1&lt;/td>
 &lt;td>&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td>工行&lt;/td>
-&lt;td>储2 信1&lt;/td>
-&lt;td>信1&lt;/td>
+&lt;td>储2&lt;/td>
+&lt;td>&lt;/td>
 &lt;td>&lt;/td>
 &lt;td>&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td>建行&lt;/td>
-&lt;td>储2 信1&lt;/td>
+&lt;td>储2&lt;/td>
 &lt;td>&lt;/td>
 &lt;td>&lt;/td>
 &lt;td>&lt;/td>
@@ -2413,182 +2521,35 @@ data-flex-basis="175px"
 &lt;td>&lt;/td>
 &lt;td>储1&lt;/td>
 &lt;/tr>
+&lt;tr>
+&lt;td>港中&lt;/td>
+&lt;td>储1&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>港汇&lt;/td>
+&lt;td>储1&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
 &lt;/tbody>
 &lt;/table>
-&lt;h2 id="2020">2020&lt;/h2>
-&lt;h3 id="招商银行---young">招商银行 - Young&lt;/h3>
-&lt;blockquote>
-&lt;p>第一张学生信用卡&lt;/p>
-&lt;/blockquote>
-&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/img/2020-cmb-young.jpg"
-width="2000"
-height="1500"
-srcset="https://blog.kmtea.eu/p/230603-bank-cards/img/2020-cmb-young_hua0d5f9628eb6f5fd9b69ae54470d0012_259942_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/230603-bank-cards/img/2020-cmb-young_hua0d5f9628eb6f5fd9b69ae54470d0012_259942_1024x0_resize_q75_box.jpg 1024w"
-loading="lazy"
-class="gallery-image"
-data-flex-grow="133"
-data-flex-basis="320px"
->&lt;/p>
-&lt;ul>
-&lt;li>卡组织：银联&lt;/li>
-&lt;li>分类：信用卡&lt;/li>
-&lt;li>等级：普卡&lt;/li>
-&lt;li>途径：网申&lt;/li>
-&lt;li>现状：销卡&lt;/li>
-&lt;/ul>
-&lt;h2 id="2021">2021&lt;/h2>
-&lt;h3 id="招商银行---明日方舟">招商银行 - 明日方舟&lt;/h3>
-&lt;blockquote>
-&lt;p>我超，舟！&lt;/p>
-&lt;p>&lt;a class="link" href="https://ak.hypergryph.com/special/cmb/" target="_blank" rel="noopener"
->介绍页&lt;/a>&lt;/p>
-&lt;/blockquote>
-&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/ext/01.jpg"
-width="1200"
-height="900"
-srcset="https://blog.kmtea.eu/p/230603-bank-cards/ext/01_hu6563a4ababa053835ea456990b22cc0b_284557_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/230603-bank-cards/ext/01_hu6563a4ababa053835ea456990b22cc0b_284557_1024x0_resize_q75_box.jpg 1024w"
-loading="lazy"
-alt="1397771013132197889"
-class="gallery-image"
-data-flex-grow="133"
-data-flex-basis="320px"
->&lt;/p>
-&lt;ul>
-&lt;li>卡组织：银联&lt;/li>
-&lt;li>分类：借记卡&lt;/li>
-&lt;li>等级：普卡&lt;/li>
-&lt;li>途径：线下&lt;/li>
-&lt;li>现状：主卡&lt;/li>
-&lt;/ul>
-&lt;h2 id="2022">2022&lt;/h2>
-&lt;h3 id="中国银行---洛天依">中国银行 - 洛天依&lt;/h3>
-&lt;blockquote>
-&lt;p>我去，洛天依！&lt;/p>
-&lt;p>&lt;a class="link" href="https://mp.weixin.qq.com/s/VSC1UwiY0ET_hjZ8cdC_LA" target="_blank" rel="noopener"
->介绍页&lt;/a>&lt;/p>
-&lt;/blockquote>
-&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/ext/02.jpg"
-width="1200"
-height="900"
-srcset="https://blog.kmtea.eu/p/230603-bank-cards/ext/02_hub7155b9c13ff123e28a531aae1f1259c_115020_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/230603-bank-cards/ext/02_hub7155b9c13ff123e28a531aae1f1259c_115020_1024x0_resize_q75_box.jpg 1024w"
-loading="lazy"
-alt="1584155173731303428"
-class="gallery-image"
-data-flex-grow="133"
-data-flex-basis="320px"
->&lt;/p>
-&lt;ul>
-&lt;li>卡组织：银联&lt;/li>
-&lt;li>分类：借记卡&lt;/li>
-&lt;li>等级：普卡&lt;/li>
-&lt;li>途径：网申&lt;/li>
-&lt;li>现状：在用&lt;/li>
-&lt;/ul>
-&lt;h3 id="中国工商银行---故宫">中国工商银行 - 故宫&lt;/h3>
-&lt;blockquote>
-&lt;p>当时需要一张工行卡收补贴，觉得这张好看就办了&lt;/p>
-&lt;p>&lt;a class="link" href="https://m.icbc.com.cn/page/721854058468884500.html" target="_blank" rel="noopener"
->介绍页&lt;/a>&lt;/p>
-&lt;/blockquote>
-&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/ext/03.jpg"
-width="900"
-height="1200"
-srcset="https://blog.kmtea.eu/p/230603-bank-cards/ext/03_hu21960425878d804cdd5bf7af4a65af64_148152_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/230603-bank-cards/ext/03_hu21960425878d804cdd5bf7af4a65af64_148152_1024x0_resize_q75_box.jpg 1024w"
-loading="lazy"
-alt="1594586679129800704"
-class="gallery-image"
-data-flex-grow="75"
-data-flex-basis="180px"
->&lt;/p>
-&lt;ul>
-&lt;li>卡组织：银联&lt;/li>
-&lt;li>分类：借记卡&lt;/li>
-&lt;li>等级：普卡&lt;/li>
-&lt;li>途径：线下&lt;/li>
-&lt;li>现状：销卡&lt;/li>
-&lt;/ul>
-&lt;h3 id="中国银行---莫奈">中国银行 - 莫奈&lt;/h3>
-&lt;blockquote>
-&lt;p>年轻人的第一张世界卡&lt;/p>
-&lt;p>&lt;a class="link" href="https://mp.weixin.qq.com/s/FWi1ipqVJ3zQe_bQU7qDIw" target="_blank" rel="noopener"
->介绍页&lt;/a>&lt;/p>
-&lt;/blockquote>
-&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/ext/04.jpg"
-width="1200"
-height="900"
-srcset="https://blog.kmtea.eu/p/230603-bank-cards/ext/04_hu60858bc901392ddf7f9ca2e371f2a0f7_108006_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/230603-bank-cards/ext/04_hu60858bc901392ddf7f9ca2e371f2a0f7_108006_1024x0_resize_q75_box.jpg 1024w"
-loading="lazy"
-alt="1596406571638362112"
-class="gallery-image"
-data-flex-grow="133"
-data-flex-basis="320px"
->&lt;/p>
-&lt;ul>
-&lt;li>卡组织：Mastercard&lt;/li>
-&lt;li>分类：借记卡&lt;/li>
-&lt;li>等级：World&lt;/li>
-&lt;li>途径：网申&lt;/li>
-&lt;li>现状：在用&lt;/li>
-&lt;/ul>
-&lt;h3 id="中国工商银行---如意凤凰">中国工商银行 - 如意凤凰&lt;/h3>
-&lt;blockquote>
-&lt;p>之前自己办的那张卡学校不让用&lt;/p>
-&lt;p>&lt;a class="link" href="https://mp.weixin.qq.com/s/b77jB6411xp0EHkfTj3rSw" target="_blank" rel="noopener"
->介绍页&lt;/a>&lt;/p>
-&lt;/blockquote>
-&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/ext/05.jpg"
-width="900"
-height="1200"
-srcset="https://blog.kmtea.eu/p/230603-bank-cards/ext/05_hu6eb575827b7db635245159ff6eccc90f_113641_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/230603-bank-cards/ext/05_hu6eb575827b7db635245159ff6eccc90f_113641_1024x0_resize_q75_box.jpg 1024w"
-loading="lazy"
-alt="1601484014342508545"
-class="gallery-image"
-data-flex-grow="75"
-data-flex-basis="180px"
->&lt;/p>
-&lt;ul>
-&lt;li>卡组织：银联&lt;/li>
-&lt;li>分类：借记卡&lt;/li>
-&lt;li>等级：普卡&lt;/li>
-&lt;li>途径：统一办理&lt;/li>
-&lt;li>现状：在用&lt;/li>
-&lt;/ul>
-&lt;h3 id="中国银行---低碳">中国银行 - 低碳&lt;/h3>
-&lt;blockquote>
-&lt;p>数字人民币实体卡&lt;/p>
-&lt;p>&lt;a class="link" href="https://mp.weixin.qq.com/s/VzOcKbzK8t9295mGkGKj9Q" target="_blank" rel="noopener"
->介绍页&lt;/a>&lt;/p>
-&lt;/blockquote>
-&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/ext/06.jpg"
-width="1200"
-height="900"
-srcset="https://blog.kmtea.eu/p/230603-bank-cards/ext/06_hu3212566527472ef6295294d5e98ad673_93393_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/230603-bank-cards/ext/06_hu3212566527472ef6295294d5e98ad673_93393_1024x0_resize_q75_box.jpg 1024w"
-loading="lazy"
-alt="1604371906672480257"
-class="gallery-image"
-data-flex-grow="133"
-data-flex-basis="320px"
->&lt;/p>
-&lt;ul>
-&lt;li>卡组织：不适用&lt;/li>
-&lt;li>分类：借记卡&lt;/li>
-&lt;li>等级：不适用&lt;/li>
-&lt;li>途径：网申&lt;/li>
-&lt;li>现状：在用&lt;/li>
-&lt;/ul>
 &lt;h2 id="2023">2023&lt;/h2>
-&lt;h3 id="兴业银行---运通">兴业银行 - 运通&lt;/h3>
+&lt;h3 id="中信银行---运通">中信银行 - 运通&lt;/h3>
 &lt;blockquote>
-&lt;p>第一张运通卡&lt;/p>
-&lt;p>&lt;a class="link" href="https://mp.weixin.qq.com/s/AElhzWDBxycWqVV3q1mIow" target="_blank" rel="noopener"
+&lt;p>金卡借记卡&lt;/p>
+&lt;p>&lt;a class="link" href="https://mp.weixin.qq.com/s/M41ymLbZ6keXToz0nXjJ8w" target="_blank" rel="noopener"
 >介绍页&lt;/a>&lt;/p>
 &lt;/blockquote>
-&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/ext/07.jpg"
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/ext/13.jpg"
 width="1200"
 height="900"
-srcset="https://blog.kmtea.eu/p/230603-bank-cards/ext/07_huf672a5d1adc3b88d736f2fde2f0cb7ab_88525_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/230603-bank-cards/ext/07_huf672a5d1adc3b88d736f2fde2f0cb7ab_88525_1024x0_resize_q75_box.jpg 1024w"
+srcset="https://blog.kmtea.eu/p/230603-bank-cards/ext/13_hu8cfd98053b7960b1a1a1694517ccc889_171237_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/230603-bank-cards/ext/13_hu8cfd98053b7960b1a1a1694517ccc889_171237_1024x0_resize_q75_box.jpg 1024w"
 loading="lazy"
-alt="1624381848246976512"
+alt="1670009918416646146"
 class="gallery-image"
 data-flex-grow="133"
 data-flex-basis="320px"
@@ -2596,7 +2557,95 @@ data-flex-basis="320px"
 &lt;ul>
 &lt;li>卡组织：American Express&lt;/li>
 &lt;li>分类：借记卡&lt;/li>
+&lt;li>等级：金卡&lt;/li>
+&lt;li>途径：网申&lt;/li>
+&lt;li>现状：在用&lt;/li>
+&lt;/ul>
+&lt;h3 id="中国建设银行---line-friends">中国建设银行 - Line Friends&lt;/h3>
+&lt;blockquote>
+&lt;p>同样是大学生信用卡。毕业那年再申。&lt;/p>
+&lt;p>&lt;a class="link" href="https://mp.weixin.qq.com/s/lK5YVyHvWqv94tDLY8zIiQ" target="_blank" rel="noopener"
+>介绍页&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/ext/12.jpg"
+width="1200"
+height="900"
+srcset="https://blog.kmtea.eu/p/230603-bank-cards/ext/12_hu585ad856507e211657eb568a22c3c94d_92543_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/230603-bank-cards/ext/12_hu585ad856507e211657eb568a22c3c94d_92543_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="1664817220600606720"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>&lt;/p>
+&lt;ul>
+&lt;li>卡组织：银联&lt;/li>
+&lt;li>分类：信用卡&lt;/li>
+&lt;li>等级：金卡&lt;/li>
+&lt;li>途径：网申&lt;/li>
+&lt;li>现状：销卡&lt;/li>
+&lt;/ul>
+&lt;h3 id="中国银行---冰雪">中国银行 - 冰雪&lt;/h3>
+&lt;blockquote>
+&lt;p>全世界门槛最低的银联白金卡&lt;/p>
+&lt;p>&lt;a class="link" href="https://mp.weixin.qq.com/s/Fys02dfBD4fVJqHROKUbbg" target="_blank" rel="noopener"
+>介绍页&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/ext/11.jpg"
+width="1200"
+height="900"
+srcset="https://blog.kmtea.eu/p/230603-bank-cards/ext/11_hu371be70a1d1886bf800fa43ad8b5ce46_216014_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/230603-bank-cards/ext/11_hu371be70a1d1886bf800fa43ad8b5ce46_216014_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="1662440558978269186"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>&lt;/p>
+&lt;ul>
+&lt;li>卡组织：银联&lt;/li>
+&lt;li>分类：借记卡&lt;/li>
+&lt;li>等级：白金卡&lt;/li>
+&lt;li>途径：线下&lt;/li>
+&lt;li>现状：在用&lt;/li>
+&lt;/ul>
+&lt;h3 id="中国工商银行---星座">中国工商银行 - 星座&lt;/h3>
+&lt;blockquote>
+&lt;p>大学生信用卡&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/ext/10.jpg"
+width="1200"
+height="900"
+srcset="https://blog.kmtea.eu/p/230603-bank-cards/ext/10_hu63812e082fe03e8e3638466bc2ca54f0_89935_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/230603-bank-cards/ext/10_hu63812e082fe03e8e3638466bc2ca54f0_89935_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="1634766718001373185"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>&lt;/p>
+&lt;ul>
+&lt;li>卡组织：银联 + VISA&lt;/li>
+&lt;li>分类：信用卡&lt;/li>
 &lt;li>等级：普卡&lt;/li>
+&lt;li>途径：网申&lt;/li>
+&lt;li>现状：销卡&lt;/li>
+&lt;/ul>
+&lt;h3 id="浦发银行---30周年">浦发银行 - 30周年&lt;/h3>
+&lt;blockquote>
+&lt;p>办卡理由：好看&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/ext/09.jpg"
+width="1200"
+height="900"
+srcset="https://blog.kmtea.eu/p/230603-bank-cards/ext/09_hu8fcc20f7bbc840a4af5cb8b5bed1ffe3_114332_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/230603-bank-cards/ext/09_hu8fcc20f7bbc840a4af5cb8b5bed1ffe3_114332_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="1629747032079630341"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>&lt;/p>
+&lt;ul>
+&lt;li>卡组织：银联&lt;/li>
+&lt;li>分类：借记卡&lt;/li>
+&lt;li>等级：金卡&lt;/li>
 &lt;li>途径：网申&lt;/li>
 &lt;li>现状：在用&lt;/li>
 &lt;/ul>
@@ -2623,106 +2672,18 @@ data-flex-basis="320px"
 &lt;li>途径：网申&lt;/li>
 &lt;li>现状：在用&lt;/li>
 &lt;/ul>
-&lt;h3 id="浦发银行---30周年">浦发银行 - 30周年&lt;/h3>
+&lt;h3 id="兴业银行---运通">兴业银行 - 运通&lt;/h3>
 &lt;blockquote>
-&lt;p>办卡理由：好看&lt;/p>
-&lt;/blockquote>
-&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/ext/09.jpg"
-width="1200"
-height="900"
-srcset="https://blog.kmtea.eu/p/230603-bank-cards/ext/09_hu8fcc20f7bbc840a4af5cb8b5bed1ffe3_114332_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/230603-bank-cards/ext/09_hu8fcc20f7bbc840a4af5cb8b5bed1ffe3_114332_1024x0_resize_q75_box.jpg 1024w"
-loading="lazy"
-alt="1629747032079630341"
-class="gallery-image"
-data-flex-grow="133"
-data-flex-basis="320px"
->&lt;/p>
-&lt;ul>
-&lt;li>卡组织：银联&lt;/li>
-&lt;li>分类：借记卡&lt;/li>
-&lt;li>等级：金卡&lt;/li>
-&lt;li>途径：网申&lt;/li>
-&lt;li>现状：在用&lt;/li>
-&lt;/ul>
-&lt;h3 id="中国工商银行---星座">中国工商银行 - 星座&lt;/h3>
-&lt;blockquote>
-&lt;p>大学生信用卡&lt;/p>
-&lt;/blockquote>
-&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/ext/10.jpg"
-width="1200"
-height="900"
-srcset="https://blog.kmtea.eu/p/230603-bank-cards/ext/10_hu63812e082fe03e8e3638466bc2ca54f0_89935_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/230603-bank-cards/ext/10_hu63812e082fe03e8e3638466bc2ca54f0_89935_1024x0_resize_q75_box.jpg 1024w"
-loading="lazy"
-alt="1634766718001373185"
-class="gallery-image"
-data-flex-grow="133"
-data-flex-basis="320px"
->&lt;/p>
-&lt;ul>
-&lt;li>卡组织：银联 + VISA&lt;/li>
-&lt;li>分类：信用卡&lt;/li>
-&lt;li>等级：普卡&lt;/li>
-&lt;li>途径：网申&lt;/li>
-&lt;li>现状：在用&lt;/li>
-&lt;/ul>
-&lt;h3 id="中国银行---冰雪">中国银行 - 冰雪&lt;/h3>
-&lt;blockquote>
-&lt;p>全世界门槛最低的银联白金卡&lt;/p>
-&lt;p>&lt;a class="link" href="https://mp.weixin.qq.com/s/Fys02dfBD4fVJqHROKUbbg" target="_blank" rel="noopener"
+&lt;p>第一张运通卡&lt;/p>
+&lt;p>&lt;a class="link" href="https://mp.weixin.qq.com/s/AElhzWDBxycWqVV3q1mIow" target="_blank" rel="noopener"
 >介绍页&lt;/a>&lt;/p>
 &lt;/blockquote>
-&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/ext/11.jpg"
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/ext/07.jpg"
 width="1200"
 height="900"
-srcset="https://blog.kmtea.eu/p/230603-bank-cards/ext/11_hu371be70a1d1886bf800fa43ad8b5ce46_216014_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/230603-bank-cards/ext/11_hu371be70a1d1886bf800fa43ad8b5ce46_216014_1024x0_resize_q75_box.jpg 1024w"
+srcset="https://blog.kmtea.eu/p/230603-bank-cards/ext/07_huf672a5d1adc3b88d736f2fde2f0cb7ab_88525_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/230603-bank-cards/ext/07_huf672a5d1adc3b88d736f2fde2f0cb7ab_88525_1024x0_resize_q75_box.jpg 1024w"
 loading="lazy"
-alt="1662440558978269186"
-class="gallery-image"
-data-flex-grow="133"
-data-flex-basis="320px"
->&lt;/p>
-&lt;ul>
-&lt;li>卡组织：银联&lt;/li>
-&lt;li>分类：借记卡&lt;/li>
-&lt;li>等级：白金卡&lt;/li>
-&lt;li>途径：线下&lt;/li>
-&lt;li>现状：在用&lt;/li>
-&lt;/ul>
-&lt;h3 id="中国建设银行---line-friends">中国建设银行 - Line Friends&lt;/h3>
-&lt;blockquote>
-&lt;p>同样是大学生信用卡。毕业那年再申。&lt;/p>
-&lt;p>&lt;a class="link" href="https://mp.weixin.qq.com/s/lK5YVyHvWqv94tDLY8zIiQ" target="_blank" rel="noopener"
->介绍页&lt;/a>&lt;/p>
-&lt;/blockquote>
-&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/ext/12.jpg"
-width="1200"
-height="900"
-srcset="https://blog.kmtea.eu/p/230603-bank-cards/ext/12_hu585ad856507e211657eb568a22c3c94d_92543_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/230603-bank-cards/ext/12_hu585ad856507e211657eb568a22c3c94d_92543_1024x0_resize_q75_box.jpg 1024w"
-loading="lazy"
-alt="1664817220600606720"
-class="gallery-image"
-data-flex-grow="133"
-data-flex-basis="320px"
->&lt;/p>
-&lt;ul>
-&lt;li>卡组织：银联&lt;/li>
-&lt;li>分类：信用卡&lt;/li>
-&lt;li>等级：金卡&lt;/li>
-&lt;li>途径：网申&lt;/li>
-&lt;li>现状：在用&lt;/li>
-&lt;/ul>
-&lt;h3 id="中信银行---运通">中信银行 - 运通&lt;/h3>
-&lt;blockquote>
-&lt;p>金卡借记卡&lt;/p>
-&lt;p>&lt;a class="link" href="https://mp.weixin.qq.com/s/M41ymLbZ6keXToz0nXjJ8w" target="_blank" rel="noopener"
->介绍页&lt;/a>&lt;/p>
-&lt;/blockquote>
-&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/ext/13.jpg"
-width="1200"
-height="900"
-srcset="https://blog.kmtea.eu/p/230603-bank-cards/ext/13_hu8cfd98053b7960b1a1a1694517ccc889_171237_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/230603-bank-cards/ext/13_hu8cfd98053b7960b1a1a1694517ccc889_171237_1024x0_resize_q75_box.jpg 1024w"
-loading="lazy"
-alt="1670009918416646146"
+alt="1624381848246976512"
 class="gallery-image"
 data-flex-grow="133"
 data-flex-basis="320px"
@@ -2730,9 +2691,170 @@ data-flex-basis="320px"
 &lt;ul>
 &lt;li>卡组织：American Express&lt;/li>
 &lt;li>分类：借记卡&lt;/li>
-&lt;li>等级：金卡&lt;/li>
+&lt;li>等级：普卡&lt;/li>
 &lt;li>途径：网申&lt;/li>
 &lt;li>现状：在用&lt;/li>
+&lt;/ul>
+&lt;h2 id="2022">2022&lt;/h2>
+&lt;h3 id="中国银行---低碳">中国银行 - 低碳&lt;/h3>
+&lt;blockquote>
+&lt;p>数字人民币实体卡&lt;/p>
+&lt;p>&lt;a class="link" href="https://mp.weixin.qq.com/s/VzOcKbzK8t9295mGkGKj9Q" target="_blank" rel="noopener"
+>介绍页&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/ext/06.jpg"
+width="1200"
+height="900"
+srcset="https://blog.kmtea.eu/p/230603-bank-cards/ext/06_hu3212566527472ef6295294d5e98ad673_93393_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/230603-bank-cards/ext/06_hu3212566527472ef6295294d5e98ad673_93393_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="1604371906672480257"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>&lt;/p>
+&lt;ul>
+&lt;li>卡组织：不适用&lt;/li>
+&lt;li>分类：借记卡&lt;/li>
+&lt;li>等级：不适用&lt;/li>
+&lt;li>途径：网申&lt;/li>
+&lt;li>现状：在用&lt;/li>
+&lt;/ul>
+&lt;h3 id="中国工商银行---如意凤凰">中国工商银行 - 如意凤凰&lt;/h3>
+&lt;blockquote>
+&lt;p>之前自己办的那张卡学校不让用&lt;/p>
+&lt;p>&lt;a class="link" href="https://mp.weixin.qq.com/s/b77jB6411xp0EHkfTj3rSw" target="_blank" rel="noopener"
+>介绍页&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/ext/05.jpg"
+width="900"
+height="1200"
+srcset="https://blog.kmtea.eu/p/230603-bank-cards/ext/05_hu6eb575827b7db635245159ff6eccc90f_113641_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/230603-bank-cards/ext/05_hu6eb575827b7db635245159ff6eccc90f_113641_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="1601484014342508545"
+class="gallery-image"
+data-flex-grow="75"
+data-flex-basis="180px"
+>&lt;/p>
+&lt;ul>
+&lt;li>卡组织：银联&lt;/li>
+&lt;li>分类：借记卡&lt;/li>
+&lt;li>等级：普卡&lt;/li>
+&lt;li>途径：统一办理&lt;/li>
+&lt;li>现状：在用&lt;/li>
+&lt;/ul>
+&lt;h3 id="中国银行---莫奈">中国银行 - 莫奈&lt;/h3>
+&lt;blockquote>
+&lt;p>年轻人的第一张世界卡&lt;/p>
+&lt;p>&lt;a class="link" href="https://mp.weixin.qq.com/s/FWi1ipqVJ3zQe_bQU7qDIw" target="_blank" rel="noopener"
+>介绍页&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/ext/04.jpg"
+width="1200"
+height="900"
+srcset="https://blog.kmtea.eu/p/230603-bank-cards/ext/04_hu60858bc901392ddf7f9ca2e371f2a0f7_108006_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/230603-bank-cards/ext/04_hu60858bc901392ddf7f9ca2e371f2a0f7_108006_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="1596406571638362112"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>&lt;/p>
+&lt;ul>
+&lt;li>卡组织：Mastercard&lt;/li>
+&lt;li>分类：借记卡&lt;/li>
+&lt;li>等级：World&lt;/li>
+&lt;li>途径：网申&lt;/li>
+&lt;li>现状：在用&lt;/li>
+&lt;/ul>
+&lt;h3 id="中国工商银行---故宫">中国工商银行 - 故宫&lt;/h3>
+&lt;blockquote>
+&lt;p>当时需要一张工行卡收补贴，觉得这张好看就办了&lt;/p>
+&lt;p>&lt;a class="link" href="https://m.icbc.com.cn/page/721854058468884500.html" target="_blank" rel="noopener"
+>介绍页&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/ext/03.jpg"
+width="900"
+height="1200"
+srcset="https://blog.kmtea.eu/p/230603-bank-cards/ext/03_hu21960425878d804cdd5bf7af4a65af64_148152_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/230603-bank-cards/ext/03_hu21960425878d804cdd5bf7af4a65af64_148152_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="1594586679129800704"
+class="gallery-image"
+data-flex-grow="75"
+data-flex-basis="180px"
+>&lt;/p>
+&lt;ul>
+&lt;li>卡组织：银联&lt;/li>
+&lt;li>分类：借记卡&lt;/li>
+&lt;li>等级：普卡&lt;/li>
+&lt;li>途径：线下&lt;/li>
+&lt;li>现状：销卡&lt;/li>
+&lt;/ul>
+&lt;h3 id="中国银行---洛天依">中国银行 - 洛天依&lt;/h3>
+&lt;blockquote>
+&lt;p>我去，洛天依！&lt;/p>
+&lt;p>&lt;a class="link" href="https://mp.weixin.qq.com/s/VSC1UwiY0ET_hjZ8cdC_LA" target="_blank" rel="noopener"
+>介绍页&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/ext/02.jpg"
+width="1200"
+height="900"
+srcset="https://blog.kmtea.eu/p/230603-bank-cards/ext/02_hub7155b9c13ff123e28a531aae1f1259c_115020_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/230603-bank-cards/ext/02_hub7155b9c13ff123e28a531aae1f1259c_115020_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="1584155173731303428"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>&lt;/p>
+&lt;ul>
+&lt;li>卡组织：银联&lt;/li>
+&lt;li>分类：借记卡&lt;/li>
+&lt;li>等级：普卡&lt;/li>
+&lt;li>途径：网申&lt;/li>
+&lt;li>现状：在用&lt;/li>
+&lt;/ul>
+&lt;h2 id="2021">2021&lt;/h2>
+&lt;h3 id="招商银行---明日方舟">招商银行 - 明日方舟&lt;/h3>
+&lt;blockquote>
+&lt;p>我超，舟！&lt;/p>
+&lt;p>&lt;a class="link" href="https://ak.hypergryph.com/special/cmb/" target="_blank" rel="noopener"
+>介绍页&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/ext/01.jpg"
+width="1200"
+height="900"
+srcset="https://blog.kmtea.eu/p/230603-bank-cards/ext/01_hu6563a4ababa053835ea456990b22cc0b_284557_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/230603-bank-cards/ext/01_hu6563a4ababa053835ea456990b22cc0b_284557_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+alt="1397771013132197889"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>&lt;/p>
+&lt;ul>
+&lt;li>卡组织：银联&lt;/li>
+&lt;li>分类：借记卡&lt;/li>
+&lt;li>等级：普卡&lt;/li>
+&lt;li>途径：线下&lt;/li>
+&lt;li>现状：主卡&lt;/li>
+&lt;/ul>
+&lt;h2 id="2020">2020&lt;/h2>
+&lt;h3 id="招商银行---young">招商银行 - Young&lt;/h3>
+&lt;blockquote>
+&lt;p>第一张学生信用卡&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/img/2020-cmb-young.jpg"
+width="2000"
+height="1500"
+srcset="https://blog.kmtea.eu/p/230603-bank-cards/img/2020-cmb-young_hua0d5f9628eb6f5fd9b69ae54470d0012_259942_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/230603-bank-cards/img/2020-cmb-young_hua0d5f9628eb6f5fd9b69ae54470d0012_259942_1024x0_resize_q75_box.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>&lt;/p>
+&lt;ul>
+&lt;li>卡组织：银联&lt;/li>
+&lt;li>分类：信用卡&lt;/li>
+&lt;li>等级：普卡&lt;/li>
+&lt;li>途径：网申&lt;/li>
+&lt;li>现状：销卡&lt;/li>
 &lt;/ul></description></item><item><title>PVE 更新 OpenWrt 教程</title><link>https://blog.kmtea.eu/p/221227-pve-openwrt/</link><pubDate>Tue, 27 Dec 2022 17:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/221227-pve-openwrt/</guid><description>&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/cover.jpg" alt="Featured image of post PVE 更新 OpenWrt 教程" />&lt;h1 id="pve-更新-openwrt">PVE 更新 OpenWrt&lt;/h1>
 &lt;h2 id="准备工作">准备工作&lt;/h2>
 &lt;ul>
