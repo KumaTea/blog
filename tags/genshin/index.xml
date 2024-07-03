@@ -22,6 +22,9 @@ data-flex-basis="560px"
 &lt;/ul>
 &lt;h2 id="4x">4.x&lt;/h2>
 &lt;h3 id="47">4.7&lt;/h3>
+&lt;blockquote>
+&lt;p>受上版本数据丢失影响，增减数据不准确&lt;/p>
+&lt;/blockquote>
 &lt;ul>
 &lt;li>
 &lt;p>游戏数据&lt;/p>
