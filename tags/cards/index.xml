@@ -271,9 +271,15 @@ data-flex-basis="175px"
 &lt;blockquote>
 &lt;p>是白金卡！&lt;/p>
 &lt;/blockquote>
-&lt;p>&lt;img src="https://blog.kmtea.eu/img/2407-citic-d.jpg"
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/img/2407-citic-d.jpg"
+width="3840"
+height="2160"
+srcset="https://blog.kmtea.eu/p/230603-bank-cards/img/2407-citic-d_hu16857816060121594180.jpg 480w, https://blog.kmtea.eu/p/230603-bank-cards/img/2407-citic-d_hu10872828715934013375.jpg 1024w"
 loading="lazy"
 alt="1813042301914259882"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
 >&lt;/p>
 &lt;ul>
 &lt;li>卡组织：银联&lt;/li>
@@ -292,9 +298,15 @@ alt="1813042301914259882"
 &lt;a class="link" href="https://apply.mcard.boc.cn/apply/Izeiim" target="_blank" rel="noopener"
 >申请&lt;/a>&lt;/p>
 &lt;/blockquote>
-&lt;p>&lt;img src="https://blog.kmtea.eu/img/2407-boc-c.jpg"
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/img/2407-boc-c.jpg"
+width="4000"
+height="3000"
+srcset="https://blog.kmtea.eu/p/230603-bank-cards/img/2407-boc-c_hu4743958083146779551.jpg 480w, https://blog.kmtea.eu/p/230603-bank-cards/img/2407-boc-c_hu5208646432424545155.jpg 1024w"
 loading="lazy"
 alt="1808386649392566297"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
 >&lt;/p>
 &lt;ul>
 &lt;li>卡组织：银联 + VISA&lt;/li>
@@ -307,9 +319,15 @@ alt="1808386649392566297"
 &lt;blockquote>
 &lt;p>无门槛开户默认卡&lt;/p>
 &lt;/blockquote>
-&lt;p>&lt;img src="https://blog.kmtea.eu/img/2406-boc-d.jpg"
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/img/2406-boc-d.jpg"
+width="4000"
+height="3000"
+srcset="https://blog.kmtea.eu/p/230603-bank-cards/img/2406-boc-d_hu5247233678676497573.jpg 480w, https://blog.kmtea.eu/p/230603-bank-cards/img/2406-boc-d_hu3839471811481187956.jpg 1024w"
 loading="lazy"
 alt="1806900479625982267"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
 >&lt;/p>
 &lt;ul>
 &lt;li>卡组织：银联&lt;/li>
@@ -323,9 +341,15 @@ alt="1806900479625982267"
 &lt;p>无门槛开户默认卡&lt;/p>
 &lt;p>俗称「红狮子」&lt;/p>
 &lt;/blockquote>
-&lt;p>&lt;img src="https://blog.kmtea.eu/img/2406-hsbc-d.jpg"
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/img/2406-hsbc-d.jpg"
+width="4000"
+height="3000"
+srcset="https://blog.kmtea.eu/p/230603-bank-cards/img/2406-hsbc-d_hu17046092412948624460.jpg 480w, https://blog.kmtea.eu/p/230603-bank-cards/img/2406-hsbc-d_hu10675753598147983163.jpg 1024w"
 loading="lazy"
 alt="1806900479625982267"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
 >&lt;/p>
 &lt;ul>
 &lt;li>卡组织：银联&lt;/li>
@@ -364,9 +388,15 @@ data-flex-basis="320px"
 &lt;p>&lt;a class="link" href="https://mp.weixin.qq.com/s/lK5YVyHvWqv94tDLY8zIiQ" target="_blank" rel="noopener"
 >介绍页&lt;/a>&lt;/p>
 &lt;/blockquote>
-&lt;p>&lt;img src="https://blog.kmtea.eu/ext/12.jpg"
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/ext/12.jpg"
+width="1200"
+height="900"
+srcset="https://blog.kmtea.eu/p/230603-bank-cards/ext/12_hu13707821180416635169.jpg 480w, https://blog.kmtea.eu/p/230603-bank-cards/ext/12_hu14318265816868254291.jpg 1024w"
 loading="lazy"
 alt="1664817220600606720"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
 >&lt;/p>
 &lt;ul>
 &lt;li>卡组织：银联&lt;/li>
@@ -402,9 +432,15 @@ data-flex-basis="320px"
 &lt;blockquote>
 &lt;p>大学生信用卡&lt;/p>
 &lt;/blockquote>
-&lt;p>&lt;img src="https://blog.kmtea.eu/ext/10.jpg"
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/ext/10.jpg"
+width="1200"
+height="900"
+srcset="https://blog.kmtea.eu/p/230603-bank-cards/ext/10_hu4970505534732596490.jpg 480w, https://blog.kmtea.eu/p/230603-bank-cards/ext/10_hu16431917921124418901.jpg 1024w"
 loading="lazy"
 alt="1634766718001373185"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
 >&lt;/p>
 &lt;ul>
 &lt;li>卡组织：银联 + VISA&lt;/li>
@@ -463,9 +499,15 @@ data-flex-basis="320px"
 &lt;p>&lt;a class="link" href="https://mp.weixin.qq.com/s/AElhzWDBxycWqVV3q1mIow" target="_blank" rel="noopener"
 >介绍页&lt;/a>&lt;/p>
 &lt;/blockquote>
-&lt;p>&lt;img src="https://blog.kmtea.eu/ext/07.jpg"
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/ext/07.jpg"
+width="1200"
+height="900"
+srcset="https://blog.kmtea.eu/p/230603-bank-cards/ext/07_hu11519210984389624236.jpg 480w, https://blog.kmtea.eu/p/230603-bank-cards/ext/07_hu13945084749639233583.jpg 1024w"
 loading="lazy"
 alt="1624381848246976512"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
 >&lt;/p>
 &lt;ul>
 &lt;li>卡组织：American Express&lt;/li>
@@ -527,9 +569,15 @@ data-flex-basis="180px"
 &lt;p>&lt;a class="link" href="https://mp.weixin.qq.com/s/FWi1ipqVJ3zQe_bQU7qDIw" target="_blank" rel="noopener"
 >介绍页&lt;/a>&lt;/p>
 &lt;/blockquote>
-&lt;p>&lt;img src="https://blog.kmtea.eu/ext/04.jpg"
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/ext/04.jpg"
+width="1200"
+height="900"
+srcset="https://blog.kmtea.eu/p/230603-bank-cards/ext/04_hu13434138631751074820.jpg 480w, https://blog.kmtea.eu/p/230603-bank-cards/ext/04_hu8507200438961222508.jpg 1024w"
 loading="lazy"
 alt="1596406571638362112"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
 >&lt;/p>
 &lt;ul>
 &lt;li>卡组织：Mastercard&lt;/li>
@@ -567,9 +615,15 @@ data-flex-basis="180px"
 &lt;p>&lt;a class="link" href="https://mp.weixin.qq.com/s/VSC1UwiY0ET_hjZ8cdC_LA" target="_blank" rel="noopener"
 >介绍页&lt;/a>&lt;/p>
 &lt;/blockquote>
-&lt;p>&lt;img src="https://blog.kmtea.eu/ext/02.jpg"
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/ext/02.jpg"
+width="1200"
+height="900"
+srcset="https://blog.kmtea.eu/p/230603-bank-cards/ext/02_hu12404304810665563179.jpg 480w, https://blog.kmtea.eu/p/230603-bank-cards/ext/02_hu16879575207069759936.jpg 1024w"
 loading="lazy"
 alt="1584155173731303428"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
 >&lt;/p>
 &lt;ul>
 &lt;li>卡组织：银联&lt;/li>
