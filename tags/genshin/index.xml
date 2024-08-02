@@ -5,7 +5,7 @@
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/231106-genshin-size/img/question.jpg"
 width="1509"
 height="646"
-srcset="https://blog.kmtea.eu/p/231106-genshin-size/img/question_hu45503061ad80392d4aee544731eb6006_80497_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231106-genshin-size/img/question_hu45503061ad80392d4aee544731eb6006_80497_1024x0_resize_q75_box.jpg 1024w"
+srcset="https://blog.kmtea.eu/p/231106-genshin-size/img/question_hu7169743648825129349.jpg 480w, https://blog.kmtea.eu/p/231106-genshin-size/img/question_hu14833330014881734372.jpg 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="233"
@@ -21,6 +21,57 @@ data-flex-basis="560px"
 &lt;/li>
 &lt;/ul>
 &lt;h2 id="4x">4.x&lt;/h2>
+&lt;h3 id="48">4.8&lt;/h3>
+&lt;ul>
+&lt;li>
+&lt;p>游戏数据&lt;/p>
+&lt;p>&lt;code>YuanShen_Data&lt;/code>: 61.41 GB (+ 1.46 GB)&lt;/p>
+&lt;p>含语音: 79.82 GB&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>语音&lt;/p>
+&lt;p>zh / en / ja / ko: 14.05 / 16.41 / 18.41 / 13.79 GB (+ 400 ~ 500 MB)&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>差分包&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>语言&lt;/th>
+&lt;th>文件名&lt;/th>
+&lt;th>大小&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>/&lt;/td>
+&lt;td>&lt;code>game_4.7.0_4.8.0_hdiff_ozmRtNVvfJaBDlmd.zip&lt;/code>&lt;/td>
+&lt;td>13.84 GiB&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>zh&lt;/td>
+&lt;td>&lt;code>audio_zh-cn_4.7.0_4.8.0_hdiff_QdLjeERMAoCvExzt.zip&lt;/code>&lt;/td>
+&lt;td>357.67 MiB&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>en&lt;/td>
+&lt;td>&lt;code>audio_en-us_4.7.0_4.8.0_hdiff_eNAnuzbTsUXQNrla.zip&lt;/code>&lt;/td>
+&lt;td>432.67 MiB&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>ja&lt;/td>
+&lt;td>&lt;code>audio_ja-jp_4.7.0_4.8.0_hdiff_pgIRBgtnJMNTtERS.zip&lt;/code>&lt;/td>
+&lt;td>398.03 MiB&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>ko&lt;/td>
+&lt;td>&lt;code>audio_ko-kr_4.7.0_4.8.0_hdiff_eTQLFbEKXVztAWuM.zip&lt;/code>&lt;/td>
+&lt;td>322.57 MiB&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;/li>
+&lt;/ul>
 &lt;h3 id="47">4.7&lt;/h3>
 &lt;blockquote>
 &lt;p>受上版本数据丢失影响，增减数据不准确&lt;/p>
@@ -191,7 +242,7 @@ data-flex-basis="560px"
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/231106-genshin-size/img/4.4-data.jpg"
 width="1120"
 height="840"
-srcset="https://blog.kmtea.eu/p/231106-genshin-size/img/4.4-data_hufce710d9a7842f36f2bba445811bf12d_98914_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231106-genshin-size/img/4.4-data_hufce710d9a7842f36f2bba445811bf12d_98914_1024x0_resize_q75_box.jpg 1024w"
+srcset="https://blog.kmtea.eu/p/231106-genshin-size/img/4.4-data_hu2107155655939913825.jpg 480w, https://blog.kmtea.eu/p/231106-genshin-size/img/4.4-data_hu4831943686869357218.jpg 1024w"
 loading="lazy"
 alt="88.61 GB (含语音)"
 class="gallery-image"
@@ -205,7 +256,7 @@ data-flex-basis="320px"
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/231106-genshin-size/img/4.4-voice.jpg"
 width="502"
 height="330"
-srcset="https://blog.kmtea.eu/p/231106-genshin-size/img/4.4-voice_hu0c1e89bfb783af60fd5e47062ed913af_16060_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231106-genshin-size/img/4.4-voice_hu0c1e89bfb783af60fd5e47062ed913af_16060_1024x0_resize_q75_box.jpg 1024w"
+srcset="https://blog.kmtea.eu/p/231106-genshin-size/img/4.4-voice_hu4031455681655891515.jpg 480w, https://blog.kmtea.eu/p/231106-genshin-size/img/4.4-voice_hu663964162040622449.jpg 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="152"
@@ -260,7 +311,7 @@ data-flex-basis="365px"
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/231106-genshin-size/img/4.3-data.jpg"
 width="1071"
 height="821"
-srcset="https://blog.kmtea.eu/p/231106-genshin-size/img/4.3-data_hu1bda88ebbefa41cc7efa1bd178527a6b_98254_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231106-genshin-size/img/4.3-data_hu1bda88ebbefa41cc7efa1bd178527a6b_98254_1024x0_resize_q75_box.jpg 1024w"
+srcset="https://blog.kmtea.eu/p/231106-genshin-size/img/4.3-data_hu11149403792019853051.jpg 480w, https://blog.kmtea.eu/p/231106-genshin-size/img/4.3-data_hu7943673733538391811.jpg 1024w"
 loading="lazy"
 alt="84.19 GB (含语音)"
 class="gallery-image"
@@ -274,7 +325,7 @@ data-flex-basis="313px"
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/231106-genshin-size/img/4.3-voice.jpg"
 width="441"
 height="277"
-srcset="https://blog.kmtea.eu/p/231106-genshin-size/img/4.3-voice_hu9266bcf1a3b88ae7affa17ced346ef6e_12189_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231106-genshin-size/img/4.3-voice_hu9266bcf1a3b88ae7affa17ced346ef6e_12189_1024x0_resize_q75_box.jpg 1024w"
+srcset="https://blog.kmtea.eu/p/231106-genshin-size/img/4.3-voice_hu15470615675737826197.jpg 480w, https://blog.kmtea.eu/p/231106-genshin-size/img/4.3-voice_hu11012300853497970281.jpg 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="159"
@@ -329,7 +380,7 @@ data-flex-basis="382px"
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/231106-genshin-size/img/4.2-data.jpg"
 width="1122"
 height="783"
-srcset="https://blog.kmtea.eu/p/231106-genshin-size/img/4.2-data_hu8e1adad2b63e5a1f549e37976e1a6233_83646_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231106-genshin-size/img/4.2-data_hu8e1adad2b63e5a1f549e37976e1a6233_83646_1024x0_resize_q75_box.jpg 1024w"
+srcset="https://blog.kmtea.eu/p/231106-genshin-size/img/4.2-data_hu18166469466860734047.jpg 480w, https://blog.kmtea.eu/p/231106-genshin-size/img/4.2-data_hu11426030041834539160.jpg 1024w"
 loading="lazy"
 alt="82.36 GB (含语音)"
 class="gallery-image"
@@ -343,7 +394,7 @@ data-flex-basis="343px"
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/231106-genshin-size/img/4.2-voice.jpg"
 width="547"
 height="308"
-srcset="https://blog.kmtea.eu/p/231106-genshin-size/img/4.2-voice_hub92fcd26f104407eb789e94e2e07dd91_13706_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231106-genshin-size/img/4.2-voice_hub92fcd26f104407eb789e94e2e07dd91_13706_1024x0_resize_q75_box.jpg 1024w"
+srcset="https://blog.kmtea.eu/p/231106-genshin-size/img/4.2-voice_hu2907602321263426633.jpg 480w, https://blog.kmtea.eu/p/231106-genshin-size/img/4.2-voice_hu6979125860400769772.jpg 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="177"
@@ -398,7 +449,7 @@ data-flex-basis="426px"
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/231106-genshin-size/img/4.1-data.jpg"
 width="890"
 height="844"
-srcset="https://blog.kmtea.eu/p/231106-genshin-size/img/4.1-data_hu566349c0c6e82061467d4e0805cd92dd_88640_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231106-genshin-size/img/4.1-data_hu566349c0c6e82061467d4e0805cd92dd_88640_1024x0_resize_q75_box.jpg 1024w"
+srcset="https://blog.kmtea.eu/p/231106-genshin-size/img/4.1-data_hu3206048060431855794.jpg 480w, https://blog.kmtea.eu/p/231106-genshin-size/img/4.1-data_hu3779829762852506523.jpg 1024w"
 loading="lazy"
 alt="77.47 GB (含语音)"
 class="gallery-image"
@@ -412,7 +463,7 @@ data-flex-basis="253px"
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/231106-genshin-size/img/4.1-voice.jpg"
 width="404"
 height="280"
-srcset="https://blog.kmtea.eu/p/231106-genshin-size/img/4.1-voice_huf300427cfd8fc6ae556462974edeb7b1_9803_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231106-genshin-size/img/4.1-voice_huf300427cfd8fc6ae556462974edeb7b1_9803_1024x0_resize_q75_box.jpg 1024w"
+srcset="https://blog.kmtea.eu/p/231106-genshin-size/img/4.1-voice_hu2451394791316545235.jpg 480w, https://blog.kmtea.eu/p/231106-genshin-size/img/4.1-voice_hu4881862469290669289.jpg 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="144"
@@ -467,7 +518,7 @@ data-flex-basis="346px"
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/231106-genshin-size/img/4.0-data.jpg"
 width="1103"
 height="773"
-srcset="https://blog.kmtea.eu/p/231106-genshin-size/img/4.0-data_hu2bf21cb5d615e64753dc255e71b727c1_88732_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231106-genshin-size/img/4.0-data_hu2bf21cb5d615e64753dc255e71b727c1_88732_1024x0_resize_q75_box.jpg 1024w"
+srcset="https://blog.kmtea.eu/p/231106-genshin-size/img/4.0-data_hu15285292657657352597.jpg 480w, https://blog.kmtea.eu/p/231106-genshin-size/img/4.0-data_hu14588965079541821749.jpg 1024w"
 loading="lazy"
 alt="70.49 GB (含语音)"
 class="gallery-image"
@@ -481,7 +532,7 @@ data-flex-basis="342px"
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/231106-genshin-size/img/4.0-voice.jpg"
 width="405"
 height="225"
-srcset="https://blog.kmtea.eu/p/231106-genshin-size/img/4.0-voice_hu4832dcbf3804cf04bda7e43412ad5aee_9798_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231106-genshin-size/img/4.0-voice_hu4832dcbf3804cf04bda7e43412ad5aee_9798_1024x0_resize_q75_box.jpg 1024w"
+srcset="https://blog.kmtea.eu/p/231106-genshin-size/img/4.0-voice_hu62160227830875876.jpg 480w, https://blog.kmtea.eu/p/231106-genshin-size/img/4.0-voice_hu17952404806142015585.jpg 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="180"
@@ -494,7 +545,7 @@ data-flex-basis="432px"
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/231106-genshin-size/img/4.0-diff.jpg"
 width="960"
 height="377"
-srcset="https://blog.kmtea.eu/p/231106-genshin-size/img/4.0-diff_hu699ac4b131642b0f5a9d8407440c5b28_42703_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231106-genshin-size/img/4.0-diff_hu699ac4b131642b0f5a9d8407440c5b28_42703_1024x0_resize_q75_box.jpg 1024w"
+srcset="https://blog.kmtea.eu/p/231106-genshin-size/img/4.0-diff_hu16778974576513571618.jpg 480w, https://blog.kmtea.eu/p/231106-genshin-size/img/4.0-diff_hu16929936266927483668.jpg 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="254"
@@ -511,7 +562,7 @@ data-flex-basis="611px"
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/231106-genshin-size/img/3.8-data.jpg"
 width="710"
 height="434"
-srcset="https://blog.kmtea.eu/p/231106-genshin-size/img/3.8-data_hue2d0df2c910641dc9dba262e53f63da8_37998_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231106-genshin-size/img/3.8-data_hue2d0df2c910641dc9dba262e53f63da8_37998_1024x0_resize_q75_box.jpg 1024w"
+srcset="https://blog.kmtea.eu/p/231106-genshin-size/img/3.8-data_hu12741757525539820145.jpg 480w, https://blog.kmtea.eu/p/231106-genshin-size/img/3.8-data_hu974060529519861853.jpg 1024w"
 loading="lazy"
 alt="62.53 GB (含语音)"
 class="gallery-image"
@@ -525,7 +576,7 @@ data-flex-basis="392px"
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/231106-genshin-size/img/3.8-voice.jpg"
 width="440"
 height="278"
-srcset="https://blog.kmtea.eu/p/231106-genshin-size/img/3.8-voice_huf0acc2ca8c4e672398a83f2c91b45877_11131_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231106-genshin-size/img/3.8-voice_huf0acc2ca8c4e672398a83f2c91b45877_11131_1024x0_resize_q75_box.jpg 1024w"
+srcset="https://blog.kmtea.eu/p/231106-genshin-size/img/3.8-voice_hu10059101500980402708.jpg 480w, https://blog.kmtea.eu/p/231106-genshin-size/img/3.8-voice_hu5011972484232823034.jpg 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="158"
@@ -538,7 +589,7 @@ data-flex-basis="379px"
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/231106-genshin-size/img/3.8-diff.jpg"
 width="785"
 height="462"
-srcset="https://blog.kmtea.eu/p/231106-genshin-size/img/3.8-diff_hu0b32fb3309a89bb50eda0d2bcae1e125_56042_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231106-genshin-size/img/3.8-diff_hu0b32fb3309a89bb50eda0d2bcae1e125_56042_1024x0_resize_q75_box.jpg 1024w"
+srcset="https://blog.kmtea.eu/p/231106-genshin-size/img/3.8-diff_hu14682115584890669851.jpg 480w, https://blog.kmtea.eu/p/231106-genshin-size/img/3.8-diff_hu1166128962106298544.jpg 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="169"
@@ -554,7 +605,7 @@ data-flex-basis="407px"
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/231106-genshin-size/img/3.7-data.jpg"
 width="678"
 height="439"
-srcset="https://blog.kmtea.eu/p/231106-genshin-size/img/3.7-data_hu31a76bf33ff9e2d3b0c3b730a42c9b9f_38878_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231106-genshin-size/img/3.7-data_hu31a76bf33ff9e2d3b0c3b730a42c9b9f_38878_1024x0_resize_q75_box.jpg 1024w"
+srcset="https://blog.kmtea.eu/p/231106-genshin-size/img/3.7-data_hu1121903052945528199.jpg 480w, https://blog.kmtea.eu/p/231106-genshin-size/img/3.7-data_hu16536527379679254003.jpg 1024w"
 loading="lazy"
 alt="61.19 GB (含语音)"
 class="gallery-image"
@@ -568,7 +619,7 @@ data-flex-basis="370px"
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/231106-genshin-size/img/3.7-voice.jpg"
 width="752"
 height="430"
-srcset="https://blog.kmtea.eu/p/231106-genshin-size/img/3.7-voice_hu36281b07a5220a4a5169ef248262d79a_20127_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231106-genshin-size/img/3.7-voice_hu36281b07a5220a4a5169ef248262d79a_20127_1024x0_resize_q75_box.jpg 1024w"
+srcset="https://blog.kmtea.eu/p/231106-genshin-size/img/3.7-voice_hu8220388211920072347.jpg 480w, https://blog.kmtea.eu/p/231106-genshin-size/img/3.7-voice_hu5075481720030108572.jpg 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="174"
@@ -581,7 +632,7 @@ data-flex-basis="419px"
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/231106-genshin-size/img/3.7-diff.jpg"
 width="602"
 height="464"
-srcset="https://blog.kmtea.eu/p/231106-genshin-size/img/3.7-diff_hu8110fd58e25c6496f4cc3c8cdc5dca72_45577_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231106-genshin-size/img/3.7-diff_hu8110fd58e25c6496f4cc3c8cdc5dca72_45577_1024x0_resize_q75_box.jpg 1024w"
+srcset="https://blog.kmtea.eu/p/231106-genshin-size/img/3.7-diff_hu17665167190742234863.jpg 480w, https://blog.kmtea.eu/p/231106-genshin-size/img/3.7-diff_hu5063006573181051924.jpg 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="129"
@@ -597,7 +648,7 @@ data-flex-basis="311px"
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/231106-genshin-size/img/3.6-data.jpg"
 width="802"
 height="615"
-srcset="https://blog.kmtea.eu/p/231106-genshin-size/img/3.6-data_huc56793ef17aea043de8b5ca533d22f97_65906_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231106-genshin-size/img/3.6-data_huc56793ef17aea043de8b5ca533d22f97_65906_1024x0_resize_q75_box.jpg 1024w"
+srcset="https://blog.kmtea.eu/p/231106-genshin-size/img/3.6-data_hu11186036483294476311.jpg 480w, https://blog.kmtea.eu/p/231106-genshin-size/img/3.6-data_hu14746887211805923591.jpg 1024w"
 loading="lazy"
 alt="59.57 GB (含语音)"
 class="gallery-image"
@@ -611,7 +662,7 @@ data-flex-basis="312px"
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/231106-genshin-size/img/3.6-voice.jpg"
 width="558"
 height="366"
-srcset="https://blog.kmtea.eu/p/231106-genshin-size/img/3.6-voice_hu3f674ccad612bb0139ddf39dd06f3b95_16048_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231106-genshin-size/img/3.6-voice_hu3f674ccad612bb0139ddf39dd06f3b95_16048_1024x0_resize_q75_box.jpg 1024w"
+srcset="https://blog.kmtea.eu/p/231106-genshin-size/img/3.6-voice_hu1105861691175066745.jpg 480w, https://blog.kmtea.eu/p/231106-genshin-size/img/3.6-voice_hu4672644294192554565.jpg 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="152"
@@ -624,7 +675,7 @@ data-flex-basis="365px"
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/231106-genshin-size/img/3.6-diff.jpg"
 width="790"
 height="460"
-srcset="https://blog.kmtea.eu/p/231106-genshin-size/img/3.6-diff_huc97fa29b00d524b4feb421fa69929ed2_58172_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231106-genshin-size/img/3.6-diff_huc97fa29b00d524b4feb421fa69929ed2_58172_1024x0_resize_q75_box.jpg 1024w"
+srcset="https://blog.kmtea.eu/p/231106-genshin-size/img/3.6-diff_hu12269882029075307585.jpg 480w, https://blog.kmtea.eu/p/231106-genshin-size/img/3.6-diff_hu10309869132096924756.jpg 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="171"
@@ -640,7 +691,7 @@ data-flex-basis="412px"
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/231106-genshin-size/img/3.5-data.jpg"
 width="825"
 height="587"
-srcset="https://blog.kmtea.eu/p/231106-genshin-size/img/3.5-data_hucd290ea06847c43fb25b3726b7dfb3eb_64521_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231106-genshin-size/img/3.5-data_hucd290ea06847c43fb25b3726b7dfb3eb_64521_1024x0_resize_q75_box.jpg 1024w"
+srcset="https://blog.kmtea.eu/p/231106-genshin-size/img/3.5-data_hu3783576518138551575.jpg 480w, https://blog.kmtea.eu/p/231106-genshin-size/img/3.5-data_hu4720897200339960454.jpg 1024w"
 loading="lazy"
 alt="55.87 GB (含语音)"
 class="gallery-image"
@@ -654,7 +705,7 @@ data-flex-basis="337px"
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/231106-genshin-size/img/3.5-voice.jpg"
 width="616"
 height="373"
-srcset="https://blog.kmtea.eu/p/231106-genshin-size/img/3.5-voice_hucd138cf05457f40b39faa515af265da4_16741_480x0_resize_q75_box.jpg 480w, https://blog.kmtea.eu/p/231106-genshin-size/img/3.5-voice_hucd138cf05457f40b39faa515af265da4_16741_1024x0_resize_q75_box.jpg 1024w"
+srcset="https://blog.kmtea.eu/p/231106-genshin-size/img/3.5-voice_hu6212324675480190004.jpg 480w, https://blog.kmtea.eu/p/231106-genshin-size/img/3.5-voice_hu5274798091397152492.jpg 1024w"
 loading="lazy"
 class="gallery-image"
 data-flex-grow="165"
