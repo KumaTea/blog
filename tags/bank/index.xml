@@ -40,8 +40,12 @@ data-flex-grow="100"
 data-flex-basis="240px"
 >&lt;/p>
 &lt;ul>
+&lt;li>已经在其他手机绑定了改卡，需解绑
+&lt;ul>
 &lt;li>如果确认已解绑多余设备， &lt;a class="link" href="https://discussionschinese.apple.com/thread/253116288?answerId=255886195322#255886195322" target="_blank" rel="noopener"
 >可尝试等待3天&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;/li>
 &lt;/ul>
 &lt;h3 id="卡信息无效">卡信息无效&lt;/h3>
 &lt;blockquote>
@@ -57,6 +61,11 @@ data-flex-grow="178"
 data-flex-basis="427px"
 >&lt;/p>
 &lt;ul>
+&lt;li>卡片未激活
+&lt;ul>
+&lt;li>有些卡，如农行的信用卡，面签完还要在手机银行再激活一次，尚未激活就会出现这个错误信息，可以进入手机银行查看卡片激活状态&lt;/li>
+&lt;/ul>
+&lt;/li>
 &lt;li>该卡号今日 &lt;a class="link" href="https://www.jimmytian.com/archives/solve-apple-pay-cant-add-boc-card.html#0x03-%E5%86%8D%E6%AC%A1%E6%89%93%E7%94%B5%E8%AF%9D%E5%88%B0%E9%93%B6%E8%81%94" target="_blank" rel="noopener"
 >已失败5次&lt;/a> ，明日再试&lt;/li>
 &lt;/ul>
@@ -133,8 +142,8 @@ data-flex-basis="175px"
 >同一张卡绑定3台设备的情况&lt;/a>)&lt;/li>
 &lt;li>&lt;a class="link" href="https://www.jimmytian.com/archives/solve-apple-pay-cant-add-boc-card.html#comment-212" target="_blank" rel="noopener"
 >有评论&lt;/a> 称，中行最多绑定两张卡。 &lt;strong>我自己的情况正是这样&lt;/strong>&lt;/li>
-&lt;li>所有银行卡合计超出上限 (新版 iOS &lt;a class="link" href="https://t.me/DocOfCard/2019" target="_blank" rel="noopener"
->据说移除了&lt;/a> 这个上限)&lt;/li>
+&lt;li>所有银行卡合计超出上限 (iOS 17 以上 &lt;a class="link" href="https://t.me/DocOfCard/2019" target="_blank" rel="noopener"
+>移除了&lt;/a> 这个上限)&lt;/li>
 &lt;/ul>
 &lt;h2 id="参考资料">参考资料&lt;/h2>
 &lt;ul>
@@ -274,6 +283,31 @@ data-flex-basis="175px"
 &lt;/tbody>
 &lt;/table>
 &lt;h2 id="2024">2024&lt;/h2>
+&lt;h3 id="中国农业银行---悦卡">中国农业银行 - 悦卡&lt;/h3>
+&lt;blockquote>
+&lt;p>趁学信网不在籍的空档办的信用卡&lt;/p>
+&lt;p>因为有信用卡了，申的白金，没想到竟然批了&lt;/p>
+&lt;p>而且自查征信，发现&lt;a class="link" href="https://t.me/KumaSpace/1777" target="_blank" rel="noopener"
+>农行根本不查&lt;/a>就批了&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/img/2408-abc-c.webp"
+width="1080"
+height="1440"
+srcset="https://blog.kmtea.eu/p/230603-bank-cards/img/2408-abc-c_hu15338864239758864722.webp 480w, https://blog.kmtea.eu/p/230603-bank-cards/img/2408-abc-c_hu8419302822314335589.webp 1024w"
+loading="lazy"
+alt="1821758460641554718"
+class="gallery-image"
+data-flex-grow="75"
+data-flex-basis="180px"
+>&lt;/p>
+&lt;ul>
+&lt;li>卡组织：银联&lt;/li>
+&lt;li>分类：信用卡&lt;/li>
+&lt;li>等级：白金卡&lt;/li>
+&lt;li>途径：网申&lt;/li>
+&lt;li>现状：在用&lt;/li>
+&lt;li>Apple Pay：✅&lt;/li>
+&lt;/ul>
 &lt;h3 id="中信银行---校园卡">中信银行 - 校园卡&lt;/h3>
 &lt;blockquote>
 &lt;p>是白金卡！&lt;/p>
@@ -293,7 +327,8 @@ data-flex-basis="426px"
 &lt;li>分类：借记卡&lt;/li>
 &lt;li>等级：白金卡&lt;/li>
 &lt;li>途径：统一办理&lt;/li>
-&lt;li>现状：在用&lt;/li>
+&lt;li>现状：待激活&lt;/li>
+&lt;li>Apple Pay：❔&lt;/li>
 &lt;/ul>
 &lt;h3 id="中国银行---国航联名卡">中国银行 - 国航联名卡&lt;/h3>
 &lt;blockquote>
@@ -321,6 +356,7 @@ data-flex-basis="320px"
 &lt;li>等级：普卡&lt;/li>
 &lt;li>途径：网申&lt;/li>
 &lt;li>现状：在用&lt;/li>
+&lt;li>Apple Pay：✅&lt;/li>
 &lt;/ul>
 &lt;h3 id="中银香港---中银">中银香港 - 中银&lt;/h3>
 &lt;blockquote>
@@ -342,6 +378,7 @@ data-flex-basis="320px"
 &lt;li>等级：普卡&lt;/li>
 &lt;li>途径：线下&lt;/li>
 &lt;li>现状：在用&lt;/li>
+&lt;li>Apple Pay：✅&lt;/li>
 &lt;/ul>
 &lt;h3 id="汇丰香港---提款">汇丰香港 - 提款&lt;/h3>
 &lt;blockquote>
@@ -364,6 +401,7 @@ data-flex-basis="320px"
 &lt;li>等级：普卡&lt;/li>
 &lt;li>途径：线下&lt;/li>
 &lt;li>现状：在用&lt;/li>
+&lt;li>Apple Pay：✅&lt;/li>
 &lt;/ul>
 &lt;h2 id="2023">2023&lt;/h2>
 &lt;h3 id="中信银行---运通">中信银行 - 运通&lt;/h3>
@@ -388,6 +426,7 @@ data-flex-basis="320px"
 &lt;li>等级：金卡&lt;/li>
 &lt;li>途径：网申&lt;/li>
 &lt;li>现状：在用&lt;/li>
+&lt;li>Apple Pay：❌ 非银联卡&lt;/li>
 &lt;/ul>
 &lt;h3 id="中国建设银行---line-friends">中国建设银行 - Line Friends&lt;/h3>
 &lt;blockquote>
@@ -411,6 +450,7 @@ data-flex-basis="320px"
 &lt;li>等级：金卡&lt;/li>
 &lt;li>途径：网申&lt;/li>
 &lt;li>现状：销卡&lt;/li>
+&lt;li>Apple Pay：✅&lt;/li>
 &lt;/ul>
 &lt;h3 id="中国银行---冰雪">中国银行 - 冰雪&lt;/h3>
 &lt;blockquote>
@@ -434,6 +474,7 @@ data-flex-basis="320px"
 &lt;li>等级：白金卡&lt;/li>
 &lt;li>途径：线下&lt;/li>
 &lt;li>现状：在用&lt;/li>
+&lt;li>Apple Pay：✅&lt;/li>
 &lt;/ul>
 &lt;h3 id="中国工商银行---星座">中国工商银行 - 星座&lt;/h3>
 &lt;blockquote>
@@ -455,6 +496,7 @@ data-flex-basis="320px"
 &lt;li>等级：普卡&lt;/li>
 &lt;li>途径：网申&lt;/li>
 &lt;li>现状：销卡&lt;/li>
+&lt;li>Apple Pay：✅&lt;/li>
 &lt;/ul>
 &lt;h3 id="浦发银行---30周年">浦发银行 - 30周年&lt;/h3>
 &lt;blockquote>
@@ -476,6 +518,7 @@ data-flex-basis="320px"
 &lt;li>等级：金卡&lt;/li>
 &lt;li>途径：网申&lt;/li>
 &lt;li>现状：在用&lt;/li>
+&lt;li>Apple Pay：✅&lt;/li>
 &lt;/ul>
 &lt;h3 id="广发银行---运通-lucky">广发银行 - 运通 Lucky&lt;/h3>
 &lt;blockquote>
@@ -499,6 +542,7 @@ data-flex-basis="320px"
 &lt;li>等级：普卡&lt;/li>
 &lt;li>途径：网申&lt;/li>
 &lt;li>现状：在用&lt;/li>
+&lt;li>Apple Pay：❌ 非银联卡&lt;/li>
 &lt;/ul>
 &lt;h3 id="兴业银行---运通">兴业银行 - 运通&lt;/h3>
 &lt;blockquote>
@@ -522,6 +566,7 @@ data-flex-basis="320px"
 &lt;li>等级：普卡&lt;/li>
 &lt;li>途径：网申&lt;/li>
 &lt;li>现状：在用&lt;/li>
+&lt;li>Apple Pay：❌ 非银联卡&lt;/li>
 &lt;/ul>
 &lt;h2 id="2022">2022&lt;/h2>
 &lt;h3 id="中国银行---低碳">中国银行 - 低碳&lt;/h3>
@@ -529,6 +574,7 @@ data-flex-basis="320px"
 &lt;p>数字人民币实体卡&lt;/p>
 &lt;p>&lt;a class="link" href="https://mp.weixin.qq.com/s/VzOcKbzK8t9295mGkGKj9Q" target="_blank" rel="noopener"
 >介绍页&lt;/a>&lt;/p>
+&lt;p>不属于银行卡，但是因为长得像所以放上来&lt;/p>
 &lt;/blockquote>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/ext/06.jpg"
 width="1200"
@@ -541,9 +587,7 @@ data-flex-grow="133"
 data-flex-basis="320px"
 >&lt;/p>
 &lt;ul>
-&lt;li>卡组织：不适用&lt;/li>
 &lt;li>分类：借记卡&lt;/li>
-&lt;li>等级：不适用&lt;/li>
 &lt;li>途径：网申&lt;/li>
 &lt;li>现状：在用&lt;/li>
 &lt;/ul>
@@ -569,6 +613,7 @@ data-flex-basis="180px"
 &lt;li>等级：普卡&lt;/li>
 &lt;li>途径：统一办理&lt;/li>
 &lt;li>现状：在用&lt;/li>
+&lt;li>Apple Pay：⚠️ 默认卡面&lt;/li>
 &lt;/ul>
 &lt;h3 id="中国银行---莫奈">中国银行 - 莫奈&lt;/h3>
 &lt;blockquote>
@@ -592,6 +637,7 @@ data-flex-basis="320px"
 &lt;li>等级：World&lt;/li>
 &lt;li>途径：网申&lt;/li>
 &lt;li>现状：在用&lt;/li>
+&lt;li>Apple Pay：❌ 非银联卡&lt;/li>
 &lt;/ul>
 &lt;h3 id="中国工商银行---故宫">中国工商银行 - 故宫&lt;/h3>
 &lt;blockquote>
@@ -615,6 +661,7 @@ data-flex-basis="180px"
 &lt;li>等级：普卡&lt;/li>
 &lt;li>途径：线下&lt;/li>
 &lt;li>现状：销卡&lt;/li>
+&lt;li>Apple Pay：⚠️ 默认卡面&lt;/li>
 &lt;/ul>
 &lt;h3 id="中国银行---洛天依">中国银行 - 洛天依&lt;/h3>
 &lt;blockquote>
@@ -638,6 +685,7 @@ data-flex-basis="320px"
 &lt;li>等级：普卡&lt;/li>
 &lt;li>途径：网申&lt;/li>
 &lt;li>现状：在用&lt;/li>
+&lt;li>Apple Pay：✅&lt;/li>
 &lt;/ul>
 &lt;h2 id="2021">2021&lt;/h2>
 &lt;h3 id="招商银行---明日方舟">招商银行 - 明日方舟&lt;/h3>
@@ -662,6 +710,7 @@ data-flex-basis="320px"
 &lt;li>等级：普卡&lt;/li>
 &lt;li>途径：线下&lt;/li>
 &lt;li>现状：主卡&lt;/li>
+&lt;li>Apple Pay：✅&lt;/li>
 &lt;/ul>
 &lt;h2 id="2020">2020&lt;/h2>
 &lt;h3 id="招商银行---young">招商银行 - Young&lt;/h3>
@@ -683,4 +732,5 @@ data-flex-basis="320px"
 &lt;li>等级：普卡&lt;/li>
 &lt;li>途径：网申&lt;/li>
 &lt;li>现状：销卡&lt;/li>
+&lt;li>Apple Pay：✅&lt;/li>
 &lt;/ul></description></item></channel></rss>
