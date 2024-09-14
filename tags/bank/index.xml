@@ -174,111 +174,111 @@ data-flex-basis="175px"
 &lt;table>
 &lt;thead>
 &lt;tr>
-&lt;th>&lt;/th>
-&lt;th>银联&lt;/th>
-&lt;th>VISA&lt;/th>
-&lt;th>MC&lt;/th>
-&lt;th>AE&lt;/th>
+&lt;th style="text-align: left">&lt;/th>
+&lt;th style="text-align: left">银联&lt;/th>
+&lt;th style="text-align: left">VISA&lt;/th>
+&lt;th style="text-align: left">MC&lt;/th>
+&lt;th style="text-align: left">AE&lt;/th>
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
 &lt;tr>
-&lt;td>中行&lt;/td>
-&lt;td>储3 信0.5&lt;/td>
-&lt;td>信0.5&lt;/td>
-&lt;td>储1&lt;/td>
-&lt;td>&lt;/td>
+&lt;td style="text-align: left">中行&lt;/td>
+&lt;td style="text-align: left">储3 信0.5&lt;/td>
+&lt;td style="text-align: left">信0.5&lt;/td>
+&lt;td style="text-align: left">储1&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>农行&lt;/td>
-&lt;td>信1&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td style="text-align: left">农行&lt;/td>
+&lt;td style="text-align: left">信1&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>工行&lt;/td>
-&lt;td>储2&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td style="text-align: left">工行&lt;/td>
+&lt;td style="text-align: left">储2&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>建行&lt;/td>
-&lt;td>储1&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td style="text-align: left">建行&lt;/td>
+&lt;td style="text-align: left">储1&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>招行&lt;/td>
-&lt;td>储1&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td style="text-align: left">招行&lt;/td>
+&lt;td style="text-align: left">储1&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>兴业&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>储1&lt;/td>
+&lt;td style="text-align: left">兴业&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
+&lt;td style="text-align: left">储1&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>广发&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>储1&lt;/td>
+&lt;td style="text-align: left">广发&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
+&lt;td style="text-align: left">储1&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>浦发&lt;/td>
-&lt;td>储1&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td style="text-align: left">浦发&lt;/td>
+&lt;td style="text-align: left">储1&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>中信&lt;/td>
-&lt;td>储1&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>储1&lt;/td>
+&lt;td style="text-align: left">中信&lt;/td>
+&lt;td style="text-align: left">储1&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
+&lt;td style="text-align: left">储1&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>港中&lt;/td>
-&lt;td>储1&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td style="text-align: left">港中&lt;/td>
+&lt;td style="text-align: left">储1&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>港汇&lt;/td>
-&lt;td>储1&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td style="text-align: left">港汇&lt;/td>
+&lt;td style="text-align: left">储1&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>众安&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>储1&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td style="text-align: left">众安&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
+&lt;td style="text-align: left">储1&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>总计&lt;/td>
-&lt;td>储11 信1.5&lt;/td>
-&lt;td>信0.5&lt;/td>
-&lt;td>储1&lt;/td>
-&lt;td>储3&lt;/td>
+&lt;td style="text-align: left">总计&lt;/td>
+&lt;td style="text-align: left">储11 信1.5&lt;/td>
+&lt;td style="text-align: left">信0.5&lt;/td>
+&lt;td style="text-align: left">储1&lt;/td>
+&lt;td style="text-align: left">储3&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>已销&lt;/td>
-&lt;td>储4 信4&lt;/td>
-&lt;td>储1 信1&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td style="text-align: left">已销&lt;/td>
+&lt;td style="text-align: left">储4 信4&lt;/td>
+&lt;td style="text-align: left">储1 信1&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>

@@ -593,6 +593,58 @@ data-flex-basis="560px"
 &lt;/ul>
 &lt;/li>
 &lt;/ul>
+&lt;h2 id="5x">5.x&lt;/h2>
+&lt;h3 id="50">5.0&lt;/h3>
+&lt;ul>
+&lt;li>
+&lt;p>游戏数据&lt;/p>
+&lt;p>&lt;code>YuanShen_Data&lt;/code>: 67.02 GB (+ 5.61 GB)&lt;/p>
+&lt;p>含语音: 86.40 GB&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>语音&lt;/p>
+&lt;p>zh / en / ja / ko: 14.78 / 17.23 / 19.38 / 14.52 GB (+ 700 ~ 900 MB)&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>差分包&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th style="text-align: left">语言&lt;/th>
+&lt;th style="text-align: left">文件名&lt;/th>
+&lt;th style="text-align: left">大小&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td style="text-align: left">/&lt;/td>
+&lt;td style="text-align: left">&lt;code>game_4.8.0_5.0.0_hdiff_FrlPBYGVpJJEDpIB.zip&lt;/code>&lt;/td>
+&lt;td style="text-align: left">19.52 GiB&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align: left">zh&lt;/td>
+&lt;td style="text-align: left">&lt;code>audio_zh-cn_4.8.0_5.0.0_hdiff_ARoNSLKafiOlBItH.zip&lt;/code>&lt;/td>
+&lt;td style="text-align: left">643.26 MiB&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align: left">en&lt;/td>
+&lt;td style="text-align: left">&lt;code>audio_en-us_4.8.0_5.0.0_hdiff_GwMDsuYwvsWpKRls.zip&lt;/code>&lt;/td>
+&lt;td style="text-align: left">763.68 MiB&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align: left">ja&lt;/td>
+&lt;td style="text-align: left">&lt;code>audio_ja-jp_4.8.0_5.0.0_hdiff_WERIPnlKIkMPKEJH.zip&lt;/code>&lt;/td>
+&lt;td style="text-align: left">733.02 MiB&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td style="text-align: left">ko&lt;/td>
+&lt;td style="text-align: left">&lt;code>audio_ko-kr_4.8.0_5.0.0_hdiff_vsyDtffXAYkEGNez.zip&lt;/code>&lt;/td>
+&lt;td style="text-align: left">617.06 MiB&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;/li>
+&lt;/ul>
 &lt;h2 id="4x">4.x&lt;/h2>
 &lt;h3 id="48">4.8&lt;/h3>
 &lt;ul>
@@ -610,36 +662,36 @@ data-flex-basis="560px"
 &lt;table>
 &lt;thead>
 &lt;tr>
-&lt;th>语言&lt;/th>
-&lt;th>文件名&lt;/th>
-&lt;th>大小&lt;/th>
+&lt;th style="text-align: left">语言&lt;/th>
+&lt;th style="text-align: left">文件名&lt;/th>
+&lt;th style="text-align: left">大小&lt;/th>
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
 &lt;tr>
-&lt;td>/&lt;/td>
-&lt;td>&lt;code>game_4.7.0_4.8.0_hdiff_ozmRtNVvfJaBDlmd.zip&lt;/code>&lt;/td>
-&lt;td>13.84 GiB&lt;/td>
+&lt;td style="text-align: left">/&lt;/td>
+&lt;td style="text-align: left">&lt;code>game_4.7.0_4.8.0_hdiff_ozmRtNVvfJaBDlmd.zip&lt;/code>&lt;/td>
+&lt;td style="text-align: left">13.84 GiB&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>zh&lt;/td>
-&lt;td>&lt;code>audio_zh-cn_4.7.0_4.8.0_hdiff_QdLjeERMAoCvExzt.zip&lt;/code>&lt;/td>
-&lt;td>357.67 MiB&lt;/td>
+&lt;td style="text-align: left">zh&lt;/td>
+&lt;td style="text-align: left">&lt;code>audio_zh-cn_4.7.0_4.8.0_hdiff_QdLjeERMAoCvExzt.zip&lt;/code>&lt;/td>
+&lt;td style="text-align: left">357.67 MiB&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>en&lt;/td>
-&lt;td>&lt;code>audio_en-us_4.7.0_4.8.0_hdiff_eNAnuzbTsUXQNrla.zip&lt;/code>&lt;/td>
-&lt;td>432.67 MiB&lt;/td>
+&lt;td style="text-align: left">en&lt;/td>
+&lt;td style="text-align: left">&lt;code>audio_en-us_4.7.0_4.8.0_hdiff_eNAnuzbTsUXQNrla.zip&lt;/code>&lt;/td>
+&lt;td style="text-align: left">432.67 MiB&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>ja&lt;/td>
-&lt;td>&lt;code>audio_ja-jp_4.7.0_4.8.0_hdiff_pgIRBgtnJMNTtERS.zip&lt;/code>&lt;/td>
-&lt;td>398.03 MiB&lt;/td>
+&lt;td style="text-align: left">ja&lt;/td>
+&lt;td style="text-align: left">&lt;code>audio_ja-jp_4.7.0_4.8.0_hdiff_pgIRBgtnJMNTtERS.zip&lt;/code>&lt;/td>
+&lt;td style="text-align: left">398.03 MiB&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>ko&lt;/td>
-&lt;td>&lt;code>audio_ko-kr_4.7.0_4.8.0_hdiff_eTQLFbEKXVztAWuM.zip&lt;/code>&lt;/td>
-&lt;td>322.57 MiB&lt;/td>
+&lt;td style="text-align: left">ko&lt;/td>
+&lt;td style="text-align: left">&lt;code>audio_ko-kr_4.7.0_4.8.0_hdiff_eTQLFbEKXVztAWuM.zip&lt;/code>&lt;/td>
+&lt;td style="text-align: left">322.57 MiB&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
@@ -664,36 +716,36 @@ data-flex-basis="560px"
 &lt;table>
 &lt;thead>
 &lt;tr>
-&lt;th>语言&lt;/th>
-&lt;th>文件名&lt;/th>
-&lt;th>大小&lt;/th>
+&lt;th style="text-align: left">语言&lt;/th>
+&lt;th style="text-align: left">文件名&lt;/th>
+&lt;th style="text-align: left">大小&lt;/th>
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
 &lt;tr>
-&lt;td>/&lt;/td>
-&lt;td>&lt;code>game_4.6.0_4.7.0_hdiff_xrMCwjTting6IubX.zip&lt;/code>&lt;/td>
-&lt;td>24.36 GiB&lt;/td>
+&lt;td style="text-align: left">/&lt;/td>
+&lt;td style="text-align: left">&lt;code>game_4.6.0_4.7.0_hdiff_xrMCwjTting6IubX.zip&lt;/code>&lt;/td>
+&lt;td style="text-align: left">24.36 GiB&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>zh&lt;/td>
-&lt;td>&lt;code>zh-cn_4.6.0_4.7.0_hdiff_mRiPScjVzsZHlx1u.zip&lt;/code>&lt;/td>
-&lt;td>513.59 MiB&lt;/td>
+&lt;td style="text-align: left">zh&lt;/td>
+&lt;td style="text-align: left">&lt;code>zh-cn_4.6.0_4.7.0_hdiff_mRiPScjVzsZHlx1u.zip&lt;/code>&lt;/td>
+&lt;td style="text-align: left">513.59 MiB&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>en&lt;/td>
-&lt;td>&lt;code>en-us_4.6.0_4.7.0_hdiff_PeQspaEOWljGHcbS.zip&lt;/code>&lt;/td>
-&lt;td>607.33 MiB&lt;/td>
+&lt;td style="text-align: left">en&lt;/td>
+&lt;td style="text-align: left">&lt;code>en-us_4.6.0_4.7.0_hdiff_PeQspaEOWljGHcbS.zip&lt;/code>&lt;/td>
+&lt;td style="text-align: left">607.33 MiB&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>ja&lt;/td>
-&lt;td>&lt;code>ja-jp_4.6.0_4.7.0_hdiff_rLT1nMcAam4wgqxe.zip&lt;/code>&lt;/td>
-&lt;td>579.81 MiB&lt;/td>
+&lt;td style="text-align: left">ja&lt;/td>
+&lt;td style="text-align: left">&lt;code>ja-jp_4.6.0_4.7.0_hdiff_rLT1nMcAam4wgqxe.zip&lt;/code>&lt;/td>
+&lt;td style="text-align: left">579.81 MiB&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>ko&lt;/td>
-&lt;td>&lt;code>ko-kr_4.6.0_4.7.0_hdiff_ck7wjJfSXVi1svAb.zip&lt;/code>&lt;/td>
-&lt;td>458.70 MiB&lt;/td>
+&lt;td style="text-align: left">ko&lt;/td>
+&lt;td style="text-align: left">&lt;code>ko-kr_4.6.0_4.7.0_hdiff_ck7wjJfSXVi1svAb.zip&lt;/code>&lt;/td>
+&lt;td style="text-align: left">458.70 MiB&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
@@ -718,36 +770,36 @@ data-flex-basis="560px"
 &lt;table>
 &lt;thead>
 &lt;tr>
-&lt;th>语言&lt;/th>
-&lt;th>文件名&lt;/th>
-&lt;th>大小&lt;/th>
+&lt;th style="text-align: left">语言&lt;/th>
+&lt;th style="text-align: left">文件名&lt;/th>
+&lt;th style="text-align: left">大小&lt;/th>
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
 &lt;tr>
-&lt;td>/&lt;/td>
-&lt;td>&lt;code>game_4.5.0_4.6.0_hdiff_kiOtCmQKDxTEojvz.zip&lt;/code>&lt;/td>
-&lt;td>28.42 GiB&lt;/td>
+&lt;td style="text-align: left">/&lt;/td>
+&lt;td style="text-align: left">&lt;code>game_4.5.0_4.6.0_hdiff_kiOtCmQKDxTEojvz.zip&lt;/code>&lt;/td>
+&lt;td style="text-align: left">28.42 GiB&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>zh&lt;/td>
-&lt;td>&lt;code>zh-cn_4.5.0_4.6.0_hdiff_2a7jHyNe6YWsM3Ob.zip&lt;/code>&lt;/td>
-&lt;td>306.68 MiB&lt;/td>
+&lt;td style="text-align: left">zh&lt;/td>
+&lt;td style="text-align: left">&lt;code>zh-cn_4.5.0_4.6.0_hdiff_2a7jHyNe6YWsM3Ob.zip&lt;/code>&lt;/td>
+&lt;td style="text-align: left">306.68 MiB&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>en&lt;/td>
-&lt;td>&lt;code>en-us_4.5.0_4.6.0_hdiff_zY5rUsWHTdvLp76g.zip&lt;/code>&lt;/td>
-&lt;td>399.28 MiB&lt;/td>
+&lt;td style="text-align: left">en&lt;/td>
+&lt;td style="text-align: left">&lt;code>en-us_4.5.0_4.6.0_hdiff_zY5rUsWHTdvLp76g.zip&lt;/code>&lt;/td>
+&lt;td style="text-align: left">399.28 MiB&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>ja&lt;/td>
-&lt;td>&lt;code>ja-jp_4.5.0_4.6.0_hdiff_Vq30AS1O9cWPbQHt.zip&lt;/code>&lt;/td>
-&lt;td>338.69 MiB&lt;/td>
+&lt;td style="text-align: left">ja&lt;/td>
+&lt;td style="text-align: left">&lt;code>ja-jp_4.5.0_4.6.0_hdiff_Vq30AS1O9cWPbQHt.zip&lt;/code>&lt;/td>
+&lt;td style="text-align: left">338.69 MiB&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>ko&lt;/td>
-&lt;td>&lt;code>ko-kr_4.5.0_4.6.0_hdiff_DBGoIMRpaQvgleCc.zip&lt;/code>&lt;/td>
-&lt;td>273.97 MiB&lt;/td>
+&lt;td style="text-align: left">ko&lt;/td>
+&lt;td style="text-align: left">&lt;code>ko-kr_4.5.0_4.6.0_hdiff_DBGoIMRpaQvgleCc.zip&lt;/code>&lt;/td>
+&lt;td style="text-align: left">273.97 MiB&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
@@ -772,36 +824,36 @@ data-flex-basis="560px"
 &lt;table>
 &lt;thead>
 &lt;tr>
-&lt;th>语言&lt;/th>
-&lt;th>文件名&lt;/th>
-&lt;th>大小&lt;/th>
+&lt;th style="text-align: left">语言&lt;/th>
+&lt;th style="text-align: left">文件名&lt;/th>
+&lt;th style="text-align: left">大小&lt;/th>
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
 &lt;tr>
-&lt;td>/&lt;/td>
-&lt;td>&lt;code>game_4.4.0_4.5.0_hdiff_CIwumTVOpUcZ2tJs.zip&lt;/code>&lt;/td>
-&lt;td>4.84 GiB&lt;/td>
+&lt;td style="text-align: left">/&lt;/td>
+&lt;td style="text-align: left">&lt;code>game_4.4.0_4.5.0_hdiff_CIwumTVOpUcZ2tJs.zip&lt;/code>&lt;/td>
+&lt;td style="text-align: left">4.84 GiB&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>zh&lt;/td>
-&lt;td>&lt;code>zh-cn_4.4.0_4.5.0_hdiff_27Q0jakwKMUm6vqz.zip&lt;/code>&lt;/td>
-&lt;td>303.73 MiB&lt;/td>
+&lt;td style="text-align: left">zh&lt;/td>
+&lt;td style="text-align: left">&lt;code>zh-cn_4.4.0_4.5.0_hdiff_27Q0jakwKMUm6vqz.zip&lt;/code>&lt;/td>
+&lt;td style="text-align: left">303.73 MiB&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>en&lt;/td>
-&lt;td>&lt;code>en-us_4.4.0_4.5.0_hdiff_IT8JaZr3tGK16FVp.zip&lt;/code>&lt;/td>
-&lt;td>452.70 MiB&lt;/td>
+&lt;td style="text-align: left">en&lt;/td>
+&lt;td style="text-align: left">&lt;code>en-us_4.4.0_4.5.0_hdiff_IT8JaZr3tGK16FVp.zip&lt;/code>&lt;/td>
+&lt;td style="text-align: left">452.70 MiB&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>ja&lt;/td>
-&lt;td>&lt;code>ja-jp_4.4.0_4.5.0_hdiff_RZ0dnELT8XCpvM9q.zip&lt;/code>&lt;/td>
-&lt;td>366.54 MiB&lt;/td>
+&lt;td style="text-align: left">ja&lt;/td>
+&lt;td style="text-align: left">&lt;code>ja-jp_4.4.0_4.5.0_hdiff_RZ0dnELT8XCpvM9q.zip&lt;/code>&lt;/td>
+&lt;td style="text-align: left">366.54 MiB&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>ko&lt;/td>
-&lt;td>&lt;code>ko-kr_4.4.0_4.5.0_hdiff_J2Ck74hirdXBMTzl.zip&lt;/code>&lt;/td>
-&lt;td>299.97 MiB&lt;/td>
+&lt;td style="text-align: left">ko&lt;/td>
+&lt;td style="text-align: left">&lt;code>ko-kr_4.4.0_4.5.0_hdiff_J2Ck74hirdXBMTzl.zip&lt;/code>&lt;/td>
+&lt;td style="text-align: left">299.97 MiB&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
@@ -841,36 +893,36 @@ data-flex-basis="365px"
 &lt;table>
 &lt;thead>
 &lt;tr>
-&lt;th>语言&lt;/th>
-&lt;th>文件名&lt;/th>
-&lt;th>大小&lt;/th>
+&lt;th style="text-align: left">语言&lt;/th>
+&lt;th style="text-align: left">文件名&lt;/th>
+&lt;th style="text-align: left">大小&lt;/th>
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
 &lt;tr>
-&lt;td>/&lt;/td>
-&lt;td>&lt;code>game_4.3.0_4.4.0_hdiff_HRCcTyjpAfhD9wq0.zip&lt;/code>&lt;/td>
-&lt;td>7.61 GiB&lt;/td>
+&lt;td style="text-align: left">/&lt;/td>
+&lt;td style="text-align: left">&lt;code>game_4.3.0_4.4.0_hdiff_HRCcTyjpAfhD9wq0.zip&lt;/code>&lt;/td>
+&lt;td style="text-align: left">7.61 GiB&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>zh&lt;/td>
-&lt;td>&lt;code>zh-cn_4.3.0_4.4.0_hdiff_nPgctCRfjFYIT9bN.zip&lt;/code>&lt;/td>
-&lt;td>368.08 MiB&lt;/td>
+&lt;td style="text-align: left">zh&lt;/td>
+&lt;td style="text-align: left">&lt;code>zh-cn_4.3.0_4.4.0_hdiff_nPgctCRfjFYIT9bN.zip&lt;/code>&lt;/td>
+&lt;td style="text-align: left">368.08 MiB&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>en&lt;/td>
-&lt;td>&lt;code>en-us_4.3.0_4.4.0_hdiff_dDYOZ2umezWJqjNr.zip&lt;/code>&lt;/td>
-&lt;td>476.03 MiB&lt;/td>
+&lt;td style="text-align: left">en&lt;/td>
+&lt;td style="text-align: left">&lt;code>en-us_4.3.0_4.4.0_hdiff_dDYOZ2umezWJqjNr.zip&lt;/code>&lt;/td>
+&lt;td style="text-align: left">476.03 MiB&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>ja&lt;/td>
-&lt;td>&lt;code>ja-jp_4.3.0_4.4.0_hdiff_98p3ekZjdPlqbUMt.zip&lt;/code>&lt;/td>
-&lt;td>439.98 MiB&lt;/td>
+&lt;td style="text-align: left">ja&lt;/td>
+&lt;td style="text-align: left">&lt;code>ja-jp_4.3.0_4.4.0_hdiff_98p3ekZjdPlqbUMt.zip&lt;/code>&lt;/td>
+&lt;td style="text-align: left">439.98 MiB&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>ko&lt;/td>
-&lt;td>&lt;code>ko-kr_4.3.0_4.4.0_hdiff_Y2rdoEUnObK18wlP.zip&lt;/code>&lt;/td>
-&lt;td>353.10 MiB&lt;/td>
+&lt;td style="text-align: left">ko&lt;/td>
+&lt;td style="text-align: left">&lt;code>ko-kr_4.3.0_4.4.0_hdiff_Y2rdoEUnObK18wlP.zip&lt;/code>&lt;/td>
+&lt;td style="text-align: left">353.10 MiB&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
@@ -910,36 +962,36 @@ data-flex-basis="382px"
 &lt;table>
 &lt;thead>
 &lt;tr>
-&lt;th>语言&lt;/th>
-&lt;th>文件名&lt;/th>
-&lt;th>大小&lt;/th>
+&lt;th style="text-align: left">语言&lt;/th>
+&lt;th style="text-align: left">文件名&lt;/th>
+&lt;th style="text-align: left">大小&lt;/th>
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
 &lt;tr>
-&lt;td>/&lt;/td>
-&lt;td>&lt;code>game_4.2.0_4.3.0_hdiff_n2wPe6rv14om3DMT.zip&lt;/code>&lt;/td>
-&lt;td>11.13 GiB&lt;/td>
+&lt;td style="text-align: left">/&lt;/td>
+&lt;td style="text-align: left">&lt;code>game_4.2.0_4.3.0_hdiff_n2wPe6rv14om3DMT.zip&lt;/code>&lt;/td>
+&lt;td style="text-align: left">11.13 GiB&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>zh&lt;/td>
-&lt;td>&lt;code>zh-cn_4.2.0_4.3.0_hdiff_WViOf1Ue09GxR3n2.zip&lt;/code>&lt;/td>
-&lt;td>319.50 MiB&lt;/td>
+&lt;td style="text-align: left">zh&lt;/td>
+&lt;td style="text-align: left">&lt;code>zh-cn_4.2.0_4.3.0_hdiff_WViOf1Ue09GxR3n2.zip&lt;/code>&lt;/td>
+&lt;td style="text-align: left">319.50 MiB&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>en&lt;/td>
-&lt;td>&lt;code>en-us_4.2.0_4.3.0_hdiff_CinLpegA6Tx7Ru3h.zip&lt;/code>&lt;/td>
-&lt;td>424.33 MiB&lt;/td>
+&lt;td style="text-align: left">en&lt;/td>
+&lt;td style="text-align: left">&lt;code>en-us_4.2.0_4.3.0_hdiff_CinLpegA6Tx7Ru3h.zip&lt;/code>&lt;/td>
+&lt;td style="text-align: left">424.33 MiB&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>ja&lt;/td>
-&lt;td>&lt;code>ja-jp_4.2.0_4.3.0_hdiff_FgBNHKTLYXxmeiIv.zip&lt;/code>&lt;/td>
-&lt;td>393.26 MiB&lt;/td>
+&lt;td style="text-align: left">ja&lt;/td>
+&lt;td style="text-align: left">&lt;code>ja-jp_4.2.0_4.3.0_hdiff_FgBNHKTLYXxmeiIv.zip&lt;/code>&lt;/td>
+&lt;td style="text-align: left">393.26 MiB&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>ko&lt;/td>
-&lt;td>&lt;code>ko-kr_4.2.0_4.3.0_hdiff_K4l9INOLtXWok2gQ.zip&lt;/code>&lt;/td>
-&lt;td>311.52 MiB&lt;/td>
+&lt;td style="text-align: left">ko&lt;/td>
+&lt;td style="text-align: left">&lt;code>ko-kr_4.2.0_4.3.0_hdiff_K4l9INOLtXWok2gQ.zip&lt;/code>&lt;/td>
+&lt;td style="text-align: left">311.52 MiB&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
@@ -979,36 +1031,36 @@ data-flex-basis="426px"
 &lt;table>
 &lt;thead>
 &lt;tr>
-&lt;th>语言&lt;/th>
-&lt;th>文件名&lt;/th>
-&lt;th>大小&lt;/th>
+&lt;th style="text-align: left">语言&lt;/th>
+&lt;th style="text-align: left">文件名&lt;/th>
+&lt;th style="text-align: left">大小&lt;/th>
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
 &lt;tr>
-&lt;td>/&lt;/td>
-&lt;td>&lt;code>game_4.1.0_4.2.0_hdiff_muBp8rd2jUzsaOCg.zip&lt;/code>&lt;/td>
-&lt;td>13.11 GiB&lt;/td>
+&lt;td style="text-align: left">/&lt;/td>
+&lt;td style="text-align: left">&lt;code>game_4.1.0_4.2.0_hdiff_muBp8rd2jUzsaOCg.zip&lt;/code>&lt;/td>
+&lt;td style="text-align: left">13.11 GiB&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>zh&lt;/td>
-&lt;td>&lt;code>zh-cn_4.1.0_4.2.0_hdiff_nh9PQk51UuE7dmqH.zip&lt;/code>&lt;/td>
-&lt;td>448.74 MiB&lt;/td>
+&lt;td style="text-align: left">zh&lt;/td>
+&lt;td style="text-align: left">&lt;code>zh-cn_4.1.0_4.2.0_hdiff_nh9PQk51UuE7dmqH.zip&lt;/code>&lt;/td>
+&lt;td style="text-align: left">448.74 MiB&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>en&lt;/td>
-&lt;td>&lt;code>en-us_4.1.0_4.2.0_hdiff_mIywVGEvAY9qlkzt.zip&lt;/code>&lt;/td>
-&lt;td>586.78 MiB&lt;/td>
+&lt;td style="text-align: left">en&lt;/td>
+&lt;td style="text-align: left">&lt;code>en-us_4.1.0_4.2.0_hdiff_mIywVGEvAY9qlkzt.zip&lt;/code>&lt;/td>
+&lt;td style="text-align: left">586.78 MiB&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>ja&lt;/td>
-&lt;td>&lt;code>ja-jp_4.1.0_4.2.0_hdiff_oTbeQjA1fMXcZKzm.zip&lt;/code>&lt;/td>
-&lt;td>531.08 MiB&lt;/td>
+&lt;td style="text-align: left">ja&lt;/td>
+&lt;td style="text-align: left">&lt;code>ja-jp_4.1.0_4.2.0_hdiff_oTbeQjA1fMXcZKzm.zip&lt;/code>&lt;/td>
+&lt;td style="text-align: left">531.08 MiB&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>ko&lt;/td>
-&lt;td>&lt;code>ko-kr_4.1.0_4.2.0_hdiff_iMCgobAXWZNP3wRy.zip&lt;/code>&lt;/td>
-&lt;td>466.59 MiB&lt;/td>
+&lt;td style="text-align: left">ko&lt;/td>
+&lt;td style="text-align: left">&lt;code>ko-kr_4.1.0_4.2.0_hdiff_iMCgobAXWZNP3wRy.zip&lt;/code>&lt;/td>
+&lt;td style="text-align: left">466.59 MiB&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
@@ -1048,36 +1100,36 @@ data-flex-basis="346px"
 &lt;table>
 &lt;thead>
 &lt;tr>
-&lt;th>语言&lt;/th>
-&lt;th>文件名&lt;/th>
-&lt;th>大小&lt;/th>
+&lt;th style="text-align: left">语言&lt;/th>
+&lt;th style="text-align: left">文件名&lt;/th>
+&lt;th style="text-align: left">大小&lt;/th>
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
 &lt;tr>
-&lt;td>/&lt;/td>
-&lt;td>&lt;code>game_4.0.1_4.1.0_hdiff_kSHavhPZp92sLMt3.zip&lt;/code>&lt;/td>
-&lt;td>13.50 GiB&lt;/td>
+&lt;td style="text-align: left">/&lt;/td>
+&lt;td style="text-align: left">&lt;code>game_4.0.1_4.1.0_hdiff_kSHavhPZp92sLMt3.zip&lt;/code>&lt;/td>
+&lt;td style="text-align: left">13.50 GiB&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>zh&lt;/td>
-&lt;td>&lt;code>zh-cn_4.0.1_4.1.0_hdiff_HNstacPevd6XZq0D.zip&lt;/code>&lt;/td>
-&lt;td>523.93 MiB&lt;/td>
+&lt;td style="text-align: left">zh&lt;/td>
+&lt;td style="text-align: left">&lt;code>zh-cn_4.0.1_4.1.0_hdiff_HNstacPevd6XZq0D.zip&lt;/code>&lt;/td>
+&lt;td style="text-align: left">523.93 MiB&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>en&lt;/td>
-&lt;td>&lt;code>en-us_4.0.1_4.1.0_hdiff_p5wjiT2WqdlEaxVR.zip&lt;/code>&lt;/td>
-&lt;td>678.62 MiB&lt;/td>
+&lt;td style="text-align: left">en&lt;/td>
+&lt;td style="text-align: left">&lt;code>en-us_4.0.1_4.1.0_hdiff_p5wjiT2WqdlEaxVR.zip&lt;/code>&lt;/td>
+&lt;td style="text-align: left">678.62 MiB&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>ja&lt;/td>
-&lt;td>&lt;code>ja-jp_4.0.1_4.1.0_hdiff_40MlZ96BrAekQjTw.zip&lt;/code>&lt;/td>
-&lt;td>649.35 MiB&lt;/td>
+&lt;td style="text-align: left">ja&lt;/td>
+&lt;td style="text-align: left">&lt;code>ja-jp_4.0.1_4.1.0_hdiff_40MlZ96BrAekQjTw.zip&lt;/code>&lt;/td>
+&lt;td style="text-align: left">649.35 MiB&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>ko&lt;/td>
-&lt;td>&lt;code>ko-kr_4.0.1_4.1.0_hdiff_HY3acWFwSnD12h6L.zip&lt;/code>&lt;/td>
-&lt;td>532.69 MiB&lt;/td>
+&lt;td style="text-align: left">ko&lt;/td>
+&lt;td style="text-align: left">&lt;code>ko-kr_4.0.1_4.1.0_hdiff_HY3acWFwSnD12h6L.zip&lt;/code>&lt;/td>
+&lt;td style="text-align: left">532.69 MiB&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
