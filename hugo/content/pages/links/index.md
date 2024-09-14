@@ -22,3 +22,7 @@ menu:
 
 comments: false
 ---
+
+## 友链区
+
+* [桑批](https://octl1bra.github.io)
