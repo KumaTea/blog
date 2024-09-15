@@ -22,7 +22,7 @@
 &lt;tbody>
 &lt;tr>
 &lt;td style="text-align: left">中行&lt;/td>
-&lt;td style="text-align: left">储3 信0.5&lt;/td>
+&lt;td style="text-align: left">储2 信0.5&lt;/td>
 &lt;td style="text-align: left">信0.5&lt;/td>
 &lt;td style="text-align: left">储1&lt;/td>
 &lt;td style="text-align: left">&lt;/td>
@@ -78,7 +78,7 @@
 &lt;/tr>
 &lt;tr>
 &lt;td style="text-align: left">中信&lt;/td>
-&lt;td style="text-align: left">储1&lt;/td>
+&lt;td style="text-align: left">储2&lt;/td>
 &lt;td style="text-align: left">&lt;/td>
 &lt;td style="text-align: left">&lt;/td>
 &lt;td style="text-align: left">储1&lt;/td>
@@ -107,13 +107,13 @@
 &lt;tr>
 &lt;td style="text-align: left">总计&lt;/td>
 &lt;td style="text-align: left">储11 信1.5&lt;/td>
-&lt;td style="text-align: left">信0.5&lt;/td>
+&lt;td style="text-align: left">储1信0.5&lt;/td>
 &lt;td style="text-align: left">储1&lt;/td>
 &lt;td style="text-align: left">储3&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td style="text-align: left">已销&lt;/td>
-&lt;td style="text-align: left">储4 信4&lt;/td>
+&lt;td style="text-align: left">储6 信4&lt;/td>
 &lt;td style="text-align: left">储1 信1&lt;/td>
 &lt;td style="text-align: left">&lt;/td>
 &lt;td style="text-align: left">&lt;/td>
@@ -121,6 +121,52 @@
 &lt;/tbody>
 &lt;/table>
 &lt;h2 id="2024">2024&lt;/h2>
+&lt;h3 id="中信银行---崩坏星穹铁道联动卡">中信银行 - 崩坏星穹铁道联动卡&lt;/h3>
+&lt;blockquote>
+&lt;p>68可以买非接触无芯片卡+周边&lt;/p>
+&lt;p>但是不是二次元所以免费的就够了&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/img/2409-citic-d.webp"
+width="1440"
+height="1920"
+srcset="https://blog.kmtea.eu/p/230603-bank-cards/img/2409-citic-d_hu13527362994730426561.webp 480w, https://blog.kmtea.eu/p/230603-bank-cards/img/2409-citic-d_hu2417661309785731067.webp 1024w"
+loading="lazy"
+alt="1833837931016183924"
+class="gallery-image"
+data-flex-grow="75"
+data-flex-basis="180px"
+>&lt;/p>
+&lt;ul>
+&lt;li>卡组织：银联&lt;/li>
+&lt;li>分类：借记卡&lt;/li>
+&lt;li>等级：普卡&lt;/li>
+&lt;li>途径：网申&lt;/li>
+&lt;li>现状：在用&lt;/li>
+&lt;li>Apple Pay：⚠️ 默认卡面&lt;/li>
+&lt;/ul>
+&lt;h3 id="za-bank---za-card">ZA Bank - ZA Card&lt;/h3>
+&lt;blockquote>
+&lt;p>实体卡寄送非香港地址收费 HKD 25&lt;/p>
+&lt;p>另：8月15日起涨价至 HKD 35&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/img/2408-za-d.webp"
+width="3072"
+height="1728"
+srcset="https://blog.kmtea.eu/p/230603-bank-cards/img/2408-za-d_hu10691433967776042750.webp 480w, https://blog.kmtea.eu/p/230603-bank-cards/img/2408-za-d_hu6410759854421969125.webp 1024w"
+loading="lazy"
+alt="1835239765689684393"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p>
+&lt;ul>
+&lt;li>卡组织：VISA&lt;/li>
+&lt;li>分类：借记卡&lt;/li>
+&lt;li>等级：普卡&lt;/li>
+&lt;li>途径：网申&lt;/li>
+&lt;li>现状：在用&lt;/li>
+&lt;li>Apple Pay：✅&lt;/li>
+&lt;/ul>
 &lt;h3 id="中国农业银行---悦卡">中国农业银行 - 悦卡&lt;/h3>
 &lt;blockquote>
 &lt;p>趁学信网不在籍的空档办的信用卡&lt;/p>
@@ -165,8 +211,8 @@ data-flex-basis="426px"
 &lt;li>分类：借记卡&lt;/li>
 &lt;li>等级：白金卡&lt;/li>
 &lt;li>途径：统一办理&lt;/li>
-&lt;li>现状：待激活&lt;/li>
-&lt;li>Apple Pay：❔&lt;/li>
+&lt;li>现状：在用&lt;/li>
+&lt;li>Apple Pay：⚠️ 默认卡面&lt;/li>
 &lt;/ul>
 &lt;h3 id="中国银行---国航联名卡">中国银行 - 国航联名卡&lt;/h3>
 &lt;blockquote>
@@ -450,7 +496,7 @@ data-flex-basis="180px"
 &lt;li>分类：借记卡&lt;/li>
 &lt;li>等级：普卡&lt;/li>
 &lt;li>途径：统一办理&lt;/li>
-&lt;li>现状：在用&lt;/li>
+&lt;li>现状：销卡&lt;/li>
 &lt;li>Apple Pay：⚠️ 默认卡面&lt;/li>
 &lt;/ul>
 &lt;h3 id="中国银行---莫奈">中国银行 - 莫奈&lt;/h3>
