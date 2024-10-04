@@ -1,7 +1,7 @@
 ---
 title: 关于
 slug: about
-description: 关于
+description: 关于本站
 aliases:
   - about-us
   - about-hugo
@@ -12,6 +12,8 @@ menu:
         weight: -90
         params:
             icon: user
+
+comments: false
 ---
 
 # 关于酷玛阁
