@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Linux on 酷玛阁 | KumaTea's Blog</title><link>https://blog.kmtea.eu/tags/linux/</link><description>Recent content in Linux on 酷玛阁 | KumaTea's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Mon, 04 Dec 2023 01:00:00 +0800</lastBuildDate><atom:link href="https://blog.kmtea.eu/tags/linux/index.xml" rel="self" type="application/rss+xml"/><item><title>制作 RHEL LXC 容器镜像</title><link>https://blog.kmtea.eu/p/231204-rhel-lxc/</link><pubDate>Mon, 04 Dec 2023 01:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/231204-rhel-lxc/</guid><description>&lt;img src="https://blog.kmtea.eu/p/231204-rhel-lxc/img/cover.jpg" alt="Featured image of post 制作 RHEL LXC 容器镜像" />&lt;h1 id="制作-rhel-lxc-容器镜像">制作 RHEL LXC 容器镜像&lt;/h1>
-&lt;h2 id="前言">前言&lt;/h2>
-&lt;p>虽然玩 Linux 很多年了，但一直以来都只是用
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Linux on 酷玛阁 | KumaTea's Blog</title><link>https://blog.kmtea.eu/tags/linux/</link><description>Recent content in Linux on 酷玛阁 | KumaTea's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Mon, 04 Dec 2023 01:00:00 +0800</lastBuildDate><atom:link href="https://blog.kmtea.eu/tags/linux/index.xml" rel="self" type="application/rss+xml"/><item><title>制作 RHEL LXC 容器镜像</title><link>https://blog.kmtea.eu/p/231204-rhel-lxc/</link><pubDate>Mon, 04 Dec 2023 01:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/231204-rhel-lxc/</guid><description>&lt;img src="https://blog.kmtea.eu/p/231204-rhel-lxc/img/cover.jpg" alt="Featured image of post 制作 RHEL LXC 容器镜像" />&lt;h1 id="制作-rhel-lxc-容器镜像">制作 RHEL LXC 容器镜像
+&lt;/h1>&lt;h2 id="前言">前言
+&lt;/h2>&lt;p>虽然玩 Linux 很多年了，但一直以来都只是用
 Debian 系的发行版，对其他的没有涉猎。
 最近发现了 LXC 的美妙之处，于是试了试一直没体验过的 RHEL。&lt;/p>
 &lt;hr>
@@ -9,8 +9,8 @@ Debian 系的发行版，对其他的没有涉猎。
 而作为应用级的虚拟，Docker 又太过轻量，systemd 也不能用，
 只能用来部署单一程序。相比之下，作为系统级虚拟的 LXC
 就是日常调试的最佳选择。&lt;/p>
-&lt;h2 id="踩坑">踩坑&lt;/h2>
-&lt;p>我首先尝试的是官方 docker 镜像
+&lt;h2 id="踩坑">踩坑
+&lt;/h2>&lt;p>我首先尝试的是官方 docker 镜像
 &lt;a class="link" href="https://catalog.redhat.com/software/containers/ubi9/ubi/615bcf606feffc5384e8452e" target="_blank" rel="noopener"
 >ubi (Universal Base Image)&lt;/a>,
 通过 &lt;code>docker save&lt;/code> 导出后直接导入到 PVE 中。
@@ -31,12 +31,12 @@ class="gallery-image"
 data-flex-grow="217"
 data-flex-basis="521px"
 >&lt;/p>
-&lt;h2 id="准备">准备&lt;/h2>
-&lt;p>打开 ISO &lt;a class="link" href="https://developers.redhat.com/products/rhel/download" target="_blank" rel="noopener"
+&lt;h2 id="准备">准备
+&lt;/h2>&lt;p>打开 ISO &lt;a class="link" href="https://developers.redhat.com/products/rhel/download" target="_blank" rel="noopener"
 >下载官网&lt;/a>,
 &lt;strong>拉到下面&lt;/strong>，选择 &lt;strong>Boot iso&lt;/strong> 下载。&lt;del>当然你财力雄厚也可以选择十几G的 DVD iso&lt;/del>&lt;/p>
-&lt;h2 id="提取">提取&lt;/h2>
-&lt;p>这一步要从 RHEL 完整虚拟机中提取 rootfs。&lt;/p>
+&lt;h2 id="提取">提取
+&lt;/h2>&lt;p>这一步要从 RHEL 完整虚拟机中提取 rootfs。&lt;/p>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/231204-rhel-lxc/img/01-inst-01.jpg"
 width="2089"
 height="1253"
@@ -141,8 +141,8 @@ class="gallery-image"
 data-flex-grow="245"
 data-flex-basis="589px"
 >&lt;/p>
-&lt;h2 id="精简">精简&lt;/h2>
-&lt;p>LXC 运行环境下，固件、内核均由宿主机提供，
+&lt;h2 id="精简">精简
+&lt;/h2>&lt;p>LXC 运行环境下，固件、内核均由宿主机提供，
 我们可以将其卸载，节省空间。&lt;/p>
 &lt;p>由 &lt;code>rootfs.tar.xz&lt;/code> 创建 lxc，启动后进入 shell&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
@@ -238,8 +238,8 @@ data-flex-basis="651px"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tar cvJf rhel-9-minimal_9.3_amd64.tar.xz ./*
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h2 id="后记">后记&lt;/h2>
-&lt;p>&lt;img src="https://blog.kmtea.eu/p/231204-rhel-lxc/img/03-info-01.jpg"
+&lt;/div>&lt;h2 id="后记">后记
+&lt;/h2>&lt;p>&lt;img src="https://blog.kmtea.eu/p/231204-rhel-lxc/img/03-info-01.jpg"
 width="1828"
 height="924"
 srcset="https://blog.kmtea.eu/p/231204-rhel-lxc/img/03-info-01_hu2169639610891840469.jpg 480w, https://blog.kmtea.eu/p/231204-rhel-lxc/img/03-info-01_hu9997991310494381078.jpg 1024w"

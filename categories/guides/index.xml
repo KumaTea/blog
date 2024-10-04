@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Guides on 酷玛阁 | KumaTea's Blog</title><link>https://blog.kmtea.eu/categories/guides/</link><description>Recent content in Guides on 酷玛阁 | KumaTea's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Mon, 04 Dec 2023 01:00:00 +0800</lastBuildDate><atom:link href="https://blog.kmtea.eu/categories/guides/index.xml" rel="self" type="application/rss+xml"/><item><title>制作 RHEL LXC 容器镜像</title><link>https://blog.kmtea.eu/p/231204-rhel-lxc/</link><pubDate>Mon, 04 Dec 2023 01:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/231204-rhel-lxc/</guid><description>&lt;img src="https://blog.kmtea.eu/p/231204-rhel-lxc/img/cover.jpg" alt="Featured image of post 制作 RHEL LXC 容器镜像" />&lt;h1 id="制作-rhel-lxc-容器镜像">制作 RHEL LXC 容器镜像&lt;/h1>
-&lt;h2 id="前言">前言&lt;/h2>
-&lt;p>虽然玩 Linux 很多年了，但一直以来都只是用
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Guides on 酷玛阁 | KumaTea's Blog</title><link>https://blog.kmtea.eu/categories/guides/</link><description>Recent content in Guides on 酷玛阁 | KumaTea's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 09 Aug 2024 16:57:36 +0800</lastBuildDate><atom:link href="https://blog.kmtea.eu/categories/guides/index.xml" rel="self" type="application/rss+xml"/><item><title>制作 RHEL LXC 容器镜像</title><link>https://blog.kmtea.eu/p/231204-rhel-lxc/</link><pubDate>Mon, 04 Dec 2023 01:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/231204-rhel-lxc/</guid><description>&lt;img src="https://blog.kmtea.eu/p/231204-rhel-lxc/img/cover.jpg" alt="Featured image of post 制作 RHEL LXC 容器镜像" />&lt;h1 id="制作-rhel-lxc-容器镜像">制作 RHEL LXC 容器镜像
+&lt;/h1>&lt;h2 id="前言">前言
+&lt;/h2>&lt;p>虽然玩 Linux 很多年了，但一直以来都只是用
 Debian 系的发行版，对其他的没有涉猎。
 最近发现了 LXC 的美妙之处，于是试了试一直没体验过的 RHEL。&lt;/p>
 &lt;hr>
@@ -9,8 +9,8 @@ Debian 系的发行版，对其他的没有涉猎。
 而作为应用级的虚拟，Docker 又太过轻量，systemd 也不能用，
 只能用来部署单一程序。相比之下，作为系统级虚拟的 LXC
 就是日常调试的最佳选择。&lt;/p>
-&lt;h2 id="踩坑">踩坑&lt;/h2>
-&lt;p>我首先尝试的是官方 docker 镜像
+&lt;h2 id="踩坑">踩坑
+&lt;/h2>&lt;p>我首先尝试的是官方 docker 镜像
 &lt;a class="link" href="https://catalog.redhat.com/software/containers/ubi9/ubi/615bcf606feffc5384e8452e" target="_blank" rel="noopener"
 >ubi (Universal Base Image)&lt;/a>,
 通过 &lt;code>docker save&lt;/code> 导出后直接导入到 PVE 中。
@@ -31,12 +31,12 @@ class="gallery-image"
 data-flex-grow="217"
 data-flex-basis="521px"
 >&lt;/p>
-&lt;h2 id="准备">准备&lt;/h2>
-&lt;p>打开 ISO &lt;a class="link" href="https://developers.redhat.com/products/rhel/download" target="_blank" rel="noopener"
+&lt;h2 id="准备">准备
+&lt;/h2>&lt;p>打开 ISO &lt;a class="link" href="https://developers.redhat.com/products/rhel/download" target="_blank" rel="noopener"
 >下载官网&lt;/a>,
 &lt;strong>拉到下面&lt;/strong>，选择 &lt;strong>Boot iso&lt;/strong> 下载。&lt;del>当然你财力雄厚也可以选择十几G的 DVD iso&lt;/del>&lt;/p>
-&lt;h2 id="提取">提取&lt;/h2>
-&lt;p>这一步要从 RHEL 完整虚拟机中提取 rootfs。&lt;/p>
+&lt;h2 id="提取">提取
+&lt;/h2>&lt;p>这一步要从 RHEL 完整虚拟机中提取 rootfs。&lt;/p>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/231204-rhel-lxc/img/01-inst-01.jpg"
 width="2089"
 height="1253"
@@ -141,8 +141,8 @@ class="gallery-image"
 data-flex-grow="245"
 data-flex-basis="589px"
 >&lt;/p>
-&lt;h2 id="精简">精简&lt;/h2>
-&lt;p>LXC 运行环境下，固件、内核均由宿主机提供，
+&lt;h2 id="精简">精简
+&lt;/h2>&lt;p>LXC 运行环境下，固件、内核均由宿主机提供，
 我们可以将其卸载，节省空间。&lt;/p>
 &lt;p>由 &lt;code>rootfs.tar.xz&lt;/code> 创建 lxc，启动后进入 shell&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
@@ -238,8 +238,8 @@ data-flex-basis="651px"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tar cvJf rhel-9-minimal_9.3_amd64.tar.xz ./*
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h2 id="后记">后记&lt;/h2>
-&lt;p>&lt;img src="https://blog.kmtea.eu/p/231204-rhel-lxc/img/03-info-01.jpg"
+&lt;/div>&lt;h2 id="后记">后记
+&lt;/h2>&lt;p>&lt;img src="https://blog.kmtea.eu/p/231204-rhel-lxc/img/03-info-01.jpg"
 width="1828"
 height="924"
 srcset="https://blog.kmtea.eu/p/231204-rhel-lxc/img/03-info-01_hu2169639610891840469.jpg 480w, https://blog.kmtea.eu/p/231204-rhel-lxc/img/03-info-01_hu9997991310494381078.jpg 1024w"
@@ -256,8 +256,8 @@ data-flex-basis="474px"
 &lt;li>非常不建议分享你制作的镜像！
 首先 &lt;code>subscription-manager unregister&lt;/code> 不能保证账户信息完全被抹除，
 其次 &lt;code>/etc&lt;/code> 下 &lt;code>fstab&lt;/code> &lt;code>hosts&lt;/code> &lt;code>hostname&lt;/code> &lt;code>resolv.conf&lt;/code> &lt;code>shadow&lt;/code> 等大量文件均可能包含敏感信息。&lt;/li>
-&lt;/ol></description></item><item><title>SaaS 平台 Python 应用部署实战</title><link>https://blog.kmtea.eu/p/231013-saas/</link><pubDate>Fri, 13 Oct 2023 16:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/231013-saas/</guid><description>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/cover.jpg" alt="Featured image of post SaaS 平台 Python 应用部署实战" />&lt;h1 id="saas-平台-python-应用部署实战">SaaS 平台 Python 应用部署实战&lt;/h1>
-&lt;p>如果你还不知道，
+&lt;/ol></description></item><item><title>SaaS 平台 Python 应用部署实战</title><link>https://blog.kmtea.eu/p/231013-saas/</link><pubDate>Fri, 13 Oct 2023 16:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/231013-saas/</guid><description>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/cover.jpg" alt="Featured image of post SaaS 平台 Python 应用部署实战" />&lt;h1 id="saas-平台-python-应用部署实战">SaaS 平台 Python 应用部署实战
+&lt;/h1>&lt;p>如果你还不知道，
 现在各大云服务巨头都提供了
 &lt;strong>永久免费&lt;/strong> 的 Serverless 服务，
 适合托管一些很小的应用。&lt;/p>
@@ -272,13 +272,13 @@ data-flex-basis="474px"
 &lt;p>目前示例 bot &lt;a class="link" href="https://t.me/KumaLiteBot" target="_blank" rel="noopener"
 >Kuma 发癫 Bot&lt;/a>
 托管在 Azure 上面。&lt;/p>
-&lt;h2 id="google-cloud-functions">Google Cloud Functions&lt;/h2>
-&lt;p>谷歌的配置过程是最直观、方便、省心的，
+&lt;h2 id="google-cloud-functions">Google Cloud Functions
+&lt;/h2>&lt;p>谷歌的配置过程是最直观、方便、省心的，
 其实这个bot之前就托管在谷歌云上，
 但是因为有&lt;a class="link" href="#%e5%b0%8f%e6%8f%90%e7%a4%ba" >隐性收费&lt;/a>就关掉了。
 只能说贵有贵的道理。&lt;/p>
-&lt;h3 id="创建-functions">创建 Functions&lt;/h3>
-&lt;p>先进入 Functions 界面&lt;/p>
+&lt;h3 id="创建-functions">创建 Functions
+&lt;/h3>&lt;p>先进入 Functions 界面&lt;/p>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/GCP-01-create-01.jpg"
 width="2559"
 height="1440"
@@ -336,8 +336,8 @@ data-flex-grow="123"
 data-flex-basis="296px"
 >&lt;/p>
 &lt;p>如果弹出启用 API 允许即可&lt;/p>
-&lt;h3 id="录入代码">录入代码&lt;/h3>
-&lt;p>选择语言和版本&lt;/p>
+&lt;h3 id="录入代码">录入代码
+&lt;/h3>&lt;p>选择语言和版本&lt;/p>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/GCP-02-code-01.jpg"
 width="1116"
 height="803"
@@ -418,8 +418,8 @@ data-flex-grow="199"
 data-flex-basis="479px"
 >&lt;/p>
 &lt;p>把依赖贴进去，就可以点下面的 &lt;strong>Deploy&lt;/strong> 了&lt;/p>
-&lt;h3 id="其他设置">其他设置&lt;/h3>
-&lt;p>可以看到这里我失败了，因为忘了设置环境变量&lt;/p>
+&lt;h3 id="其他设置">其他设置
+&lt;/h3>&lt;p>可以看到这里我失败了，因为忘了设置环境变量&lt;/p>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/GCP-03-settings-01.jpg"
 width="1779"
 height="934"
@@ -504,8 +504,8 @@ data-flex-basis="295px"
 &lt;p>只要在创建或者修改里面
 &lt;strong>RUNTIME&lt;/strong> 下面 environment variables 里面填就好了&lt;/p>
 &lt;p>当然你也可以直接写进代码里&lt;/p>
-&lt;h3 id="完成">完成&lt;/h3>
-&lt;p>OK, 这就完了&lt;/p>
+&lt;h3 id="完成">完成
+&lt;/h3>&lt;p>OK, 这就完了&lt;/p>
 &lt;p>GCP 会自动开始 build 并部署&lt;/p>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/GCP-04-done-01.jpg"
 width="1664"
@@ -526,8 +526,8 @@ class="gallery-image"
 data-flex-grow="214"
 data-flex-basis="514px"
 >&lt;/p>
-&lt;h4 id="小提示">小提示&lt;/h4>
-&lt;p>Cloud Functions 有免费额度，
+&lt;h4 id="小提示">小提示
+&lt;/h4>&lt;p>Cloud Functions 有免费额度，
 &lt;strong>但 Storage 没有&lt;/strong>。&lt;/p>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/GCP-04-done-03.jpg"
 width="1657"
@@ -540,11 +540,11 @@ data-flex-basis="557px"
 >&lt;/p>
 &lt;p>部署完成后可以直接删掉自动生成的 buckets 避免扣钱，
 完全不影响 bot 运行&lt;/p>
-&lt;h2 id="aws-lambda">AWS Lambda&lt;/h2>
-&lt;p>AWS Lambda 比 GCP Cloud Functions
+&lt;h2 id="aws-lambda">AWS Lambda
+&lt;/h2>&lt;p>AWS Lambda 比 GCP Cloud Functions
 多一步手动上传依赖的步骤&lt;/p>
-&lt;h3 id="创建-lambda">创建 Lambda&lt;/h3>
-&lt;p>在开始之前，记得先在右上角选择你想要的地区&lt;/p>
+&lt;h3 id="创建-lambda">创建 Lambda
+&lt;/h3>&lt;p>在开始之前，记得先在右上角选择你想要的地区&lt;/p>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/AWS-01-create-01.jpg"
 width="908"
 height="570"
@@ -596,8 +596,8 @@ class="gallery-image"
 data-flex-grow="202"
 data-flex-basis="484px"
 >&lt;/p>
-&lt;h3 id="填入代码">填入代码&lt;/h3>
-&lt;p>向下拉，把代码粘贴进编辑器，保存即可&lt;/p>
+&lt;h3 id="填入代码">填入代码
+&lt;/h3>&lt;p>向下拉，把代码粘贴进编辑器，保存即可&lt;/p>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/AWS-02-code-01.jpg"
 width="1614"
 height="1169"
@@ -675,8 +675,8 @@ data-flex-basis="331px"
 &lt;/span>
 &lt;p>Lambda 回传的 &lt;code>response['body']&lt;/code> 必须是 str 类型，
 否则会报 &lt;code>[ERROR] Runtime.MarshalError: Unable to marshal response&lt;/code>&lt;/p>
-&lt;h3 id="上传依赖">上传依赖&lt;/h3>
-&lt;p>这个时候如果直接部署会报错：找不到依赖&lt;/p>
+&lt;h3 id="上传依赖">上传依赖
+&lt;/h3>&lt;p>这个时候如果直接部署会报错：找不到依赖&lt;/p>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/AWS-03-deps-01.jpg"
 width="2064"
 height="1108"
@@ -789,8 +789,8 @@ data-flex-grow="136"
 data-flex-basis="327px"
 >&lt;/p>
 &lt;p>最后点 Code Source 旁边的 Deploy&lt;/p>
-&lt;h3 id="其他设置-1">其他设置&lt;/h3>
-&lt;p>环境变量在下方 Configuration - Environment variables 里面，
+&lt;h3 id="其他设置-1">其他设置
+&lt;/h3>&lt;p>环境变量在下方 Configuration - Environment variables 里面，
 设置简单不再赘述。&lt;/p>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/AWS-04-settings-01.jpg"
 width="1762"
@@ -801,8 +801,8 @@ class="gallery-image"
 data-flex-grow="154"
 data-flex-basis="371px"
 >&lt;/p>
-&lt;h3 id="完成-1">完成&lt;/h3>
-&lt;p>已成功运行&lt;/p>
+&lt;h3 id="完成-1">完成
+&lt;/h3>&lt;p>已成功运行&lt;/p>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/AWS-05-done-01.jpg"
 width="2389"
 height="1189"
@@ -812,11 +812,11 @@ class="gallery-image"
 data-flex-grow="200"
 data-flex-basis="482px"
 >&lt;/p>
-&lt;h2 id="azure-functions">Azure Functions&lt;/h2>
-&lt;p>Azure 更是重量级，Web 端功能复杂甚至缺失，
+&lt;h2 id="azure-functions">Azure Functions
+&lt;/h2>&lt;p>Azure 更是重量级，Web 端功能复杂甚至缺失，
 必须使用 VS Code 才能完整部署&lt;/p>
-&lt;h3 id="准备">准备&lt;/h3>
-&lt;p>你需要安装一个 &lt;a class="link" href="https://code.visualstudio.com/" target="_blank" rel="noopener"
+&lt;h3 id="准备">准备
+&lt;/h3>&lt;p>你需要安装一个 &lt;a class="link" href="https://code.visualstudio.com/" target="_blank" rel="noopener"
 >VS Code&lt;/a>&lt;/p>
 &lt;p>然后安装 &lt;a class="link" href="https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions" target="_blank" rel="noopener"
 >Azure Functions 插件&lt;/a>&lt;/p>
@@ -840,8 +840,8 @@ class="gallery-image"
 data-flex-grow="93"
 data-flex-basis="224px"
 >&lt;/p>
-&lt;h3 id="创建-functions-1">创建 Functions&lt;/h3>
-&lt;p>左下角 Workspace，鼠标移上去会有一个 Functions 图标出现&lt;/p>
+&lt;h3 id="创建-functions-1">创建 Functions
+&lt;/h3>&lt;p>左下角 Workspace，鼠标移上去会有一个 Functions 图标出现&lt;/p>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/Azure-01-create-01.jpg"
 width="573"
 height="343"
@@ -885,8 +885,8 @@ data-flex-grow="416"
 data-flex-basis="1000px"
 >&lt;/p>
 &lt;p>就可以打开生成的代码文件编辑了&lt;/p>
-&lt;h3 id="填入代码-1">填入代码&lt;/h3>
-&lt;p>首先这个 Create New Function 是没有用的&lt;/p>
+&lt;h3 id="填入代码-1">填入代码
+&lt;/h3>&lt;p>首先这个 Create New Function 是没有用的&lt;/p>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/Azure-02-code-01.jpg"
 width="515"
 height="317"
@@ -963,8 +963,8 @@ data-flex-basis="466px"
 &lt;p>&lt;code>trigger_arg_name&lt;/code> Argument name for HttpRequest, defaults to &amp;lsquo;req&amp;rsquo;.&lt;/p>
 &lt;/blockquote>
 &lt;p>没事限制参数干嘛？我就改成 &lt;code>req&lt;/code> 居然就成功了&lt;/p>
-&lt;h3 id="部署和设置">部署和设置&lt;/h3>
-&lt;p>工作区 Azure 图标 - Create Function App in Azure&lt;/p>
+&lt;h3 id="部署和设置">部署和设置
+&lt;/h3>&lt;p>工作区 Azure 图标 - Create Function App in Azure&lt;/p>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/Azure-03-deploy-01.jpg"
 width="802"
 height="382"
@@ -1039,8 +1039,8 @@ class="gallery-image"
 data-flex-grow="225"
 data-flex-basis="541px"
 >&lt;/p>
-&lt;h3 id="完成-2">完成&lt;/h3>
-&lt;p>完成后 log 会显示你的 Trigger URL&lt;/p>
+&lt;h3 id="完成-2">完成
+&lt;/h3>&lt;p>完成后 log 会显示你的 Trigger URL&lt;/p>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/Azure-04-done-01.jpg"
 width="1201"
 height="514"
@@ -1060,15 +1060,15 @@ class="gallery-image"
 data-flex-grow="202"
 data-flex-basis="486px"
 >&lt;/p>
-&lt;h2 id="总结">总结&lt;/h2>
-&lt;p>平心而论，
+&lt;h2 id="总结">总结
+&lt;/h2>&lt;p>平心而论，
 Azure 的部署过程其实是很方便的，
 尤其是对于那些用惯了 VS Code 的人来说。&lt;/p>
 &lt;p>然而由于微软的文档过于语焉不详才让我吃了那么多苦头，
 甚至没有这件事就没有这篇发奋而作的 blog，
-笑死。&lt;/p></description></item><item><title>诺基亚贝尔光猫宽带密码破解提取</title><link>https://blog.kmtea.eu/p/230718-modem-decrypt/</link><pubDate>Tue, 18 Jul 2023 21:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/230718-modem-decrypt/</guid><description>&lt;img src="https://blog.kmtea.eu/p/230718-modem-decrypt/img/cover.jpg" alt="Featured image of post 诺基亚贝尔光猫宽带密码破解提取" />&lt;h1 id="诺基亚贝尔光猫宽带密码破解提取">诺基亚贝尔光猫宽带密码破解提取&lt;/h1>
-&lt;h2 id="前言">前言&lt;/h2>
-&lt;p>本教程适用于诺基亚贝尔光猫，型号 &lt;code>HGW&lt;/code> 或 &lt;code>G-140W-**&lt;/code>&lt;/p>
+笑死。&lt;/p></description></item><item><title>诺基亚贝尔光猫宽带密码破解提取</title><link>https://blog.kmtea.eu/p/230718-modem-decrypt/</link><pubDate>Tue, 18 Jul 2023 21:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/230718-modem-decrypt/</guid><description>&lt;img src="https://blog.kmtea.eu/p/230718-modem-decrypt/img/cover.jpg" alt="Featured image of post 诺基亚贝尔光猫宽带密码破解提取" />&lt;h1 id="诺基亚贝尔光猫宽带密码破解提取">诺基亚贝尔光猫宽带密码破解提取
+&lt;/h1>&lt;h2 id="前言">前言
+&lt;/h2>&lt;p>本教程适用于诺基亚贝尔光猫，型号 &lt;code>HGW&lt;/code> 或 &lt;code>G-140W-**&lt;/code>&lt;/p>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/230718-modem-decrypt/img/02-info.jpg"
 width="1440"
 height="1106"
@@ -1109,9 +1109,9 @@ data-flex-basis="319px"
 >&lt;/p>
 &lt;p>使用 &lt;code>F12&lt;/code> 审查元素，会发现该处明文为 &lt;code>!!!@@@&lt;/code>
 ，不是合法的宽带拨号密码。&lt;/p>
-&lt;h2 id="教程">教程&lt;/h2>
-&lt;h3 id="1-登录">1. 登录&lt;/h3>
-&lt;div class="highlight">&lt;div class="chroma">
+&lt;h2 id="教程">教程
+&lt;/h2>&lt;h3 id="1-登录">1. 登录
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
 &lt;/span>&lt;span class="lnt">2
@@ -1130,8 +1130,8 @@ class="gallery-image"
 data-flex-grow="205"
 data-flex-basis="492px"
 >&lt;/p>
-&lt;h3 id="2-打开如下地址">2. 打开如下地址&lt;/h3>
-&lt;p>&lt;code>http://192.168.1.1/dumpdatamodel.cgi&lt;/code>&lt;/p>
+&lt;h3 id="2-打开如下地址">2. 打开如下地址
+&lt;/h3>&lt;p>&lt;code>http://192.168.1.1/dumpdatamodel.cgi&lt;/code>&lt;/p>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/230718-modem-decrypt/img/05-dump.jpg"
 width="1380"
 height="633"
@@ -1144,8 +1144,8 @@ data-flex-basis="523px"
 &lt;p>搜索宽带账号
 (如 &lt;code>139.gd&lt;/code>)
 在下方找到密码字段。&lt;/p>
-&lt;h3 id="3-提取密码">3. 提取密码&lt;/h3>
-&lt;p>Ref:
+&lt;h3 id="3-提取密码">3. 提取密码
+&lt;/h3>&lt;p>Ref:
 &lt;a class="link" href="https://gist.github.com/thedroidgeek/80c379aa43b71015d71da130f85a435a" target="_blank" rel="noopener"
 >thedroidgeek / nokia-router-cfg-tool.py&lt;/a>&lt;/p>
 &lt;p>首先安装依赖&lt;/p>
@@ -1211,8 +1211,8 @@ class="gallery-image"
 data-flex-grow="289"
 data-flex-basis="693px"
 >&lt;/p>
-&lt;p>运行上述代码，即可解密密码 (一般为6位数字)。&lt;/p></description></item><item><title>Apple Pay 绑卡失败原因速查</title><link>https://blog.kmtea.eu/p/230617-apple-pay/</link><pubDate>Sat, 17 Jun 2023 15:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/230617-apple-pay/</guid><description>&lt;img src="https://blog.kmtea.eu/p/230617-apple-pay/img/err-invalid.jpg" alt="Featured image of post Apple Pay 绑卡失败原因速查" />&lt;h1 id="apple-pay-绑卡失败原因速查">Apple Pay 绑卡失败原因速查&lt;/h1>
-&lt;p>先上目前绑卡截图镇楼&lt;/p>
+&lt;p>运行上述代码，即可解密密码 (一般为6位数字)。&lt;/p></description></item><item><title>Apple Pay 绑卡失败原因速查</title><link>https://blog.kmtea.eu/p/230617-apple-pay/</link><pubDate>Sat, 17 Jun 2023 15:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/230617-apple-pay/</guid><description>&lt;img src="https://blog.kmtea.eu/p/230617-apple-pay/img/err-invalid.jpg" alt="Featured image of post Apple Pay 绑卡失败原因速查" />&lt;h1 id="apple-pay-绑卡失败原因速查">Apple Pay 绑卡失败原因速查
+&lt;/h1>&lt;p>先上目前绑卡截图镇楼&lt;/p>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/230617-apple-pay/img/apple-wallet.jpg"
 width="1125"
 height="1125"
@@ -1222,9 +1222,9 @@ class="gallery-image"
 data-flex-grow="100"
 data-flex-basis="240px"
 >&lt;/p>
-&lt;h2 id="常见错误">常见错误&lt;/h2>
-&lt;h3 id="你的发卡机构尚不支持此卡片">你的发卡机构尚不支持此卡片&lt;/h3>
-&lt;blockquote>
+&lt;h2 id="常见错误">常见错误
+&lt;/h2>&lt;h3 id="你的发卡机构尚不支持此卡片">你的发卡机构尚不支持此卡片
+&lt;/h3>&lt;blockquote>
 &lt;p>Your issuer does not yet offer support for this card&lt;/p>
 &lt;/blockquote>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/230617-apple-pay/img/err-not-support.jpg"
@@ -1239,8 +1239,8 @@ data-flex-basis="426px"
 &lt;ul>
 &lt;li>正在绑定的是中国大陆发行的非银联卡&lt;/li>
 &lt;/ul>
-&lt;h3 id="卡的设备限制">卡的设备限制&lt;/h3>
-&lt;blockquote>
+&lt;h3 id="卡的设备限制">卡的设备限制
+&lt;/h3>&lt;blockquote>
 &lt;p>Card device limit&lt;/p>
 &lt;/blockquote>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/230617-apple-pay/img/err-limit.jpg"
@@ -1260,8 +1260,8 @@ data-flex-basis="240px"
 &lt;/ul>
 &lt;/li>
 &lt;/ul>
-&lt;h3 id="卡信息无效">卡信息无效&lt;/h3>
-&lt;blockquote>
+&lt;h3 id="卡信息无效">卡信息无效
+&lt;/h3>&lt;blockquote>
 &lt;p>Invalid card&lt;/p>
 &lt;/blockquote>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/230617-apple-pay/img/err-invalid.jpg"
@@ -1282,8 +1282,8 @@ data-flex-basis="427px"
 &lt;li>该卡号今日 &lt;a class="link" href="https://www.jimmytian.com/archives/solve-apple-pay-cant-add-boc-card.html#0x03-%E5%86%8D%E6%AC%A1%E6%89%93%E7%94%B5%E8%AF%9D%E5%88%B0%E9%93%B6%E8%81%94" target="_blank" rel="noopener"
 >已失败5次&lt;/a> ，明日再试&lt;/li>
 &lt;/ul>
-&lt;h3 id="未添加此卡">未添加此卡&lt;/h3>
-&lt;blockquote>
+&lt;h3 id="未添加此卡">未添加此卡
+&lt;/h3>&lt;blockquote>
 &lt;p>Could not add card&lt;/p>
 &lt;p>Card not added&lt;/p>
 &lt;/blockquote>
@@ -1312,11 +1312,11 @@ data-flex-basis="426px"
 &lt;/ul>
 &lt;/li>
 &lt;/ul>
-&lt;h2 id="客服聊天记录">客服聊天记录&lt;/h2>
-&lt;p>建议：先找银联问错误代码，再找对应银行；&lt;/p>
+&lt;h2 id="客服聊天记录">客服聊天记录
+&lt;/h2>&lt;p>建议：先找银联问错误代码，再找对应银行；&lt;/p>
 &lt;p>银联首选云闪付线上客服，银行首选电话客服。&lt;/p>
-&lt;h3 id="银联">银联&lt;/h3>
-&lt;blockquote>
+&lt;h3 id="银联">银联
+&lt;/h3>&lt;blockquote>
 &lt;p>碰到绑不上的问题可以先向银联咨询错误代码&lt;/p>
 &lt;/blockquote>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/230617-apple-pay/img/chat-up-agent.jpg"
@@ -1328,8 +1328,8 @@ class="gallery-image"
 data-flex-grow="63"
 data-flex-basis="151px"
 >&lt;/p>
-&lt;h3 id="中国银行">中国银行&lt;/h3>
-&lt;blockquote>
+&lt;h3 id="中国银行">中国银行
+&lt;/h3>&lt;blockquote>
 &lt;p>中行电话客服才有足够权限，在线客服只能问到通用信息&lt;/p>
 &lt;/blockquote>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/230617-apple-pay/img/chat-boc-bot.jpg"
@@ -1358,8 +1358,8 @@ data-flex-basis="175px"
 &lt;li>所有银行卡合计超出上限 (iOS 17 以上 &lt;a class="link" href="https://t.me/DocOfCard/2019" target="_blank" rel="noopener"
 >移除了&lt;/a> 这个上限)&lt;/li>
 &lt;/ul>
-&lt;h2 id="参考资料">参考资料&lt;/h2>
-&lt;ul>
+&lt;h2 id="参考资料">参考资料
+&lt;/h2>&lt;ul>
 &lt;li>&lt;a class="link" href="https://www.jimmytian.com/archives/solve-apple-pay-cant-add-boc-card.html" target="_blank" rel="noopener"
 >中国银行绑定 Apple Pay 失败的解决方法&lt;/a>&lt;/li>
 &lt;/ul>
@@ -1373,9 +1373,9 @@ data-flex-basis="175px"
 &lt;ul>
 &lt;li>&lt;a class="link" href="https://discussionschinese.apple.com/thread/253116288" target="_blank" rel="noopener"
 >钱包解绑银行卡后无法再重新绑定，提示设备限制&lt;/a>&lt;/li>
-&lt;/ul></description></item><item><title>PVE 更新 OpenWrt 教程</title><link>https://blog.kmtea.eu/p/221227-pve-openwrt/</link><pubDate>Tue, 27 Dec 2022 17:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/221227-pve-openwrt/</guid><description>&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/cover.jpg" alt="Featured image of post PVE 更新 OpenWrt 教程" />&lt;h1 id="pve-更新-openwrt">PVE 更新 OpenWrt&lt;/h1>
-&lt;h2 id="准备工作">准备工作&lt;/h2>
-&lt;ul>
+&lt;/ul></description></item><item><title>PVE 更新 OpenWrt 教程</title><link>https://blog.kmtea.eu/p/221227-pve-openwrt/</link><pubDate>Tue, 27 Dec 2022 17:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/221227-pve-openwrt/</guid><description>&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/cover.jpg" alt="Featured image of post PVE 更新 OpenWrt 教程" />&lt;h1 id="pve-更新-openwrt">PVE 更新 OpenWrt
+&lt;/h1>&lt;h2 id="准备工作">准备工作
+&lt;/h2>&lt;ul>
 &lt;li>
 &lt;p>OpenWrt 固件
 &lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/01-firmware.jpg"
@@ -1423,8 +1423,8 @@ data-flex-basis="426px"
 &lt;/ul>
 &lt;/li>
 &lt;/ul>
-&lt;h2 id="为什么不能用正常方式升级">为什么不能用正常方式升级？&lt;/h2>
-&lt;p>众所周知，OpenWrt 正常升级方式是在 &lt;code>系统&lt;/code> - &lt;code>备份升级&lt;/code> 中升级：&lt;/p>
+&lt;h2 id="为什么不能用正常方式升级">为什么不能用正常方式升级？
+&lt;/h2>&lt;p>众所周知，OpenWrt 正常升级方式是在 &lt;code>系统&lt;/code> - &lt;code>备份升级&lt;/code> 中升级：&lt;/p>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/04-upgrade.jpg"
 width="1892"
 height="934"
@@ -1462,8 +1462,8 @@ data-flex-basis="426px"
 &lt;p>如果没有，我强烈建议你花十分钟搜下教程
 (关键词 &lt;code>extroot overlay&lt;/code>)
 完成这件事， &lt;strong>功在当代利在千秋&lt;/strong>&lt;/p>
-&lt;h2 id="上传新固件">上传新固件&lt;/h2>
-&lt;p>上传到 &lt;code>local&lt;/code> - &lt;code>ISO&lt;/code>&lt;/p>
+&lt;h2 id="上传新固件">上传新固件
+&lt;/h2>&lt;p>上传到 &lt;code>local&lt;/code> - &lt;code>ISO&lt;/code>&lt;/p>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/07-upload.jpg"
 width="1920"
 height="1080"
@@ -1475,8 +1475,8 @@ data-flex-grow="177"
 data-flex-basis="426px"
 >&lt;/p>
 &lt;p>推荐检查 &lt;code>sha256sum&lt;/code>&lt;/p>
-&lt;h2 id="更换系统固件">更换系统固件&lt;/h2>
-&lt;ol>
+&lt;h2 id="更换系统固件">更换系统固件
+&lt;/h2>&lt;ol>
 &lt;li>在以非目标 OpenWrt 内网的方式连接 PVE 的情况下，关闭虚拟机 &lt;br>
 &lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/08-shutdown.jpg"
 width="1920"
@@ -1561,8 +1561,8 @@ data-flex-basis="597px"
 >&lt;/li>
 &lt;li>启动虚拟机&lt;/li>
 &lt;/ol>
-&lt;h2 id="恢复配置">恢复配置&lt;/h2>
-&lt;ol>
+&lt;h2 id="恢复配置">恢复配置
+&lt;/h2>&lt;ol>
 &lt;li>按一下回车激活 Console &lt;br>
 &lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/15-console.jpg"
 width="1920"
@@ -1630,8 +1630,8 @@ data-flex-grow="391"
 data-flex-basis="940px"
 >&lt;/li>
 &lt;/ol>
-&lt;h2 id="完成">完成&lt;/h2>
-&lt;ol>
+&lt;h2 id="完成">完成
+&lt;/h2>&lt;ol>
 &lt;li>重启&lt;/li>
 &lt;li>检查 &lt;code>df -h&lt;/code>，可发现配置分区已成功挂载！
 &lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/20-reboot.jpg"
@@ -1645,8 +1645,8 @@ data-flex-grow="177"
 data-flex-basis="426px"
 >&lt;/li>
 &lt;/ol>
-&lt;h2 id="references">References&lt;/h2>
-&lt;p>我被万恶的 &lt;code>.extroot-uuid&lt;/code> 困扰了几个月之久，直到看到了
+&lt;h2 id="references">References
+&lt;/h2>&lt;p>我被万恶的 &lt;code>.extroot-uuid&lt;/code> 困扰了几个月之久，直到看到了
 &lt;a class="link" href="https://forum.openwrt.org/t/solved-extroot-not-working-on-18-06/16723/2" target="_blank" rel="noopener"
 >这篇帖子&lt;/a>&lt;/p>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/21-forum.jpg"
@@ -1659,8 +1659,8 @@ class="gallery-image"
 data-flex-grow="84"
 data-flex-basis="201px"
 >&lt;/p>
-&lt;p>因此写这篇教程广而告之。&lt;/p></description></item><item><title>Add glibc to OpenWrt</title><link>https://blog.kmtea.eu/p/221003-glibc-openwrt-en/</link><pubDate>Mon, 03 Oct 2022 16:30:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/221003-glibc-openwrt-en/</guid><description>&lt;img src="https://blog.kmtea.eu/p/221003-glibc-openwrt/img/cover.jpg" alt="Featured image of post Add glibc to OpenWrt" />&lt;h1 id="add-glibc-to-openwrt">Add glibc to OpenWrt&lt;/h1>
-&lt;blockquote>
+&lt;p>因此写这篇教程广而告之。&lt;/p></description></item><item><title>Add glibc to OpenWrt</title><link>https://blog.kmtea.eu/p/221003-glibc-openwrt-en/</link><pubDate>Mon, 03 Oct 2022 16:30:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/221003-glibc-openwrt-en/</guid><description>&lt;img src="https://blog.kmtea.eu/p/221003-glibc-openwrt/img/cover.jpg" alt="Featured image of post Add glibc to OpenWrt" />&lt;h1 id="add-glibc-to-openwrt">Add glibc to OpenWrt
+&lt;/h1>&lt;blockquote>
 &lt;p>&lt;a class="link" href="https://blog.kmtea.eu/p/221003-glibc-openwrt/" >中文版&lt;/a>&lt;/p>
 &lt;/blockquote>
 &lt;p>I&amp;rsquo;m trying to replace &lt;code>traceroute&lt;/code> with a tool called
@@ -1686,10 +1686,10 @@ which means the arch &lt;code>x86-64&lt;/code> is correct, but &lt;code>glibc&lt
 OpenWrt has swutched to &lt;a class="link" href="https://musl.libc.org/" target="_blank" rel="noopener"
 >musl&lt;/a> from uClibc as C library.&lt;/p>
 &lt;p>Whereas nowadays most software are using &lt;code>glibc&lt;/code>, which cannot be run on OpenWrt.&lt;/p>
-&lt;h2 id="solution">Solution&lt;/h2>
-&lt;p>Just copy &lt;code>ld-linux-x86-64.so.2&lt;/code> here!&lt;/p>
-&lt;h3 id="docker">Docker&lt;/h3>
-&lt;p>If Docker is installed:&lt;/p>
+&lt;h2 id="solution">Solution
+&lt;/h2>&lt;p>Just copy &lt;code>ld-linux-x86-64.so.2&lt;/code> here!&lt;/p>
+&lt;h3 id="docker">Docker
+&lt;/h3>&lt;p>If Docker is installed:&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
@@ -1752,8 +1752,8 @@ OpenWrt has swutched to &lt;a class="link" href="https://musl.libc.org/" target=
 &lt;/div>
 &lt;/div>&lt;p>This means you can always get the latest libs,
 and switch to other distros you like.&lt;/p>
-&lt;h3 id="directly">Directly&lt;/h3>
-&lt;blockquote>
+&lt;h3 id="directly">Directly
+&lt;/h3>&lt;blockquote>
 &lt;p>Note: glibc v2.35, packed on 2022-10-03, could be outdated.&lt;/p>
 &lt;/blockquote>
 &lt;div class="highlight">&lt;div class="chroma">
@@ -1811,8 +1811,8 @@ and switch to other distros you like.&lt;/p>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/221003-glibc-openwrt/img/02-done.jpg"
 loading="lazy"
 alt="Done"
->&lt;/p></description></item><item><title>向 OpenWrt 添加 glibc</title><link>https://blog.kmtea.eu/p/221003-glibc-openwrt/</link><pubDate>Mon, 03 Oct 2022 15:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/221003-glibc-openwrt/</guid><description>&lt;img src="https://blog.kmtea.eu/p/221003-glibc-openwrt/img/cover.jpg" alt="Featured image of post 向 OpenWrt 添加 glibc" />&lt;h1 id="向-openwrt-添加-glibc">向 OpenWrt 添加 glibc&lt;/h1>
-&lt;blockquote>
+>&lt;/p></description></item><item><title>向 OpenWrt 添加 glibc</title><link>https://blog.kmtea.eu/p/221003-glibc-openwrt/</link><pubDate>Mon, 03 Oct 2022 15:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/221003-glibc-openwrt/</guid><description>&lt;img src="https://blog.kmtea.eu/p/221003-glibc-openwrt/img/cover.jpg" alt="Featured image of post 向 OpenWrt 添加 glibc" />&lt;h1 id="向-openwrt-添加-glibc">向 OpenWrt 添加 glibc
+&lt;/h1>&lt;blockquote>
 &lt;p>&lt;a class="link" href="https://blog.kmtea.eu/p/221003-glibc-openwrt-en/" >English version&lt;/a>&lt;/p>
 &lt;/blockquote>
 &lt;p>今天试图在 OpenWrt 软路由上使用
@@ -1844,10 +1844,10 @@ data-flex-basis="360px"
 OpenWrt 使用 &lt;a class="link" href="https://musl.libc.org/" target="_blank" rel="noopener"
 >musl&lt;/a> 作为 C 运行库。&lt;/p>
 &lt;p>然而现在大部分软件都使用 &lt;code>glibc&lt;/code>，在 OpenWrt 上就不能运行了。&lt;/p>
-&lt;h2 id="解决方案">解决方案&lt;/h2>
-&lt;p>只要把 &lt;code>ld-linux-x86-64.so.2&lt;/code> 复制进来就好了！&lt;/p>
-&lt;h3 id="docker">Docker&lt;/h3>
-&lt;p>如果安装了 Docker
+&lt;h2 id="解决方案">解决方案
+&lt;/h2>&lt;p>只要把 &lt;code>ld-linux-x86-64.so.2&lt;/code> 复制进来就好了！&lt;/p>
+&lt;h3 id="docker">Docker
+&lt;/h3>&lt;p>如果安装了 Docker
 可以使用如下脚本：&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -1910,8 +1910,8 @@ OpenWrt 使用 &lt;a class="link" href="https://musl.libc.org/" target="_blank" 
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;p>你也可以换用 Debian 或者任意你喜欢的发行版&lt;/p>
-&lt;h3 id="直装">直装&lt;/h3>
-&lt;blockquote>
+&lt;h3 id="直装">直装
+&lt;/h3>&lt;blockquote>
 &lt;p>注：于 2022-10-03 打包的 glibc v2.35，可能过时&lt;/p>
 &lt;/blockquote>
 &lt;div class="highlight">&lt;div class="chroma">
@@ -1975,13 +1975,13 @@ alt="Done"
 class="gallery-image"
 data-flex-grow="256"
 data-flex-basis="615px"
->&lt;/p></description></item><item><title>树莓派安装 RHEL</title><link>https://blog.kmtea.eu/p/220710-pi-rhel/</link><pubDate>Sun, 10 Jul 2022 04:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/220710-pi-rhel/</guid><description>&lt;img src="https://blog.kmtea.eu/p/220710-pi-rhel/img/cover.jpg" alt="Featured image of post 树莓派安装 RHEL" />&lt;h1 id="树莓派安装-rhel">树莓派安装 RHEL&lt;/h1>
-&lt;blockquote>
+>&lt;/p></description></item><item><title>树莓派安装 RHEL</title><link>https://blog.kmtea.eu/p/220710-pi-rhel/</link><pubDate>Sun, 10 Jul 2022 04:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/220710-pi-rhel/</guid><description>&lt;img src="https://blog.kmtea.eu/p/220710-pi-rhel/img/cover.jpg" alt="Featured image of post 树莓派安装 RHEL" />&lt;h1 id="树莓派安装-rhel">树莓派安装 RHEL
+&lt;/h1>&lt;blockquote>
 &lt;p>This tutorial is &lt;a class="link" href="https://github.com/KumaTea/pi-rhel" target="_blank" rel="noopener"
 >originally written in English here&lt;/a>&lt;/p>
 &lt;/blockquote>
-&lt;h2 id="这个想法怎么来的">这个想法怎么来的&lt;/h2>
-&lt;p>大概是 &lt;a class="link" href="https://the-report.cloud/ibms-red-hat-just-killed-centos-as-we-know-it-with-centos-stream-stability-goes-out-of-the-door" target="_blank" rel="noopener"
+&lt;h2 id="这个想法怎么来的">这个想法怎么来的
+&lt;/h2>&lt;p>大概是 &lt;a class="link" href="https://the-report.cloud/ibms-red-hat-just-killed-centos-as-we-know-it-with-centos-stream-stability-goes-out-of-the-door" target="_blank" rel="noopener"
 >鲨了 CentOS&lt;/a> 的良心不安，
 Red Hat 去年宣布 &lt;a class="link" href="https://developers.redhat.com/articles/faqs-no-cost-red-hat-enterprise-linux" target="_blank" rel="noopener"
 >RHEL 个人订阅白送了&lt;/a> 。
@@ -2020,8 +2020,8 @@ data-flex-basis="426px"
 &lt;p>搜了下，大概是唯一支持树莓派的 RHEL 发行版了。&lt;/p>
 &lt;p>花了几天摸索出一个奇技淫巧，玩一波偷梁换柱，
 达到在树莓派上安装 RHEL 的方法，简述一下。&lt;/p>
-&lt;h2 id="需求">需求&lt;/h2>
-&lt;ul>
+&lt;h2 id="需求">需求
+&lt;/h2>&lt;ul>
 &lt;li>Raspberry Pi 4B, 400或3B/+
 &lt;ul>
 &lt;li>仅在4B上测试成功&lt;/li>
@@ -2035,8 +2035,8 @@ data-flex-basis="426px"
 &lt;li>Red Hat 个人订阅&lt;/li>
 &lt;li>科学或者魔法上网&lt;/li>
 &lt;/ul>
-&lt;h2 id="注册-red-hat-个人订阅">注册 Red Hat 个人订阅&lt;/h2>
-&lt;p>来这里 &lt;a class="link" href="https://developers.redhat.com/register" target="_blank" rel="noopener"
+&lt;h2 id="注册-red-hat-个人订阅">注册 Red Hat 个人订阅
+&lt;/h2>&lt;p>来这里 &lt;a class="link" href="https://developers.redhat.com/register" target="_blank" rel="noopener"
 >注册 Red Hat Individual Subscription&lt;/a> 。&lt;/p>
 &lt;p>注册完了记得看下 &lt;a class="link" href="https://access.redhat.com/management/subscriptions" target="_blank" rel="noopener"
 >你的管理页面&lt;/a> 有没有东西：&lt;/p>
@@ -2051,8 +2051,8 @@ data-flex-grow="177"
 data-flex-basis="426px"
 >&lt;/p>
 &lt;p>等下要从 RHEL 的 repo 中更新软件包，所以这步不能省。&lt;/p>
-&lt;h2 id="安装-oracle-linux">安装 Oracle Linux&lt;/h2>
-&lt;p>首先 &lt;a class="link" href="https://www.oracle.com/linux/downloads/linux-arm-downloads.html" target="_blank" rel="noopener"
+&lt;h2 id="安装-oracle-linux">安装 Oracle Linux
+&lt;/h2>&lt;p>首先 &lt;a class="link" href="https://www.oracle.com/linux/downloads/linux-arm-downloads.html" target="_blank" rel="noopener"
 >下载 Oracle Linux&lt;/a> 。&lt;/p>
 &lt;p>然后找个你喜欢的刷写工具。
 一般 &lt;a class="link" href="https://www.raspberrypi.com/software/#:~:text=Pi%20OS%20using-,Raspberry%C2%A0Pi%C2%A0Imager,-Raspberry%20Pi%20Imager" target="_blank" rel="noopener"
@@ -2070,8 +2070,8 @@ class="gallery-image"
 data-flex-grow="158"
 data-flex-basis="381px"
 >&lt;/p>
-&lt;h3 id="ssd-与-sd卡">SSD 与 SD卡&lt;/h3>
-&lt;p>Oracle Linux 的根文件系统 (rootfs) 是 &lt;code>btrfs&lt;/code> ，
+&lt;h3 id="ssd-与-sd卡">SSD 与 SD卡
+&lt;/h3>&lt;p>Oracle Linux 的根文件系统 (rootfs) 是 &lt;code>btrfs&lt;/code> ，
 卡得出奇，卡的批爆！合起来写炸了我5个内存卡和U盘！就为了这篇！
 所以别用内存卡！用固态！！！&lt;/p>
 &lt;p>或者可以考虑下换成 &lt;code>f2fs&lt;/code> 。&lt;/p>
@@ -2098,8 +2098,8 @@ class="gallery-image"
 data-flex-grow="177"
 data-flex-basis="426px"
 >&lt;/p>
-&lt;h2 id="系统准备">系统准备&lt;/h2>
-&lt;p>###扩展分区&lt;/p>
+&lt;h2 id="系统准备">系统准备
+&lt;/h2>&lt;p>###扩展分区&lt;/p>
 &lt;p>解压缩后的固件大小约为 3.89GB ，装完了剩下大约300MB。
 这点地方塞牙缝 (&lt;code>dnf update&lt;/code>) 都不够，先要用 &lt;code>parted&lt;/code> 扩展分区。&lt;/p>
 &lt;p>没自带，先安装：&lt;/p>
@@ -2153,8 +2153,8 @@ class="gallery-image"
 data-flex-grow="177"
 data-flex-basis="426px"
 >&lt;/p>
-&lt;h3 id="更新-kernel-uek">更新 &lt;code>kernel-uek&lt;/code>&lt;/h3>
-&lt;p>要留的唯一一个软件包是 &lt;code>kernel-uek&lt;/code> 。
+&lt;h3 id="更新-kernel-uek">更新 &lt;code>kernel-uek&lt;/code>
+&lt;/h3>&lt;p>要留的唯一一个软件包是 &lt;code>kernel-uek&lt;/code> 。
 全称 &lt;a class="link" href="https://docs.oracle.com/en/operating-systems/uek/" target="_blank" rel="noopener"
 >Unbreakable Enterprise Kernel&lt;/a> ，
 是 Oracle 搞的 Linux 内核。&lt;/p>
@@ -2177,8 +2177,8 @@ class="gallery-image"
 data-flex-grow="226"
 data-flex-basis="543px"
 >&lt;/p>
-&lt;h2 id="补丁和运行-convert2rhel">补丁和运行 &amp;ldquo;convert2rhel&amp;rdquo;。&lt;/h2>
-&lt;p>开始偷梁换柱之前先看看 &lt;code>os-release&lt;/code> 怀念一下：&lt;/p>
+&lt;h2 id="补丁和运行-convert2rhel">补丁和运行 &amp;ldquo;convert2rhel&amp;rdquo;。
+&lt;/h2>&lt;p>开始偷梁换柱之前先看看 &lt;code>os-release&lt;/code> 怀念一下：&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -2236,8 +2236,8 @@ class="gallery-image"
 data-flex-grow="177"
 data-flex-basis="426px"
 >&lt;/p>
-&lt;h3 id="修改配置">修改配置&lt;/h3>
-&lt;p>由于 RHEL 没有正式支持树莓派，它的转换工具也不会包含我们要用的配置。
+&lt;h3 id="修改配置">修改配置
+&lt;/h3>&lt;p>由于 RHEL 没有正式支持树莓派，它的转换工具也不会包含我们要用的配置。
 硬转就会。。。&lt;/p>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/220710-pi-rhel/img/013-c2r-errors.jpg"
 width="1920"
@@ -2305,8 +2305,8 @@ class="gallery-image"
 data-flex-grow="183"
 data-flex-basis="440px"
 >&lt;/p>
-&lt;h3 id="手动运行-convert2rhel">手动运行 &lt;code>convert2rhel&lt;/code>&lt;/h3>
-&lt;p>不能直接运行 &lt;code>convert2rhel&lt;/code> ，
+&lt;h3 id="手动运行-convert2rhel">手动运行 &lt;code>convert2rhel&lt;/code>
+&lt;/h3>&lt;p>不能直接运行 &lt;code>convert2rhel&lt;/code> ，
 因为它写的时候也没想到会有人在树莓派上跑。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -2348,8 +2348,8 @@ class="gallery-image"
 data-flex-grow="177"
 data-flex-basis="426px"
 >&lt;/p>
-&lt;h2 id="绑定订阅">绑定订阅&lt;/h2>
-&lt;div class="highlight">&lt;div class="chroma">
+&lt;h2 id="绑定订阅">绑定订阅
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
@@ -2357,8 +2357,8 @@ data-flex-basis="426px"
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">subscription-manager register
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h2 id="替换-repo">替换 repo&lt;/h2>
-&lt;p>先鸟尽弓藏兔死狗烹。&lt;/p>
+&lt;/div>&lt;h2 id="替换-repo">替换 repo
+&lt;/h2>&lt;p>先鸟尽弓藏兔死狗烹。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -2381,8 +2381,8 @@ class="gallery-image"
 data-flex-grow="313"
 data-flex-basis="751px"
 >&lt;/p>
-&lt;h3 id="删除不需要的软件包">删除不需要的软件包&lt;/h3>
-&lt;div class="highlight">&lt;div class="chroma">
+&lt;h3 id="删除不需要的软件包">删除不需要的软件包
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
 &lt;/span>&lt;span class="lnt">2
@@ -2421,8 +2421,8 @@ class="gallery-image"
 data-flex-grow="177"
 data-flex-basis="426px"
 >&lt;/p>
-&lt;h3 id="替换非-rhel-软件包">替换非 RHEL 软件包&lt;/h3>
-&lt;div class="highlight">&lt;div class="chroma">
+&lt;h3 id="替换非-rhel-软件包">替换非 RHEL 软件包
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
@@ -2468,8 +2468,8 @@ class="gallery-image"
 data-flex-grow="177"
 data-flex-basis="426px"
 >&lt;/p>
-&lt;h2 id="结论">结论&lt;/h2>
-&lt;p>家人们看看 &lt;code>neofetch&lt;/code> 吧&lt;/p>
+&lt;h2 id="结论">结论
+&lt;/h2>&lt;p>家人们看看 &lt;code>neofetch&lt;/code> 吧&lt;/p>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/220710-pi-rhel/img/001-neofetch.jpg"
 width="1920"
 height="1080"
@@ -2480,32 +2480,32 @@ class="gallery-image"
 data-flex-grow="177"
 data-flex-basis="426px"
 >&lt;/p>
-&lt;h2 id="后记">后记&lt;/h2>
-&lt;p>RHEL 9 出了，但是懒得折腾了，教程写了开摆。&lt;/p>
+&lt;h2 id="后记">后记
+&lt;/h2>&lt;p>RHEL 9 出了，但是懒得折腾了，教程写了开摆。&lt;/p>
 &lt;p>不会真的有人会有和我一样的脑洞吧？？？&lt;/p>
 &lt;p>以及这篇尽量口语化了，如果你英语很彳亍，真想搞还是建议看看上面的英文链接。
-虽然我英语是工地水平，但是大概还是比看这篇好理解一点。&lt;/p></description></item><item><title>Nexmo 虚拟手机号浅探</title><link>https://blog.kmtea.eu/p/220623-nexmo/</link><pubDate>Thu, 23 Jun 2022 18:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/220623-nexmo/</guid><description>&lt;img src="https://blog.kmtea.eu/p/220623-nexmo/img/cover.jpg" alt="Featured image of post Nexmo 虚拟手机号浅探" />&lt;h1 id="nexmo-虚拟手机号浅探">Nexmo 虚拟手机号浅探&lt;/h1>
-&lt;blockquote>
+虽然我英语是工地水平，但是大概还是比看这篇好理解一点。&lt;/p></description></item><item><title>Nexmo 虚拟手机号浅探</title><link>https://blog.kmtea.eu/p/220623-nexmo/</link><pubDate>Thu, 23 Jun 2022 18:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/220623-nexmo/</guid><description>&lt;img src="https://blog.kmtea.eu/p/220623-nexmo/img/cover.jpg" alt="Featured image of post Nexmo 虚拟手机号浅探" />&lt;h1 id="nexmo-虚拟手机号浅探">Nexmo 虚拟手机号浅探
+&lt;/h1>&lt;blockquote>
 &lt;p>最低成本：6.5元&lt;/p>
 &lt;/blockquote>
-&lt;h3 id="前情提要">前情提要&lt;/h3>
-&lt;p>5月，我的 Telegram 被误封了。众所周知，Telegram
+&lt;h3 id="前情提要">前情提要
+&lt;/h3>&lt;p>5月，我的 Telegram 被误封了。众所周知，Telegram
 和微信一样不存在客服，因此我只能重新注册一个账号。&lt;/p>
 &lt;p>想起来18年似乎注册过一个叫 &lt;a class="link" href="https://www.nexmo.com" target="_blank" rel="noopener"
 >Nexmo&lt;/a>
 的虚拟号码平台，还充值了10欧元，
 但当时因为需要编程才能使用，就放置了。&lt;/p>
 &lt;p>这次重新登录，发现已经可以不用写代码，于是欣然注册，分享如下。&lt;/p>
-&lt;h3 id="0-准备工作">0. 准备工作&lt;/h3>
-&lt;p>注册及充值略（因为是四年前 😩&lt;/p>
+&lt;h3 id="0-准备工作">0. 准备工作
+&lt;/h3>&lt;p>注册及充值略（因为是四年前 😩&lt;/p>
 &lt;p>&lt;a class="link" href="https://dashboard.nexmo.com/sign-up" target="_blank" rel="noopener"
 >sign up&lt;/a>&lt;/p>
 &lt;ul>
 &lt;li>支持 支付宝 / 微信 / 银联&lt;/li>
 &lt;li>&lt;strong>Nexmo 最低充值金额为 10 欧元&lt;/strong>，建议拼车&lt;/li>
 &lt;/ul>
-&lt;h2 id="1-选用号码">1. 选用号码&lt;/h2>
-&lt;p>注册完毕并充值后，进入
+&lt;h2 id="1-选用号码">1. 选用号码
+&lt;/h2>&lt;p>注册完毕并充值后，进入
 &lt;a class="link" href="https://dashboard.nexmo.com/" target="_blank" rel="noopener"
 >主页&lt;/a>&lt;/p>
 &lt;img alt="dashboard" src="img/001-dashboard.jpg" width="640"/>
@@ -2524,8 +2524,8 @@ data-flex-basis="426px"
 >您的号码&lt;/a>&lt;/strong>
 看见刚刚购买的号码&lt;/p>
 &lt;img alt="status" src="img/005-status.jpg" width="640"/>
-&lt;h2 id="2-注册-google-voice">2. 注册 Google Voice&lt;/h2>
-&lt;p>打开 &lt;a class="link" href="https://voice.google.com" target="_blank" rel="noopener"
+&lt;h2 id="2-注册-google-voice">2. 注册 Google Voice
+&lt;/h2>&lt;p>打开 &lt;a class="link" href="https://voice.google.com" target="_blank" rel="noopener"
 >Google Voice&lt;/a> ，
 进入 &lt;a class="link" href="https://voice.google.com/u/0/settings" target="_blank" rel="noopener"
 >设置&lt;/a> ，
@@ -2539,19 +2539,19 @@ data-flex-basis="426px"
 &lt;img alt="query" src="img/008-query.jpg" width="640"/>
 &lt;p>再把验证码填入 Google Voice，完成验证&lt;/p>
 &lt;hr>
-&lt;h3 id="后记">后记&lt;/h3>
-&lt;p>正如前文所述，
+&lt;h3 id="后记">后记
+&lt;/h3>&lt;p>正如前文所述，
 Nexmo 的正规用法是编程和使用 API，
 因此如果有能力，可以搭建 Webhook，
 甚至可以实现转发到 Telegram 的效果&lt;/p>
 &lt;img alt="flask" src="img/009-flask.jpg" width="640"/>
 &lt;img alt="response" src="img/010-response.jpg" width="640"/>
-&lt;h3 id="discussion">Discussion&lt;/h3>
-&lt;ul>
+&lt;h3 id="discussion">Discussion
+&lt;/h3>&lt;ul>
 &lt;li>「全网最低成本」指每个虚拟手机号每月租用成本为 0.9 欧元，约合人民币 6.5 元&lt;/li>
 &lt;li>作者申明没有收到任何资助，且无利益相关（废话）&lt;/li>
-&lt;/ul></description></item><item><title>Wallpaper Engine 刷时长</title><link>https://blog.kmtea.eu/p/220616-we-in-game/</link><pubDate>Thu, 16 Jun 2022 20:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/220616-we-in-game/</guid><description>&lt;img src="https://blog.kmtea.eu/p/220616-we-in-game/img/cover.jpg" alt="Featured image of post Wallpaper Engine 刷时长" />&lt;h1 id="wallpaper-engine-刷时长">Wallpaper Engine 刷时长&lt;/h1>
-&lt;p>我一直是个游戏时长爱好者，喜欢看自己主页上游戏时间一点点多起来（哪怕没有真的在玩）。&lt;/p>
+&lt;/ul></description></item><item><title>Wallpaper Engine 刷时长</title><link>https://blog.kmtea.eu/p/220616-we-in-game/</link><pubDate>Thu, 16 Jun 2022 20:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/220616-we-in-game/</guid><description>&lt;img src="https://blog.kmtea.eu/p/220616-we-in-game/img/cover.jpg" alt="Featured image of post Wallpaper Engine 刷时长" />&lt;h1 id="wallpaper-engine-刷时长">Wallpaper Engine 刷时长
+&lt;/h1>&lt;p>我一直是个游戏时长爱好者，喜欢看自己主页上游戏时间一点点多起来（哪怕没有真的在玩）。&lt;/p>
 &lt;p>以前用过 &lt;a class="link" href="https://github.com/JustArchiNET/ArchiSteamFarm" target="_blank" rel="noopener"
 >ArchiSteamFarm&lt;/a>
 来挂游戏，但是因为它会强制加群就弃用了。&lt;/p>

@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Glibc on 酷玛阁 | KumaTea's Blog</title><link>https://blog.kmtea.eu/tags/glibc/</link><description>Recent content in Glibc on 酷玛阁 | KumaTea's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Mon, 03 Oct 2022 16:30:00 +0800</lastBuildDate><atom:link href="https://blog.kmtea.eu/tags/glibc/index.xml" rel="self" type="application/rss+xml"/><item><title>Add glibc to OpenWrt</title><link>https://blog.kmtea.eu/p/221003-glibc-openwrt-en/</link><pubDate>Mon, 03 Oct 2022 16:30:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/221003-glibc-openwrt-en/</guid><description>&lt;img src="https://blog.kmtea.eu/p/221003-glibc-openwrt/img/cover.jpg" alt="Featured image of post Add glibc to OpenWrt" />&lt;h1 id="add-glibc-to-openwrt">Add glibc to OpenWrt&lt;/h1>
-&lt;blockquote>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Glibc on 酷玛阁 | KumaTea's Blog</title><link>https://blog.kmtea.eu/tags/glibc/</link><description>Recent content in Glibc on 酷玛阁 | KumaTea's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Tue, 20 Jun 2023 23:01:21 +0800</lastBuildDate><atom:link href="https://blog.kmtea.eu/tags/glibc/index.xml" rel="self" type="application/rss+xml"/><item><title>Add glibc to OpenWrt</title><link>https://blog.kmtea.eu/p/221003-glibc-openwrt-en/</link><pubDate>Mon, 03 Oct 2022 16:30:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/221003-glibc-openwrt-en/</guid><description>&lt;img src="https://blog.kmtea.eu/p/221003-glibc-openwrt/img/cover.jpg" alt="Featured image of post Add glibc to OpenWrt" />&lt;h1 id="add-glibc-to-openwrt">Add glibc to OpenWrt
+&lt;/h1>&lt;blockquote>
 &lt;p>&lt;a class="link" href="https://blog.kmtea.eu/p/221003-glibc-openwrt/" >中文版&lt;/a>&lt;/p>
 &lt;/blockquote>
 &lt;p>I&amp;rsquo;m trying to replace &lt;code>traceroute&lt;/code> with a tool called
@@ -25,10 +25,10 @@ which means the arch &lt;code>x86-64&lt;/code> is correct, but &lt;code>glibc&lt
 OpenWrt has swutched to &lt;a class="link" href="https://musl.libc.org/" target="_blank" rel="noopener"
 >musl&lt;/a> from uClibc as C library.&lt;/p>
 &lt;p>Whereas nowadays most software are using &lt;code>glibc&lt;/code>, which cannot be run on OpenWrt.&lt;/p>
-&lt;h2 id="solution">Solution&lt;/h2>
-&lt;p>Just copy &lt;code>ld-linux-x86-64.so.2&lt;/code> here!&lt;/p>
-&lt;h3 id="docker">Docker&lt;/h3>
-&lt;p>If Docker is installed:&lt;/p>
+&lt;h2 id="solution">Solution
+&lt;/h2>&lt;p>Just copy &lt;code>ld-linux-x86-64.so.2&lt;/code> here!&lt;/p>
+&lt;h3 id="docker">Docker
+&lt;/h3>&lt;p>If Docker is installed:&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
@@ -91,8 +91,8 @@ OpenWrt has swutched to &lt;a class="link" href="https://musl.libc.org/" target=
 &lt;/div>
 &lt;/div>&lt;p>This means you can always get the latest libs,
 and switch to other distros you like.&lt;/p>
-&lt;h3 id="directly">Directly&lt;/h3>
-&lt;blockquote>
+&lt;h3 id="directly">Directly
+&lt;/h3>&lt;blockquote>
 &lt;p>Note: glibc v2.35, packed on 2022-10-03, could be outdated.&lt;/p>
 &lt;/blockquote>
 &lt;div class="highlight">&lt;div class="chroma">
@@ -150,8 +150,8 @@ and switch to other distros you like.&lt;/p>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/221003-glibc-openwrt/img/02-done.jpg"
 loading="lazy"
 alt="Done"
->&lt;/p></description></item><item><title>向 OpenWrt 添加 glibc</title><link>https://blog.kmtea.eu/p/221003-glibc-openwrt/</link><pubDate>Mon, 03 Oct 2022 15:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/221003-glibc-openwrt/</guid><description>&lt;img src="https://blog.kmtea.eu/p/221003-glibc-openwrt/img/cover.jpg" alt="Featured image of post 向 OpenWrt 添加 glibc" />&lt;h1 id="向-openwrt-添加-glibc">向 OpenWrt 添加 glibc&lt;/h1>
-&lt;blockquote>
+>&lt;/p></description></item><item><title>向 OpenWrt 添加 glibc</title><link>https://blog.kmtea.eu/p/221003-glibc-openwrt/</link><pubDate>Mon, 03 Oct 2022 15:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/221003-glibc-openwrt/</guid><description>&lt;img src="https://blog.kmtea.eu/p/221003-glibc-openwrt/img/cover.jpg" alt="Featured image of post 向 OpenWrt 添加 glibc" />&lt;h1 id="向-openwrt-添加-glibc">向 OpenWrt 添加 glibc
+&lt;/h1>&lt;blockquote>
 &lt;p>&lt;a class="link" href="https://blog.kmtea.eu/p/221003-glibc-openwrt-en/" >English version&lt;/a>&lt;/p>
 &lt;/blockquote>
 &lt;p>今天试图在 OpenWrt 软路由上使用
@@ -183,10 +183,10 @@ data-flex-basis="360px"
 OpenWrt 使用 &lt;a class="link" href="https://musl.libc.org/" target="_blank" rel="noopener"
 >musl&lt;/a> 作为 C 运行库。&lt;/p>
 &lt;p>然而现在大部分软件都使用 &lt;code>glibc&lt;/code>，在 OpenWrt 上就不能运行了。&lt;/p>
-&lt;h2 id="解决方案">解决方案&lt;/h2>
-&lt;p>只要把 &lt;code>ld-linux-x86-64.so.2&lt;/code> 复制进来就好了！&lt;/p>
-&lt;h3 id="docker">Docker&lt;/h3>
-&lt;p>如果安装了 Docker
+&lt;h2 id="解决方案">解决方案
+&lt;/h2>&lt;p>只要把 &lt;code>ld-linux-x86-64.so.2&lt;/code> 复制进来就好了！&lt;/p>
+&lt;h3 id="docker">Docker
+&lt;/h3>&lt;p>如果安装了 Docker
 可以使用如下脚本：&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -249,8 +249,8 @@ OpenWrt 使用 &lt;a class="link" href="https://musl.libc.org/" target="_blank" 
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;p>你也可以换用 Debian 或者任意你喜欢的发行版&lt;/p>
-&lt;h3 id="直装">直装&lt;/h3>
-&lt;blockquote>
+&lt;h3 id="直装">直装
+&lt;/h3>&lt;blockquote>
 &lt;p>注：于 2022-10-03 打包的 glibc v2.35，可能过时&lt;/p>
 &lt;/blockquote>
 &lt;div class="highlight">&lt;div class="chroma">

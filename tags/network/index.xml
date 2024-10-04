@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Network on 酷玛阁 | KumaTea's Blog</title><link>https://blog.kmtea.eu/tags/network/</link><description>Recent content in Network on 酷玛阁 | KumaTea's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Tue, 18 Jul 2023 21:00:00 +0800</lastBuildDate><atom:link href="https://blog.kmtea.eu/tags/network/index.xml" rel="self" type="application/rss+xml"/><item><title>诺基亚贝尔光猫宽带密码破解提取</title><link>https://blog.kmtea.eu/p/230718-modem-decrypt/</link><pubDate>Tue, 18 Jul 2023 21:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/230718-modem-decrypt/</guid><description>&lt;img src="https://blog.kmtea.eu/p/230718-modem-decrypt/img/cover.jpg" alt="Featured image of post 诺基亚贝尔光猫宽带密码破解提取" />&lt;h1 id="诺基亚贝尔光猫宽带密码破解提取">诺基亚贝尔光猫宽带密码破解提取&lt;/h1>
-&lt;h2 id="前言">前言&lt;/h2>
-&lt;p>本教程适用于诺基亚贝尔光猫，型号 &lt;code>HGW&lt;/code> 或 &lt;code>G-140W-**&lt;/code>&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Network on 酷玛阁 | KumaTea's Blog</title><link>https://blog.kmtea.eu/tags/network/</link><description>Recent content in Network on 酷玛阁 | KumaTea's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 13 Oct 2023 15:51:56 +0800</lastBuildDate><atom:link href="https://blog.kmtea.eu/tags/network/index.xml" rel="self" type="application/rss+xml"/><item><title>诺基亚贝尔光猫宽带密码破解提取</title><link>https://blog.kmtea.eu/p/230718-modem-decrypt/</link><pubDate>Tue, 18 Jul 2023 21:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/230718-modem-decrypt/</guid><description>&lt;img src="https://blog.kmtea.eu/p/230718-modem-decrypt/img/cover.jpg" alt="Featured image of post 诺基亚贝尔光猫宽带密码破解提取" />&lt;h1 id="诺基亚贝尔光猫宽带密码破解提取">诺基亚贝尔光猫宽带密码破解提取
+&lt;/h1>&lt;h2 id="前言">前言
+&lt;/h2>&lt;p>本教程适用于诺基亚贝尔光猫，型号 &lt;code>HGW&lt;/code> 或 &lt;code>G-140W-**&lt;/code>&lt;/p>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/230718-modem-decrypt/img/02-info.jpg"
 width="1440"
 height="1106"
@@ -41,9 +41,9 @@ data-flex-basis="319px"
 >&lt;/p>
 &lt;p>使用 &lt;code>F12&lt;/code> 审查元素，会发现该处明文为 &lt;code>!!!@@@&lt;/code>
 ，不是合法的宽带拨号密码。&lt;/p>
-&lt;h2 id="教程">教程&lt;/h2>
-&lt;h3 id="1-登录">1. 登录&lt;/h3>
-&lt;div class="highlight">&lt;div class="chroma">
+&lt;h2 id="教程">教程
+&lt;/h2>&lt;h3 id="1-登录">1. 登录
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
 &lt;/span>&lt;span class="lnt">2
@@ -62,8 +62,8 @@ class="gallery-image"
 data-flex-grow="205"
 data-flex-basis="492px"
 >&lt;/p>
-&lt;h3 id="2-打开如下地址">2. 打开如下地址&lt;/h3>
-&lt;p>&lt;code>http://192.168.1.1/dumpdatamodel.cgi&lt;/code>&lt;/p>
+&lt;h3 id="2-打开如下地址">2. 打开如下地址
+&lt;/h3>&lt;p>&lt;code>http://192.168.1.1/dumpdatamodel.cgi&lt;/code>&lt;/p>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/230718-modem-decrypt/img/05-dump.jpg"
 width="1380"
 height="633"
@@ -76,8 +76,8 @@ data-flex-basis="523px"
 &lt;p>搜索宽带账号
 (如 &lt;code>139.gd&lt;/code>)
 在下方找到密码字段。&lt;/p>
-&lt;h3 id="3-提取密码">3. 提取密码&lt;/h3>
-&lt;p>Ref:
+&lt;h3 id="3-提取密码">3. 提取密码
+&lt;/h3>&lt;p>Ref:
 &lt;a class="link" href="https://gist.github.com/thedroidgeek/80c379aa43b71015d71da130f85a435a" target="_blank" rel="noopener"
 >thedroidgeek / nokia-router-cfg-tool.py&lt;/a>&lt;/p>
 &lt;p>首先安装依赖&lt;/p>

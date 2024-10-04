@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Proxmox on 酷玛阁 | KumaTea's Blog</title><link>https://blog.kmtea.eu/tags/proxmox/</link><description>Recent content in Proxmox on 酷玛阁 | KumaTea's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Mon, 04 Dec 2023 01:00:00 +0800</lastBuildDate><atom:link href="https://blog.kmtea.eu/tags/proxmox/index.xml" rel="self" type="application/rss+xml"/><item><title>制作 RHEL LXC 容器镜像</title><link>https://blog.kmtea.eu/p/231204-rhel-lxc/</link><pubDate>Mon, 04 Dec 2023 01:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/231204-rhel-lxc/</guid><description>&lt;img src="https://blog.kmtea.eu/p/231204-rhel-lxc/img/cover.jpg" alt="Featured image of post 制作 RHEL LXC 容器镜像" />&lt;h1 id="制作-rhel-lxc-容器镜像">制作 RHEL LXC 容器镜像&lt;/h1>
-&lt;h2 id="前言">前言&lt;/h2>
-&lt;p>虽然玩 Linux 很多年了，但一直以来都只是用
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Proxmox on 酷玛阁 | KumaTea's Blog</title><link>https://blog.kmtea.eu/tags/proxmox/</link><description>Recent content in Proxmox on 酷玛阁 | KumaTea's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Mon, 04 Dec 2023 01:00:00 +0800</lastBuildDate><atom:link href="https://blog.kmtea.eu/tags/proxmox/index.xml" rel="self" type="application/rss+xml"/><item><title>制作 RHEL LXC 容器镜像</title><link>https://blog.kmtea.eu/p/231204-rhel-lxc/</link><pubDate>Mon, 04 Dec 2023 01:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/231204-rhel-lxc/</guid><description>&lt;img src="https://blog.kmtea.eu/p/231204-rhel-lxc/img/cover.jpg" alt="Featured image of post 制作 RHEL LXC 容器镜像" />&lt;h1 id="制作-rhel-lxc-容器镜像">制作 RHEL LXC 容器镜像
+&lt;/h1>&lt;h2 id="前言">前言
+&lt;/h2>&lt;p>虽然玩 Linux 很多年了，但一直以来都只是用
 Debian 系的发行版，对其他的没有涉猎。
 最近发现了 LXC 的美妙之处，于是试了试一直没体验过的 RHEL。&lt;/p>
 &lt;hr>
@@ -9,8 +9,8 @@ Debian 系的发行版，对其他的没有涉猎。
 而作为应用级的虚拟，Docker 又太过轻量，systemd 也不能用，
 只能用来部署单一程序。相比之下，作为系统级虚拟的 LXC
 就是日常调试的最佳选择。&lt;/p>
-&lt;h2 id="踩坑">踩坑&lt;/h2>
-&lt;p>我首先尝试的是官方 docker 镜像
+&lt;h2 id="踩坑">踩坑
+&lt;/h2>&lt;p>我首先尝试的是官方 docker 镜像
 &lt;a class="link" href="https://catalog.redhat.com/software/containers/ubi9/ubi/615bcf606feffc5384e8452e" target="_blank" rel="noopener"
 >ubi (Universal Base Image)&lt;/a>,
 通过 &lt;code>docker save&lt;/code> 导出后直接导入到 PVE 中。
@@ -31,12 +31,12 @@ class="gallery-image"
 data-flex-grow="217"
 data-flex-basis="521px"
 >&lt;/p>
-&lt;h2 id="准备">准备&lt;/h2>
-&lt;p>打开 ISO &lt;a class="link" href="https://developers.redhat.com/products/rhel/download" target="_blank" rel="noopener"
+&lt;h2 id="准备">准备
+&lt;/h2>&lt;p>打开 ISO &lt;a class="link" href="https://developers.redhat.com/products/rhel/download" target="_blank" rel="noopener"
 >下载官网&lt;/a>,
 &lt;strong>拉到下面&lt;/strong>，选择 &lt;strong>Boot iso&lt;/strong> 下载。&lt;del>当然你财力雄厚也可以选择十几G的 DVD iso&lt;/del>&lt;/p>
-&lt;h2 id="提取">提取&lt;/h2>
-&lt;p>这一步要从 RHEL 完整虚拟机中提取 rootfs。&lt;/p>
+&lt;h2 id="提取">提取
+&lt;/h2>&lt;p>这一步要从 RHEL 完整虚拟机中提取 rootfs。&lt;/p>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/231204-rhel-lxc/img/01-inst-01.jpg"
 width="2089"
 height="1253"
@@ -141,8 +141,8 @@ class="gallery-image"
 data-flex-grow="245"
 data-flex-basis="589px"
 >&lt;/p>
-&lt;h2 id="精简">精简&lt;/h2>
-&lt;p>LXC 运行环境下，固件、内核均由宿主机提供，
+&lt;h2 id="精简">精简
+&lt;/h2>&lt;p>LXC 运行环境下，固件、内核均由宿主机提供，
 我们可以将其卸载，节省空间。&lt;/p>
 &lt;p>由 &lt;code>rootfs.tar.xz&lt;/code> 创建 lxc，启动后进入 shell&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
@@ -238,8 +238,8 @@ data-flex-basis="651px"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tar cvJf rhel-9-minimal_9.3_amd64.tar.xz ./*
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h2 id="后记">后记&lt;/h2>
-&lt;p>&lt;img src="https://blog.kmtea.eu/p/231204-rhel-lxc/img/03-info-01.jpg"
+&lt;/div>&lt;h2 id="后记">后记
+&lt;/h2>&lt;p>&lt;img src="https://blog.kmtea.eu/p/231204-rhel-lxc/img/03-info-01.jpg"
 width="1828"
 height="924"
 srcset="https://blog.kmtea.eu/p/231204-rhel-lxc/img/03-info-01_hu2169639610891840469.jpg 480w, https://blog.kmtea.eu/p/231204-rhel-lxc/img/03-info-01_hu9997991310494381078.jpg 1024w"
@@ -256,9 +256,9 @@ data-flex-basis="474px"
 &lt;li>非常不建议分享你制作的镜像！
 首先 &lt;code>subscription-manager unregister&lt;/code> 不能保证账户信息完全被抹除，
 其次 &lt;code>/etc&lt;/code> 下 &lt;code>fstab&lt;/code> &lt;code>hosts&lt;/code> &lt;code>hostname&lt;/code> &lt;code>resolv.conf&lt;/code> &lt;code>shadow&lt;/code> 等大量文件均可能包含敏感信息。&lt;/li>
-&lt;/ol></description></item><item><title>PVE 更新 OpenWrt 教程</title><link>https://blog.kmtea.eu/p/221227-pve-openwrt/</link><pubDate>Tue, 27 Dec 2022 17:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/221227-pve-openwrt/</guid><description>&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/cover.jpg" alt="Featured image of post PVE 更新 OpenWrt 教程" />&lt;h1 id="pve-更新-openwrt">PVE 更新 OpenWrt&lt;/h1>
-&lt;h2 id="准备工作">准备工作&lt;/h2>
-&lt;ul>
+&lt;/ol></description></item><item><title>PVE 更新 OpenWrt 教程</title><link>https://blog.kmtea.eu/p/221227-pve-openwrt/</link><pubDate>Tue, 27 Dec 2022 17:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/221227-pve-openwrt/</guid><description>&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/cover.jpg" alt="Featured image of post PVE 更新 OpenWrt 教程" />&lt;h1 id="pve-更新-openwrt">PVE 更新 OpenWrt
+&lt;/h1>&lt;h2 id="准备工作">准备工作
+&lt;/h2>&lt;ul>
 &lt;li>
 &lt;p>OpenWrt 固件
 &lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/01-firmware.jpg"
@@ -306,8 +306,8 @@ data-flex-basis="426px"
 &lt;/ul>
 &lt;/li>
 &lt;/ul>
-&lt;h2 id="为什么不能用正常方式升级">为什么不能用正常方式升级？&lt;/h2>
-&lt;p>众所周知，OpenWrt 正常升级方式是在 &lt;code>系统&lt;/code> - &lt;code>备份升级&lt;/code> 中升级：&lt;/p>
+&lt;h2 id="为什么不能用正常方式升级">为什么不能用正常方式升级？
+&lt;/h2>&lt;p>众所周知，OpenWrt 正常升级方式是在 &lt;code>系统&lt;/code> - &lt;code>备份升级&lt;/code> 中升级：&lt;/p>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/04-upgrade.jpg"
 width="1892"
 height="934"
@@ -345,8 +345,8 @@ data-flex-basis="426px"
 &lt;p>如果没有，我强烈建议你花十分钟搜下教程
 (关键词 &lt;code>extroot overlay&lt;/code>)
 完成这件事， &lt;strong>功在当代利在千秋&lt;/strong>&lt;/p>
-&lt;h2 id="上传新固件">上传新固件&lt;/h2>
-&lt;p>上传到 &lt;code>local&lt;/code> - &lt;code>ISO&lt;/code>&lt;/p>
+&lt;h2 id="上传新固件">上传新固件
+&lt;/h2>&lt;p>上传到 &lt;code>local&lt;/code> - &lt;code>ISO&lt;/code>&lt;/p>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/07-upload.jpg"
 width="1920"
 height="1080"
@@ -358,8 +358,8 @@ data-flex-grow="177"
 data-flex-basis="426px"
 >&lt;/p>
 &lt;p>推荐检查 &lt;code>sha256sum&lt;/code>&lt;/p>
-&lt;h2 id="更换系统固件">更换系统固件&lt;/h2>
-&lt;ol>
+&lt;h2 id="更换系统固件">更换系统固件
+&lt;/h2>&lt;ol>
 &lt;li>在以非目标 OpenWrt 内网的方式连接 PVE 的情况下，关闭虚拟机 &lt;br>
 &lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/08-shutdown.jpg"
 width="1920"
@@ -444,8 +444,8 @@ data-flex-basis="597px"
 >&lt;/li>
 &lt;li>启动虚拟机&lt;/li>
 &lt;/ol>
-&lt;h2 id="恢复配置">恢复配置&lt;/h2>
-&lt;ol>
+&lt;h2 id="恢复配置">恢复配置
+&lt;/h2>&lt;ol>
 &lt;li>按一下回车激活 Console &lt;br>
 &lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/15-console.jpg"
 width="1920"
@@ -513,8 +513,8 @@ data-flex-grow="391"
 data-flex-basis="940px"
 >&lt;/li>
 &lt;/ol>
-&lt;h2 id="完成">完成&lt;/h2>
-&lt;ol>
+&lt;h2 id="完成">完成
+&lt;/h2>&lt;ol>
 &lt;li>重启&lt;/li>
 &lt;li>检查 &lt;code>df -h&lt;/code>，可发现配置分区已成功挂载！
 &lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/20-reboot.jpg"
@@ -528,8 +528,8 @@ data-flex-grow="177"
 data-flex-basis="426px"
 >&lt;/li>
 &lt;/ol>
-&lt;h2 id="references">References&lt;/h2>
-&lt;p>我被万恶的 &lt;code>.extroot-uuid&lt;/code> 困扰了几个月之久，直到看到了
+&lt;h2 id="references">References
+&lt;/h2>&lt;p>我被万恶的 &lt;code>.extroot-uuid&lt;/code> 困扰了几个月之久，直到看到了
 &lt;a class="link" href="https://forum.openwrt.org/t/solved-extroot-not-working-on-18-06/16723/2" target="_blank" rel="noopener"
 >这篇帖子&lt;/a>&lt;/p>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/21-forum.jpg"

@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>VM on 酷玛阁 | KumaTea's Blog</title><link>https://blog.kmtea.eu/tags/vm/</link><description>Recent content in VM on 酷玛阁 | KumaTea's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Tue, 27 Dec 2022 17:00:00 +0800</lastBuildDate><atom:link href="https://blog.kmtea.eu/tags/vm/index.xml" rel="self" type="application/rss+xml"/><item><title>PVE 更新 OpenWrt 教程</title><link>https://blog.kmtea.eu/p/221227-pve-openwrt/</link><pubDate>Tue, 27 Dec 2022 17:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/221227-pve-openwrt/</guid><description>&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/cover.jpg" alt="Featured image of post PVE 更新 OpenWrt 教程" />&lt;h1 id="pve-更新-openwrt">PVE 更新 OpenWrt&lt;/h1>
-&lt;h2 id="准备工作">准备工作&lt;/h2>
-&lt;ul>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>VM on 酷玛阁 | KumaTea's Blog</title><link>https://blog.kmtea.eu/tags/vm/</link><description>Recent content in VM on 酷玛阁 | KumaTea's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Tue, 20 Jun 2023 23:01:21 +0800</lastBuildDate><atom:link href="https://blog.kmtea.eu/tags/vm/index.xml" rel="self" type="application/rss+xml"/><item><title>PVE 更新 OpenWrt 教程</title><link>https://blog.kmtea.eu/p/221227-pve-openwrt/</link><pubDate>Tue, 27 Dec 2022 17:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/221227-pve-openwrt/</guid><description>&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/cover.jpg" alt="Featured image of post PVE 更新 OpenWrt 教程" />&lt;h1 id="pve-更新-openwrt">PVE 更新 OpenWrt
+&lt;/h1>&lt;h2 id="准备工作">准备工作
+&lt;/h2>&lt;ul>
 &lt;li>
 &lt;p>OpenWrt 固件
 &lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/01-firmware.jpg"
@@ -48,8 +48,8 @@ data-flex-basis="426px"
 &lt;/ul>
 &lt;/li>
 &lt;/ul>
-&lt;h2 id="为什么不能用正常方式升级">为什么不能用正常方式升级？&lt;/h2>
-&lt;p>众所周知，OpenWrt 正常升级方式是在 &lt;code>系统&lt;/code> - &lt;code>备份升级&lt;/code> 中升级：&lt;/p>
+&lt;h2 id="为什么不能用正常方式升级">为什么不能用正常方式升级？
+&lt;/h2>&lt;p>众所周知，OpenWrt 正常升级方式是在 &lt;code>系统&lt;/code> - &lt;code>备份升级&lt;/code> 中升级：&lt;/p>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/04-upgrade.jpg"
 width="1892"
 height="934"
@@ -87,8 +87,8 @@ data-flex-basis="426px"
 &lt;p>如果没有，我强烈建议你花十分钟搜下教程
 (关键词 &lt;code>extroot overlay&lt;/code>)
 完成这件事， &lt;strong>功在当代利在千秋&lt;/strong>&lt;/p>
-&lt;h2 id="上传新固件">上传新固件&lt;/h2>
-&lt;p>上传到 &lt;code>local&lt;/code> - &lt;code>ISO&lt;/code>&lt;/p>
+&lt;h2 id="上传新固件">上传新固件
+&lt;/h2>&lt;p>上传到 &lt;code>local&lt;/code> - &lt;code>ISO&lt;/code>&lt;/p>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/07-upload.jpg"
 width="1920"
 height="1080"
@@ -100,8 +100,8 @@ data-flex-grow="177"
 data-flex-basis="426px"
 >&lt;/p>
 &lt;p>推荐检查 &lt;code>sha256sum&lt;/code>&lt;/p>
-&lt;h2 id="更换系统固件">更换系统固件&lt;/h2>
-&lt;ol>
+&lt;h2 id="更换系统固件">更换系统固件
+&lt;/h2>&lt;ol>
 &lt;li>在以非目标 OpenWrt 内网的方式连接 PVE 的情况下，关闭虚拟机 &lt;br>
 &lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/08-shutdown.jpg"
 width="1920"
@@ -186,8 +186,8 @@ data-flex-basis="597px"
 >&lt;/li>
 &lt;li>启动虚拟机&lt;/li>
 &lt;/ol>
-&lt;h2 id="恢复配置">恢复配置&lt;/h2>
-&lt;ol>
+&lt;h2 id="恢复配置">恢复配置
+&lt;/h2>&lt;ol>
 &lt;li>按一下回车激活 Console &lt;br>
 &lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/15-console.jpg"
 width="1920"
@@ -255,8 +255,8 @@ data-flex-grow="391"
 data-flex-basis="940px"
 >&lt;/li>
 &lt;/ol>
-&lt;h2 id="完成">完成&lt;/h2>
-&lt;ol>
+&lt;h2 id="完成">完成
+&lt;/h2>&lt;ol>
 &lt;li>重启&lt;/li>
 &lt;li>检查 &lt;code>df -h&lt;/code>，可发现配置分区已成功挂载！
 &lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/20-reboot.jpg"
@@ -270,8 +270,8 @@ data-flex-grow="177"
 data-flex-basis="426px"
 >&lt;/li>
 &lt;/ol>
-&lt;h2 id="references">References&lt;/h2>
-&lt;p>我被万恶的 &lt;code>.extroot-uuid&lt;/code> 困扰了几个月之久，直到看到了
+&lt;h2 id="references">References
+&lt;/h2>&lt;p>我被万恶的 &lt;code>.extroot-uuid&lt;/code> 困扰了几个月之久，直到看到了
 &lt;a class="link" href="https://forum.openwrt.org/t/solved-extroot-not-working-on-18-06/16723/2" target="_blank" rel="noopener"
 >这篇帖子&lt;/a>&lt;/p>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/21-forum.jpg"

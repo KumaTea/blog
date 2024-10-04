@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Genshin on 酷玛阁 | KumaTea's Blog</title><link>https://blog.kmtea.eu/tags/genshin/</link><description>Recent content in Genshin on 酷玛阁 | KumaTea's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Mon, 06 Nov 2023 16:00:00 +0800</lastBuildDate><atom:link href="https://blog.kmtea.eu/tags/genshin/index.xml" rel="self" type="application/rss+xml"/><item><title>原神各版本体积</title><link>https://blog.kmtea.eu/p/231106-genshin-size/</link><pubDate>Mon, 06 Nov 2023 16:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/231106-genshin-size/</guid><description>&lt;img src="https://blog.kmtea.eu/p/231106-genshin-size/img/cover.jpg" alt="Featured image of post 原神各版本体积" />&lt;h1 id="原神各版本体积">原神各版本体积&lt;/h1>
-&lt;p>做个记录。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Genshin on 酷玛阁 | KumaTea's Blog</title><link>https://blog.kmtea.eu/tags/genshin/</link><description>Recent content in Genshin on 酷玛阁 | KumaTea's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 15 Sep 2024 00:31:12 +0800</lastBuildDate><atom:link href="https://blog.kmtea.eu/tags/genshin/index.xml" rel="self" type="application/rss+xml"/><item><title>原神各版本体积</title><link>https://blog.kmtea.eu/p/231106-genshin-size/</link><pubDate>Mon, 06 Nov 2023 16:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/231106-genshin-size/</guid><description>&lt;img src="https://blog.kmtea.eu/p/231106-genshin-size/img/cover.jpg" alt="Featured image of post 原神各版本体积" />&lt;h1 id="原神各版本体积">原神各版本体积
+&lt;/h1>&lt;p>做个记录。
 之前在 &lt;a class="link" href="https://www.zhihu.com/question/456851240" target="_blank" rel="noopener"
 >知乎&lt;/a> 回答过，没人看，搬来这里。&lt;/p>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/231106-genshin-size/img/question.jpg"
@@ -20,9 +20,9 @@ data-flex-basis="560px"
 &lt;/ul>
 &lt;/li>
 &lt;/ul>
-&lt;h2 id="5x">5.x&lt;/h2>
-&lt;h3 id="50">5.0&lt;/h3>
-&lt;ul>
+&lt;h2 id="5x">5.x
+&lt;/h2>&lt;h3 id="50">5.0
+&lt;/h3>&lt;ul>
 &lt;li>
 &lt;p>游戏数据&lt;/p>
 &lt;p>&lt;code>YuanShen_Data&lt;/code>: 67.02 GB (+ 5.61 GB)&lt;/p>
@@ -72,9 +72,9 @@ data-flex-basis="560px"
 &lt;/table>
 &lt;/li>
 &lt;/ul>
-&lt;h2 id="4x">4.x&lt;/h2>
-&lt;h3 id="48">4.8&lt;/h3>
-&lt;ul>
+&lt;h2 id="4x">4.x
+&lt;/h2>&lt;h3 id="48">4.8
+&lt;/h3>&lt;ul>
 &lt;li>
 &lt;p>游戏数据&lt;/p>
 &lt;p>&lt;code>YuanShen_Data&lt;/code>: 61.41 GB (+ 1.46 GB)&lt;/p>
@@ -124,8 +124,8 @@ data-flex-basis="560px"
 &lt;/table>
 &lt;/li>
 &lt;/ul>
-&lt;h3 id="47">4.7&lt;/h3>
-&lt;blockquote>
+&lt;h3 id="47">4.7
+&lt;/h3>&lt;blockquote>
 &lt;p>受上版本数据丢失影响，增减数据不准确&lt;/p>
 &lt;/blockquote>
 &lt;ul>
@@ -178,8 +178,8 @@ data-flex-basis="560px"
 &lt;/table>
 &lt;/li>
 &lt;/ul>
-&lt;h3 id="46">4.6&lt;/h3>
-&lt;blockquote>
+&lt;h3 id="46">4.6
+&lt;/h3>&lt;blockquote>
 &lt;p>该版本数据丢失，数值为估算&lt;/p>
 &lt;/blockquote>
 &lt;ul>
@@ -232,8 +232,8 @@ data-flex-basis="560px"
 &lt;/table>
 &lt;/li>
 &lt;/ul>
-&lt;h3 id="45">4.5&lt;/h3>
-&lt;blockquote>
+&lt;h3 id="45">4.5
+&lt;/h3>&lt;blockquote>
 &lt;p>该版本开始不配图，懒了&lt;/p>
 &lt;/blockquote>
 &lt;ul>
@@ -286,8 +286,8 @@ data-flex-basis="560px"
 &lt;/table>
 &lt;/li>
 &lt;/ul>
-&lt;h3 id="44">4.4&lt;/h3>
-&lt;ul>
+&lt;h3 id="44">4.4
+&lt;/h3>&lt;ul>
 &lt;li>
 &lt;p>游戏数据&lt;/p>
 &lt;p>&lt;code>YuanShen_Data&lt;/code>: 72.40 GB (+ 4.85 GB)&lt;/p>
@@ -355,8 +355,8 @@ data-flex-basis="365px"
 &lt;/table>
 &lt;/li>
 &lt;/ul>
-&lt;h3 id="43">4.3&lt;/h3>
-&lt;ul>
+&lt;h3 id="43">4.3
+&lt;/h3>&lt;ul>
 &lt;li>
 &lt;p>游戏数据&lt;/p>
 &lt;p>&lt;code>YuanShen_Data&lt;/code>: 68.55 GB (+ 1.34 GB)&lt;/p>
@@ -424,8 +424,8 @@ data-flex-basis="382px"
 &lt;/table>
 &lt;/li>
 &lt;/ul>
-&lt;h3 id="42">4.2&lt;/h3>
-&lt;ul>
+&lt;h3 id="42">4.2
+&lt;/h3>&lt;ul>
 &lt;li>
 &lt;p>游戏数据&lt;/p>
 &lt;p>&lt;code>YuanShen_Data&lt;/code>: 67.21 GB (+ 4.18 GB)&lt;/p>
@@ -493,8 +493,8 @@ data-flex-basis="426px"
 &lt;/table>
 &lt;/li>
 &lt;/ul>
-&lt;h3 id="41">4.1&lt;/h3>
-&lt;ul>
+&lt;h3 id="41">4.1
+&lt;/h3>&lt;ul>
 &lt;li>
 &lt;p>游戏数据&lt;/p>
 &lt;p>&lt;code>YuanShen_Data&lt;/code>: 63.03 GB (+ 6.13 GB)&lt;/p>
@@ -562,8 +562,8 @@ data-flex-basis="346px"
 &lt;/table>
 &lt;/li>
 &lt;/ul>
-&lt;h3 id="40">4.0&lt;/h3>
-&lt;ul>
+&lt;h3 id="40">4.0
+&lt;/h3>&lt;ul>
 &lt;li>
 &lt;p>游戏数据&lt;/p>
 &lt;p>&lt;code>YuanShen_Data&lt;/code>: 56.90 GB (+ 7.01 GB)&lt;/p>
@@ -605,9 +605,9 @@ data-flex-basis="611px"
 >&lt;/p>
 &lt;/li>
 &lt;/ul>
-&lt;h2 id="3x">3.x&lt;/h2>
-&lt;h3 id="38">3.8&lt;/h3>
-&lt;ul>
+&lt;h2 id="3x">3.x
+&lt;/h2>&lt;h3 id="38">3.8
+&lt;/h3>&lt;ul>
 &lt;li>
 &lt;p>游戏数据&lt;/p>
 &lt;p>&lt;code>YuanShen_Data&lt;/code>: 49.89 GB (+ 0.84 GB)&lt;/p>
@@ -649,8 +649,8 @@ data-flex-basis="407px"
 >&lt;/p>
 &lt;/li>
 &lt;/ul>
-&lt;h3 id="37">3.7&lt;/h3>
-&lt;ul>
+&lt;h3 id="37">3.7
+&lt;/h3>&lt;ul>
 &lt;li>
 &lt;p>游戏数据&lt;/p>
 &lt;p>&lt;code>YuanShen_Data&lt;/code>: 49.05 GB (+ 1.04 GB)&lt;/p>
@@ -692,8 +692,8 @@ data-flex-basis="311px"
 >&lt;/p>
 &lt;/li>
 &lt;/ul>
-&lt;h3 id="36">3.6&lt;/h3>
-&lt;ul>
+&lt;h3 id="36">3.6
+&lt;/h3>&lt;ul>
 &lt;li>
 &lt;p>游戏数据&lt;/p>
 &lt;p>&lt;code>YuanShen_Data&lt;/code>: 48.01 GB (+ 2.98 GB)&lt;/p>
@@ -735,8 +735,8 @@ data-flex-basis="412px"
 >&lt;/p>
 &lt;/li>
 &lt;/ul>
-&lt;h3 id="35">3.5&lt;/h3>
-&lt;ul>
+&lt;h3 id="35">3.5
+&lt;/h3>&lt;ul>
 &lt;li>
 &lt;p>游戏数据&lt;/p>
 &lt;p>&lt;code>YuanShen_Data&lt;/code>: 45.03 GB&lt;/p>

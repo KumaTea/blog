@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>SaaS on 酷玛阁 | KumaTea's Blog</title><link>https://blog.kmtea.eu/tags/saas/</link><description>Recent content in SaaS on 酷玛阁 | KumaTea's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 13 Oct 2023 16:00:00 +0800</lastBuildDate><atom:link href="https://blog.kmtea.eu/tags/saas/index.xml" rel="self" type="application/rss+xml"/><item><title>SaaS 平台 Python 应用部署实战</title><link>https://blog.kmtea.eu/p/231013-saas/</link><pubDate>Fri, 13 Oct 2023 16:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/231013-saas/</guid><description>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/cover.jpg" alt="Featured image of post SaaS 平台 Python 应用部署实战" />&lt;h1 id="saas-平台-python-应用部署实战">SaaS 平台 Python 应用部署实战&lt;/h1>
-&lt;p>如果你还不知道，
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>SaaS on 酷玛阁 | KumaTea's Blog</title><link>https://blog.kmtea.eu/tags/saas/</link><description>Recent content in SaaS on 酷玛阁 | KumaTea's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sat, 14 Oct 2023 02:30:58 +0800</lastBuildDate><atom:link href="https://blog.kmtea.eu/tags/saas/index.xml" rel="self" type="application/rss+xml"/><item><title>SaaS 平台 Python 应用部署实战</title><link>https://blog.kmtea.eu/p/231013-saas/</link><pubDate>Fri, 13 Oct 2023 16:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/231013-saas/</guid><description>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/cover.jpg" alt="Featured image of post SaaS 平台 Python 应用部署实战" />&lt;h1 id="saas-平台-python-应用部署实战">SaaS 平台 Python 应用部署实战
+&lt;/h1>&lt;p>如果你还不知道，
 现在各大云服务巨头都提供了
 &lt;strong>永久免费&lt;/strong> 的 Serverless 服务，
 适合托管一些很小的应用。&lt;/p>
@@ -14,13 +14,13 @@
 &lt;p>目前示例 bot &lt;a class="link" href="https://t.me/KumaLiteBot" target="_blank" rel="noopener"
 >Kuma 发癫 Bot&lt;/a>
 托管在 Azure 上面。&lt;/p>
-&lt;h2 id="google-cloud-functions">Google Cloud Functions&lt;/h2>
-&lt;p>谷歌的配置过程是最直观、方便、省心的，
+&lt;h2 id="google-cloud-functions">Google Cloud Functions
+&lt;/h2>&lt;p>谷歌的配置过程是最直观、方便、省心的，
 其实这个bot之前就托管在谷歌云上，
 但是因为有&lt;a class="link" href="#%e5%b0%8f%e6%8f%90%e7%a4%ba" >隐性收费&lt;/a>就关掉了。
 只能说贵有贵的道理。&lt;/p>
-&lt;h3 id="创建-functions">创建 Functions&lt;/h3>
-&lt;p>先进入 Functions 界面&lt;/p>
+&lt;h3 id="创建-functions">创建 Functions
+&lt;/h3>&lt;p>先进入 Functions 界面&lt;/p>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/GCP-01-create-01.jpg"
 width="2559"
 height="1440"
@@ -78,8 +78,8 @@ data-flex-grow="123"
 data-flex-basis="296px"
 >&lt;/p>
 &lt;p>如果弹出启用 API 允许即可&lt;/p>
-&lt;h3 id="录入代码">录入代码&lt;/h3>
-&lt;p>选择语言和版本&lt;/p>
+&lt;h3 id="录入代码">录入代码
+&lt;/h3>&lt;p>选择语言和版本&lt;/p>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/GCP-02-code-01.jpg"
 width="1116"
 height="803"
@@ -160,8 +160,8 @@ data-flex-grow="199"
 data-flex-basis="479px"
 >&lt;/p>
 &lt;p>把依赖贴进去，就可以点下面的 &lt;strong>Deploy&lt;/strong> 了&lt;/p>
-&lt;h3 id="其他设置">其他设置&lt;/h3>
-&lt;p>可以看到这里我失败了，因为忘了设置环境变量&lt;/p>
+&lt;h3 id="其他设置">其他设置
+&lt;/h3>&lt;p>可以看到这里我失败了，因为忘了设置环境变量&lt;/p>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/GCP-03-settings-01.jpg"
 width="1779"
 height="934"
@@ -246,8 +246,8 @@ data-flex-basis="295px"
 &lt;p>只要在创建或者修改里面
 &lt;strong>RUNTIME&lt;/strong> 下面 environment variables 里面填就好了&lt;/p>
 &lt;p>当然你也可以直接写进代码里&lt;/p>
-&lt;h3 id="完成">完成&lt;/h3>
-&lt;p>OK, 这就完了&lt;/p>
+&lt;h3 id="完成">完成
+&lt;/h3>&lt;p>OK, 这就完了&lt;/p>
 &lt;p>GCP 会自动开始 build 并部署&lt;/p>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/GCP-04-done-01.jpg"
 width="1664"
@@ -268,8 +268,8 @@ class="gallery-image"
 data-flex-grow="214"
 data-flex-basis="514px"
 >&lt;/p>
-&lt;h4 id="小提示">小提示&lt;/h4>
-&lt;p>Cloud Functions 有免费额度，
+&lt;h4 id="小提示">小提示
+&lt;/h4>&lt;p>Cloud Functions 有免费额度，
 &lt;strong>但 Storage 没有&lt;/strong>。&lt;/p>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/GCP-04-done-03.jpg"
 width="1657"
@@ -282,11 +282,11 @@ data-flex-basis="557px"
 >&lt;/p>
 &lt;p>部署完成后可以直接删掉自动生成的 buckets 避免扣钱，
 完全不影响 bot 运行&lt;/p>
-&lt;h2 id="aws-lambda">AWS Lambda&lt;/h2>
-&lt;p>AWS Lambda 比 GCP Cloud Functions
+&lt;h2 id="aws-lambda">AWS Lambda
+&lt;/h2>&lt;p>AWS Lambda 比 GCP Cloud Functions
 多一步手动上传依赖的步骤&lt;/p>
-&lt;h3 id="创建-lambda">创建 Lambda&lt;/h3>
-&lt;p>在开始之前，记得先在右上角选择你想要的地区&lt;/p>
+&lt;h3 id="创建-lambda">创建 Lambda
+&lt;/h3>&lt;p>在开始之前，记得先在右上角选择你想要的地区&lt;/p>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/AWS-01-create-01.jpg"
 width="908"
 height="570"
@@ -338,8 +338,8 @@ class="gallery-image"
 data-flex-grow="202"
 data-flex-basis="484px"
 >&lt;/p>
-&lt;h3 id="填入代码">填入代码&lt;/h3>
-&lt;p>向下拉，把代码粘贴进编辑器，保存即可&lt;/p>
+&lt;h3 id="填入代码">填入代码
+&lt;/h3>&lt;p>向下拉，把代码粘贴进编辑器，保存即可&lt;/p>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/AWS-02-code-01.jpg"
 width="1614"
 height="1169"
@@ -417,8 +417,8 @@ data-flex-basis="331px"
 &lt;/span>
 &lt;p>Lambda 回传的 &lt;code>response['body']&lt;/code> 必须是 str 类型，
 否则会报 &lt;code>[ERROR] Runtime.MarshalError: Unable to marshal response&lt;/code>&lt;/p>
-&lt;h3 id="上传依赖">上传依赖&lt;/h3>
-&lt;p>这个时候如果直接部署会报错：找不到依赖&lt;/p>
+&lt;h3 id="上传依赖">上传依赖
+&lt;/h3>&lt;p>这个时候如果直接部署会报错：找不到依赖&lt;/p>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/AWS-03-deps-01.jpg"
 width="2064"
 height="1108"
@@ -531,8 +531,8 @@ data-flex-grow="136"
 data-flex-basis="327px"
 >&lt;/p>
 &lt;p>最后点 Code Source 旁边的 Deploy&lt;/p>
-&lt;h3 id="其他设置-1">其他设置&lt;/h3>
-&lt;p>环境变量在下方 Configuration - Environment variables 里面，
+&lt;h3 id="其他设置-1">其他设置
+&lt;/h3>&lt;p>环境变量在下方 Configuration - Environment variables 里面，
 设置简单不再赘述。&lt;/p>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/AWS-04-settings-01.jpg"
 width="1762"
@@ -543,8 +543,8 @@ class="gallery-image"
 data-flex-grow="154"
 data-flex-basis="371px"
 >&lt;/p>
-&lt;h3 id="完成-1">完成&lt;/h3>
-&lt;p>已成功运行&lt;/p>
+&lt;h3 id="完成-1">完成
+&lt;/h3>&lt;p>已成功运行&lt;/p>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/AWS-05-done-01.jpg"
 width="2389"
 height="1189"
@@ -554,11 +554,11 @@ class="gallery-image"
 data-flex-grow="200"
 data-flex-basis="482px"
 >&lt;/p>
-&lt;h2 id="azure-functions">Azure Functions&lt;/h2>
-&lt;p>Azure 更是重量级，Web 端功能复杂甚至缺失，
+&lt;h2 id="azure-functions">Azure Functions
+&lt;/h2>&lt;p>Azure 更是重量级，Web 端功能复杂甚至缺失，
 必须使用 VS Code 才能完整部署&lt;/p>
-&lt;h3 id="准备">准备&lt;/h3>
-&lt;p>你需要安装一个 &lt;a class="link" href="https://code.visualstudio.com/" target="_blank" rel="noopener"
+&lt;h3 id="准备">准备
+&lt;/h3>&lt;p>你需要安装一个 &lt;a class="link" href="https://code.visualstudio.com/" target="_blank" rel="noopener"
 >VS Code&lt;/a>&lt;/p>
 &lt;p>然后安装 &lt;a class="link" href="https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions" target="_blank" rel="noopener"
 >Azure Functions 插件&lt;/a>&lt;/p>
@@ -582,8 +582,8 @@ class="gallery-image"
 data-flex-grow="93"
 data-flex-basis="224px"
 >&lt;/p>
-&lt;h3 id="创建-functions-1">创建 Functions&lt;/h3>
-&lt;p>左下角 Workspace，鼠标移上去会有一个 Functions 图标出现&lt;/p>
+&lt;h3 id="创建-functions-1">创建 Functions
+&lt;/h3>&lt;p>左下角 Workspace，鼠标移上去会有一个 Functions 图标出现&lt;/p>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/Azure-01-create-01.jpg"
 width="573"
 height="343"
@@ -627,8 +627,8 @@ data-flex-grow="416"
 data-flex-basis="1000px"
 >&lt;/p>
 &lt;p>就可以打开生成的代码文件编辑了&lt;/p>
-&lt;h3 id="填入代码-1">填入代码&lt;/h3>
-&lt;p>首先这个 Create New Function 是没有用的&lt;/p>
+&lt;h3 id="填入代码-1">填入代码
+&lt;/h3>&lt;p>首先这个 Create New Function 是没有用的&lt;/p>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/Azure-02-code-01.jpg"
 width="515"
 height="317"
@@ -705,8 +705,8 @@ data-flex-basis="466px"
 &lt;p>&lt;code>trigger_arg_name&lt;/code> Argument name for HttpRequest, defaults to &amp;lsquo;req&amp;rsquo;.&lt;/p>
 &lt;/blockquote>
 &lt;p>没事限制参数干嘛？我就改成 &lt;code>req&lt;/code> 居然就成功了&lt;/p>
-&lt;h3 id="部署和设置">部署和设置&lt;/h3>
-&lt;p>工作区 Azure 图标 - Create Function App in Azure&lt;/p>
+&lt;h3 id="部署和设置">部署和设置
+&lt;/h3>&lt;p>工作区 Azure 图标 - Create Function App in Azure&lt;/p>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/Azure-03-deploy-01.jpg"
 width="802"
 height="382"
@@ -781,8 +781,8 @@ class="gallery-image"
 data-flex-grow="225"
 data-flex-basis="541px"
 >&lt;/p>
-&lt;h3 id="完成-2">完成&lt;/h3>
-&lt;p>完成后 log 会显示你的 Trigger URL&lt;/p>
+&lt;h3 id="完成-2">完成
+&lt;/h3>&lt;p>完成后 log 会显示你的 Trigger URL&lt;/p>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/Azure-04-done-01.jpg"
 width="1201"
 height="514"
@@ -802,8 +802,8 @@ class="gallery-image"
 data-flex-grow="202"
 data-flex-basis="486px"
 >&lt;/p>
-&lt;h2 id="总结">总结&lt;/h2>
-&lt;p>平心而论，
+&lt;h2 id="总结">总结
+&lt;/h2>&lt;p>平心而论，
 Azure 的部署过程其实是很方便的，
 尤其是对于那些用惯了 VS Code 的人来说。&lt;/p>
 &lt;p>然而由于微软的文档过于语焉不详才让我吃了那么多苦头，

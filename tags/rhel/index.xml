@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>RHEL on 酷玛阁 | KumaTea's Blog</title><link>https://blog.kmtea.eu/tags/rhel/</link><description>Recent content in RHEL on 酷玛阁 | KumaTea's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Mon, 04 Dec 2023 01:00:00 +0800</lastBuildDate><atom:link href="https://blog.kmtea.eu/tags/rhel/index.xml" rel="self" type="application/rss+xml"/><item><title>制作 RHEL LXC 容器镜像</title><link>https://blog.kmtea.eu/p/231204-rhel-lxc/</link><pubDate>Mon, 04 Dec 2023 01:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/231204-rhel-lxc/</guid><description>&lt;img src="https://blog.kmtea.eu/p/231204-rhel-lxc/img/cover.jpg" alt="Featured image of post 制作 RHEL LXC 容器镜像" />&lt;h1 id="制作-rhel-lxc-容器镜像">制作 RHEL LXC 容器镜像&lt;/h1>
-&lt;h2 id="前言">前言&lt;/h2>
-&lt;p>虽然玩 Linux 很多年了，但一直以来都只是用
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>RHEL on 酷玛阁 | KumaTea's Blog</title><link>https://blog.kmtea.eu/tags/rhel/</link><description>Recent content in RHEL on 酷玛阁 | KumaTea's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Mon, 04 Dec 2023 01:00:00 +0800</lastBuildDate><atom:link href="https://blog.kmtea.eu/tags/rhel/index.xml" rel="self" type="application/rss+xml"/><item><title>制作 RHEL LXC 容器镜像</title><link>https://blog.kmtea.eu/p/231204-rhel-lxc/</link><pubDate>Mon, 04 Dec 2023 01:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/231204-rhel-lxc/</guid><description>&lt;img src="https://blog.kmtea.eu/p/231204-rhel-lxc/img/cover.jpg" alt="Featured image of post 制作 RHEL LXC 容器镜像" />&lt;h1 id="制作-rhel-lxc-容器镜像">制作 RHEL LXC 容器镜像
+&lt;/h1>&lt;h2 id="前言">前言
+&lt;/h2>&lt;p>虽然玩 Linux 很多年了，但一直以来都只是用
 Debian 系的发行版，对其他的没有涉猎。
 最近发现了 LXC 的美妙之处，于是试了试一直没体验过的 RHEL。&lt;/p>
 &lt;hr>
@@ -9,8 +9,8 @@ Debian 系的发行版，对其他的没有涉猎。
 而作为应用级的虚拟，Docker 又太过轻量，systemd 也不能用，
 只能用来部署单一程序。相比之下，作为系统级虚拟的 LXC
 就是日常调试的最佳选择。&lt;/p>
-&lt;h2 id="踩坑">踩坑&lt;/h2>
-&lt;p>我首先尝试的是官方 docker 镜像
+&lt;h2 id="踩坑">踩坑
+&lt;/h2>&lt;p>我首先尝试的是官方 docker 镜像
 &lt;a class="link" href="https://catalog.redhat.com/software/containers/ubi9/ubi/615bcf606feffc5384e8452e" target="_blank" rel="noopener"
 >ubi (Universal Base Image)&lt;/a>,
 通过 &lt;code>docker save&lt;/code> 导出后直接导入到 PVE 中。
@@ -31,12 +31,12 @@ class="gallery-image"
 data-flex-grow="217"
 data-flex-basis="521px"
 >&lt;/p>
-&lt;h2 id="准备">准备&lt;/h2>
-&lt;p>打开 ISO &lt;a class="link" href="https://developers.redhat.com/products/rhel/download" target="_blank" rel="noopener"
+&lt;h2 id="准备">准备
+&lt;/h2>&lt;p>打开 ISO &lt;a class="link" href="https://developers.redhat.com/products/rhel/download" target="_blank" rel="noopener"
 >下载官网&lt;/a>,
 &lt;strong>拉到下面&lt;/strong>，选择 &lt;strong>Boot iso&lt;/strong> 下载。&lt;del>当然你财力雄厚也可以选择十几G的 DVD iso&lt;/del>&lt;/p>
-&lt;h2 id="提取">提取&lt;/h2>
-&lt;p>这一步要从 RHEL 完整虚拟机中提取 rootfs。&lt;/p>
+&lt;h2 id="提取">提取
+&lt;/h2>&lt;p>这一步要从 RHEL 完整虚拟机中提取 rootfs。&lt;/p>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/231204-rhel-lxc/img/01-inst-01.jpg"
 width="2089"
 height="1253"
@@ -141,8 +141,8 @@ class="gallery-image"
 data-flex-grow="245"
 data-flex-basis="589px"
 >&lt;/p>
-&lt;h2 id="精简">精简&lt;/h2>
-&lt;p>LXC 运行环境下，固件、内核均由宿主机提供，
+&lt;h2 id="精简">精简
+&lt;/h2>&lt;p>LXC 运行环境下，固件、内核均由宿主机提供，
 我们可以将其卸载，节省空间。&lt;/p>
 &lt;p>由 &lt;code>rootfs.tar.xz&lt;/code> 创建 lxc，启动后进入 shell&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
@@ -238,8 +238,8 @@ data-flex-basis="651px"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tar cvJf rhel-9-minimal_9.3_amd64.tar.xz ./*
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h2 id="后记">后记&lt;/h2>
-&lt;p>&lt;img src="https://blog.kmtea.eu/p/231204-rhel-lxc/img/03-info-01.jpg"
+&lt;/div>&lt;h2 id="后记">后记
+&lt;/h2>&lt;p>&lt;img src="https://blog.kmtea.eu/p/231204-rhel-lxc/img/03-info-01.jpg"
 width="1828"
 height="924"
 srcset="https://blog.kmtea.eu/p/231204-rhel-lxc/img/03-info-01_hu2169639610891840469.jpg 480w, https://blog.kmtea.eu/p/231204-rhel-lxc/img/03-info-01_hu9997991310494381078.jpg 1024w"
@@ -256,13 +256,13 @@ data-flex-basis="474px"
 &lt;li>非常不建议分享你制作的镜像！
 首先 &lt;code>subscription-manager unregister&lt;/code> 不能保证账户信息完全被抹除，
 其次 &lt;code>/etc&lt;/code> 下 &lt;code>fstab&lt;/code> &lt;code>hosts&lt;/code> &lt;code>hostname&lt;/code> &lt;code>resolv.conf&lt;/code> &lt;code>shadow&lt;/code> 等大量文件均可能包含敏感信息。&lt;/li>
-&lt;/ol></description></item><item><title>树莓派安装 RHEL</title><link>https://blog.kmtea.eu/p/220710-pi-rhel/</link><pubDate>Sun, 10 Jul 2022 04:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/220710-pi-rhel/</guid><description>&lt;img src="https://blog.kmtea.eu/p/220710-pi-rhel/img/cover.jpg" alt="Featured image of post 树莓派安装 RHEL" />&lt;h1 id="树莓派安装-rhel">树莓派安装 RHEL&lt;/h1>
-&lt;blockquote>
+&lt;/ol></description></item><item><title>树莓派安装 RHEL</title><link>https://blog.kmtea.eu/p/220710-pi-rhel/</link><pubDate>Sun, 10 Jul 2022 04:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/220710-pi-rhel/</guid><description>&lt;img src="https://blog.kmtea.eu/p/220710-pi-rhel/img/cover.jpg" alt="Featured image of post 树莓派安装 RHEL" />&lt;h1 id="树莓派安装-rhel">树莓派安装 RHEL
+&lt;/h1>&lt;blockquote>
 &lt;p>This tutorial is &lt;a class="link" href="https://github.com/KumaTea/pi-rhel" target="_blank" rel="noopener"
 >originally written in English here&lt;/a>&lt;/p>
 &lt;/blockquote>
-&lt;h2 id="这个想法怎么来的">这个想法怎么来的&lt;/h2>
-&lt;p>大概是 &lt;a class="link" href="https://the-report.cloud/ibms-red-hat-just-killed-centos-as-we-know-it-with-centos-stream-stability-goes-out-of-the-door" target="_blank" rel="noopener"
+&lt;h2 id="这个想法怎么来的">这个想法怎么来的
+&lt;/h2>&lt;p>大概是 &lt;a class="link" href="https://the-report.cloud/ibms-red-hat-just-killed-centos-as-we-know-it-with-centos-stream-stability-goes-out-of-the-door" target="_blank" rel="noopener"
 >鲨了 CentOS&lt;/a> 的良心不安，
 Red Hat 去年宣布 &lt;a class="link" href="https://developers.redhat.com/articles/faqs-no-cost-red-hat-enterprise-linux" target="_blank" rel="noopener"
 >RHEL 个人订阅白送了&lt;/a> 。
@@ -301,8 +301,8 @@ data-flex-basis="426px"
 &lt;p>搜了下，大概是唯一支持树莓派的 RHEL 发行版了。&lt;/p>
 &lt;p>花了几天摸索出一个奇技淫巧，玩一波偷梁换柱，
 达到在树莓派上安装 RHEL 的方法，简述一下。&lt;/p>
-&lt;h2 id="需求">需求&lt;/h2>
-&lt;ul>
+&lt;h2 id="需求">需求
+&lt;/h2>&lt;ul>
 &lt;li>Raspberry Pi 4B, 400或3B/+
 &lt;ul>
 &lt;li>仅在4B上测试成功&lt;/li>
@@ -316,8 +316,8 @@ data-flex-basis="426px"
 &lt;li>Red Hat 个人订阅&lt;/li>
 &lt;li>科学或者魔法上网&lt;/li>
 &lt;/ul>
-&lt;h2 id="注册-red-hat-个人订阅">注册 Red Hat 个人订阅&lt;/h2>
-&lt;p>来这里 &lt;a class="link" href="https://developers.redhat.com/register" target="_blank" rel="noopener"
+&lt;h2 id="注册-red-hat-个人订阅">注册 Red Hat 个人订阅
+&lt;/h2>&lt;p>来这里 &lt;a class="link" href="https://developers.redhat.com/register" target="_blank" rel="noopener"
 >注册 Red Hat Individual Subscription&lt;/a> 。&lt;/p>
 &lt;p>注册完了记得看下 &lt;a class="link" href="https://access.redhat.com/management/subscriptions" target="_blank" rel="noopener"
 >你的管理页面&lt;/a> 有没有东西：&lt;/p>
@@ -332,8 +332,8 @@ data-flex-grow="177"
 data-flex-basis="426px"
 >&lt;/p>
 &lt;p>等下要从 RHEL 的 repo 中更新软件包，所以这步不能省。&lt;/p>
-&lt;h2 id="安装-oracle-linux">安装 Oracle Linux&lt;/h2>
-&lt;p>首先 &lt;a class="link" href="https://www.oracle.com/linux/downloads/linux-arm-downloads.html" target="_blank" rel="noopener"
+&lt;h2 id="安装-oracle-linux">安装 Oracle Linux
+&lt;/h2>&lt;p>首先 &lt;a class="link" href="https://www.oracle.com/linux/downloads/linux-arm-downloads.html" target="_blank" rel="noopener"
 >下载 Oracle Linux&lt;/a> 。&lt;/p>
 &lt;p>然后找个你喜欢的刷写工具。
 一般 &lt;a class="link" href="https://www.raspberrypi.com/software/#:~:text=Pi%20OS%20using-,Raspberry%C2%A0Pi%C2%A0Imager,-Raspberry%20Pi%20Imager" target="_blank" rel="noopener"
@@ -351,8 +351,8 @@ class="gallery-image"
 data-flex-grow="158"
 data-flex-basis="381px"
 >&lt;/p>
-&lt;h3 id="ssd-与-sd卡">SSD 与 SD卡&lt;/h3>
-&lt;p>Oracle Linux 的根文件系统 (rootfs) 是 &lt;code>btrfs&lt;/code> ，
+&lt;h3 id="ssd-与-sd卡">SSD 与 SD卡
+&lt;/h3>&lt;p>Oracle Linux 的根文件系统 (rootfs) 是 &lt;code>btrfs&lt;/code> ，
 卡得出奇，卡的批爆！合起来写炸了我5个内存卡和U盘！就为了这篇！
 所以别用内存卡！用固态！！！&lt;/p>
 &lt;p>或者可以考虑下换成 &lt;code>f2fs&lt;/code> 。&lt;/p>
@@ -379,8 +379,8 @@ class="gallery-image"
 data-flex-grow="177"
 data-flex-basis="426px"
 >&lt;/p>
-&lt;h2 id="系统准备">系统准备&lt;/h2>
-&lt;p>###扩展分区&lt;/p>
+&lt;h2 id="系统准备">系统准备
+&lt;/h2>&lt;p>###扩展分区&lt;/p>
 &lt;p>解压缩后的固件大小约为 3.89GB ，装完了剩下大约300MB。
 这点地方塞牙缝 (&lt;code>dnf update&lt;/code>) 都不够，先要用 &lt;code>parted&lt;/code> 扩展分区。&lt;/p>
 &lt;p>没自带，先安装：&lt;/p>
@@ -434,8 +434,8 @@ class="gallery-image"
 data-flex-grow="177"
 data-flex-basis="426px"
 >&lt;/p>
-&lt;h3 id="更新-kernel-uek">更新 &lt;code>kernel-uek&lt;/code>&lt;/h3>
-&lt;p>要留的唯一一个软件包是 &lt;code>kernel-uek&lt;/code> 。
+&lt;h3 id="更新-kernel-uek">更新 &lt;code>kernel-uek&lt;/code>
+&lt;/h3>&lt;p>要留的唯一一个软件包是 &lt;code>kernel-uek&lt;/code> 。
 全称 &lt;a class="link" href="https://docs.oracle.com/en/operating-systems/uek/" target="_blank" rel="noopener"
 >Unbreakable Enterprise Kernel&lt;/a> ，
 是 Oracle 搞的 Linux 内核。&lt;/p>
@@ -458,8 +458,8 @@ class="gallery-image"
 data-flex-grow="226"
 data-flex-basis="543px"
 >&lt;/p>
-&lt;h2 id="补丁和运行-convert2rhel">补丁和运行 &amp;ldquo;convert2rhel&amp;rdquo;。&lt;/h2>
-&lt;p>开始偷梁换柱之前先看看 &lt;code>os-release&lt;/code> 怀念一下：&lt;/p>
+&lt;h2 id="补丁和运行-convert2rhel">补丁和运行 &amp;ldquo;convert2rhel&amp;rdquo;。
+&lt;/h2>&lt;p>开始偷梁换柱之前先看看 &lt;code>os-release&lt;/code> 怀念一下：&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -517,8 +517,8 @@ class="gallery-image"
 data-flex-grow="177"
 data-flex-basis="426px"
 >&lt;/p>
-&lt;h3 id="修改配置">修改配置&lt;/h3>
-&lt;p>由于 RHEL 没有正式支持树莓派，它的转换工具也不会包含我们要用的配置。
+&lt;h3 id="修改配置">修改配置
+&lt;/h3>&lt;p>由于 RHEL 没有正式支持树莓派，它的转换工具也不会包含我们要用的配置。
 硬转就会。。。&lt;/p>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/220710-pi-rhel/img/013-c2r-errors.jpg"
 width="1920"
@@ -586,8 +586,8 @@ class="gallery-image"
 data-flex-grow="183"
 data-flex-basis="440px"
 >&lt;/p>
-&lt;h3 id="手动运行-convert2rhel">手动运行 &lt;code>convert2rhel&lt;/code>&lt;/h3>
-&lt;p>不能直接运行 &lt;code>convert2rhel&lt;/code> ，
+&lt;h3 id="手动运行-convert2rhel">手动运行 &lt;code>convert2rhel&lt;/code>
+&lt;/h3>&lt;p>不能直接运行 &lt;code>convert2rhel&lt;/code> ，
 因为它写的时候也没想到会有人在树莓派上跑。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -629,8 +629,8 @@ class="gallery-image"
 data-flex-grow="177"
 data-flex-basis="426px"
 >&lt;/p>
-&lt;h2 id="绑定订阅">绑定订阅&lt;/h2>
-&lt;div class="highlight">&lt;div class="chroma">
+&lt;h2 id="绑定订阅">绑定订阅
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
@@ -638,8 +638,8 @@ data-flex-basis="426px"
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">subscription-manager register
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h2 id="替换-repo">替换 repo&lt;/h2>
-&lt;p>先鸟尽弓藏兔死狗烹。&lt;/p>
+&lt;/div>&lt;h2 id="替换-repo">替换 repo
+&lt;/h2>&lt;p>先鸟尽弓藏兔死狗烹。&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -662,8 +662,8 @@ class="gallery-image"
 data-flex-grow="313"
 data-flex-basis="751px"
 >&lt;/p>
-&lt;h3 id="删除不需要的软件包">删除不需要的软件包&lt;/h3>
-&lt;div class="highlight">&lt;div class="chroma">
+&lt;h3 id="删除不需要的软件包">删除不需要的软件包
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
 &lt;/span>&lt;span class="lnt">2
@@ -702,8 +702,8 @@ class="gallery-image"
 data-flex-grow="177"
 data-flex-basis="426px"
 >&lt;/p>
-&lt;h3 id="替换非-rhel-软件包">替换非 RHEL 软件包&lt;/h3>
-&lt;div class="highlight">&lt;div class="chroma">
+&lt;h3 id="替换非-rhel-软件包">替换非 RHEL 软件包
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
@@ -749,8 +749,8 @@ class="gallery-image"
 data-flex-grow="177"
 data-flex-basis="426px"
 >&lt;/p>
-&lt;h2 id="结论">结论&lt;/h2>
-&lt;p>家人们看看 &lt;code>neofetch&lt;/code> 吧&lt;/p>
+&lt;h2 id="结论">结论
+&lt;/h2>&lt;p>家人们看看 &lt;code>neofetch&lt;/code> 吧&lt;/p>
 &lt;p>&lt;img src="https://blog.kmtea.eu/p/220710-pi-rhel/img/001-neofetch.jpg"
 width="1920"
 height="1080"
@@ -761,8 +761,8 @@ class="gallery-image"
 data-flex-grow="177"
 data-flex-basis="426px"
 >&lt;/p>
-&lt;h2 id="后记">后记&lt;/h2>
-&lt;p>RHEL 9 出了，但是懒得折腾了，教程写了开摆。&lt;/p>
+&lt;h2 id="后记">后记
+&lt;/h2>&lt;p>RHEL 9 出了，但是懒得折腾了，教程写了开摆。&lt;/p>
 &lt;p>不会真的有人会有和我一样的脑洞吧？？？&lt;/p>
 &lt;p>以及这篇尽量口语化了，如果你英语很彳亍，真想搞还是建议看看上面的英文链接。
 虽然我英语是工地水平，但是大概还是比看这篇好理解一点。&lt;/p></description></item></channel></rss>
