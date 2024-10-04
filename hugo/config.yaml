@@ -4,6 +4,8 @@ theme: stack
 paginate: 5
 title: "酷玛阁 | KumaTea's Blog"
 
+timeout: 120s
+
 #languages:
 #  zh-cn:
 #    languageName: 中文
