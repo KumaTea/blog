@@ -25,4 +25,4 @@ comments: false
 
 ## 友链区
 
-* [桑批](https://octl1bra.github.io)
+* [桑批](https://libra.wiki)
