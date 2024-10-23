@@ -12,6 +12,28 @@
 
 ## 5.x
 
+### 5.1
+
+* 游戏数据
+
+  `YuanShen_Data`: 69.31 GB (+ 2.29 GB)
+
+  含语音: 86.32 GB
+
+* 语音
+
+  zh / en / ja / ko: 13.09 / 15.13 / 17.00 / 12.84 GB (- 1.68 ~ 2.10 GB)
+
+* 差分包
+
+  | 语言 | 文件名                                                  | 大小         |
+  |----|------------------------------------------------------|------------|
+  | /  | `game_5.0.0_5.1.0_hdiff_OuXoYuKRbvmxBGvG.zip`        | 18.00 GiB  |
+  | zh | `audio_zh-cn_5.0.0_5.1.0_hdiff_RDNLwIcyzBFLYuks.zip` | 550.22 MiB |
+  | en | `audio_en-us_5.0.0_5.1.0_hdiff_mKSGNTyLLiaPNAIq.zip` | 522.02 MiB |
+  | ja | `audio_ja-jp_5.0.0_5.1.0_hdiff_jnkpmmVWGoAUVpsW.zip` | 608.07 MiB |
+  | ko | `audio_ko-kr_5.0.0_5.1.0_hdiff_qHrMGShtHsIcocuc.zip` | 526.03 MiB |
+
 ### 5.0
 
 * 游戏数据
