@@ -5,7 +5,7 @@ from PIL import Image
 
 QUALITY = 50
 
-accepted_ext = ['.png', '.jpg', '.HEIC']
+accepted_ext = ['.png', '.jpg', '.HEIC', '.HEIF']
 
 
 def get_img_files(path='.'):
@@ -49,7 +49,7 @@ if __name__ == '__main__':
     if not img_files:
         exit(0)
 
-    if any(img_file.endswith('.HEIC') for img_file in img_files):
+    if any(img_file.endswith('.HEIC') for img_file in img_files) or any(img_file.endswith('.HEIF') for img_file in img_files):
         from pi_heif import register_heif_opener
 
         register_heif_opener()
