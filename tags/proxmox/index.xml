@@ -1,0 +1,545 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Proxmox on 酷玛阁 | KumaTea's Blog</title><link>https://blog.kmtea.eu/tags/proxmox/</link><description>Recent content in Proxmox on 酷玛阁 | KumaTea's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Mon, 04 Dec 2023 01:00:00 +0800</lastBuildDate><atom:link href="https://blog.kmtea.eu/tags/proxmox/index.xml" rel="self" type="application/rss+xml"/><item><title>制作 RHEL LXC 容器镜像</title><link>https://blog.kmtea.eu/p/231204-rhel-lxc/</link><pubDate>Mon, 04 Dec 2023 01:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/231204-rhel-lxc/</guid><description>&lt;img src="https://blog.kmtea.eu/p/231204-rhel-lxc/img/cover.jpg" alt="Featured image of post 制作 RHEL LXC 容器镜像" />&lt;h1 id="制作-rhel-lxc-容器镜像">制作 RHEL LXC 容器镜像
+&lt;/h1>&lt;h2 id="前言">前言
+&lt;/h2>&lt;p>虽然玩 Linux 很多年了，但一直以来都只是用
+Debian 系的发行版，对其他的没有涉猎。
+最近发现了 LXC 的美妙之处，于是试了试一直没体验过的 RHEL。&lt;/p>
+&lt;hr>
+&lt;p>鲁迅先生说过，中国人的性情是总喜欢调和折中的。&lt;/p>
+&lt;p>作为硬件级的虚拟，VM 太过笨重，对内存的利用效率太低；
+而作为应用级的虚拟，Docker 又太过轻量，systemd 也不能用，
+只能用来部署单一程序。相比之下，作为系统级虚拟的 LXC
+就是日常调试的最佳选择。&lt;/p>
+&lt;h2 id="踩坑">踩坑
+&lt;/h2>&lt;p>我首先尝试的是官方 docker 镜像
+&lt;a class="link" href="https://catalog.redhat.com/software/containers/ubi9/ubi/615bcf606feffc5384e8452e" target="_blank" rel="noopener"
+>ubi (Universal Base Image)&lt;/a>,
+通过 &lt;code>docker save&lt;/code> 导出后直接导入到 PVE 中。
+虽然可以启动，但是缺少太多组件，出现大量恶性问题，如无法联网等，不具备可用性。&lt;/p>
+&lt;p>然后尝试了去年试过的 &lt;a class="link" href="https://blog.kmtea.eu/p/220710-pi-rhel/" target="_blank" rel="noopener"
+>转生大法&lt;/a>,
+不过 &lt;code>convert2rhel&lt;/code> 至今不支持 RHEL 9, 因此作罢。&lt;/p>
+&lt;hr>
+&lt;p>然而，ubi 的文件结构是我们的重要参考，
+后续我们打包的 rootfs 要力求与之一致。&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231204-rhel-lxc/img/00-ubi.jpg"
+width="1940"
+height="893"
+srcset="https://blog.kmtea.eu/p/231204-rhel-lxc/img/00-ubi_hu13255770391956968815.jpg 480w, https://blog.kmtea.eu/p/231204-rhel-lxc/img/00-ubi_hu12594507860381732256.jpg 1024w"
+loading="lazy"
+alt="rootfs"
+class="gallery-image"
+data-flex-grow="217"
+data-flex-basis="521px"
+>&lt;/p>
+&lt;h2 id="准备">准备
+&lt;/h2>&lt;p>打开 ISO &lt;a class="link" href="https://developers.redhat.com/products/rhel/download" target="_blank" rel="noopener"
+>下载官网&lt;/a>,
+&lt;strong>拉到下面&lt;/strong>，选择 &lt;strong>Boot iso&lt;/strong> 下载。&lt;del>当然你财力雄厚也可以选择十几G的 DVD iso&lt;/del>&lt;/p>
+&lt;h2 id="提取">提取
+&lt;/h2>&lt;p>这一步要从 RHEL 完整虚拟机中提取 rootfs。&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231204-rhel-lxc/img/01-inst-01.jpg"
+width="2089"
+height="1253"
+srcset="https://blog.kmtea.eu/p/231204-rhel-lxc/img/01-inst-01_hu8037319710215811194.jpg 480w, https://blog.kmtea.eu/p/231204-rhel-lxc/img/01-inst-01_hu15256158630943810460.jpg 1024w"
+loading="lazy"
+alt="install"
+class="gallery-image"
+data-flex-grow="166"
+data-flex-basis="400px"
+>&lt;/p>
+&lt;p>进入右上角，安装盘选择&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231204-rhel-lxc/img/01-inst-02.jpg"
+width="993"
+height="902"
+srcset="https://blog.kmtea.eu/p/231204-rhel-lxc/img/01-inst-02_hu1571606501211388973.jpg 480w, https://blog.kmtea.eu/p/231204-rhel-lxc/img/01-inst-02_hu12622043999403829194.jpg 1024w"
+loading="lazy"
+alt="destination"
+class="gallery-image"
+data-flex-grow="110"
+data-flex-basis="264px"
+>&lt;/p>
+&lt;p>下面选择自定义 Custom，否则它要给你创建 LVM 了&lt;/p>
+&lt;p>点击一次 Done 后，出来如下界面&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231204-rhel-lxc/img/01-inst-03.jpg"
+width="1089"
+height="754"
+srcset="https://blog.kmtea.eu/p/231204-rhel-lxc/img/01-inst-03_hu3389105987918258096.jpg 480w, https://blog.kmtea.eu/p/231204-rhel-lxc/img/01-inst-03_hu15995761781045031891.jpg 1024w"
+loading="lazy"
+alt="custom"
+class="gallery-image"
+data-flex-grow="144"
+data-flex-basis="346px"
+>&lt;/p>
+&lt;p>选择标准分区 Standard Partition，然后点击上方蓝字
+Click here to create them automatically&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231204-rhel-lxc/img/01-inst-04.jpg"
+width="1361"
+height="943"
+srcset="https://blog.kmtea.eu/p/231204-rhel-lxc/img/01-inst-04_hu3251020186975750956.jpg 480w, https://blog.kmtea.eu/p/231204-rhel-lxc/img/01-inst-04_hu10017054216242393183.jpg 1024w"
+loading="lazy"
+alt="partition"
+class="gallery-image"
+data-flex-grow="144"
+data-flex-basis="346px"
+>&lt;/p>
+&lt;p>这里直接 Done 就行，但保险起见我把文件系统设为了 ext4&lt;/p>
+&lt;hr>
+&lt;p>中间需要登录&lt;/p>
+&lt;p>登录后下方选择安装内容&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231204-rhel-lxc/img/01-inst-05.jpg"
+width="2024"
+height="1247"
+srcset="https://blog.kmtea.eu/p/231204-rhel-lxc/img/01-inst-05_hu13501235051783849232.jpg 480w, https://blog.kmtea.eu/p/231204-rhel-lxc/img/01-inst-05_hu12010362729058642645.jpg 1024w"
+loading="lazy"
+alt="software"
+class="gallery-image"
+data-flex-grow="162"
+data-flex-basis="389px"
+>&lt;/p>
+&lt;p>左边选择 Minimal Install，右边什么都不选&lt;/p>
+&lt;p>左下设置 root 密码就可以开始安装了&lt;/p>
+&lt;hr>
+&lt;p>安装完成后，重启进入系统。
+建议 ssh, vnc 没法复制粘贴，属于灾难级的体验。
+然后执行&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">yum install -y tar
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> /tmp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mkdir afs boot dev home lost+found media mnt opt proc root run srv sys tmp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">chmod -R &lt;span class="m">777&lt;/span> tmp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">chown -R nobody:nobody proc sys
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cp -a /bin /etc /lib /lib64 /sbin /usr /var .
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">rm -rf var/log/* var/cache/* var/tmp/*
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tar cvJf rootfs.tar.xz ./*
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>生成 &lt;code>rootfs.tar.xz&lt;/code> 后，任选方式传到 PVE 上。&lt;/p>
+&lt;p>我喜欢用 &lt;code>python3 -m http.server 8080&lt;/code>，
+但是要记得先关防火墙 &lt;code>systemctl stop firewalld&lt;/code>。&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231204-rhel-lxc/img/01-inst-06.jpg"
+width="897"
+height="365"
+srcset="https://blog.kmtea.eu/p/231204-rhel-lxc/img/01-inst-06_hu352174564185256992.jpg 480w, https://blog.kmtea.eu/p/231204-rhel-lxc/img/01-inst-06_hu7904610675870083342.jpg 1024w"
+loading="lazy"
+alt="uploaded"
+class="gallery-image"
+data-flex-grow="245"
+data-flex-basis="589px"
+>&lt;/p>
+&lt;h2 id="精简">精简
+&lt;/h2>&lt;p>LXC 运行环境下，固件、内核均由宿主机提供，
+我们可以将其卸载，节省空间。&lt;/p>
+&lt;p>由 &lt;code>rootfs.tar.xz&lt;/code> 创建 lxc，启动后进入 shell&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># dnf list --installed | grep firmware&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># dnf list --installed | grep kernel&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dnf remove -y iwl100-firmware.noarch iwl1000-firmware.noarch iwl105-firmware.noarch iwl135-firmware.noarch iwl2000-firmware.noarch iwl2030-firmware.noarch iwl3160-firmware.noarch iwl5000-firmware.noarch iwl5150-firmware.noarch iwl6000g2a-firmware.noarch iwl6050-firmware.noarch iwl7260-firmware.noarch linux-firmware.noarch linux-firmware-whence.noarch
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dnf remove -y kernel.x86_64 kernel-core.x86_64 kernel-modules.x86_64 kernel-modules-core.x86_64 kernel-tools.x86_64 kernel-tools-libs.x86_64
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dnf remove -y microcode_ctl
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dnf clean all
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>一举节省高达一半空间&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231204-rhel-lxc/img/02-slim-01.jpg"
+width="1835"
+height="973"
+srcset="https://blog.kmtea.eu/p/231204-rhel-lxc/img/02-slim-01_hu1059950815929129068.jpg 480w, https://blog.kmtea.eu/p/231204-rhel-lxc/img/02-slim-01_hu5287898253388452182.jpg 1024w"
+loading="lazy"
+alt="uninstall"
+class="gallery-image"
+data-flex-grow="188"
+data-flex-basis="452px"
+>&lt;/p>
+&lt;p>接下来是清除不必要的语言包，100M左右&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> /usr/share/locale
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mkdir /tmp/locale
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mv en* locale.alias /tmp/locale/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">rm -rf ./*
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mv /tmp/locale/* .
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">rmdir /tmp/locale
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>可以考虑关闭在容器中无法运行的服务&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">dnf remove -y audit
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">systemctl disable chronyd.service
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>最终体积来到 500M 左右，与官方 templates 同一水平。&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231204-rhel-lxc/img/02-slim-02.jpg"
+width="1026"
+height="378"
+srcset="https://blog.kmtea.eu/p/231204-rhel-lxc/img/02-slim-02_hu14806855225792169257.jpg 480w, https://blog.kmtea.eu/p/231204-rhel-lxc/img/02-slim-02_hu2356444554800781376.jpg 1024w"
+loading="lazy"
+alt="df"
+class="gallery-image"
+data-flex-grow="271"
+data-flex-basis="651px"
+>&lt;/p>
+&lt;p>最后和上一步一样打包即可。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> /tmp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mkdir afs boot dev home lost+found media mnt opt proc root run srv sys tmp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">chmod -R &lt;span class="m">777&lt;/span> tmp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">chown -R nobody:nobody proc sys
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cp -a /bin /etc /lib /lib64 /sbin /usr /var .
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">rm -rf var/log/* var/cache/* var/tmp/*
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tar cvJf rhel-9-minimal_9.3_amd64.tar.xz ./*
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="后记">后记
+&lt;/h2>&lt;p>&lt;img src="https://blog.kmtea.eu/p/231204-rhel-lxc/img/03-info-01.jpg"
+width="1828"
+height="924"
+srcset="https://blog.kmtea.eu/p/231204-rhel-lxc/img/03-info-01_hu2169639610891840469.jpg 480w, https://blog.kmtea.eu/p/231204-rhel-lxc/img/03-info-01_hu9997991310494381078.jpg 1024w"
+loading="lazy"
+alt="info"
+class="gallery-image"
+data-flex-grow="197"
+data-flex-basis="474px"
+>&lt;/p>
+&lt;p>有几点提醒：&lt;/p>
+&lt;ol>
+&lt;li>如果导入后启动，内存占用极低，终端黑屏无显示，可能是误删了 /etc 下账户文件
+可通过 &lt;code>lxc-start -n &amp;lt;ctid&amp;gt; -F -l DEBUG&lt;/code> 接入调试。&lt;/li>
+&lt;li>非常不建议分享你制作的镜像！
+首先 &lt;code>subscription-manager unregister&lt;/code> 不能保证账户信息完全被抹除，
+其次 &lt;code>/etc&lt;/code> 下 &lt;code>fstab&lt;/code> &lt;code>hosts&lt;/code> &lt;code>hostname&lt;/code> &lt;code>resolv.conf&lt;/code> &lt;code>shadow&lt;/code> 等大量文件均可能包含敏感信息。&lt;/li>
+&lt;/ol></description></item><item><title>PVE 更新 OpenWrt 教程</title><link>https://blog.kmtea.eu/p/221227-pve-openwrt/</link><pubDate>Tue, 27 Dec 2022 17:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/221227-pve-openwrt/</guid><description>&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/cover.jpg" alt="Featured image of post PVE 更新 OpenWrt 教程" />&lt;h1 id="pve-更新-openwrt">PVE 更新 OpenWrt
+&lt;/h1>&lt;h2 id="准备工作">准备工作
+&lt;/h2>&lt;ul>
+&lt;li>
+&lt;p>OpenWrt 固件
+&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/01-firmware.jpg"
+width="933"
+height="373"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/01-firmware_hu3684993626857845922.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/01-firmware_hu12184372201458040583.jpg 1024w"
+loading="lazy"
+alt="Firmware"
+class="gallery-image"
+data-flex-grow="250"
+data-flex-basis="600px"
+>&lt;/p>
+&lt;ul>
+&lt;li>建议编译时 &lt;strong>不要&lt;/strong> 选中 &lt;code>gzip&lt;/code> 压缩，否则容易出现各种奇妙的问题&lt;/li>
+&lt;li>一般情况下不选用名称带有 &lt;code>rootfs&lt;/code> 的固件&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>USB 网卡 (可选)
+&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/02-usb.jpg"
+width="1280"
+height="720"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/02-usb_hu14365218610408004565.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/02-usb_hu15200987922660455573.jpg 1024w"
+loading="lazy"
+alt="USB Ethernet"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p>
+&lt;ul>
+&lt;li>如果你和我一样把全部网口都直通了，则需要在更新时使用其他的方式连接到 PVE&lt;/li>
+&lt;li>PVE 默认不会自动启用新插入的网卡，你可能需要
+&lt;code>ifup enx00xxxxxxxxxx &amp;amp;&amp;amp; ip link set dev enx00xxxxxxxxxx up&lt;/code>
+其中网卡名 &lt;code>enx00xxxxxxxxxx&lt;/code> 可以在 &lt;code>ifconfig&lt;/code> 查询
+&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/03-ifup.jpg"
+width="1920"
+height="1080"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/03-ifup_hu9283212728005004216.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/03-ifup_hu14871536508727084156.jpg 1024w"
+loading="lazy"
+alt="ifup"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="为什么不能用正常方式升级">为什么不能用正常方式升级？
+&lt;/h2>&lt;p>众所周知，OpenWrt 正常升级方式是在 &lt;code>系统&lt;/code> - &lt;code>备份升级&lt;/code> 中升级：&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/04-upgrade.jpg"
+width="1892"
+height="934"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/04-upgrade_hu13731751324325279455.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/04-upgrade_hu8066154239109757646.jpg 1024w"
+loading="lazy"
+alt="Upgrade"
+class="gallery-image"
+data-flex-grow="202"
+data-flex-basis="486px"
+>&lt;/p>
+&lt;p>但你会发现 x86 固件是不包含 &lt;code>sysupgrade&lt;/code> 固件的：&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/05-checksum.jpg"
+width="1313"
+height="535"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/05-checksum_hu17035834986181581408.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/05-checksum_hu4795543418893992679.jpg 1024w"
+loading="lazy"
+alt="Checksum"
+class="gallery-image"
+data-flex-grow="245"
+data-flex-basis="589px"
+>&lt;/p>
+&lt;p>所以，对于运行在 Proxmox VE 中的 OpenWrt 虚拟机，我们只能通过手动方式升级&lt;/p>
+&lt;hr>
+&lt;p>在开始之前，请确保你划分了一块虚拟硬盘作为 &lt;code>overlay&lt;/code> 分区放置配置。&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/06-overlay.jpg"
+width="1920"
+height="1080"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/06-overlay_hu4287680519010368640.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/06-overlay_hu4890147517305287344.jpg 1024w"
+loading="lazy"
+alt="overlay"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p>
+&lt;p>如果没有，我强烈建议你花十分钟搜下教程
+(关键词 &lt;code>extroot overlay&lt;/code>)
+完成这件事， &lt;strong>功在当代利在千秋&lt;/strong>&lt;/p>
+&lt;h2 id="上传新固件">上传新固件
+&lt;/h2>&lt;p>上传到 &lt;code>local&lt;/code> - &lt;code>ISO&lt;/code>&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/07-upload.jpg"
+width="1920"
+height="1080"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/07-upload_hu10530922004001403288.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/07-upload_hu17554082633598377553.jpg 1024w"
+loading="lazy"
+alt="Upload firmware"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p>
+&lt;p>推荐检查 &lt;code>sha256sum&lt;/code>&lt;/p>
+&lt;h2 id="更换系统固件">更换系统固件
+&lt;/h2>&lt;ol>
+&lt;li>在以非目标 OpenWrt 内网的方式连接 PVE 的情况下，关闭虚拟机 &lt;br>
+&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/08-shutdown.jpg"
+width="1920"
+height="1080"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/08-shutdown_hu3414183044140269345.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/08-shutdown_hu6426689447371247691.jpg 1024w"
+loading="lazy"
+alt="Shutdown"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>
+可以用 PVE 的 &lt;code>Shutdown&lt;/code> 按钮，也可以在 Console 输入 &lt;code>poweroff&lt;/code> &lt;br>&lt;/li>
+&lt;li>选中系统盘 &lt;br>
+&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/09-select.jpg"
+width="1085"
+height="434"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/09-select_hu7425090129346221759.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/09-select_hu14935486778802004537.jpg 1024w"
+loading="lazy"
+alt="Select"
+class="gallery-image"
+data-flex-grow="250"
+data-flex-basis="600px"
+>
+点击 &lt;code>Detach&lt;/code> 并确认 &lt;br>
+&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/10-detach.jpg"
+width="939"
+height="387"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/10-detach_hu7121527017138036411.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/10-detach_hu6546929375853196017.jpg 1024w"
+loading="lazy"
+alt="Detach"
+class="gallery-image"
+data-flex-grow="242"
+data-flex-basis="582px"
+>
+再在下方找到 &lt;code>Unused Disk 0&lt;/code> 并 &lt;code>Remove&lt;/code> 删除 &lt;br>
+&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/11-remove.jpg"
+width="1288"
+height="730"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/11-remove_hu15499373015671742573.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/11-remove_hu15256187519116002043.jpg 1024w"
+loading="lazy"
+alt="Remove"
+class="gallery-image"
+data-flex-grow="176"
+data-flex-basis="423px"
+>&lt;/li>
+&lt;li>导入新固件 &lt;br>
+来到 &lt;strong>PVE 的 Console&lt;/strong> 输入： &lt;br>
+&lt;code>qm importdisk 101 /var/lib/vz/template/iso/openwrt-x86-64-generic-squashfs-combined-efi.img local-lvm&lt;/code> &lt;br>
+其中 &lt;code>101&lt;/code> 是你的 OpenWrt 虚拟机 ID
+&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/12-import.jpg"
+width="1920"
+height="1080"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/12-import_hu13644731743820045478.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/12-import_hu9714558287040861448.jpg 1024w"
+loading="lazy"
+alt="Import"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>
+随后一个新的 &lt;code>Unused Disk 0&lt;/code> 出现了
+&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/13-disk.jpg"
+width="1576"
+height="819"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/13-disk_hu4158831284465213893.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/13-disk_hu17077438990791742524.jpg 1024w"
+loading="lazy"
+alt="Found new Unused"
+class="gallery-image"
+data-flex-grow="192"
+data-flex-basis="461px"
+>&lt;/li>
+&lt;li>启用新系统盘 &lt;br>
+选中新的 &lt;code>Unused Disk 0&lt;/code> 并点击 &lt;code>Edit&lt;/code>，确认即可 &lt;br>
+&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/14-edit.jpg"
+width="1398"
+height="562"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/14-edit_hu17179194852447571470.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/14-edit_hu13070773696696002333.jpg 1024w"
+loading="lazy"
+alt="Attach Unused Disk 0"
+class="gallery-image"
+data-flex-grow="248"
+data-flex-basis="597px"
+>&lt;/li>
+&lt;li>启动虚拟机&lt;/li>
+&lt;/ol>
+&lt;h2 id="恢复配置">恢复配置
+&lt;/h2>&lt;ol>
+&lt;li>按一下回车激活 Console &lt;br>
+&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/15-console.jpg"
+width="1920"
+height="1080"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/15-console_hu13073367240651235252.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/15-console_hu106401981101595447.jpg 1024w"
+loading="lazy"
+alt="Activate console"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/li>
+&lt;li>此时，原先的 &lt;code>overlay&lt;/code> 会被自动挂载为 &lt;code>/mnt/sda1&lt;/code> (有时是 &lt;code>sdb1&lt;/code>) &lt;br>
+我们可以发现，该目录下 &lt;code>etc&lt;/code> 内含有一 &lt;code>.extroot-uuid&lt;/code> 文件。 &lt;br>
+&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/16-cleanup.jpg"
+width="977"
+height="445"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/16-cleanup_hu11787118656573084975.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/16-cleanup_hu779702130513511148.jpg 1024w"
+loading="lazy"
+alt="Cleanup"
+class="gallery-image"
+data-flex-grow="219"
+data-flex-basis="526px"
+>
+这一文件会误导系统读取正确的 UUID 并导致无法挂载！ &lt;br>
+使用 &lt;code>rm -rf /mnt/sda1/etc&lt;/code> 将之删除。 &lt;br>
+&lt;code>/etc/fstab&lt;/code> 也是没用的： &lt;code>rm -f /etc/fstab&lt;/code>&lt;/li>
+&lt;li>查看自动生成的 &lt;code>/etc/config/fstab&lt;/code> &lt;br>
+&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/17-old-fstab.jpg"
+width="912"
+height="724"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/17-old-fstab_hu12568787855695136956.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/17-old-fstab_hu15795182380311537493.jpg 1024w"
+loading="lazy"
+alt="Old fstab"
+class="gallery-image"
+data-flex-grow="125"
+data-flex-basis="302px"
+>&lt;/li>
+&lt;/ol>
+&lt;ul>
+&lt;li>去掉用不到的 &lt;code>boot&lt;/code> 挂载&lt;/li>
+&lt;li>把 &lt;code>sda1&lt;/code> 的 UUID 移动到 &lt;code>overlay&lt;/code> 配置下
+&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/18-new-fstab.jpg"
+width="1250"
+height="838"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/18-new-fstab_hu17255174197867113286.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/18-new-fstab_hu11188476266266322756.jpg 1024w"
+loading="lazy"
+alt="New fstab"
+class="gallery-image"
+data-flex-grow="149"
+data-flex-basis="357px"
+>
+保存后重启&lt;/li>
+&lt;/ul>
+&lt;ol start="4">
+&lt;li>把修改的 &lt;code>/etc/config/fstab&lt;/code> 同步到配置分区 &lt;br>
+&lt;code>cp -a /etc/config/fstab /mnt/sda1/upper/etc/config/&lt;/code>
+&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/19-sync-fstab.jpg"
+width="1297"
+height="331"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/19-sync-fstab_hu6347967584544174724.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/19-sync-fstab_hu1552554199808078177.jpg 1024w"
+loading="lazy"
+alt="Sync config"
+class="gallery-image"
+data-flex-grow="391"
+data-flex-basis="940px"
+>&lt;/li>
+&lt;/ol>
+&lt;h2 id="完成">完成
+&lt;/h2>&lt;ol>
+&lt;li>重启&lt;/li>
+&lt;li>检查 &lt;code>df -h&lt;/code>，可发现配置分区已成功挂载！
+&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/20-reboot.jpg"
+width="1920"
+height="1080"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/20-reboot_hu1567392751597700654.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/20-reboot_hu15991633569798779988.jpg 1024w"
+loading="lazy"
+alt="Reboot"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/li>
+&lt;/ol>
+&lt;h2 id="references">References
+&lt;/h2>&lt;p>我被万恶的 &lt;code>.extroot-uuid&lt;/code> 困扰了几个月之久，直到看到了
+&lt;a class="link" href="https://forum.openwrt.org/t/solved-extroot-not-working-on-18-06/16723/2" target="_blank" rel="noopener"
+>这篇帖子&lt;/a>&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/21-forum.jpg"
+width="1077"
+height="1280"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/21-forum_hu12109506352435954598.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/21-forum_hu14791087120285901643.jpg 1024w"
+loading="lazy"
+alt="Solution"
+class="gallery-image"
+data-flex-grow="84"
+data-flex-basis="201px"
+>&lt;/p>
+&lt;p>因此写这篇教程广而告之。&lt;/p></description></item></channel></rss>
