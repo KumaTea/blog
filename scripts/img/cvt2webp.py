@@ -5,11 +5,14 @@ from PIL import Image
 
 QUALITY = 50
 
+accepted_ext = ['.png', '.jpg', '.HEIC']
+
 
 def get_img_files(path='.'):
     files = []
     for filename in os.listdir(path):
-        if filename.endswith('.png') or filename.endswith('.jpg'):
+        # if filename.endswith('.png') or filename.endswith('.jpg') or filename.endswith('.HEIC'):
+        if any(filename.endswith(ext) for ext in accepted_ext):
             files.append(os.path.join(path, filename))
     return files
 
@@ -17,15 +20,20 @@ def get_img_files(path='.'):
 async def convert(file):
     image = Image.open(file)
     # image = image.convert('RGB')
-    new_file = file.replace('.png', '.webp').replace('.jpg', '.webp')
+    # new_file = file.replace('.png', '.webp').replace('.jpg', '.webp').replace('.HEIC', '.webp')
+    # new_file = file
+    for ext in accepted_ext:
+        if file.endswith(ext):
+            new_file = file.replace(ext, '.webp')
+            break
     image.save(
-        new_file,
+        new_file,  # noqa: must match
         'webp',
         optimize=True,
         quality=QUALITY
     )
 
-    # sleep for 10 seconds before removeing the file
+    # sleep for 10 seconds before removing the file
     # await asyncio.sleep(10)
     # os.remove(file)
     return print('Converted {} to {}'.format(file, new_file))
@@ -37,13 +45,19 @@ async def runner(tasks):
 
 # Convert png to jpg and slim it
 if __name__ == '__main__':
-    files = get_img_files()
-    if not files:
+    img_files = get_img_files()
+    if not img_files:
         exit(0)
-    tasks = []
-    for file in files:
-        tasks.append(convert(file))
+
+    if any(img_file.endswith('.HEIC') for img_file in img_files):
+        from pi_heif import register_heif_opener
+
+        register_heif_opener()
+
+    to_webp_tasks = []
+    for img_file in img_files:
+        to_webp_tasks.append(convert(img_file))
     # loop = asyncio.get_event_loop()
     # loop.run_until_complete(asyncio.wait(tasks))
     # loop.close()
-    asyncio.run(runner(tasks))
+    asyncio.run(runner(to_webp_tasks))
