@@ -10,7 +10,47 @@
   * 本体突破70GB: [4.4](#44)
   * 首次降低体积: [4.6](#46)
 
+---
+
+由于原神推出了过往资源清理功能，本文不再更新。
+
+---
+
 ## 5.x
+
+### 5.3
+
+* 游戏数据
+
+  `YuanShen_Data`: 74.84 GB (+ 4.08 GB)
+
+  含语音: 93.28 GB
+
+* 语音
+
+  zh / en / ja / ko: 14.20 / 16.24 / 18.44 / 14.00 GB (+ 800 ~ 1000 MB)
+
+### 5.2
+
+* 游戏数据
+
+  `YuanShen_Data`: 70.76 GB (+ 1.45 GB)
+
+  含语音: 88.17 GB
+
+* 语音
+
+  zh / en / ja / ko: 13.42 / 15.46 / 17.41 / 13.17 GB (+ 300 ~ 400 MB)
+
+* 差分包
+
+  | 语言 | 文件名                                                  | 大小         |
+  |----|------------------------------------------------------|------------|
+  | /  | `game_5.1.0_5.2.0_hdiff_grBoNSpIChrUAMud.zip`        | 16.23 GiB  |
+  | zh | `audio_zh-cn_5.1.0_5.2.0_hdiff_YmcHmcSRXCeaTFqg.zip` | 281.47 MiB |
+  | en | `audio_en-us_5.1.0_5.2.0_hdiff_oIHrItYxSNUNlFeO.zip` | 413.63 MiB |
+  | ja | `audio_ja-jp_5.1.0_5.2.0_hdiff_QyrgahmLjPYFWots.zip` | 311.53 MiB |
+  | ko | `audio_ko-kr_5.1.0_5.2.0_hdiff_rzWKDBwaFhfEoMDI.zip` | 281.78 MiB |
 
 ### 5.1
 
