@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on 酷玛阁 | KumaTea's Blog</title><link>https://blog.kmtea.eu/posts/</link><description>Recent content in Posts on 酷玛阁 | KumaTea's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 15 Dec 2024 21:30:00 +0800</lastBuildDate><atom:link href="https://blog.kmtea.eu/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>十月游记</title><link>https://blog.kmtea.eu/p/241215-oct-travel/</link><pubDate>Sun, 15 Dec 2024 21:30:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/241215-oct-travel/</guid><description>&lt;img src="https://blog.kmtea.eu/p/241215-oct-travel/img/cover.webp" alt="Featured image of post 十月游记" />&lt;h1 id="十月游记">十月游记
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on 酷玛阁 | KumaTea's Blog</title><link>https://blog.kmtea.eu/posts/</link><description>Recent content in Posts on 酷玛阁 | KumaTea's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 17 Aug 2025 05:02:05 +0800</lastBuildDate><atom:link href="https://blog.kmtea.eu/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>十月游记</title><link>https://blog.kmtea.eu/p/241215-oct-travel/</link><pubDate>Sun, 15 Dec 2024 21:30:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/241215-oct-travel/</guid><description>&lt;img src="https://blog.kmtea.eu/p/241215-oct-travel/img/cover.webp" alt="Featured image of post 十月游记" />&lt;h1 id="十月游记">十月游记
 &lt;/h1>&lt;p>2024年10月天津旅游记录&lt;/p>
 &lt;h2 id="10月19日">10月19日
 &lt;/h2>&lt;p>&lt;img src="https://blog.kmtea.eu/p/241215-oct-travel/img/IMG_20241019_174709.webp"
@@ -1875,8 +1875,74 @@ data-flex-basis="560px"
 &lt;/ul>
 &lt;/li>
 &lt;/ul>
+&lt;hr>
+&lt;p>由于原神推出了过往资源清理功能，本文不再更新。&lt;/p>
+&lt;hr>
 &lt;h2 id="5x">5.x
-&lt;/h2>&lt;h3 id="51">5.1
+&lt;/h2>&lt;h3 id="53">5.3
+&lt;/h3>&lt;ul>
+&lt;li>
+&lt;p>游戏数据&lt;/p>
+&lt;p>&lt;code>YuanShen_Data&lt;/code>: 74.84 GB (+ 4.08 GB)&lt;/p>
+&lt;p>含语音: 93.28 GB&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>语音&lt;/p>
+&lt;p>zh / en / ja / ko: 14.20 / 16.24 / 18.44 / 14.00 GB (+ 800 ~ 1000 MB)&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="52">5.2
+&lt;/h3>&lt;ul>
+&lt;li>
+&lt;p>游戏数据&lt;/p>
+&lt;p>&lt;code>YuanShen_Data&lt;/code>: 70.76 GB (+ 1.45 GB)&lt;/p>
+&lt;p>含语音: 88.17 GB&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>语音&lt;/p>
+&lt;p>zh / en / ja / ko: 13.42 / 15.46 / 17.41 / 13.17 GB (+ 300 ~ 400 MB)&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>差分包&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>语言&lt;/th>
+&lt;th>文件名&lt;/th>
+&lt;th>大小&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>/&lt;/td>
+&lt;td>&lt;code>game_5.1.0_5.2.0_hdiff_grBoNSpIChrUAMud.zip&lt;/code>&lt;/td>
+&lt;td>16.23 GiB&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>zh&lt;/td>
+&lt;td>&lt;code>audio_zh-cn_5.1.0_5.2.0_hdiff_YmcHmcSRXCeaTFqg.zip&lt;/code>&lt;/td>
+&lt;td>281.47 MiB&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>en&lt;/td>
+&lt;td>&lt;code>audio_en-us_5.1.0_5.2.0_hdiff_oIHrItYxSNUNlFeO.zip&lt;/code>&lt;/td>
+&lt;td>413.63 MiB&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>ja&lt;/td>
+&lt;td>&lt;code>audio_ja-jp_5.1.0_5.2.0_hdiff_QyrgahmLjPYFWots.zip&lt;/code>&lt;/td>
+&lt;td>311.53 MiB&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>ko&lt;/td>
+&lt;td>&lt;code>audio_ko-kr_5.1.0_5.2.0_hdiff_rzWKDBwaFhfEoMDI.zip&lt;/code>&lt;/td>
+&lt;td>281.78 MiB&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="51">5.1
 &lt;/h3>&lt;ul>
 &lt;li>
 &lt;p>游戏数据&lt;/p>
@@ -3846,17 +3912,17 @@ data-flex-basis="175px"
 &lt;/tr>
 &lt;tr>
 &lt;td>兴业&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>&lt;/td>
 &lt;td>储1&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td>广发&lt;/td>
 &lt;td>&lt;/td>
 &lt;td>&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>储1&lt;/td>
+&lt;td>&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td>浦发&lt;/td>
@@ -3876,7 +3942,7 @@ data-flex-basis="175px"
 &lt;td>港中&lt;/td>
 &lt;td>储1&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>储1&lt;/td>
 &lt;td>&lt;/td>
 &lt;/tr>
 &lt;tr>
@@ -3895,26 +3961,62 @@ data-flex-basis="175px"
 &lt;/tr>
 &lt;tr>
 &lt;td>总计&lt;/td>
-&lt;td>储11 信1.5&lt;/td>
+&lt;td>储12 信1.5&lt;/td>
 &lt;td>储1信0.5&lt;/td>
-&lt;td>储2&lt;/td>
 &lt;td>储3&lt;/td>
+&lt;td>储1&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td>已销&lt;/td>
-&lt;td>储6 信4&lt;/td>
+&lt;td>储8 信4&lt;/td>
 &lt;td>储1 信1&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>储2&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
+&lt;h2 id="2025">2025
+&lt;/h2>&lt;h3 id="兴业---寰宇人生卡">兴业 - 寰宇人生卡
+&lt;/h3>&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/img/2508-cib-d.webp"
+width="4096"
+height="3072"
+srcset="https://blog.kmtea.eu/p/230603-bank-cards/img/2508-cib-d_hu17865826750079730638.webp 480w, https://blog.kmtea.eu/p/230603-bank-cards/img/2508-cib-d_hu16206162339460618465.webp 1024w"
+loading="lazy"
+alt="1954753417664139496"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>&lt;/p>
+&lt;ul>
+&lt;li>卡组织：银联&lt;/li>
+&lt;li>分类：借记卡&lt;/li>
+&lt;li>等级：普卡&lt;/li>
+&lt;li>途径：网申&lt;/li>
+&lt;li>现状：在用&lt;/li>
+&lt;li>Apple Pay：✅&lt;/li>
+&lt;/ul>
 &lt;h2 id="2024">2024
-&lt;/h2>&lt;h3 id="汇丰香港---扣账卡">汇丰香港 - 扣账卡
-&lt;/h3>&lt;blockquote>
-&lt;p>寄丢补发&lt;/p>
-&lt;/blockquote>
-&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/img/2410-hsbc-d.webp"
+&lt;/h2>&lt;h3 id="中银香港---扣账卡">中银香港 - 扣账卡
+&lt;/h3>&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/img/2411-bochk-d.webp"
+width="3072"
+height="4096"
+srcset="https://blog.kmtea.eu/p/230603-bank-cards/img/2411-bochk-d_hu831395473532598399.webp 480w, https://blog.kmtea.eu/p/230603-bank-cards/img/2411-bochk-d_hu3270277721898317515.webp 1024w"
+loading="lazy"
+alt="1860293559599136938"
+class="gallery-image"
+data-flex-grow="75"
+data-flex-basis="180px"
+>&lt;/p>
+&lt;ul>
+&lt;li>卡组织：Mastercard&lt;/li>
+&lt;li>分类：借记卡&lt;/li>
+&lt;li>等级：?&lt;/li>
+&lt;li>途径：网申&lt;/li>
+&lt;li>现状：在用&lt;/li>
+&lt;li>Apple Pay：✅&lt;/li>
+&lt;/ul>
+&lt;h3 id="汇丰香港---扣账卡">汇丰香港 - 扣账卡
+&lt;/h3>&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/img/2410-hsbc-d.webp"
 width="3000"
 height="4000"
 srcset="https://blog.kmtea.eu/p/230603-bank-cards/img/2410-hsbc-d_hu17670301731399833013.webp 480w, https://blog.kmtea.eu/p/230603-bank-cards/img/2410-hsbc-d_hu7848529672941420055.webp 1024w"
@@ -3927,7 +4029,7 @@ data-flex-basis="180px"
 &lt;ul>
 &lt;li>卡组织：Mastercard&lt;/li>
 &lt;li>分类：借记卡&lt;/li>
-&lt;li>等级：World&lt;/li>
+&lt;li>等级：Platinum&lt;/li>
 &lt;li>途径：网申&lt;/li>
 &lt;li>现状：在用&lt;/li>
 &lt;li>Apple Pay：✅&lt;/li>
@@ -4004,10 +4106,7 @@ data-flex-basis="180px"
 &lt;li>Apple Pay：✅&lt;/li>
 &lt;/ul>
 &lt;h3 id="中信银行---校园卡">中信银行 - 校园卡
-&lt;/h3>&lt;blockquote>
-&lt;p>是白金卡！&lt;/p>
-&lt;/blockquote>
-&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/img/2407-citic-d.jpg"
+&lt;/h3>&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/img/2407-citic-d.jpg"
 width="3840"
 height="2160"
 srcset="https://blog.kmtea.eu/p/230603-bank-cards/img/2407-citic-d_hu16857816060121594180.jpg 480w, https://blog.kmtea.eu/p/230603-bank-cards/img/2407-citic-d_hu10872828715934013375.jpg 1024w"
@@ -4057,10 +4156,10 @@ data-flex-basis="320px"
 &lt;/h3>&lt;blockquote>
 &lt;p>无门槛开户默认卡&lt;/p>
 &lt;/blockquote>
-&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/img/2406-boc-d.jpg"
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/img/2406-bochk-d.jpg"
 width="4000"
 height="3000"
-srcset="https://blog.kmtea.eu/p/230603-bank-cards/img/2406-boc-d_hu5247233678676497573.jpg 480w, https://blog.kmtea.eu/p/230603-bank-cards/img/2406-boc-d_hu3839471811481187956.jpg 1024w"
+srcset="https://blog.kmtea.eu/p/230603-bank-cards/img/2406-bochk-d_hu5247233678676497573.jpg 480w, https://blog.kmtea.eu/p/230603-bank-cards/img/2406-bochk-d_hu3839471811481187956.jpg 1024w"
 loading="lazy"
 alt="1806900479625982267"
 class="gallery-image"
@@ -4236,7 +4335,7 @@ data-flex-basis="320px"
 &lt;li>分类：借记卡&lt;/li>
 &lt;li>等级：普卡&lt;/li>
 &lt;li>途径：网申&lt;/li>
-&lt;li>现状：在用&lt;/li>
+&lt;li>现状：销卡&lt;/li>
 &lt;li>Apple Pay：❌ 非银联卡&lt;/li>
 &lt;/ul>
 &lt;h3 id="兴业银行---运通">兴业银行 - 运通
@@ -4260,7 +4359,7 @@ data-flex-basis="320px"
 &lt;li>分类：借记卡&lt;/li>
 &lt;li>等级：普卡&lt;/li>
 &lt;li>途径：网申&lt;/li>
-&lt;li>现状：在用&lt;/li>
+&lt;li>现状：销卡&lt;/li>
 &lt;li>Apple Pay：❌ 非银联卡&lt;/li>
 &lt;/ul>
 &lt;h2 id="2022">2022
@@ -4404,7 +4503,7 @@ data-flex-basis="320px"
 &lt;li>分类：借记卡&lt;/li>
 &lt;li>等级：普卡&lt;/li>
 &lt;li>途径：线下&lt;/li>
-&lt;li>现状：主卡&lt;/li>
+&lt;li>现状：在用&lt;/li>
 &lt;li>Apple Pay：✅&lt;/li>
 &lt;/ul>
 &lt;h2 id="2020">2020

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Game on 酷玛阁 | KumaTea's Blog</title><link>https://blog.kmtea.eu/tags/game/</link><description>Recent content in Game on 酷玛阁 | KumaTea's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Thu, 24 Oct 2024 01:10:27 +0800</lastBuildDate><atom:link href="https://blog.kmtea.eu/tags/game/index.xml" rel="self" type="application/rss+xml"/><item><title>原神各版本体积</title><link>https://blog.kmtea.eu/p/231106-genshin-size/</link><pubDate>Mon, 06 Nov 2023 16:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/231106-genshin-size/</guid><description>&lt;img src="https://blog.kmtea.eu/p/231106-genshin-size/img/cover.jpg" alt="Featured image of post 原神各版本体积" />&lt;h1 id="原神各版本体积">原神各版本体积
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Game on 酷玛阁 | KumaTea's Blog</title><link>https://blog.kmtea.eu/tags/game/</link><description>Recent content in Game on 酷玛阁 | KumaTea's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Thu, 14 Aug 2025 21:08:46 +0800</lastBuildDate><atom:link href="https://blog.kmtea.eu/tags/game/index.xml" rel="self" type="application/rss+xml"/><item><title>原神各版本体积</title><link>https://blog.kmtea.eu/p/231106-genshin-size/</link><pubDate>Mon, 06 Nov 2023 16:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/231106-genshin-size/</guid><description>&lt;img src="https://blog.kmtea.eu/p/231106-genshin-size/img/cover.jpg" alt="Featured image of post 原神各版本体积" />&lt;h1 id="原神各版本体积">原神各版本体积
 &lt;/h1>&lt;p>做个记录。
 之前在 &lt;a class="link" href="https://www.zhihu.com/question/456851240" target="_blank" rel="noopener"
 >知乎&lt;/a> 回答过，没人看，搬来这里。&lt;/p>
@@ -20,8 +20,74 @@ data-flex-basis="560px"
 &lt;/ul>
 &lt;/li>
 &lt;/ul>
+&lt;hr>
+&lt;p>由于原神推出了过往资源清理功能，本文不再更新。&lt;/p>
+&lt;hr>
 &lt;h2 id="5x">5.x
-&lt;/h2>&lt;h3 id="51">5.1
+&lt;/h2>&lt;h3 id="53">5.3
+&lt;/h3>&lt;ul>
+&lt;li>
+&lt;p>游戏数据&lt;/p>
+&lt;p>&lt;code>YuanShen_Data&lt;/code>: 74.84 GB (+ 4.08 GB)&lt;/p>
+&lt;p>含语音: 93.28 GB&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>语音&lt;/p>
+&lt;p>zh / en / ja / ko: 14.20 / 16.24 / 18.44 / 14.00 GB (+ 800 ~ 1000 MB)&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="52">5.2
+&lt;/h3>&lt;ul>
+&lt;li>
+&lt;p>游戏数据&lt;/p>
+&lt;p>&lt;code>YuanShen_Data&lt;/code>: 70.76 GB (+ 1.45 GB)&lt;/p>
+&lt;p>含语音: 88.17 GB&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>语音&lt;/p>
+&lt;p>zh / en / ja / ko: 13.42 / 15.46 / 17.41 / 13.17 GB (+ 300 ~ 400 MB)&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>差分包&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>语言&lt;/th>
+&lt;th>文件名&lt;/th>
+&lt;th>大小&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>/&lt;/td>
+&lt;td>&lt;code>game_5.1.0_5.2.0_hdiff_grBoNSpIChrUAMud.zip&lt;/code>&lt;/td>
+&lt;td>16.23 GiB&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>zh&lt;/td>
+&lt;td>&lt;code>audio_zh-cn_5.1.0_5.2.0_hdiff_YmcHmcSRXCeaTFqg.zip&lt;/code>&lt;/td>
+&lt;td>281.47 MiB&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>en&lt;/td>
+&lt;td>&lt;code>audio_en-us_5.1.0_5.2.0_hdiff_oIHrItYxSNUNlFeO.zip&lt;/code>&lt;/td>
+&lt;td>413.63 MiB&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>ja&lt;/td>
+&lt;td>&lt;code>audio_ja-jp_5.1.0_5.2.0_hdiff_QyrgahmLjPYFWots.zip&lt;/code>&lt;/td>
+&lt;td>311.53 MiB&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>ko&lt;/td>
+&lt;td>&lt;code>audio_ko-kr_5.1.0_5.2.0_hdiff_rzWKDBwaFhfEoMDI.zip&lt;/code>&lt;/td>
+&lt;td>281.78 MiB&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="51">5.1
 &lt;/h3>&lt;ul>
 &lt;li>
 &lt;p>游戏数据&lt;/p>
