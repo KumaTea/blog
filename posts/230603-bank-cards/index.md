@@ -48,7 +48,7 @@
 
 * 卡组织：Mastercard
 * 分类：借记卡
-* 等级：?
+* 等级：Platinum
 * 途径：网申
 * 现状：在用
 * Apple Pay：✅
@@ -60,7 +60,7 @@
 
 * 卡组织：Mastercard
 * 分类：借记卡
-* 等级：Platinum
+* 等级：World
 * 途径：网申
 * 现状：在用
 * Apple Pay：✅
