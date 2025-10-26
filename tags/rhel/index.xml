@@ -1,0 +1,768 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>RHEL on 酷玛阁 | KumaTea's Blog</title><link>https://blog.kmtea.eu/tags/rhel/</link><description>Recent content in RHEL on 酷玛阁 | KumaTea's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Mon, 04 Dec 2023 01:00:00 +0800</lastBuildDate><atom:link href="https://blog.kmtea.eu/tags/rhel/index.xml" rel="self" type="application/rss+xml"/><item><title>制作 RHEL LXC 容器镜像</title><link>https://blog.kmtea.eu/p/231204-rhel-lxc/</link><pubDate>Mon, 04 Dec 2023 01:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/231204-rhel-lxc/</guid><description>&lt;img src="https://blog.kmtea.eu/p/231204-rhel-lxc/img/cover.jpg" alt="Featured image of post 制作 RHEL LXC 容器镜像" />&lt;h1 id="制作-rhel-lxc-容器镜像">制作 RHEL LXC 容器镜像
+&lt;/h1>&lt;h2 id="前言">前言
+&lt;/h2>&lt;p>虽然玩 Linux 很多年了，但一直以来都只是用
+Debian 系的发行版，对其他的没有涉猎。
+最近发现了 LXC 的美妙之处，于是试了试一直没体验过的 RHEL。&lt;/p>
+&lt;hr>
+&lt;p>鲁迅先生说过，中国人的性情是总喜欢调和折中的。&lt;/p>
+&lt;p>作为硬件级的虚拟，VM 太过笨重，对内存的利用效率太低；
+而作为应用级的虚拟，Docker 又太过轻量，systemd 也不能用，
+只能用来部署单一程序。相比之下，作为系统级虚拟的 LXC
+就是日常调试的最佳选择。&lt;/p>
+&lt;h2 id="踩坑">踩坑
+&lt;/h2>&lt;p>我首先尝试的是官方 docker 镜像
+&lt;a class="link" href="https://catalog.redhat.com/software/containers/ubi9/ubi/615bcf606feffc5384e8452e" target="_blank" rel="noopener"
+>ubi (Universal Base Image)&lt;/a>,
+通过 &lt;code>docker save&lt;/code> 导出后直接导入到 PVE 中。
+虽然可以启动，但是缺少太多组件，出现大量恶性问题，如无法联网等，不具备可用性。&lt;/p>
+&lt;p>然后尝试了去年试过的 &lt;a class="link" href="https://blog.kmtea.eu/p/220710-pi-rhel/" target="_blank" rel="noopener"
+>转生大法&lt;/a>,
+不过 &lt;code>convert2rhel&lt;/code> 至今不支持 RHEL 9, 因此作罢。&lt;/p>
+&lt;hr>
+&lt;p>然而，ubi 的文件结构是我们的重要参考，
+后续我们打包的 rootfs 要力求与之一致。&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231204-rhel-lxc/img/00-ubi.jpg"
+width="1940"
+height="893"
+srcset="https://blog.kmtea.eu/p/231204-rhel-lxc/img/00-ubi_hu13255770391956968815.jpg 480w, https://blog.kmtea.eu/p/231204-rhel-lxc/img/00-ubi_hu12594507860381732256.jpg 1024w"
+loading="lazy"
+alt="rootfs"
+class="gallery-image"
+data-flex-grow="217"
+data-flex-basis="521px"
+>&lt;/p>
+&lt;h2 id="准备">准备
+&lt;/h2>&lt;p>打开 ISO &lt;a class="link" href="https://developers.redhat.com/products/rhel/download" target="_blank" rel="noopener"
+>下载官网&lt;/a>,
+&lt;strong>拉到下面&lt;/strong>，选择 &lt;strong>Boot iso&lt;/strong> 下载。&lt;del>当然你财力雄厚也可以选择十几G的 DVD iso&lt;/del>&lt;/p>
+&lt;h2 id="提取">提取
+&lt;/h2>&lt;p>这一步要从 RHEL 完整虚拟机中提取 rootfs。&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231204-rhel-lxc/img/01-inst-01.jpg"
+width="2089"
+height="1253"
+srcset="https://blog.kmtea.eu/p/231204-rhel-lxc/img/01-inst-01_hu8037319710215811194.jpg 480w, https://blog.kmtea.eu/p/231204-rhel-lxc/img/01-inst-01_hu15256158630943810460.jpg 1024w"
+loading="lazy"
+alt="install"
+class="gallery-image"
+data-flex-grow="166"
+data-flex-basis="400px"
+>&lt;/p>
+&lt;p>进入右上角，安装盘选择&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231204-rhel-lxc/img/01-inst-02.jpg"
+width="993"
+height="902"
+srcset="https://blog.kmtea.eu/p/231204-rhel-lxc/img/01-inst-02_hu1571606501211388973.jpg 480w, https://blog.kmtea.eu/p/231204-rhel-lxc/img/01-inst-02_hu12622043999403829194.jpg 1024w"
+loading="lazy"
+alt="destination"
+class="gallery-image"
+data-flex-grow="110"
+data-flex-basis="264px"
+>&lt;/p>
+&lt;p>下面选择自定义 Custom，否则它要给你创建 LVM 了&lt;/p>
+&lt;p>点击一次 Done 后，出来如下界面&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231204-rhel-lxc/img/01-inst-03.jpg"
+width="1089"
+height="754"
+srcset="https://blog.kmtea.eu/p/231204-rhel-lxc/img/01-inst-03_hu3389105987918258096.jpg 480w, https://blog.kmtea.eu/p/231204-rhel-lxc/img/01-inst-03_hu15995761781045031891.jpg 1024w"
+loading="lazy"
+alt="custom"
+class="gallery-image"
+data-flex-grow="144"
+data-flex-basis="346px"
+>&lt;/p>
+&lt;p>选择标准分区 Standard Partition，然后点击上方蓝字
+Click here to create them automatically&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231204-rhel-lxc/img/01-inst-04.jpg"
+width="1361"
+height="943"
+srcset="https://blog.kmtea.eu/p/231204-rhel-lxc/img/01-inst-04_hu3251020186975750956.jpg 480w, https://blog.kmtea.eu/p/231204-rhel-lxc/img/01-inst-04_hu10017054216242393183.jpg 1024w"
+loading="lazy"
+alt="partition"
+class="gallery-image"
+data-flex-grow="144"
+data-flex-basis="346px"
+>&lt;/p>
+&lt;p>这里直接 Done 就行，但保险起见我把文件系统设为了 ext4&lt;/p>
+&lt;hr>
+&lt;p>中间需要登录&lt;/p>
+&lt;p>登录后下方选择安装内容&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231204-rhel-lxc/img/01-inst-05.jpg"
+width="2024"
+height="1247"
+srcset="https://blog.kmtea.eu/p/231204-rhel-lxc/img/01-inst-05_hu13501235051783849232.jpg 480w, https://blog.kmtea.eu/p/231204-rhel-lxc/img/01-inst-05_hu12010362729058642645.jpg 1024w"
+loading="lazy"
+alt="software"
+class="gallery-image"
+data-flex-grow="162"
+data-flex-basis="389px"
+>&lt;/p>
+&lt;p>左边选择 Minimal Install，右边什么都不选&lt;/p>
+&lt;p>左下设置 root 密码就可以开始安装了&lt;/p>
+&lt;hr>
+&lt;p>安装完成后，重启进入系统。
+建议 ssh, vnc 没法复制粘贴，属于灾难级的体验。
+然后执行&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">yum install -y tar
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> /tmp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mkdir afs boot dev home lost+found media mnt opt proc root run srv sys tmp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">chmod -R &lt;span class="m">777&lt;/span> tmp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">chown -R nobody:nobody proc sys
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cp -a /bin /etc /lib /lib64 /sbin /usr /var .
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">rm -rf var/log/* var/cache/* var/tmp/*
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tar cvJf rootfs.tar.xz ./*
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>生成 &lt;code>rootfs.tar.xz&lt;/code> 后，任选方式传到 PVE 上。&lt;/p>
+&lt;p>我喜欢用 &lt;code>python3 -m http.server 8080&lt;/code>，
+但是要记得先关防火墙 &lt;code>systemctl stop firewalld&lt;/code>。&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231204-rhel-lxc/img/01-inst-06.jpg"
+width="897"
+height="365"
+srcset="https://blog.kmtea.eu/p/231204-rhel-lxc/img/01-inst-06_hu352174564185256992.jpg 480w, https://blog.kmtea.eu/p/231204-rhel-lxc/img/01-inst-06_hu7904610675870083342.jpg 1024w"
+loading="lazy"
+alt="uploaded"
+class="gallery-image"
+data-flex-grow="245"
+data-flex-basis="589px"
+>&lt;/p>
+&lt;h2 id="精简">精简
+&lt;/h2>&lt;p>LXC 运行环境下，固件、内核均由宿主机提供，
+我们可以将其卸载，节省空间。&lt;/p>
+&lt;p>由 &lt;code>rootfs.tar.xz&lt;/code> 创建 lxc，启动后进入 shell&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># dnf list --installed | grep firmware&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># dnf list --installed | grep kernel&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dnf remove -y iwl100-firmware.noarch iwl1000-firmware.noarch iwl105-firmware.noarch iwl135-firmware.noarch iwl2000-firmware.noarch iwl2030-firmware.noarch iwl3160-firmware.noarch iwl5000-firmware.noarch iwl5150-firmware.noarch iwl6000g2a-firmware.noarch iwl6050-firmware.noarch iwl7260-firmware.noarch linux-firmware.noarch linux-firmware-whence.noarch
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dnf remove -y kernel.x86_64 kernel-core.x86_64 kernel-modules.x86_64 kernel-modules-core.x86_64 kernel-tools.x86_64 kernel-tools-libs.x86_64
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dnf remove -y microcode_ctl
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dnf clean all
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>一举节省高达一半空间&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231204-rhel-lxc/img/02-slim-01.jpg"
+width="1835"
+height="973"
+srcset="https://blog.kmtea.eu/p/231204-rhel-lxc/img/02-slim-01_hu1059950815929129068.jpg 480w, https://blog.kmtea.eu/p/231204-rhel-lxc/img/02-slim-01_hu5287898253388452182.jpg 1024w"
+loading="lazy"
+alt="uninstall"
+class="gallery-image"
+data-flex-grow="188"
+data-flex-basis="452px"
+>&lt;/p>
+&lt;p>接下来是清除不必要的语言包，100M左右&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> /usr/share/locale
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mkdir /tmp/locale
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mv en* locale.alias /tmp/locale/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">rm -rf ./*
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mv /tmp/locale/* .
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">rmdir /tmp/locale
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>可以考虑关闭在容器中无法运行的服务&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">dnf remove -y audit
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">systemctl disable chronyd.service
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>最终体积来到 500M 左右，与官方 templates 同一水平。&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231204-rhel-lxc/img/02-slim-02.jpg"
+width="1026"
+height="378"
+srcset="https://blog.kmtea.eu/p/231204-rhel-lxc/img/02-slim-02_hu14806855225792169257.jpg 480w, https://blog.kmtea.eu/p/231204-rhel-lxc/img/02-slim-02_hu2356444554800781376.jpg 1024w"
+loading="lazy"
+alt="df"
+class="gallery-image"
+data-flex-grow="271"
+data-flex-basis="651px"
+>&lt;/p>
+&lt;p>最后和上一步一样打包即可。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> /tmp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mkdir afs boot dev home lost+found media mnt opt proc root run srv sys tmp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">chmod -R &lt;span class="m">777&lt;/span> tmp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">chown -R nobody:nobody proc sys
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cp -a /bin /etc /lib /lib64 /sbin /usr /var .
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">rm -rf var/log/* var/cache/* var/tmp/*
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tar cvJf rhel-9-minimal_9.3_amd64.tar.xz ./*
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="后记">后记
+&lt;/h2>&lt;p>&lt;img src="https://blog.kmtea.eu/p/231204-rhel-lxc/img/03-info-01.jpg"
+width="1828"
+height="924"
+srcset="https://blog.kmtea.eu/p/231204-rhel-lxc/img/03-info-01_hu2169639610891840469.jpg 480w, https://blog.kmtea.eu/p/231204-rhel-lxc/img/03-info-01_hu9997991310494381078.jpg 1024w"
+loading="lazy"
+alt="info"
+class="gallery-image"
+data-flex-grow="197"
+data-flex-basis="474px"
+>&lt;/p>
+&lt;p>有几点提醒：&lt;/p>
+&lt;ol>
+&lt;li>如果导入后启动，内存占用极低，终端黑屏无显示，可能是误删了 /etc 下账户文件
+可通过 &lt;code>lxc-start -n &amp;lt;ctid&amp;gt; -F -l DEBUG&lt;/code> 接入调试。&lt;/li>
+&lt;li>非常不建议分享你制作的镜像！
+首先 &lt;code>subscription-manager unregister&lt;/code> 不能保证账户信息完全被抹除，
+其次 &lt;code>/etc&lt;/code> 下 &lt;code>fstab&lt;/code> &lt;code>hosts&lt;/code> &lt;code>hostname&lt;/code> &lt;code>resolv.conf&lt;/code> &lt;code>shadow&lt;/code> 等大量文件均可能包含敏感信息。&lt;/li>
+&lt;/ol></description></item><item><title>树莓派安装 RHEL</title><link>https://blog.kmtea.eu/p/220710-pi-rhel/</link><pubDate>Sun, 10 Jul 2022 04:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/220710-pi-rhel/</guid><description>&lt;img src="https://blog.kmtea.eu/p/220710-pi-rhel/img/cover.jpg" alt="Featured image of post 树莓派安装 RHEL" />&lt;h1 id="树莓派安装-rhel">树莓派安装 RHEL
+&lt;/h1>&lt;blockquote>
+&lt;p>This tutorial is &lt;a class="link" href="https://github.com/KumaTea/pi-rhel" target="_blank" rel="noopener"
+>originally written in English here&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="这个想法怎么来的">这个想法怎么来的
+&lt;/h2>&lt;p>大概是 &lt;a class="link" href="https://the-report.cloud/ibms-red-hat-just-killed-centos-as-we-know-it-with-centos-stream-stability-goes-out-of-the-door" target="_blank" rel="noopener"
+>鲨了 CentOS&lt;/a> 的良心不安，
+Red Hat 去年宣布 &lt;a class="link" href="https://developers.redhat.com/articles/faqs-no-cost-red-hat-enterprise-linux" target="_blank" rel="noopener"
+>RHEL 个人订阅白送了&lt;/a> 。
+也就是现在家用红帽 Linux 不要钱了！&lt;/p>
+&lt;p>我囸，有 RHEL 用，谁还玩 CentOS?&lt;/p>
+&lt;p>但是我没机器来玩 (P.S. 写的时候有了嘿嘿)，
+手头就剩下一块树莓派 4B 🥺&lt;/p>
+&lt;p>于是开始搜索教程，但 Bing 直接给我当头一棒：&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/220710-pi-rhel/img/002-bing.jpg"
+width="1920"
+height="1080"
+srcset="https://blog.kmtea.eu/p/220710-pi-rhel/img/002-bing_hu4187749245200644103.jpg 480w, https://blog.kmtea.eu/p/220710-pi-rhel/img/002-bing_hu10618287912619382763.jpg 1024w"
+loading="lazy"
+alt="Bing"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p>
+&lt;p>本来准备放弃了， 结果意外发现，
+&lt;a class="link" href="https://www.oracle.com/linux" target="_blank" rel="noopener"
+>Oracle Linux&lt;/a> ，
+一个红帽Linux的衍生版本，
+(&lt;del>对，就那个拒了我100多次注册云服务的万恶的 Oracle&lt;/del>)
+有发布 &lt;a class="link" href="https://www.oracle.com/linux/downloads/linux-arm-downloads.html" target="_blank" rel="noopener"
+>适用于树莓派 4B、400和3B/+ 的固件&lt;/a> 耶！&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/220710-pi-rhel/img/003-oracle.jpg"
+width="1920"
+height="1080"
+srcset="https://blog.kmtea.eu/p/220710-pi-rhel/img/003-oracle_hu1310995644547889850.jpg 480w, https://blog.kmtea.eu/p/220710-pi-rhel/img/003-oracle_hu7336570223556942167.jpg 1024w"
+loading="lazy"
+alt="Oracle Linux for Pi"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p>
+&lt;p>搜了下，大概是唯一支持树莓派的 RHEL 发行版了。&lt;/p>
+&lt;p>花了几天摸索出一个奇技淫巧，玩一波偷梁换柱，
+达到在树莓派上安装 RHEL 的方法，简述一下。&lt;/p>
+&lt;h2 id="需求">需求
+&lt;/h2>&lt;ul>
+&lt;li>Raspberry Pi 4B, 400或3B/+
+&lt;ul>
+&lt;li>仅在4B上测试成功&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>一个系统盘
+&lt;ul>
+&lt;li>强烈建议使用硬盘盒转接 SSD!!!&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Red Hat 个人订阅&lt;/li>
+&lt;li>科学或者魔法上网&lt;/li>
+&lt;/ul>
+&lt;h2 id="注册-red-hat-个人订阅">注册 Red Hat 个人订阅
+&lt;/h2>&lt;p>来这里 &lt;a class="link" href="https://developers.redhat.com/register" target="_blank" rel="noopener"
+>注册 Red Hat Individual Subscription&lt;/a> 。&lt;/p>
+&lt;p>注册完了记得看下 &lt;a class="link" href="https://access.redhat.com/management/subscriptions" target="_blank" rel="noopener"
+>你的管理页面&lt;/a> 有没有东西：&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/220710-pi-rhel/img/004-rh-sub.jpg"
+width="1920"
+height="1080"
+srcset="https://blog.kmtea.eu/p/220710-pi-rhel/img/004-rh-sub_hu12512997653311270821.jpg 480w, https://blog.kmtea.eu/p/220710-pi-rhel/img/004-rh-sub_hu740179764067273685.jpg 1024w"
+loading="lazy"
+alt="订阅"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p>
+&lt;p>等下要从 RHEL 的 repo 中更新软件包，所以这步不能省。&lt;/p>
+&lt;h2 id="安装-oracle-linux">安装 Oracle Linux
+&lt;/h2>&lt;p>首先 &lt;a class="link" href="https://www.oracle.com/linux/downloads/linux-arm-downloads.html" target="_blank" rel="noopener"
+>下载 Oracle Linux&lt;/a> 。&lt;/p>
+&lt;p>然后找个你喜欢的刷写工具。
+一般 &lt;a class="link" href="https://www.raspberrypi.com/software/#:~:text=Pi%20OS%20using-,Raspberry%C2%A0Pi%C2%A0Imager,-Raspberry%20Pi%20Imager" target="_blank" rel="noopener"
+>Raspberry Pi Imager&lt;/a>
+就好了，但我更喜欢 &lt;a class="link" href="https://etcher.io" target="_blank" rel="noopener"
+>Etcher&lt;/a> 。&lt;/p>
+&lt;p>下载的图像压缩成 &lt;code>xz&lt;/code> 格式了，但不用解压，直接开刷！&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/220710-pi-rhel/img/005-flash.jpg"
+width="1205"
+height="759"
+srcset="https://blog.kmtea.eu/p/220710-pi-rhel/img/005-flash_hu13389795366323027242.jpg 480w, https://blog.kmtea.eu/p/220710-pi-rhel/img/005-flash_hu12512930340848070130.jpg 1024w"
+loading="lazy"
+alt="Flashing"
+class="gallery-image"
+data-flex-grow="158"
+data-flex-basis="381px"
+>&lt;/p>
+&lt;h3 id="ssd-与-sd卡">SSD 与 SD卡
+&lt;/h3>&lt;p>Oracle Linux 的根文件系统 (rootfs) 是 &lt;code>btrfs&lt;/code> ，
+卡得出奇，卡的批爆！合起来写炸了我5个内存卡和U盘！就为了这篇！
+所以别用内存卡！用固态！！！&lt;/p>
+&lt;p>或者可以考虑下换成 &lt;code>f2fs&lt;/code> 。&lt;/p>
+&lt;p>然后接上树莓派，插电，开机！&lt;/p>
+&lt;p>进入路由的 DHCP 客户端页面，找到 IP 地址，刚出来那个。&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/220710-pi-rhel/img/006-dhcp.jpg"
+width="1920"
+height="1080"
+srcset="https://blog.kmtea.eu/p/220710-pi-rhel/img/006-dhcp_hu8937156537661020807.jpg 480w, https://blog.kmtea.eu/p/220710-pi-rhel/img/006-dhcp_hu15354072122913167441.jpg 1024w"
+loading="lazy"
+alt="DHCP"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p>
+&lt;p>&lt;code>ssh&lt;/code> 连上，用户名 &lt;code>root&lt;/code> ，密码 &lt;code>oracle&lt;/code> 。&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/220710-pi-rhel/img/007-first-ssh.jpg"
+width="1920"
+height="1080"
+srcset="https://blog.kmtea.eu/p/220710-pi-rhel/img/007-first-ssh_hu14178920614799465915.jpg 480w, https://blog.kmtea.eu/p/220710-pi-rhel/img/007-first-ssh_hu1951245337448371721.jpg 1024w"
+loading="lazy"
+alt="SSH"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p>
+&lt;h2 id="系统准备">系统准备
+&lt;/h2>&lt;p>###扩展分区&lt;/p>
+&lt;p>解压缩后的固件大小约为 3.89GB ，装完了剩下大约300MB。
+这点地方塞牙缝 (&lt;code>dnf update&lt;/code>) 都不够，先要用 &lt;code>parted&lt;/code> 扩展分区。&lt;/p>
+&lt;p>没自带，先安装：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">dnf install -y parted
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;blockquote>
+&lt;p>不用先&lt;code>dnf update&lt;/code>&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/220710-pi-rhel/img/008-install-parted.jpg"
+width="1920"
+height="1080"
+srcset="https://blog.kmtea.eu/p/220710-pi-rhel/img/008-install-parted_hu5207693564955177257.jpg 480w, https://blog.kmtea.eu/p/220710-pi-rhel/img/008-install-parted_hu10631101428582925.jpg 1024w"
+loading="lazy"
+alt="安装parted"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p>
+&lt;p>然后开搞：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">parted /dev/sda
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># print&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># resizepart 3&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># q&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">btrfs filesystem resize max /
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://blog.kmtea.eu/p/220710-pi-rhel/img/009-parted.jpg"
+width="1920"
+height="1080"
+srcset="https://blog.kmtea.eu/p/220710-pi-rhel/img/009-parted_hu13701817593991210849.jpg 480w, https://blog.kmtea.eu/p/220710-pi-rhel/img/009-parted_hu4589021976099417915.jpg 1024w"
+loading="lazy"
+alt="parted"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p>
+&lt;h3 id="更新-kernel-uek">更新 &lt;code>kernel-uek&lt;/code>
+&lt;/h3>&lt;p>要留的唯一一个软件包是 &lt;code>kernel-uek&lt;/code> 。
+全称 &lt;a class="link" href="https://docs.oracle.com/en/operating-systems/uek/" target="_blank" rel="noopener"
+>Unbreakable Enterprise Kernel&lt;/a> ，
+是 Oracle 搞的 Linux 内核。&lt;/p>
+&lt;p>为什么留，因为只有 Oracle Linux 支持树莓派，当然只有它的内核能用。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">dnf update -y kernel-uek
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://blog.kmtea.eu/p/220710-pi-rhel/img/010-kernel-uek.jpg"
+width="1092"
+height="482"
+srcset="https://blog.kmtea.eu/p/220710-pi-rhel/img/010-kernel-uek_hu1564037860825087909.jpg 480w, https://blog.kmtea.eu/p/220710-pi-rhel/img/010-kernel-uek_hu376291727850212066.jpg 1024w"
+loading="lazy"
+alt="更新kernel-uek"
+class="gallery-image"
+data-flex-grow="226"
+data-flex-basis="543px"
+>&lt;/p>
+&lt;h2 id="补丁和运行-convert2rhel">补丁和运行 &amp;ldquo;convert2rhel&amp;rdquo;。
+&lt;/h2>&lt;p>开始偷梁换柱之前先看看 &lt;code>os-release&lt;/code> 怀念一下：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">cat /etc/os-release
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://blog.kmtea.eu/p/220710-pi-rhel/img/011-os-release.jpg"
+width="1920"
+height="1080"
+srcset="https://blog.kmtea.eu/p/220710-pi-rhel/img/011-os-release_hu13435812536028462588.jpg 480w, https://blog.kmtea.eu/p/220710-pi-rhel/img/011-os-release_hu4588500816581348398.jpg 1024w"
+loading="lazy"
+alt="os-release"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p>
+&lt;p>###安装&lt;code>convert2rhel&lt;/code>。&lt;/p>
+&lt;p>参照 &lt;a class="link" href="https://www.redhat.com/en/blog/introduction-convert2rhel-now-officially-supported-convert-rhel-systems-rhel" target="_blank" rel="noopener"
+>换到 Red Hat 吧&lt;/a> ，
+第一步是添加证书和仓库。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># ref: https://www.redhat.com/en/blog/introduction-convert2rhel-now-officially-supported-convert-rhel-systems-rhel&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">curl -o /etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release https://www.redhat.com/security/data/fd431d51.txt
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">curl --create-dirs -o /etc/rhsm/ca/redhat-uep.pem https://ftp.redhat.com/redhat/convert2rhel/redhat-uep.pem
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">curl -o /etc/yum.repos.d/convert2rhel.repo https://ftp.redhat.com/redhat/convert2rhel/8/convert2rhel.repo
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>然后安装 &lt;code>convert2rhel&lt;/code> ：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">dnf install -y convert2rhel
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://blog.kmtea.eu/p/220710-pi-rhel/img/012-install-c2r.jpg"
+width="1920"
+height="1080"
+srcset="https://blog.kmtea.eu/p/220710-pi-rhel/img/012-install-c2r_hu17009358479545452837.jpg 480w, https://blog.kmtea.eu/p/220710-pi-rhel/img/012-install-c2r_hu6330780863614337692.jpg 1024w"
+loading="lazy"
+alt="安装 convert2rhel"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p>
+&lt;h3 id="修改配置">修改配置
+&lt;/h3>&lt;p>由于 RHEL 没有正式支持树莓派，它的转换工具也不会包含我们要用的配置。
+硬转就会。。。&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/220710-pi-rhel/img/013-c2r-errors.jpg"
+width="1920"
+height="1080"
+srcset="https://blog.kmtea.eu/p/220710-pi-rhel/img/013-c2r-errors_hu10703312131011667165.jpg 480w, https://blog.kmtea.eu/p/220710-pi-rhel/img/013-c2r-errors_hu2848217106774378017.jpg 1024w"
+loading="lazy"
+alt="convert2rhel errors"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p>
+&lt;p>但是可以偷懒，只要改下 &lt;code>x86_64&lt;/code> 的配置就行。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">cp /usr/share/convert2rhel/configs/oracle-8-x86_64.cfg /usr/share/convert2rhel/configs/oracle-8-aarch64.cfg
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sed -i &lt;span class="s1">&amp;#39;s/rhel-8-for-x86_64/rhel-8-for-aarch64/g&amp;#39;&lt;/span> /usr/share/convert2rhel/configs/oracle-8-aarch64.cfg
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># sed -i &amp;#39;s/-rpms/-beta-rpms/g&amp;#39; /usr/share/convert2rhel/configs/oracle-8-aarch64.cfg&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># sed -i &amp;#34;s/checks.perform_pre_checks()/loggerinst.task(&amp;#39;SKIP CHECKS&amp;#39;) # checks.perform_pre_checks()/g&amp;#34; /usr/lib/python3.6/site-packages/convert2rhel/main.py&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sed -i &lt;span class="s1">&amp;#39;s/json-c.x86_64/json-c.aarch64/g&amp;#39;&lt;/span> /usr/lib/python3.6/site-packages/convert2rhel/subscription.py
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>x86 上 &lt;code>convert2rhel&lt;/code> 会搞定证书，
+但是因为是树莓派，我们要自己搞。&lt;/p>
+&lt;p>&lt;a class="link" href="https://access.redhat.com/labs/rhpc/" target="_blank" rel="noopener"
+>&lt;strong>红帽产品证书&lt;/strong>&lt;/a>&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/220710-pi-rhel/img/014-rhel-cert.jpg"
+width="1920"
+height="1080"
+srcset="https://blog.kmtea.eu/p/220710-pi-rhel/img/014-rhel-cert_hu8189658533864635216.jpg 480w, https://blog.kmtea.eu/p/220710-pi-rhel/img/014-rhel-cert_hu11105748061584004165.jpg 1024w"
+loading="lazy"
+alt="RHEL证书"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p>
+&lt;p>在 &lt;em>Choose your product&lt;/em> 中选择 &lt;code>Red Hat Enterprise Linux&lt;/code>,
+找到 &lt;strong>&lt;code>Red Hat Enterprise Linux for ARM 64&lt;/code>&lt;/strong>,
+选好版本和架构并下载，把证书传到树莓上运行。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># cp /path/to/cert/script /tmp/Red_Hat_Product_Certificate.sh&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">chmod +x /tmp/Red_Hat_Product_Certificate.sh
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">bash /tmp/Red_Hat_Product_Certificate.sh
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://blog.kmtea.eu/p/220710-pi-rhel/img/015-add-cert.jpg"
+width="1070"
+height="583"
+srcset="https://blog.kmtea.eu/p/220710-pi-rhel/img/015-add-cert_hu2742102655417445067.jpg 480w, https://blog.kmtea.eu/p/220710-pi-rhel/img/015-add-cert_hu5338873449909566625.jpg 1024w"
+loading="lazy"
+alt="add cert"
+class="gallery-image"
+data-flex-grow="183"
+data-flex-basis="440px"
+>&lt;/p>
+&lt;h3 id="手动运行-convert2rhel">手动运行 &lt;code>convert2rhel&lt;/code>
+&lt;/h3>&lt;p>不能直接运行 &lt;code>convert2rhel&lt;/code> ，
+因为它写的时候也没想到会有人在树莓派上跑。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">source&lt;/span> /etc/os-release &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> python3 -c &lt;span class="s2">&amp;#34;from convert2rhel import main, subscription, systeminfo; main.initialize_logger(&amp;#39;convert2rhel.log&amp;#39;, &amp;#39;/var/log/convert2rhel&amp;#39;); systeminfo.RELEASE_VER_MAPPING[&amp;#39;&lt;/span>&lt;span class="nv">$VERSION&lt;/span>&lt;span class="s2">&amp;#39;] = &amp;#39;&lt;/span>&lt;span class="nv">$VERSION&lt;/span>&lt;span class="s2">&amp;#39;; systeminfo.system_info.resolve_system_info(); subscription.download_rhsm_pkgs()&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>成功了大概会是这样：&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/220710-pi-rhel/img/016-manual-c2r.jpg"
+width="1920"
+height="1080"
+srcset="https://blog.kmtea.eu/p/220710-pi-rhel/img/016-manual-c2r_hu1810655070508596706.jpg 480w, https://blog.kmtea.eu/p/220710-pi-rhel/img/016-manual-c2r_hu4082655484075891782.jpg 1024w"
+loading="lazy"
+alt="手动运行"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p>
+&lt;p>然后安装刚刚下载的软件包：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> /usr/share/convert2rhel/subscription-manager
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dnf install -y &lt;span class="k">$(&lt;/span>ls &lt;span class="p">|&lt;/span> tr &lt;span class="s1">&amp;#39;\n&amp;#39;&lt;/span> &lt;span class="s1">&amp;#39; &amp;#39;&lt;/span>&lt;span class="k">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://blog.kmtea.eu/p/220710-pi-rhel/img/019-local-pkgs.jpg"
+width="1920"
+height="1080"
+srcset="https://blog.kmtea.eu/p/220710-pi-rhel/img/019-local-pkgs_hu10995528343921044997.jpg 480w, https://blog.kmtea.eu/p/220710-pi-rhel/img/019-local-pkgs_hu27621339995449315.jpg 1024w"
+loading="lazy"
+alt="安装本地软件包"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p>
+&lt;h2 id="绑定订阅">绑定订阅
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">subscription-manager register
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="替换-repo">替换 repo
+&lt;/h2>&lt;p>先鸟尽弓藏兔死狗烹。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">mv /etc/yum.repos.d/convert2rhel.repo /etc/yum.repos.d/convert2rhel.repo.bak
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mv /etc/yum.repos.d/oracle-linux-ol8.repo /etc/yum.repos.d/oracle-linux-ol8.repo.bak
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dnf clean all
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://blog.kmtea.eu/p/220710-pi-rhel/img/020-disable-repos.jpg"
+width="1920"
+height="613"
+srcset="https://blog.kmtea.eu/p/220710-pi-rhel/img/020-disable-repos_hu11467044364867005342.jpg 480w, https://blog.kmtea.eu/p/220710-pi-rhel/img/020-disable-repos_hu14057844473503772981.jpg 1024w"
+loading="lazy"
+alt="禁用 repos"
+class="gallery-image"
+data-flex-grow="313"
+data-flex-basis="751px"
+>&lt;/p>
+&lt;h3 id="删除不需要的软件包">删除不需要的软件包
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">subscription-manager repos --enable &lt;span class="s2">&amp;#34;codeready-builder-for-rhel-8-&lt;/span>&lt;span class="k">$(&lt;/span>arch&lt;span class="k">)&lt;/span>&lt;span class="s2">-rpms&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dnf remove convert2rhel -y
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dnf remove oraclelinux-release oraclelinux-release-el8 &lt;span class="o">||&lt;/span> rpm -e --nodeps oraclelinux-release oraclelinux-release-el8
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>###重新安装本地安装的软件包&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> /usr/share/convert2rhel/subscription-manager
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dnf reinstall -y &lt;span class="k">$(&lt;/span>ls &lt;span class="p">|&lt;/span> tr &lt;span class="s1">&amp;#39;\n&amp;#39;&lt;/span> &lt;span class="s1">&amp;#39; &amp;#39;&lt;/span> &lt;span class="p">|&lt;/span> sed &lt;span class="s1">&amp;#39;s/.rpm//g&amp;#39;&lt;/span>&lt;span class="k">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> ~
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">rm -rvf /usr/share/convert2rhel
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://blog.kmtea.eu/p/220710-pi-rhel/img/022-reinst-local-pkgs.jpg"
+width="1920"
+height="1080"
+srcset="https://blog.kmtea.eu/p/220710-pi-rhel/img/022-reinst-local-pkgs_hu12275859147026032524.jpg 480w, https://blog.kmtea.eu/p/220710-pi-rhel/img/022-reinst-local-pkgs_hu6677338322834051770.jpg 1024w"
+loading="lazy"
+alt="替换本地软件包"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p>
+&lt;h3 id="替换非-rhel-软件包">替换非 RHEL 软件包
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">dnf install -y redhat-lsb
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://blog.kmtea.eu/p/220710-pi-rhel/img/023-install-lsb.jpg"
+width="1920"
+height="1080"
+srcset="https://blog.kmtea.eu/p/220710-pi-rhel/img/023-install-lsb_hu13117682190591541302.jpg 480w, https://blog.kmtea.eu/p/220710-pi-rhel/img/023-install-lsb_hu10632756663617555158.jpg 1024w"
+loading="lazy"
+alt="redhat-lsb"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">dnf reinstall setup
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dnf distro-sync
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dnf update -y
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dnf reinstall &lt;span class="k">$(&lt;/span>dnf list --installed &lt;span class="p">|&lt;/span> grep ol8 &lt;span class="p">|&lt;/span> awk &lt;span class="s1">&amp;#39;{print $1}&amp;#39;&lt;/span> &lt;span class="p">|&lt;/span> tr &lt;span class="s1">&amp;#39;\n&amp;#39;&lt;/span> &lt;span class="s1">&amp;#39; &amp;#39;&lt;/span>&lt;span class="k">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dnf reinstall &lt;span class="k">$(&lt;/span>dnf list --installed &lt;span class="p">|&lt;/span> grep anaconda &lt;span class="p">|&lt;/span> awk &lt;span class="s1">&amp;#39;{print $1}&amp;#39;&lt;/span> &lt;span class="p">|&lt;/span> tr &lt;span class="s1">&amp;#39;\n&amp;#39;&lt;/span> &lt;span class="s1">&amp;#39; &amp;#39;&lt;/span>&lt;span class="k">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dnf reinstall &lt;span class="k">$(&lt;/span>dnf list --installed &lt;span class="p">|&lt;/span> grep commandline &lt;span class="p">|&lt;/span> awk &lt;span class="s1">&amp;#39;{print $1}&amp;#39;&lt;/span> &lt;span class="p">|&lt;/span> tr &lt;span class="s1">&amp;#39;\n&amp;#39;&lt;/span> &lt;span class="s1">&amp;#39; &amp;#39;&lt;/span>&lt;span class="k">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://blog.kmtea.eu/p/220710-pi-rhel/img/024-replace-ol8.jpg"
+width="1920"
+height="1080"
+srcset="https://blog.kmtea.eu/p/220710-pi-rhel/img/024-replace-ol8_hu14524174624314717612.jpg 480w, https://blog.kmtea.eu/p/220710-pi-rhel/img/024-replace-ol8_hu12943821428187734468.jpg 1024w"
+loading="lazy"
+alt="替换非rhel软件包"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p>
+&lt;h2 id="结论">结论
+&lt;/h2>&lt;p>家人们看看 &lt;code>neofetch&lt;/code> 吧&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/220710-pi-rhel/img/001-neofetch.jpg"
+width="1920"
+height="1080"
+srcset="https://blog.kmtea.eu/p/220710-pi-rhel/img/001-neofetch_hu3050901057392358198.jpg 480w, https://blog.kmtea.eu/p/220710-pi-rhel/img/001-neofetch_hu10450840209072808351.jpg 1024w"
+loading="lazy"
+alt="neofetch"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p>
+&lt;h2 id="后记">后记
+&lt;/h2>&lt;p>RHEL 9 出了，但是懒得折腾了，教程写了开摆。&lt;/p>
+&lt;p>不会真的有人会有和我一样的脑洞吧？？？&lt;/p>
+&lt;p>以及这篇尽量口语化了，如果你英语很彳亍，真想搞还是建议看看上面的英文链接。
+虽然我英语是工地水平，但是大概还是比看这篇好理解一点。&lt;/p></description></item></channel></rss>

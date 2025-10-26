@@ -1,0 +1,2586 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Guide on 酷玛阁 | KumaTea's Blog</title><link>https://blog.kmtea.eu/tags/guide/</link><description>Recent content in Guide on 酷玛阁 | KumaTea's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 09 Aug 2024 16:57:36 +0800</lastBuildDate><atom:link href="https://blog.kmtea.eu/tags/guide/index.xml" rel="self" type="application/rss+xml"/><item><title>制作 RHEL LXC 容器镜像</title><link>https://blog.kmtea.eu/p/231204-rhel-lxc/</link><pubDate>Mon, 04 Dec 2023 01:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/231204-rhel-lxc/</guid><description>&lt;img src="https://blog.kmtea.eu/p/231204-rhel-lxc/img/cover.jpg" alt="Featured image of post 制作 RHEL LXC 容器镜像" />&lt;h1 id="制作-rhel-lxc-容器镜像">制作 RHEL LXC 容器镜像
+&lt;/h1>&lt;h2 id="前言">前言
+&lt;/h2>&lt;p>虽然玩 Linux 很多年了，但一直以来都只是用
+Debian 系的发行版，对其他的没有涉猎。
+最近发现了 LXC 的美妙之处，于是试了试一直没体验过的 RHEL。&lt;/p>
+&lt;hr>
+&lt;p>鲁迅先生说过，中国人的性情是总喜欢调和折中的。&lt;/p>
+&lt;p>作为硬件级的虚拟，VM 太过笨重，对内存的利用效率太低；
+而作为应用级的虚拟，Docker 又太过轻量，systemd 也不能用，
+只能用来部署单一程序。相比之下，作为系统级虚拟的 LXC
+就是日常调试的最佳选择。&lt;/p>
+&lt;h2 id="踩坑">踩坑
+&lt;/h2>&lt;p>我首先尝试的是官方 docker 镜像
+&lt;a class="link" href="https://catalog.redhat.com/software/containers/ubi9/ubi/615bcf606feffc5384e8452e" target="_blank" rel="noopener"
+>ubi (Universal Base Image)&lt;/a>,
+通过 &lt;code>docker save&lt;/code> 导出后直接导入到 PVE 中。
+虽然可以启动，但是缺少太多组件，出现大量恶性问题，如无法联网等，不具备可用性。&lt;/p>
+&lt;p>然后尝试了去年试过的 &lt;a class="link" href="https://blog.kmtea.eu/p/220710-pi-rhel/" target="_blank" rel="noopener"
+>转生大法&lt;/a>,
+不过 &lt;code>convert2rhel&lt;/code> 至今不支持 RHEL 9, 因此作罢。&lt;/p>
+&lt;hr>
+&lt;p>然而，ubi 的文件结构是我们的重要参考，
+后续我们打包的 rootfs 要力求与之一致。&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231204-rhel-lxc/img/00-ubi.jpg"
+width="1940"
+height="893"
+srcset="https://blog.kmtea.eu/p/231204-rhel-lxc/img/00-ubi_hu13255770391956968815.jpg 480w, https://blog.kmtea.eu/p/231204-rhel-lxc/img/00-ubi_hu12594507860381732256.jpg 1024w"
+loading="lazy"
+alt="rootfs"
+class="gallery-image"
+data-flex-grow="217"
+data-flex-basis="521px"
+>&lt;/p>
+&lt;h2 id="准备">准备
+&lt;/h2>&lt;p>打开 ISO &lt;a class="link" href="https://developers.redhat.com/products/rhel/download" target="_blank" rel="noopener"
+>下载官网&lt;/a>,
+&lt;strong>拉到下面&lt;/strong>，选择 &lt;strong>Boot iso&lt;/strong> 下载。&lt;del>当然你财力雄厚也可以选择十几G的 DVD iso&lt;/del>&lt;/p>
+&lt;h2 id="提取">提取
+&lt;/h2>&lt;p>这一步要从 RHEL 完整虚拟机中提取 rootfs。&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231204-rhel-lxc/img/01-inst-01.jpg"
+width="2089"
+height="1253"
+srcset="https://blog.kmtea.eu/p/231204-rhel-lxc/img/01-inst-01_hu8037319710215811194.jpg 480w, https://blog.kmtea.eu/p/231204-rhel-lxc/img/01-inst-01_hu15256158630943810460.jpg 1024w"
+loading="lazy"
+alt="install"
+class="gallery-image"
+data-flex-grow="166"
+data-flex-basis="400px"
+>&lt;/p>
+&lt;p>进入右上角，安装盘选择&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231204-rhel-lxc/img/01-inst-02.jpg"
+width="993"
+height="902"
+srcset="https://blog.kmtea.eu/p/231204-rhel-lxc/img/01-inst-02_hu1571606501211388973.jpg 480w, https://blog.kmtea.eu/p/231204-rhel-lxc/img/01-inst-02_hu12622043999403829194.jpg 1024w"
+loading="lazy"
+alt="destination"
+class="gallery-image"
+data-flex-grow="110"
+data-flex-basis="264px"
+>&lt;/p>
+&lt;p>下面选择自定义 Custom，否则它要给你创建 LVM 了&lt;/p>
+&lt;p>点击一次 Done 后，出来如下界面&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231204-rhel-lxc/img/01-inst-03.jpg"
+width="1089"
+height="754"
+srcset="https://blog.kmtea.eu/p/231204-rhel-lxc/img/01-inst-03_hu3389105987918258096.jpg 480w, https://blog.kmtea.eu/p/231204-rhel-lxc/img/01-inst-03_hu15995761781045031891.jpg 1024w"
+loading="lazy"
+alt="custom"
+class="gallery-image"
+data-flex-grow="144"
+data-flex-basis="346px"
+>&lt;/p>
+&lt;p>选择标准分区 Standard Partition，然后点击上方蓝字
+Click here to create them automatically&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231204-rhel-lxc/img/01-inst-04.jpg"
+width="1361"
+height="943"
+srcset="https://blog.kmtea.eu/p/231204-rhel-lxc/img/01-inst-04_hu3251020186975750956.jpg 480w, https://blog.kmtea.eu/p/231204-rhel-lxc/img/01-inst-04_hu10017054216242393183.jpg 1024w"
+loading="lazy"
+alt="partition"
+class="gallery-image"
+data-flex-grow="144"
+data-flex-basis="346px"
+>&lt;/p>
+&lt;p>这里直接 Done 就行，但保险起见我把文件系统设为了 ext4&lt;/p>
+&lt;hr>
+&lt;p>中间需要登录&lt;/p>
+&lt;p>登录后下方选择安装内容&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231204-rhel-lxc/img/01-inst-05.jpg"
+width="2024"
+height="1247"
+srcset="https://blog.kmtea.eu/p/231204-rhel-lxc/img/01-inst-05_hu13501235051783849232.jpg 480w, https://blog.kmtea.eu/p/231204-rhel-lxc/img/01-inst-05_hu12010362729058642645.jpg 1024w"
+loading="lazy"
+alt="software"
+class="gallery-image"
+data-flex-grow="162"
+data-flex-basis="389px"
+>&lt;/p>
+&lt;p>左边选择 Minimal Install，右边什么都不选&lt;/p>
+&lt;p>左下设置 root 密码就可以开始安装了&lt;/p>
+&lt;hr>
+&lt;p>安装完成后，重启进入系统。
+建议 ssh, vnc 没法复制粘贴，属于灾难级的体验。
+然后执行&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">yum install -y tar
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> /tmp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mkdir afs boot dev home lost+found media mnt opt proc root run srv sys tmp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">chmod -R &lt;span class="m">777&lt;/span> tmp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">chown -R nobody:nobody proc sys
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cp -a /bin /etc /lib /lib64 /sbin /usr /var .
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">rm -rf var/log/* var/cache/* var/tmp/*
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tar cvJf rootfs.tar.xz ./*
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>生成 &lt;code>rootfs.tar.xz&lt;/code> 后，任选方式传到 PVE 上。&lt;/p>
+&lt;p>我喜欢用 &lt;code>python3 -m http.server 8080&lt;/code>，
+但是要记得先关防火墙 &lt;code>systemctl stop firewalld&lt;/code>。&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231204-rhel-lxc/img/01-inst-06.jpg"
+width="897"
+height="365"
+srcset="https://blog.kmtea.eu/p/231204-rhel-lxc/img/01-inst-06_hu352174564185256992.jpg 480w, https://blog.kmtea.eu/p/231204-rhel-lxc/img/01-inst-06_hu7904610675870083342.jpg 1024w"
+loading="lazy"
+alt="uploaded"
+class="gallery-image"
+data-flex-grow="245"
+data-flex-basis="589px"
+>&lt;/p>
+&lt;h2 id="精简">精简
+&lt;/h2>&lt;p>LXC 运行环境下，固件、内核均由宿主机提供，
+我们可以将其卸载，节省空间。&lt;/p>
+&lt;p>由 &lt;code>rootfs.tar.xz&lt;/code> 创建 lxc，启动后进入 shell&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># dnf list --installed | grep firmware&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># dnf list --installed | grep kernel&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dnf remove -y iwl100-firmware.noarch iwl1000-firmware.noarch iwl105-firmware.noarch iwl135-firmware.noarch iwl2000-firmware.noarch iwl2030-firmware.noarch iwl3160-firmware.noarch iwl5000-firmware.noarch iwl5150-firmware.noarch iwl6000g2a-firmware.noarch iwl6050-firmware.noarch iwl7260-firmware.noarch linux-firmware.noarch linux-firmware-whence.noarch
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dnf remove -y kernel.x86_64 kernel-core.x86_64 kernel-modules.x86_64 kernel-modules-core.x86_64 kernel-tools.x86_64 kernel-tools-libs.x86_64
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dnf remove -y microcode_ctl
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dnf clean all
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>一举节省高达一半空间&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231204-rhel-lxc/img/02-slim-01.jpg"
+width="1835"
+height="973"
+srcset="https://blog.kmtea.eu/p/231204-rhel-lxc/img/02-slim-01_hu1059950815929129068.jpg 480w, https://blog.kmtea.eu/p/231204-rhel-lxc/img/02-slim-01_hu5287898253388452182.jpg 1024w"
+loading="lazy"
+alt="uninstall"
+class="gallery-image"
+data-flex-grow="188"
+data-flex-basis="452px"
+>&lt;/p>
+&lt;p>接下来是清除不必要的语言包，100M左右&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> /usr/share/locale
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mkdir /tmp/locale
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mv en* locale.alias /tmp/locale/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">rm -rf ./*
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mv /tmp/locale/* .
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">rmdir /tmp/locale
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>可以考虑关闭在容器中无法运行的服务&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">dnf remove -y audit
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">systemctl disable chronyd.service
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>最终体积来到 500M 左右，与官方 templates 同一水平。&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231204-rhel-lxc/img/02-slim-02.jpg"
+width="1026"
+height="378"
+srcset="https://blog.kmtea.eu/p/231204-rhel-lxc/img/02-slim-02_hu14806855225792169257.jpg 480w, https://blog.kmtea.eu/p/231204-rhel-lxc/img/02-slim-02_hu2356444554800781376.jpg 1024w"
+loading="lazy"
+alt="df"
+class="gallery-image"
+data-flex-grow="271"
+data-flex-basis="651px"
+>&lt;/p>
+&lt;p>最后和上一步一样打包即可。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> /tmp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mkdir afs boot dev home lost+found media mnt opt proc root run srv sys tmp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">chmod -R &lt;span class="m">777&lt;/span> tmp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">chown -R nobody:nobody proc sys
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cp -a /bin /etc /lib /lib64 /sbin /usr /var .
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">rm -rf var/log/* var/cache/* var/tmp/*
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tar cvJf rhel-9-minimal_9.3_amd64.tar.xz ./*
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="后记">后记
+&lt;/h2>&lt;p>&lt;img src="https://blog.kmtea.eu/p/231204-rhel-lxc/img/03-info-01.jpg"
+width="1828"
+height="924"
+srcset="https://blog.kmtea.eu/p/231204-rhel-lxc/img/03-info-01_hu2169639610891840469.jpg 480w, https://blog.kmtea.eu/p/231204-rhel-lxc/img/03-info-01_hu9997991310494381078.jpg 1024w"
+loading="lazy"
+alt="info"
+class="gallery-image"
+data-flex-grow="197"
+data-flex-basis="474px"
+>&lt;/p>
+&lt;p>有几点提醒：&lt;/p>
+&lt;ol>
+&lt;li>如果导入后启动，内存占用极低，终端黑屏无显示，可能是误删了 /etc 下账户文件
+可通过 &lt;code>lxc-start -n &amp;lt;ctid&amp;gt; -F -l DEBUG&lt;/code> 接入调试。&lt;/li>
+&lt;li>非常不建议分享你制作的镜像！
+首先 &lt;code>subscription-manager unregister&lt;/code> 不能保证账户信息完全被抹除，
+其次 &lt;code>/etc&lt;/code> 下 &lt;code>fstab&lt;/code> &lt;code>hosts&lt;/code> &lt;code>hostname&lt;/code> &lt;code>resolv.conf&lt;/code> &lt;code>shadow&lt;/code> 等大量文件均可能包含敏感信息。&lt;/li>
+&lt;/ol></description></item><item><title>SaaS 平台 Python 应用部署实战</title><link>https://blog.kmtea.eu/p/231013-saas/</link><pubDate>Fri, 13 Oct 2023 16:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/231013-saas/</guid><description>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/cover.jpg" alt="Featured image of post SaaS 平台 Python 应用部署实战" />&lt;h1 id="saas-平台-python-应用部署实战">SaaS 平台 Python 应用部署实战
+&lt;/h1>&lt;p>如果你还不知道，
+现在各大云服务巨头都提供了
+&lt;strong>永久免费&lt;/strong> 的 Serverless 服务，
+适合托管一些很小的应用。&lt;/p>
+&lt;p>想把去年写的一个 Telegram 超轻量 bot
+部署到 Azure Functions 上，
+结果被微软念经一样的文档气得不轻，
+遂决定写一篇 walkthrough 记录下。&lt;/p>
+&lt;p>本教程所使用的代码放在
+&lt;a class="link" href="https://github.com/KumaTea/KumaLiteBot" target="_blank" rel="noopener"
+>KumaTea/KumaLiteBot&lt;/a>
+这个 repo 里。&lt;/p>
+&lt;p>目前示例 bot &lt;a class="link" href="https://t.me/KumaLiteBot" target="_blank" rel="noopener"
+>Kuma 发癫 Bot&lt;/a>
+托管在 Azure 上面。&lt;/p>
+&lt;h2 id="google-cloud-functions">Google Cloud Functions
+&lt;/h2>&lt;p>谷歌的配置过程是最直观、方便、省心的，
+其实这个bot之前就托管在谷歌云上，
+但是因为有&lt;a class="link" href="#%e5%b0%8f%e6%8f%90%e7%a4%ba" >隐性收费&lt;/a>就关掉了。
+只能说贵有贵的道理。&lt;/p>
+&lt;h3 id="创建-functions">创建 Functions
+&lt;/h3>&lt;p>先进入 Functions 界面&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/GCP-01-create-01.jpg"
+width="2559"
+height="1440"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/GCP-01-create-01_hu14705452929452541993.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/GCP-01-create-01_hu9060792579635404824.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p>
+&lt;p>点蓝色的创建&lt;/p>
+&lt;p>基础信息，喜欢的名字就好&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/GCP-01-create-02.jpg"
+width="1298"
+height="1226"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/GCP-01-create-02_hu8112394986541672432.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/GCP-01-create-02_hu14097186718680253304.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="105"
+data-flex-basis="254px"
+>&lt;/p>
+&lt;p>Region 这里，一般根据最多人访问的地区来选&lt;/p>
+&lt;p>因为我是 Telegram Bot,
+选择 API 所在地荷兰阿姆斯特丹&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/GCP-01-create-03.jpg"
+width="1042"
+height="750"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/GCP-01-create-03_hu7840371989559977898.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/GCP-01-create-03_hu2388937164691020094.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="138"
+data-flex-basis="333px"
+>&lt;/p>
+&lt;p>Trigger 这里 Auth 选择允许未认证调用&lt;/p>
+&lt;p>你也不想每次打开都要输密码吧&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/GCP-01-create-04.jpg"
+width="1187"
+height="1110"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/GCP-01-create-04_hu10177163865714681086.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/GCP-01-create-04_hu17935334666275898496.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="106"
+data-flex-basis="256px"
+>&lt;/p>
+&lt;p>下面配置按需求选，
+我的 bot 用不到默认的 256 MB 就选了最小的&lt;/p>
+&lt;p>环境变量记得
+&lt;a class="link" href="#%e5%85%b6%e4%bb%96%e8%ae%be%e7%bd%ae" >在 &lt;strong>SECURITY AND IMAGE REPO&lt;/strong> 设置&lt;/a>&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/GCP-01-create-05.jpg"
+width="999"
+height="810"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/GCP-01-create-05_hu8485072321679570179.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/GCP-01-create-05_hu4129337847343362776.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="123"
+data-flex-basis="296px"
+>&lt;/p>
+&lt;p>如果弹出启用 API 允许即可&lt;/p>
+&lt;h3 id="录入代码">录入代码
+&lt;/h3>&lt;p>选择语言和版本&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/GCP-02-code-01.jpg"
+width="1116"
+height="803"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/GCP-02-code-01_hu3536844224101244468.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/GCP-02-code-01_hu9207139539209726809.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="138"
+data-flex-basis="333px"
+>&lt;/p>
+&lt;p>右边编辑器可以粘贴自己的代码了。&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/GCP-02-code-02.jpg"
+width="1593"
+height="1105"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/GCP-02-code-02_hu1418486180694715279.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/GCP-02-code-02_hu870626902784953755.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="144"
+data-flex-basis="345px"
+>&lt;/p>
+&lt;p>注意，
+&lt;strong>Entry point&lt;/strong> 这里要写的是你程序的入口，
+一般是 &lt;code>main&lt;/code>&lt;/p>
+&lt;p>主函数示例：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="nd">@functions_framework.http&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">request&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">res&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">try&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="ow">not&lt;/span> &lt;span class="n">request&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">method&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="s2">&amp;#34;POST&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="s1">&amp;#39;I am working!&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">update&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">Update&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">de_json&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">request&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">get_json&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">force&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="kc">True&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="n">bot&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="n">update&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">inline_query&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">res&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">inline&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">request&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">elif&lt;/span> &lt;span class="n">update&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">message&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">msg&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">update&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">message&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="n">msg&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">chat&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">id&lt;/span> &lt;span class="o">&amp;gt;&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">res&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">msg&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">reply_text&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">nonsense_reply&lt;/span>&lt;span class="p">())&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">else&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">logger&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">info&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;Unknown type. Ignoring...&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">except&lt;/span> &lt;span class="ne">Exception&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">e&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">logger&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">debug&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nb">str&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">request&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">get_json&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">force&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="kc">True&lt;/span>&lt;span class="p">)))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">logger&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">error&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nb">str&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">e&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="n">res&lt;/span> &lt;span class="k">if&lt;/span> &lt;span class="nb">type&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">res&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="ow">is&lt;/span> &lt;span class="nb">str&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="s1">&amp;#39;&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;code>request&lt;/code> 就是一个标准的 &lt;code>flask.request&lt;/code> 对象，
+非常友好，与楼下高下立判&lt;/p>
+&lt;p>然后点击左侧 &lt;code>requirements.txt&lt;/code>&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/GCP-02-code-03.jpg"
+width="1194"
+height="598"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/GCP-02-code-03_hu3224540501554425337.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/GCP-02-code-03_hu156739379416319819.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="199"
+data-flex-basis="479px"
+>&lt;/p>
+&lt;p>把依赖贴进去，就可以点下面的 &lt;strong>Deploy&lt;/strong> 了&lt;/p>
+&lt;h3 id="其他设置">其他设置
+&lt;/h3>&lt;p>可以看到这里我失败了，因为忘了设置环境变量&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/GCP-03-settings-01.jpg"
+width="1779"
+height="934"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/GCP-03-settings-01_hu17086344822140571666.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/GCP-03-settings-01_hu10277539634291805814.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="190"
+data-flex-basis="457px"
+>&lt;/p>
+&lt;p>我需要的变量是认证的 &lt;code>BOT_TOKEN&lt;/code>,
+&lt;strong>安全地&lt;/strong> 设置这个变量会很麻烦，介绍如下&lt;/p>
+&lt;p>点击上方 Edit&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/GCP-03-settings-02.jpg"
+width="1075"
+height="796"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/GCP-03-settings-02_hu11394024983716581967.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/GCP-03-settings-02_hu12560862030564317560.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="135"
+data-flex-basis="324px"
+>&lt;/p>
+&lt;p>进入 SECURITY AND IMAGE REPO&lt;/p>
+&lt;p>点击 ADD A SECRET REFERENCE&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/GCP-03-settings-03.jpg"
+width="1385"
+height="708"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/GCP-03-settings-03_hu8380833605027524221.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/GCP-03-settings-03_hu12134640748470481059.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="195"
+data-flex-basis="469px"
+>&lt;/p>
+&lt;p>这个时候会发现创建是灰的&lt;/p>
+&lt;p>就需要先启用这个什么 Secret API&lt;/p>
+&lt;p>点击左边 ENTER SECRET MANUALLY 就会弹出带你去的窗口&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/GCP-03-settings-04.jpg"
+width="1069"
+height="588"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/GCP-03-settings-04_hu13406019329127575429.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/GCP-03-settings-04_hu14628185123544318126.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="181"
+data-flex-basis="436px"
+>&lt;/p>
+&lt;p>启用后回来刷新重新进入修改，就能看到可以创建了，右边会弹出窗口&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/GCP-03-settings-05.jpg"
+width="1106"
+height="1325"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/GCP-03-settings-05_hu4515725947781318504.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/GCP-03-settings-05_hu16761603232520999152.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="83"
+data-flex-basis="200px"
+>&lt;/p>
+&lt;p>Name 随便写，下面的 value 填你的 token&lt;/p>
+&lt;p>然后 CREATE SECRET&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/GCP-03-settings-06.jpg"
+width="1044"
+height="1096"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/GCP-03-settings-06_hu6977364617347527147.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/GCP-03-settings-06_hu3892889901469804197.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="95"
+data-flex-basis="228px"
+>&lt;/p>
+&lt;p>Reference method 选中暴露为环境变量&lt;/p>
+&lt;p>下面环境变量输入你需要的，比如 &lt;code>BOT_TOKEN&lt;/code>&lt;/p>
+&lt;p>至于上面提示没有权限，实测没有影响&lt;/p>
+&lt;hr>
+&lt;p>这是安全的方法，那么有没有不安全的呢？&lt;/p>
+&lt;p>当然有&lt;/p>
+&lt;p>&lt;del>首先 Cloud Functions v1 就没有这么多幺蛾子&lt;/del>&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/GCP-03-settings-07.jpg"
+width="1181"
+height="958"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/GCP-03-settings-07_hu7762391622865014223.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/GCP-03-settings-07_hu2779864096963058390.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="123"
+data-flex-basis="295px"
+>&lt;/p>
+&lt;p>只要在创建或者修改里面
+&lt;strong>RUNTIME&lt;/strong> 下面 environment variables 里面填就好了&lt;/p>
+&lt;p>当然你也可以直接写进代码里&lt;/p>
+&lt;h3 id="完成">完成
+&lt;/h3>&lt;p>OK, 这就完了&lt;/p>
+&lt;p>GCP 会自动开始 build 并部署&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/GCP-04-done-01.jpg"
+width="1664"
+height="1016"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/GCP-04-done-01_hu1448367893956541747.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/GCP-04-done-01_hu11723945714196543767.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="163"
+data-flex-basis="393px"
+>&lt;/p>
+&lt;p>可以看见已经成功运行&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/GCP-04-done-02.jpg"
+width="1409"
+height="657"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/GCP-04-done-02_hu3025383617598080380.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/GCP-04-done-02_hu13024558237334503700.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="214"
+data-flex-basis="514px"
+>&lt;/p>
+&lt;h4 id="小提示">小提示
+&lt;/h4>&lt;p>Cloud Functions 有免费额度，
+&lt;strong>但 Storage 没有&lt;/strong>。&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/GCP-04-done-03.jpg"
+width="1657"
+height="713"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/GCP-04-done-03_hu16159881157763020925.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/GCP-04-done-03_hu4758796206900536267.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="232"
+data-flex-basis="557px"
+>&lt;/p>
+&lt;p>部署完成后可以直接删掉自动生成的 buckets 避免扣钱，
+完全不影响 bot 运行&lt;/p>
+&lt;h2 id="aws-lambda">AWS Lambda
+&lt;/h2>&lt;p>AWS Lambda 比 GCP Cloud Functions
+多一步手动上传依赖的步骤&lt;/p>
+&lt;h3 id="创建-lambda">创建 Lambda
+&lt;/h3>&lt;p>在开始之前，记得先在右上角选择你想要的地区&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/AWS-01-create-01.jpg"
+width="908"
+height="570"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/AWS-01-create-01_hu453087798613292091.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/AWS-01-create-01_hu16780465458903390463.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="159"
+data-flex-basis="382px"
+>&lt;/p>
+&lt;p>AWS 和别人不一样，它是先选地区，在这里创建的所有资源都会在这个区域&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/AWS-01-create-02.jpg"
+width="2534"
+height="1325"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/AWS-01-create-02_hu511695629448804966.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/AWS-01-create-02_hu3341579557287483763.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="191"
+data-flex-basis="458px"
+>&lt;/p>
+&lt;p>右上角黄色按钮创建&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/AWS-01-create-03.jpg"
+width="1705"
+height="1160"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/AWS-01-create-03_hu8616512774298884953.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/AWS-01-create-03_hu11295020841497111450.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="146"
+data-flex-basis="352px"
+>&lt;/p>
+&lt;p>名字，语言和版本，架构&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/AWS-01-create-04.jpg"
+width="1860"
+height="1052"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/AWS-01-create-04_hu11129115562583212311.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/AWS-01-create-04_hu16208841806529663609.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="176"
+data-flex-basis="424px"
+>&lt;/p>
+&lt;p>下方高级设置，要勾上 Enable Function URL,
+这样才能从 URL 访问；&lt;/p>
+&lt;p>Auth type 选 None&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/AWS-01-create-05.jpg"
+width="2386"
+height="1181"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/AWS-01-create-05_hu11825177698917447179.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/AWS-01-create-05_hu2446050047443854193.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="202"
+data-flex-basis="484px"
+>&lt;/p>
+&lt;h3 id="填入代码">填入代码
+&lt;/h3>&lt;p>向下拉，把代码粘贴进编辑器，保存即可&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/AWS-02-code-01.jpg"
+width="1614"
+height="1169"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/AWS-02-code-01_hu12018951498884296395.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/AWS-02-code-01_hu1635104401502570770.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="138"
+data-flex-basis="331px"
+>&lt;/p>
+&lt;p>主函数示例：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="nf">lambda_handler&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">event&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">context&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">res&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s1">&amp;#39;statusCode&amp;#39;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="mi">200&lt;/span>&lt;span class="p">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s1">&amp;#39;body&amp;#39;&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="s1">&amp;#39;&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">method&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">event&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;requestContext&amp;#39;&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="s1">&amp;#39;http&amp;#39;&lt;/span>&lt;span class="p">][&lt;/span>&lt;span class="s1">&amp;#39;method&amp;#39;&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">try&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="ow">not&lt;/span> &lt;span class="n">method&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="s2">&amp;#34;POST&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">res&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;body&amp;#39;&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;I am working!&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="n">res&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">update&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">Update&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">de_json&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">json&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">loads&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">event&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;body&amp;#39;&lt;/span>&lt;span class="p">]),&lt;/span> &lt;span class="n">bot&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="n">update&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">inline_query&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">res&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;body&amp;#39;&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nb">str&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">inline&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">update&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">elif&lt;/span> &lt;span class="n">update&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">message&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">msg&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">update&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">message&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="n">msg&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">chat&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">id&lt;/span> &lt;span class="o">&amp;gt;&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">res&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">&amp;#39;body&amp;#39;&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nb">str&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">msg&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">reply_text&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">nonsense_reply&lt;/span>&lt;span class="p">()))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">else&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">logger&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">info&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;Unknown type. Ignoring...&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">except&lt;/span> &lt;span class="ne">Exception&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">e&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">logger&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">error&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nb">str&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">event&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">logger&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">error&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nb">str&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">e&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="n">res&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;code>event&lt;/code> 示例&lt;/p>
+&lt;span style="font-size: 0.5em">
+&lt;blockquote>
+&lt;ul>
+&lt;li>
+&lt;p>GET: &lt;code>{'version': '2.0', 'routeKey': '$default', 'rawPath': '/', 'rawQueryString': 'key=value', 'headers': {'sec-fetch-mode': 'navigate', 'x-amzn-tls-version': 'TLSv1.2', 'sec-fetch-site': 'none', 'accept-language': 'en-US,en;q=0.9', 'x-forwarded-proto': 'https', 'x-forwarded-port': '443', 'x-forwarded-for': '103.172.80.149', 'sec-fetch-user': '?1', 'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7', 'x-amzn-tls-cipher-suite': 'ECDHE-RSA-AES128-GCM-SHA256', 'sec-ch-ua': '&amp;quot;Google Chrome&amp;quot;;v=&amp;quot;117&amp;quot;, &amp;quot;Not;A=Brand&amp;quot;;v=&amp;quot;8&amp;quot;, &amp;quot;Chromium&amp;quot;;v=&amp;quot;117&amp;quot;', 'sec-ch-ua-mobile': '?0', 'x-amzn-trace-id': 'Root=1-65284b56-7a462eea204cb5a45d3c0668', 'sec-ch-ua-platform': '&amp;quot;Windows&amp;quot;', 'host': '7o22cfijy5jiujzbih6aov5yvy0hasni.lambda-url.eu-central-1.on.aws', 'upgrade-insecure-requests': '1', 'accept-encoding': 'gzip, deflate, br', 'sec-fetch-dest': 'document', 'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36'}, 'queryStringParameters': {'key': 'value'}, 'requestContext': {'accountId': 'anonymous', 'apiId': '7o22cfijy5jiujzbih6aov5yvy0hasni', 'domainName': '7o22cfijy5jiujzbih6aov5yvy0hasni.lambda-url.eu-central-1.on.aws', 'domainPrefix': '7o22cfijy5jiujzbih6aov5yvy0hasni', 'http': {'method': 'GET', 'path': '/', 'protocol': 'HTTP/1.1', 'sourceIp': '103.172.80.149', 'userAgent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36'}, 'requestId': '90551f3b-4891-4b37-9aeb-71e2fae50ad1', 'routeKey': '$default', 'stage': '$default', 'time': '12/Oct/2023:19:39:02 +0000', 'timeEpoch': 1697139542555}, 'isBase64Encoded': False}&lt;/code>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>POST: &lt;code>{'version': '2.0', 'routeKey': '$default', 'rawPath': '/', 'rawQueryString': '', 'headers': {'content-length': '372', 'x-amzn-tls-cipher-suite': 'ECDHE-RSA-AES128-GCM-SHA256', 'x-amzn-tls-version': 'TLSv1.2', 'x-amzn-trace-id': 'Root=1-65284b9f-3fff13e27bc794f95e3dbc98', 'x-forwarded-proto': 'https', 'host': '7o22cfijy5jiujzbih6aov5yvy0hasni.lambda-url.eu-central-1.on.aws', 'x-forwarded-port': '443', 'content-type': 'application/json', 'x-forwarded-for': '91.108.6.19', 'accept-encoding': 'gzip, deflate'}, 'requestContext': {'accountId': 'anonymous', 'apiId': '7o22cfijy5jiujzbih6aov5yvy0hasni', 'domainName': '7o22cfijy5jiujzbih6aov5yvy0hasni.lambda-url.eu-central-1.on.aws', 'domainPrefix': '7o22cfijy5jiujzbih6aov5yvy0hasni', 'http': {'method': 'POST', 'path': '/', 'protocol': 'HTTP/1.1', 'sourceIp': '91.108.6.19', 'userAgent': None}, 'requestId': '9fc841ed-6d28-461e-a657-565813752326', 'routeKey': '$default', 'stage': '$default', 'time': '12/Oct/2023:19:40:15 +0000', 'timeEpoch': 1697139615123}, 'body': '{&amp;quot;update_id&amp;quot;:11992905,\n&amp;quot;message&amp;quot;:{&amp;quot;message_id&amp;quot;:20,&amp;quot;from&amp;quot;:{&amp;quot;id&amp;quot;:5273618487,&amp;quot;is_bot&amp;quot;:false,&amp;quot;first_name&amp;quot;:&amp;quot;Kuma&amp;quot;,&amp;quot;last_name&amp;quot;:&amp;quot;Tea&amp;quot;,&amp;quot;username&amp;quot;:&amp;quot;realKumaTea&amp;quot;,&amp;quot;language_code&amp;quot;:&amp;quot;en&amp;quot;},&amp;quot;chat&amp;quot;:{&amp;quot;id&amp;quot;:5273618487,&amp;quot;first_name&amp;quot;:&amp;quot;Kuma&amp;quot;,&amp;quot;last_name&amp;quot;:&amp;quot;Tea&amp;quot;,&amp;quot;username&amp;quot;:&amp;quot;realKumaTea&amp;quot;,&amp;quot;type&amp;quot;:&amp;quot;private&amp;quot;},&amp;quot;date&amp;quot;:1697139614,&amp;quot;text&amp;quot;:&amp;quot;/start&amp;quot;,&amp;quot;entities&amp;quot;:[{&amp;quot;offset&amp;quot;:0,&amp;quot;length&amp;quot;:6,&amp;quot;type&amp;quot;:&amp;quot;bot_command&amp;quot;}]}}', 'isBase64Encoded': False}&lt;/code>&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;/blockquote>
+&lt;/span>
+&lt;p>Lambda 回传的 &lt;code>response['body']&lt;/code> 必须是 str 类型，
+否则会报 &lt;code>[ERROR] Runtime.MarshalError: Unable to marshal response&lt;/code>&lt;/p>
+&lt;h3 id="上传依赖">上传依赖
+&lt;/h3>&lt;p>这个时候如果直接部署会报错：找不到依赖&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/AWS-03-deps-01.jpg"
+width="2064"
+height="1108"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/AWS-03-deps-01_hu2153483226229292441.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/AWS-03-deps-01_hu4749157715518673359.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="186"
+data-flex-basis="447px"
+>&lt;/p>
+&lt;p>AWS Lambda 奇葩的设计导致我们不能上传
+&lt;code>requirements.txt&lt;/code> 让它自己安装，
+必须自己手动下载依赖并上传。&lt;/p>
+&lt;p>首先需要找一台 Linux 机器，运行 docker&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">docker run -it --rm --name &lt;span class="nb">test&lt;/span> python:3.11-slim /bin/bash
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/AWS-03-deps-02.jpg"
+width="1734"
+height="957"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/AWS-03-deps-02_hu3670373866154042481.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/AWS-03-deps-02_hu8418290220951087373.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="181"
+data-flex-basis="434px"
+>&lt;/p>
+&lt;p>然后安装所需依赖&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">apt update -qq &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> apt install zip -y -qq
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> /tmp
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mkdir python
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">pip install &lt;span class="s2">&amp;#34;python-telegram-bot&amp;lt;20&amp;#34;&lt;/span> -t python -q
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">zip -r python.zip python
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/AWS-03-deps-03.jpg"
+width="1734"
+height="957"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/AWS-03-deps-03_hu11496344352281080443.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/AWS-03-deps-03_hu12447185659888620514.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="181"
+data-flex-basis="434px"
+>&lt;/p>
+&lt;p>再把生成的 &lt;code>python.zip&lt;/code> 复制出来&lt;/p>
+&lt;p>记得新开个 shell 别傻乎乎把 docker 退了&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">docker cp test:/tmp/python.zip .
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Docker 容器这个时候可以关了&lt;/p>
+&lt;p>继续下拉，在 Layers 这里点击 &lt;strong>Add a layer&lt;/strong>&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/AWS-03-deps-04.jpg"
+width="2376"
+height="936"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/AWS-03-deps-04_hu2703055514179664128.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/AWS-03-deps-04_hu8784720625154642390.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="253"
+data-flex-basis="609px"
+>&lt;/p>
+&lt;p>点 &lt;code>AWS layers&lt;/code> 上面那行小字 &lt;code>create a new layer&lt;/code>&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/AWS-03-deps-05.jpg"
+width="1629"
+height="1155"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/AWS-03-deps-05_hu4238038673700561599.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/AWS-03-deps-05_hu7608046687060656042.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="141"
+data-flex-basis="338px"
+>&lt;/p>
+&lt;p>随便写，上传，提交&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/AWS-03-deps-06.jpg"
+width="1508"
+height="1175"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/AWS-03-deps-06_hu2244480779423569747.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/AWS-03-deps-06_hu4041609238946004086.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="128"
+data-flex-basis="308px"
+>&lt;/p>
+&lt;p>重新回到 Lambda dashboard，拉到下面，
+点开熟悉的 Add a layer，
+选择 Custom layers，选刚刚创建的，右下角 Add&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/AWS-03-deps-07.jpg"
+width="1587"
+height="1162"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/AWS-03-deps-07_hu11969551642987848598.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/AWS-03-deps-07_hu7488998201225835368.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="136"
+data-flex-basis="327px"
+>&lt;/p>
+&lt;p>最后点 Code Source 旁边的 Deploy&lt;/p>
+&lt;h3 id="其他设置-1">其他设置
+&lt;/h3>&lt;p>环境变量在下方 Configuration - Environment variables 里面，
+设置简单不再赘述。&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/AWS-04-settings-01.jpg"
+width="1762"
+height="1139"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/AWS-04-settings-01_hu367572219322702365.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/AWS-04-settings-01_hu13441717985449135968.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="154"
+data-flex-basis="371px"
+>&lt;/p>
+&lt;h3 id="完成-1">完成
+&lt;/h3>&lt;p>已成功运行&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/AWS-05-done-01.jpg"
+width="2389"
+height="1189"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/AWS-05-done-01_hu18445537890551651231.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/AWS-05-done-01_hu1520526882408444364.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="200"
+data-flex-basis="482px"
+>&lt;/p>
+&lt;h2 id="azure-functions">Azure Functions
+&lt;/h2>&lt;p>Azure 更是重量级，Web 端功能复杂甚至缺失，
+必须使用 VS Code 才能完整部署&lt;/p>
+&lt;h3 id="准备">准备
+&lt;/h3>&lt;p>你需要安装一个 &lt;a class="link" href="https://code.visualstudio.com/" target="_blank" rel="noopener"
+>VS Code&lt;/a>&lt;/p>
+&lt;p>然后安装 &lt;a class="link" href="https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions" target="_blank" rel="noopener"
+>Azure Functions 插件&lt;/a>&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/Azure-00-prep-01.jpg"
+width="1822"
+height="1014"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/Azure-00-prep-01_hu4446289039351752392.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/Azure-00-prep-01_hu9856497650546550429.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="179"
+data-flex-basis="431px"
+>&lt;/p>
+&lt;p>安装好之后，会在左边栏看到一个 A 图标&lt;/p>
+&lt;p>点击并登录，直到看到你使用的产品都列出了&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/Azure-00-prep-02.jpg"
+width="540"
+height="577"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/Azure-00-prep-02_hu2227057863440527393.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/Azure-00-prep-02_hu13259796978143375067.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="93"
+data-flex-basis="224px"
+>&lt;/p>
+&lt;h3 id="创建-functions-1">创建 Functions
+&lt;/h3>&lt;p>左下角 Workspace，鼠标移上去会有一个 Functions 图标出现&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/Azure-01-create-01.jpg"
+width="573"
+height="343"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/Azure-01-create-01_hu12288808707644259698.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/Azure-01-create-01_hu14947458655151831596.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="167"
+data-flex-basis="400px"
+>&lt;/p>
+&lt;p>点击第二个 Create New Project&lt;/p>
+&lt;p>回到上方，选择一个空文件夹&lt;/p>
+&lt;p>语言根据需要选，模型默认 V2, Python 环境可以选择有的也可以跳过&lt;/p>
+&lt;p>Template 选择 HTTP Trigger&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/Azure-01-create-02.jpg"
+width="915"
+height="423"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/Azure-01-create-02_hu15999404869120558981.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/Azure-01-create-02_hu18028118204848732928.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="216"
+data-flex-basis="519px"
+>&lt;/p>
+&lt;p>Trigger 名称是你的 API 路径，这里我改成了 &lt;code>bot&lt;/code>&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/Azure-01-create-03.jpg"
+width="926"
+height="212"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/Azure-01-create-03_hu3597380138964957097.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/Azure-01-create-03_hu5279610183412657730.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="436"
+data-flex-basis="1048px"
+>&lt;/p>
+&lt;p>然后认证选择 Anonymous&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/Azure-01-create-04.jpg"
+width="917"
+height="220"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/Azure-01-create-04_hu6484314636284106949.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/Azure-01-create-04_hu17372495125940310139.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="416"
+data-flex-basis="1000px"
+>&lt;/p>
+&lt;p>就可以打开生成的代码文件编辑了&lt;/p>
+&lt;h3 id="填入代码-1">填入代码
+&lt;/h3>&lt;p>首先这个 Create New Function 是没有用的&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/Azure-02-code-01.jpg"
+width="515"
+height="317"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/Azure-02-code-01_hu9783479323240039316.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/Azure-02-code-01_hu14571720173365351292.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="162"
+data-flex-basis="389px"
+>&lt;/p>
+&lt;p>它不过是在你的代码里加一个入口，可以自己写&lt;/p>
+&lt;p>把代码贴进去就好了，不赘叙&lt;/p>
+&lt;p>主函数示例：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="nd">@app.route&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">route&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;bot&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">auth_level&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="n">func&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">AuthLevel&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">ANONYMOUS&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="nf">main&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">req&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">res&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">try&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="ow">not&lt;/span> &lt;span class="n">req&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">method&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="s2">&amp;#34;POST&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="s1">&amp;#39;I am working!&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">update&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">Update&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">de_json&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">req&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">get_json&lt;/span>&lt;span class="p">(),&lt;/span> &lt;span class="n">bot&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="n">update&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">inline_query&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">res&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">inline&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">update&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">elif&lt;/span> &lt;span class="n">update&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">message&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">msg&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">update&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">message&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="n">msg&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">chat&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">id&lt;/span> &lt;span class="o">&amp;gt;&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">res&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">msg&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">reply_text&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">nonsense_reply&lt;/span>&lt;span class="p">())&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">else&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">logger&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">info&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;Unknown type. Ignoring...&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">except&lt;/span> &lt;span class="ne">Exception&lt;/span> &lt;span class="k">as&lt;/span> &lt;span class="n">e&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">logger&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">debug&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nb">str&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">req&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">get_json&lt;/span>&lt;span class="p">()))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">logger&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">error&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nb">str&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">e&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="n">res&lt;/span> &lt;span class="k">if&lt;/span> &lt;span class="nb">type&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">res&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="ow">is&lt;/span> &lt;span class="nb">str&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="s1">&amp;#39;&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>这里要特别注意的是，
+入口参数 &lt;strong>必须是 &lt;code>req&lt;/code>&lt;/strong>，
+如果不一致，部署后会找不到 HTTP Trigger!!!&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/Azure-02-code-02.jpg"
+width="812"
+height="418"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/Azure-02-code-02_hu9842958873405205206.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/Azure-02-code-02_hu8130371320945497883.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="194"
+data-flex-basis="466px"
+>&lt;/p>
+&lt;p>微软没有任何文档提到这一点！我是怎么发现的呢？&lt;/p>
+&lt;p>原先一直用的是 &lt;code>request&lt;/code> 当入口，
+因为一直部署失败，乱翻文档，在 &lt;a class="link" href="https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-http-webhook-trigger#decorators" target="_blank" rel="noopener"
+>HTTP Trigger&lt;/a> 看到这么一句&lt;/p>
+&lt;blockquote>
+&lt;p>&lt;code>trigger_arg_name&lt;/code> Argument name for HttpRequest, defaults to &amp;lsquo;req&amp;rsquo;.&lt;/p>
+&lt;/blockquote>
+&lt;p>没事限制参数干嘛？我就改成 &lt;code>req&lt;/code> 居然就成功了&lt;/p>
+&lt;h3 id="部署和设置">部署和设置
+&lt;/h3>&lt;p>工作区 Azure 图标 - Create Function App in Azure&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/Azure-03-deploy-01.jpg"
+width="802"
+height="382"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/Azure-03-deploy-01_hu17638285022885548730.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/Azure-03-deploy-01_hu13040705852259205592.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="209"
+data-flex-basis="503px"
+>&lt;/p>
+&lt;p>会需要你填写一个唯一的不重复的名字，因为这个到时候会写到 API 的 URL 里面&lt;/p>
+&lt;p>我这里用的是 &lt;code>kmlt&lt;/code>&lt;/p>
+&lt;p>然后选择环境和地区，完成和等待创建即可&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/Azure-03-deploy-02.jpg"
+width="907"
+height="590"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/Azure-03-deploy-02_hu4100003535497009105.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/Azure-03-deploy-02_hu18185481922857429473.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="153"
+data-flex-basis="368px"
+>&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/Azure-03-deploy-03.jpg"
+width="908"
+height="587"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/Azure-03-deploy-03_hu4367654215119332445.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/Azure-03-deploy-03_hu530919627314105340.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="154"
+data-flex-basis="371px"
+>&lt;/p>
+&lt;p>随后上方可见刚刚创建的 Function App&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/Azure-03-deploy-04.jpg"
+width="457"
+height="294"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/Azure-03-deploy-04_hu10400580843931513329.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/Azure-03-deploy-04_hu14060385532994401256.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="155"
+data-flex-basis="373px"
+>&lt;/p>
+&lt;hr>
+&lt;p>创建好，部署之前，
+如果你有环境变量需要设置，
+点开
+Azure -
+Resources -
+Function App -
+kmlt,
+在 &lt;strong>&lt;code>Application Settings&lt;/code>&lt;/strong> 上右键，
+在弹出窗口中分别填入环境变量的名字和值&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/Azure-03-deploy-05.jpg"
+width="498"
+height="254"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/Azure-03-deploy-05_hu4196718918291518455.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/Azure-03-deploy-05_hu8248565200556756468.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="196"
+data-flex-basis="470px"
+>&lt;/p>
+&lt;hr>
+&lt;p>完成后，点击 Functions 图标，选择
+&lt;strong>Deploy to Function App&amp;hellip;&lt;/strong>&lt;/p>
+&lt;p>上方选择刚创建的，
+弹出警告点 Deploy&lt;/p>
+&lt;p>右下角会开始输出部署 log&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/Azure-03-deploy-06.jpg"
+width="1088"
+height="482"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/Azure-03-deploy-06_hu17316824194653060566.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/Azure-03-deploy-06_hu9666457840145064241.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="225"
+data-flex-basis="541px"
+>&lt;/p>
+&lt;h3 id="完成-2">完成
+&lt;/h3>&lt;p>完成后 log 会显示你的 Trigger URL&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/Azure-04-done-01.jpg"
+width="1201"
+height="514"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/Azure-04-done-01_hu8026111017383347434.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/Azure-04-done-01_hu12145447332319321265.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="233"
+data-flex-basis="560px"
+>&lt;/p>
+&lt;p>可以打开 URL 测试&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/231013-saas/img/Azure-04-done-02.jpg"
+width="2560"
+height="1262"
+srcset="https://blog.kmtea.eu/p/231013-saas/img/Azure-04-done-02_hu6595772853017512192.jpg 480w, https://blog.kmtea.eu/p/231013-saas/img/Azure-04-done-02_hu4755855760353413493.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="202"
+data-flex-basis="486px"
+>&lt;/p>
+&lt;h2 id="总结">总结
+&lt;/h2>&lt;p>平心而论，
+Azure 的部署过程其实是很方便的，
+尤其是对于那些用惯了 VS Code 的人来说。&lt;/p>
+&lt;p>然而由于微软的文档过于语焉不详才让我吃了那么多苦头，
+甚至没有这件事就没有这篇发奋而作的 blog，
+笑死。&lt;/p></description></item><item><title>诺基亚贝尔光猫宽带密码破解提取</title><link>https://blog.kmtea.eu/p/230718-modem-decrypt/</link><pubDate>Tue, 18 Jul 2023 21:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/230718-modem-decrypt/</guid><description>&lt;img src="https://blog.kmtea.eu/p/230718-modem-decrypt/img/cover.jpg" alt="Featured image of post 诺基亚贝尔光猫宽带密码破解提取" />&lt;h1 id="诺基亚贝尔光猫宽带密码破解提取">诺基亚贝尔光猫宽带密码破解提取
+&lt;/h1>&lt;h2 id="前言">前言
+&lt;/h2>&lt;p>本教程适用于诺基亚贝尔光猫，型号 &lt;code>HGW&lt;/code> 或 &lt;code>G-140W-**&lt;/code>&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230718-modem-decrypt/img/02-info.jpg"
+width="1440"
+height="1106"
+srcset="https://blog.kmtea.eu/p/230718-modem-decrypt/img/02-info_hu8257488424133758667.jpg 480w, https://blog.kmtea.eu/p/230718-modem-decrypt/img/02-info_hu17403811184877493041.jpg 1024w"
+loading="lazy"
+alt="设备信息"
+class="gallery-image"
+data-flex-grow="130"
+data-flex-basis="312px"
+>&lt;/p>
+&lt;hr>
+&lt;p>此型号的光猫不可开启 &lt;code>telnet&lt;/code>:&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>http://192.168.1.1/getpage.gch?pid=1002&amp;amp;nextpage=tele_sec_tserver_t.gch&lt;/code>&lt;/li>
+&lt;li>&lt;code>http://192.168.1.1/cgi-bin/telnetenable.cgi?telnetenable=1&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>以上地址均无效。&lt;/p>
+&lt;hr>
+&lt;p>F12 大法无效：&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230718-modem-decrypt/img/03-net-config.jpg"
+width="1440"
+height="1106"
+srcset="https://blog.kmtea.eu/p/230718-modem-decrypt/img/03-net-config_hu9533786155013321359.jpg 480w, https://blog.kmtea.eu/p/230718-modem-decrypt/img/03-net-config_hu8750615472003995811.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="130"
+data-flex-basis="312px"
+>&lt;/p>
+&lt;p>&lt;code>密码&lt;/code> 文本框一经选中内容就会消失；&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230718-modem-decrypt/img/04-net-inspect.jpg"
+width="1490"
+height="1119"
+srcset="https://blog.kmtea.eu/p/230718-modem-decrypt/img/04-net-inspect_hu1089648554234302483.jpg 480w, https://blog.kmtea.eu/p/230718-modem-decrypt/img/04-net-inspect_hu16033567001352866824.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="319px"
+>&lt;/p>
+&lt;p>使用 &lt;code>F12&lt;/code> 审查元素，会发现该处明文为 &lt;code>!!!@@@&lt;/code>
+，不是合法的宽带拨号密码。&lt;/p>
+&lt;h2 id="教程">教程
+&lt;/h2>&lt;h3 id="1-登录">1. 登录
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">username: CMCCAdmin
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">password: aDm8H%MdA
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://blog.kmtea.eu/p/230718-modem-decrypt/img/01-login.jpg"
+width="1440"
+height="702"
+srcset="https://blog.kmtea.eu/p/230718-modem-decrypt/img/01-login_hu16331356466960250170.jpg 480w, https://blog.kmtea.eu/p/230718-modem-decrypt/img/01-login_hu8849065538177297095.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="205"
+data-flex-basis="492px"
+>&lt;/p>
+&lt;h3 id="2-打开如下地址">2. 打开如下地址
+&lt;/h3>&lt;p>&lt;code>http://192.168.1.1/dumpdatamodel.cgi&lt;/code>&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230718-modem-decrypt/img/05-dump.jpg"
+width="1380"
+height="633"
+srcset="https://blog.kmtea.eu/p/230718-modem-decrypt/img/05-dump_hu4310845834782863517.jpg 480w, https://blog.kmtea.eu/p/230718-modem-decrypt/img/05-dump_hu11359864648376275637.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="218"
+data-flex-basis="523px"
+>&lt;/p>
+&lt;p>搜索宽带账号
+(如 &lt;code>139.gd&lt;/code>)
+在下方找到密码字段。&lt;/p>
+&lt;h3 id="3-提取密码">3. 提取密码
+&lt;/h3>&lt;p>Ref:
+&lt;a class="link" href="https://gist.github.com/thedroidgeek/80c379aa43b71015d71da130f85a435a" target="_blank" rel="noopener"
+>thedroidgeek / nokia-router-cfg-tool.py&lt;/a>&lt;/p>
+&lt;p>首先安装依赖&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">conda install pycryptodome &lt;span class="o">||&lt;/span> pip install pycryptodome
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>随后运行：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">base64&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">class&lt;/span> &lt;span class="nc">RouterCrypto&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">def&lt;/span> &lt;span class="fm">__init__&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="bp">self&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kn">from&lt;/span> &lt;span class="nn">Crypto.Cipher&lt;/span> &lt;span class="kn">import&lt;/span> &lt;span class="n">AES&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># key and IV for AES&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">key&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;3D A3 73 D7 DC 82 2E 2A 47 0D EC 37 89 6E 80 D7 2C 49 B3 16 29 DD C9 97 35 4B 84 03 91 77 9E A4&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">iv&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;D0 E6 DC CD A7 4A 00 DF 76 0F C0 85 11 CB 05 EA&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># create AES-128-CBC cipher&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="bp">self&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">cipher&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">AES&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">new&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nb">bytes&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nb">bytearray&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">fromhex&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">key&lt;/span>&lt;span class="p">)),&lt;/span> &lt;span class="n">AES&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">MODE_CBC&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nb">bytes&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nb">bytearray&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">fromhex&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">iv&lt;/span>&lt;span class="p">)))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">def&lt;/span> &lt;span class="nf">decrypt&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="bp">self&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">data&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">output&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="bp">self&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">cipher&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">decrypt&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">data&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># remove PKCS#7 padding&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="n">output&lt;/span>&lt;span class="p">[:&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="nb">ord&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">output&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">:])]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">encrypted&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nb">input&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;请输入密码字串：&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;解密密码为：&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">RouterCrypto&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">decrypt&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">base64&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">b64decode&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">encrypted&lt;/span>&lt;span class="p">))&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">decode&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;UTF-8&amp;#39;&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://blog.kmtea.eu/p/230718-modem-decrypt/img/06-decrypt.jpg"
+width="960"
+height="332"
+srcset="https://blog.kmtea.eu/p/230718-modem-decrypt/img/06-decrypt_hu105353755734203539.jpg 480w, https://blog.kmtea.eu/p/230718-modem-decrypt/img/06-decrypt_hu16646469699483025057.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="289"
+data-flex-basis="693px"
+>&lt;/p>
+&lt;p>运行上述代码，即可解密密码 (一般为6位数字)。&lt;/p></description></item><item><title>Apple Pay 绑卡失败原因速查</title><link>https://blog.kmtea.eu/p/230617-apple-pay/</link><pubDate>Sat, 17 Jun 2023 15:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/230617-apple-pay/</guid><description>&lt;img src="https://blog.kmtea.eu/p/230617-apple-pay/img/err-invalid.jpg" alt="Featured image of post Apple Pay 绑卡失败原因速查" />&lt;h1 id="apple-pay-绑卡失败原因速查">Apple Pay 绑卡失败原因速查
+&lt;/h1>&lt;p>先上目前绑卡截图镇楼&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230617-apple-pay/img/apple-wallet.jpg"
+width="1125"
+height="1125"
+srcset="https://blog.kmtea.eu/p/230617-apple-pay/img/apple-wallet_hu5420112030158952658.jpg 480w, https://blog.kmtea.eu/p/230617-apple-pay/img/apple-wallet_hu8692666644540611903.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="100"
+data-flex-basis="240px"
+>&lt;/p>
+&lt;h2 id="常见错误">常见错误
+&lt;/h2>&lt;h3 id="你的发卡机构尚不支持此卡片">你的发卡机构尚不支持此卡片
+&lt;/h3>&lt;blockquote>
+&lt;p>Your issuer does not yet offer support for this card&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230617-apple-pay/img/err-not-support.jpg"
+width="1125"
+height="633"
+srcset="https://blog.kmtea.eu/p/230617-apple-pay/img/err-not-support_hu2622680311613782345.jpg 480w, https://blog.kmtea.eu/p/230617-apple-pay/img/err-not-support_hu12809086854046664361.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p>
+&lt;ul>
+&lt;li>正在绑定的是中国大陆发行的非银联卡&lt;/li>
+&lt;/ul>
+&lt;h3 id="卡的设备限制">卡的设备限制
+&lt;/h3>&lt;blockquote>
+&lt;p>Card device limit&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230617-apple-pay/img/err-limit.jpg"
+width="1125"
+height="1125"
+srcset="https://blog.kmtea.eu/p/230617-apple-pay/img/err-limit_hu2519429187341502823.jpg 480w, https://blog.kmtea.eu/p/230617-apple-pay/img/err-limit_hu7898690086682181278.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="100"
+data-flex-basis="240px"
+>&lt;/p>
+&lt;ul>
+&lt;li>已经在其他手机绑定了改卡，需解绑
+&lt;ul>
+&lt;li>如果确认已解绑多余设备， &lt;a class="link" href="https://discussionschinese.apple.com/thread/253116288?answerId=255886195322#255886195322" target="_blank" rel="noopener"
+>可尝试等待3天&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="卡信息无效">卡信息无效
+&lt;/h3>&lt;blockquote>
+&lt;p>Invalid card&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230617-apple-pay/img/err-invalid.jpg"
+width="1125"
+height="632"
+srcset="https://blog.kmtea.eu/p/230617-apple-pay/img/err-invalid_hu13772476769742826098.jpg 480w, https://blog.kmtea.eu/p/230617-apple-pay/img/err-invalid_hu4797876000260811269.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="178"
+data-flex-basis="427px"
+>&lt;/p>
+&lt;ul>
+&lt;li>卡片未激活
+&lt;ul>
+&lt;li>有些卡，如农行的信用卡，面签完还要在手机银行再激活一次，尚未激活就会出现这个错误信息，可以进入手机银行查看卡片激活状态&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>该卡号今日 &lt;a class="link" href="https://www.jimmytian.com/archives/solve-apple-pay-cant-add-boc-card.html#0x03-%E5%86%8D%E6%AC%A1%E6%89%93%E7%94%B5%E8%AF%9D%E5%88%B0%E9%93%B6%E8%81%94" target="_blank" rel="noopener"
+>已失败5次&lt;/a> ，明日再试&lt;/li>
+&lt;/ul>
+&lt;h3 id="未添加此卡">未添加此卡
+&lt;/h3>&lt;blockquote>
+&lt;p>Could not add card&lt;/p>
+&lt;p>Card not added&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230617-apple-pay/img/err-could-not-add.jpg"
+width="1125"
+height="633"
+srcset="https://blog.kmtea.eu/p/230617-apple-pay/img/err-could-not-add_hu8949949586356617866.jpg 480w, https://blog.kmtea.eu/p/230617-apple-pay/img/err-could-not-add_hu4129613947161002301.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230617-apple-pay/img/err-not-added.jpg"
+width="1125"
+height="633"
+srcset="https://blog.kmtea.eu/p/230617-apple-pay/img/err-not-added_hu2844446966229037161.jpg 480w, https://blog.kmtea.eu/p/230617-apple-pay/img/err-not-added_hu500894717378275067.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p>
+&lt;ul>
+&lt;li>原因不明，建议跟客服对线
+&lt;ul>
+&lt;li>关于中行疑难杂症，请见下文&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="客服聊天记录">客服聊天记录
+&lt;/h2>&lt;p>建议：先找银联问错误代码，再找对应银行；&lt;/p>
+&lt;p>银联首选云闪付线上客服，银行首选电话客服。&lt;/p>
+&lt;h3 id="银联">银联
+&lt;/h3>&lt;blockquote>
+&lt;p>碰到绑不上的问题可以先向银联咨询错误代码&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230617-apple-pay/img/chat-up-agent.jpg"
+width="1125"
+height="1784"
+srcset="https://blog.kmtea.eu/p/230617-apple-pay/img/chat-up-agent_hu13803390019213436697.jpg 480w, https://blog.kmtea.eu/p/230617-apple-pay/img/chat-up-agent_hu9471337518595277760.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="63"
+data-flex-basis="151px"
+>&lt;/p>
+&lt;h3 id="中国银行">中国银行
+&lt;/h3>&lt;blockquote>
+&lt;p>中行电话客服才有足够权限，在线客服只能问到通用信息&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230617-apple-pay/img/chat-boc-bot.jpg"
+width="1125"
+height="1150"
+srcset="https://blog.kmtea.eu/p/230617-apple-pay/img/chat-boc-bot_hu3486262929792448961.jpg 480w, https://blog.kmtea.eu/p/230617-apple-pay/img/chat-boc-bot_hu17655990256990057958.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="97"
+data-flex-basis="234px"
+>&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230617-apple-pay/img/chat-boc-agent.jpg"
+width="1125"
+height="1536"
+srcset="https://blog.kmtea.eu/p/230617-apple-pay/img/chat-boc-agent_hu14881700640159230012.jpg 480w, https://blog.kmtea.eu/p/230617-apple-pay/img/chat-boc-agent_hu17038483677419125381.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="73"
+data-flex-basis="175px"
+>&lt;/p>
+&lt;ul>
+&lt;li>每人无论单个或多个设备，最多存在 &lt;strong>3张&lt;/strong> 已绑定的中行借记卡 (即包含 &lt;a class="link" href="https://www.jimmytian.com/archives/solve-apple-pay-cant-add-boc-card.html#comment-201" target="_blank" rel="noopener"
+>同一张卡绑定3台设备的情况&lt;/a>)&lt;/li>
+&lt;li>&lt;a class="link" href="https://www.jimmytian.com/archives/solve-apple-pay-cant-add-boc-card.html#comment-212" target="_blank" rel="noopener"
+>有评论&lt;/a> 称，中行最多绑定两张卡。 &lt;strong>我自己的情况正是这样&lt;/strong>&lt;/li>
+&lt;li>所有银行卡合计超出上限 (iOS 17 以上 &lt;a class="link" href="https://t.me/DocOfCard/2019" target="_blank" rel="noopener"
+>移除了&lt;/a> 这个上限)&lt;/li>
+&lt;/ul>
+&lt;h2 id="参考资料">参考资料
+&lt;/h2>&lt;ul>
+&lt;li>&lt;a class="link" href="https://www.jimmytian.com/archives/solve-apple-pay-cant-add-boc-card.html" target="_blank" rel="noopener"
+>中国银行绑定 Apple Pay 失败的解决方法&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;blockquote>
+&lt;p>我与该博主相似的地方有：&lt;/p>
+&lt;ul>
+&lt;li>第一次绑卡时收到了银联的风控电话&lt;/li>
+&lt;li>绑卡失败代码都是 93608&lt;/li>
+&lt;/ul>
+&lt;/blockquote>
+&lt;ul>
+&lt;li>&lt;a class="link" href="https://discussionschinese.apple.com/thread/253116288" target="_blank" rel="noopener"
+>钱包解绑银行卡后无法再重新绑定，提示设备限制&lt;/a>&lt;/li>
+&lt;/ul></description></item><item><title>PVE 更新 OpenWrt 教程</title><link>https://blog.kmtea.eu/p/221227-pve-openwrt/</link><pubDate>Tue, 27 Dec 2022 17:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/221227-pve-openwrt/</guid><description>&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/cover.jpg" alt="Featured image of post PVE 更新 OpenWrt 教程" />&lt;h1 id="pve-更新-openwrt">PVE 更新 OpenWrt
+&lt;/h1>&lt;h2 id="准备工作">准备工作
+&lt;/h2>&lt;ul>
+&lt;li>
+&lt;p>OpenWrt 固件
+&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/01-firmware.jpg"
+width="933"
+height="373"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/01-firmware_hu3684993626857845922.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/01-firmware_hu12184372201458040583.jpg 1024w"
+loading="lazy"
+alt="Firmware"
+class="gallery-image"
+data-flex-grow="250"
+data-flex-basis="600px"
+>&lt;/p>
+&lt;ul>
+&lt;li>建议编译时 &lt;strong>不要&lt;/strong> 选中 &lt;code>gzip&lt;/code> 压缩，否则容易出现各种奇妙的问题&lt;/li>
+&lt;li>一般情况下不选用名称带有 &lt;code>rootfs&lt;/code> 的固件&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>USB 网卡 (可选)
+&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/02-usb.jpg"
+width="1280"
+height="720"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/02-usb_hu14365218610408004565.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/02-usb_hu15200987922660455573.jpg 1024w"
+loading="lazy"
+alt="USB Ethernet"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p>
+&lt;ul>
+&lt;li>如果你和我一样把全部网口都直通了，则需要在更新时使用其他的方式连接到 PVE&lt;/li>
+&lt;li>PVE 默认不会自动启用新插入的网卡，你可能需要
+&lt;code>ifup enx00xxxxxxxxxx &amp;amp;&amp;amp; ip link set dev enx00xxxxxxxxxx up&lt;/code>
+其中网卡名 &lt;code>enx00xxxxxxxxxx&lt;/code> 可以在 &lt;code>ifconfig&lt;/code> 查询
+&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/03-ifup.jpg"
+width="1920"
+height="1080"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/03-ifup_hu9283212728005004216.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/03-ifup_hu14871536508727084156.jpg 1024w"
+loading="lazy"
+alt="ifup"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="为什么不能用正常方式升级">为什么不能用正常方式升级？
+&lt;/h2>&lt;p>众所周知，OpenWrt 正常升级方式是在 &lt;code>系统&lt;/code> - &lt;code>备份升级&lt;/code> 中升级：&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/04-upgrade.jpg"
+width="1892"
+height="934"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/04-upgrade_hu13731751324325279455.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/04-upgrade_hu8066154239109757646.jpg 1024w"
+loading="lazy"
+alt="Upgrade"
+class="gallery-image"
+data-flex-grow="202"
+data-flex-basis="486px"
+>&lt;/p>
+&lt;p>但你会发现 x86 固件是不包含 &lt;code>sysupgrade&lt;/code> 固件的：&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/05-checksum.jpg"
+width="1313"
+height="535"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/05-checksum_hu17035834986181581408.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/05-checksum_hu4795543418893992679.jpg 1024w"
+loading="lazy"
+alt="Checksum"
+class="gallery-image"
+data-flex-grow="245"
+data-flex-basis="589px"
+>&lt;/p>
+&lt;p>所以，对于运行在 Proxmox VE 中的 OpenWrt 虚拟机，我们只能通过手动方式升级&lt;/p>
+&lt;hr>
+&lt;p>在开始之前，请确保你划分了一块虚拟硬盘作为 &lt;code>overlay&lt;/code> 分区放置配置。&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/06-overlay.jpg"
+width="1920"
+height="1080"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/06-overlay_hu4287680519010368640.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/06-overlay_hu4890147517305287344.jpg 1024w"
+loading="lazy"
+alt="overlay"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p>
+&lt;p>如果没有，我强烈建议你花十分钟搜下教程
+(关键词 &lt;code>extroot overlay&lt;/code>)
+完成这件事， &lt;strong>功在当代利在千秋&lt;/strong>&lt;/p>
+&lt;h2 id="上传新固件">上传新固件
+&lt;/h2>&lt;p>上传到 &lt;code>local&lt;/code> - &lt;code>ISO&lt;/code>&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/07-upload.jpg"
+width="1920"
+height="1080"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/07-upload_hu10530922004001403288.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/07-upload_hu17554082633598377553.jpg 1024w"
+loading="lazy"
+alt="Upload firmware"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p>
+&lt;p>推荐检查 &lt;code>sha256sum&lt;/code>&lt;/p>
+&lt;h2 id="更换系统固件">更换系统固件
+&lt;/h2>&lt;ol>
+&lt;li>在以非目标 OpenWrt 内网的方式连接 PVE 的情况下，关闭虚拟机 &lt;br>
+&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/08-shutdown.jpg"
+width="1920"
+height="1080"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/08-shutdown_hu3414183044140269345.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/08-shutdown_hu6426689447371247691.jpg 1024w"
+loading="lazy"
+alt="Shutdown"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>
+可以用 PVE 的 &lt;code>Shutdown&lt;/code> 按钮，也可以在 Console 输入 &lt;code>poweroff&lt;/code> &lt;br>&lt;/li>
+&lt;li>选中系统盘 &lt;br>
+&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/09-select.jpg"
+width="1085"
+height="434"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/09-select_hu7425090129346221759.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/09-select_hu14935486778802004537.jpg 1024w"
+loading="lazy"
+alt="Select"
+class="gallery-image"
+data-flex-grow="250"
+data-flex-basis="600px"
+>
+点击 &lt;code>Detach&lt;/code> 并确认 &lt;br>
+&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/10-detach.jpg"
+width="939"
+height="387"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/10-detach_hu7121527017138036411.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/10-detach_hu6546929375853196017.jpg 1024w"
+loading="lazy"
+alt="Detach"
+class="gallery-image"
+data-flex-grow="242"
+data-flex-basis="582px"
+>
+再在下方找到 &lt;code>Unused Disk 0&lt;/code> 并 &lt;code>Remove&lt;/code> 删除 &lt;br>
+&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/11-remove.jpg"
+width="1288"
+height="730"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/11-remove_hu15499373015671742573.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/11-remove_hu15256187519116002043.jpg 1024w"
+loading="lazy"
+alt="Remove"
+class="gallery-image"
+data-flex-grow="176"
+data-flex-basis="423px"
+>&lt;/li>
+&lt;li>导入新固件 &lt;br>
+来到 &lt;strong>PVE 的 Console&lt;/strong> 输入： &lt;br>
+&lt;code>qm importdisk 101 /var/lib/vz/template/iso/openwrt-x86-64-generic-squashfs-combined-efi.img local-lvm&lt;/code> &lt;br>
+其中 &lt;code>101&lt;/code> 是你的 OpenWrt 虚拟机 ID
+&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/12-import.jpg"
+width="1920"
+height="1080"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/12-import_hu13644731743820045478.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/12-import_hu9714558287040861448.jpg 1024w"
+loading="lazy"
+alt="Import"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>
+随后一个新的 &lt;code>Unused Disk 0&lt;/code> 出现了
+&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/13-disk.jpg"
+width="1576"
+height="819"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/13-disk_hu4158831284465213893.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/13-disk_hu17077438990791742524.jpg 1024w"
+loading="lazy"
+alt="Found new Unused"
+class="gallery-image"
+data-flex-grow="192"
+data-flex-basis="461px"
+>&lt;/li>
+&lt;li>启用新系统盘 &lt;br>
+选中新的 &lt;code>Unused Disk 0&lt;/code> 并点击 &lt;code>Edit&lt;/code>，确认即可 &lt;br>
+&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/14-edit.jpg"
+width="1398"
+height="562"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/14-edit_hu17179194852447571470.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/14-edit_hu13070773696696002333.jpg 1024w"
+loading="lazy"
+alt="Attach Unused Disk 0"
+class="gallery-image"
+data-flex-grow="248"
+data-flex-basis="597px"
+>&lt;/li>
+&lt;li>启动虚拟机&lt;/li>
+&lt;/ol>
+&lt;h2 id="恢复配置">恢复配置
+&lt;/h2>&lt;ol>
+&lt;li>按一下回车激活 Console &lt;br>
+&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/15-console.jpg"
+width="1920"
+height="1080"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/15-console_hu13073367240651235252.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/15-console_hu106401981101595447.jpg 1024w"
+loading="lazy"
+alt="Activate console"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/li>
+&lt;li>此时，原先的 &lt;code>overlay&lt;/code> 会被自动挂载为 &lt;code>/mnt/sda1&lt;/code> (有时是 &lt;code>sdb1&lt;/code>) &lt;br>
+我们可以发现，该目录下 &lt;code>etc&lt;/code> 内含有一 &lt;code>.extroot-uuid&lt;/code> 文件。 &lt;br>
+&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/16-cleanup.jpg"
+width="977"
+height="445"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/16-cleanup_hu11787118656573084975.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/16-cleanup_hu779702130513511148.jpg 1024w"
+loading="lazy"
+alt="Cleanup"
+class="gallery-image"
+data-flex-grow="219"
+data-flex-basis="526px"
+>
+这一文件会误导系统读取正确的 UUID 并导致无法挂载！ &lt;br>
+使用 &lt;code>rm -rf /mnt/sda1/etc&lt;/code> 将之删除。 &lt;br>
+&lt;code>/etc/fstab&lt;/code> 也是没用的： &lt;code>rm -f /etc/fstab&lt;/code>&lt;/li>
+&lt;li>查看自动生成的 &lt;code>/etc/config/fstab&lt;/code> &lt;br>
+&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/17-old-fstab.jpg"
+width="912"
+height="724"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/17-old-fstab_hu12568787855695136956.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/17-old-fstab_hu15795182380311537493.jpg 1024w"
+loading="lazy"
+alt="Old fstab"
+class="gallery-image"
+data-flex-grow="125"
+data-flex-basis="302px"
+>&lt;/li>
+&lt;/ol>
+&lt;ul>
+&lt;li>去掉用不到的 &lt;code>boot&lt;/code> 挂载&lt;/li>
+&lt;li>把 &lt;code>sda1&lt;/code> 的 UUID 移动到 &lt;code>overlay&lt;/code> 配置下
+&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/18-new-fstab.jpg"
+width="1250"
+height="838"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/18-new-fstab_hu17255174197867113286.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/18-new-fstab_hu11188476266266322756.jpg 1024w"
+loading="lazy"
+alt="New fstab"
+class="gallery-image"
+data-flex-grow="149"
+data-flex-basis="357px"
+>
+保存后重启&lt;/li>
+&lt;/ul>
+&lt;ol start="4">
+&lt;li>把修改的 &lt;code>/etc/config/fstab&lt;/code> 同步到配置分区 &lt;br>
+&lt;code>cp -a /etc/config/fstab /mnt/sda1/upper/etc/config/&lt;/code>
+&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/19-sync-fstab.jpg"
+width="1297"
+height="331"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/19-sync-fstab_hu6347967584544174724.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/19-sync-fstab_hu1552554199808078177.jpg 1024w"
+loading="lazy"
+alt="Sync config"
+class="gallery-image"
+data-flex-grow="391"
+data-flex-basis="940px"
+>&lt;/li>
+&lt;/ol>
+&lt;h2 id="完成">完成
+&lt;/h2>&lt;ol>
+&lt;li>重启&lt;/li>
+&lt;li>检查 &lt;code>df -h&lt;/code>，可发现配置分区已成功挂载！
+&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/20-reboot.jpg"
+width="1920"
+height="1080"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/20-reboot_hu1567392751597700654.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/20-reboot_hu15991633569798779988.jpg 1024w"
+loading="lazy"
+alt="Reboot"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/li>
+&lt;/ol>
+&lt;h2 id="references">References
+&lt;/h2>&lt;p>我被万恶的 &lt;code>.extroot-uuid&lt;/code> 困扰了几个月之久，直到看到了
+&lt;a class="link" href="https://forum.openwrt.org/t/solved-extroot-not-working-on-18-06/16723/2" target="_blank" rel="noopener"
+>这篇帖子&lt;/a>&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/21-forum.jpg"
+width="1077"
+height="1280"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/21-forum_hu12109506352435954598.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/21-forum_hu14791087120285901643.jpg 1024w"
+loading="lazy"
+alt="Solution"
+class="gallery-image"
+data-flex-grow="84"
+data-flex-basis="201px"
+>&lt;/p>
+&lt;p>因此写这篇教程广而告之。&lt;/p></description></item><item><title>Add glibc to OpenWrt</title><link>https://blog.kmtea.eu/p/221003-glibc-openwrt-en/</link><pubDate>Mon, 03 Oct 2022 16:30:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/221003-glibc-openwrt-en/</guid><description>&lt;img src="https://blog.kmtea.eu/p/221003-glibc-openwrt/img/cover.jpg" alt="Featured image of post Add glibc to OpenWrt" />&lt;h1 id="add-glibc-to-openwrt">Add glibc to OpenWrt
+&lt;/h1>&lt;blockquote>
+&lt;p>&lt;a class="link" href="https://blog.kmtea.eu/p/221003-glibc-openwrt/" >中文版&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;p>I&amp;rsquo;m trying to replace &lt;code>traceroute&lt;/code> with a tool called
+&lt;a class="link" href="https://www.ipip.net/download.html" target="_blank" rel="noopener"
+>BestTrace&lt;/a>,
+but an error was raised during execution:&lt;/p>
+&lt;blockquote>
+&lt;p>Failed to execute process &amp;lsquo;./besttrace&amp;rsquo;. Reason:&lt;/p>
+&lt;p>The file &amp;lsquo;./besttrace&amp;rsquo; does not exist or could not be executed.&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/221003-glibc-openwrt/img/01-error.jpg"
+loading="lazy"
+alt="Error"
+>&lt;/p>
+&lt;p>Check the executable with &lt;code>file&lt;/code>:&lt;/p>
+&lt;blockquote>
+&lt;p>besttrace: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), dynamically linked, &lt;strong>interpreter /lib64/ld-linux-x86-64.so.2&lt;/strong>, Go BuildID=1c1dnBC1TKT-wnm6J_Ek/Csaj2Jrm0niZmmJ8paMZ/_hoguDO-XKYO0IWEnHWa/H2kGhpM-teit7NepUJE5, not stripped&lt;/p>
+&lt;/blockquote>
+&lt;p>Noticed that, &lt;code>interpreter /lib64/ld-linux-x86-64.so.2&lt;/code>,
+which means the arch &lt;code>x86-64&lt;/code> is correct, but &lt;code>glibc&lt;/code> runtime is missing.&lt;/p>
+&lt;p>Since 2015, &lt;a class="link" href="https://news.ycombinator.com/item?id=9941076" target="_blank" rel="noopener"
+>for consideration of the space and speed of embedded devices&lt;/a>,
+OpenWrt has swutched to &lt;a class="link" href="https://musl.libc.org/" target="_blank" rel="noopener"
+>musl&lt;/a> from uClibc as C library.&lt;/p>
+&lt;p>Whereas nowadays most software are using &lt;code>glibc&lt;/code>, which cannot be run on OpenWrt.&lt;/p>
+&lt;h2 id="solution">Solution
+&lt;/h2>&lt;p>Just copy &lt;code>ld-linux-x86-64.so.2&lt;/code> here!&lt;/p>
+&lt;h3 id="docker">Docker
+&lt;/h3>&lt;p>If Docker is installed:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#!/usr/bin/env bash
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">set&lt;/span> -ex
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># working directory&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># change to /opt, /usr/share or something else if you like&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">WK_DIR&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;/root/data&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mkdir -p &lt;span class="nv">$WK_DIR&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> &lt;span class="nv">$WK_DIR&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># pull Ubuntu&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker pull ubuntu:jammy
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># start a container&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker run -itd --name glibc ubuntu:jammy
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># copy libs&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker cp -a glibc:/lib/x86_64-linux-gnu .
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># link&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ln -s &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$WK_DIR&lt;/span>&lt;span class="s2">/x86_64-linux-gnu&amp;#34;&lt;/span> /lib/x86_64-linux-gnu &lt;span class="o">||&lt;/span> &lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;Link already exists.&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ln -s &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$WK_DIR&lt;/span>&lt;span class="s2">/x86_64-linux-gnu/ld-linux-x86-64.so.2&amp;#34;&lt;/span> /lib/ld-linux-x86-64.so.2 &lt;span class="o">||&lt;/span> &lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;Link already exists.&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># cleanup&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker stop glibc
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker rm glibc
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker rmi ubuntu:jammy
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>This means you can always get the latest libs,
+and switch to other distros you like.&lt;/p>
+&lt;h3 id="directly">Directly
+&lt;/h3>&lt;blockquote>
+&lt;p>Note: glibc v2.35, packed on 2022-10-03, could be outdated.&lt;/p>
+&lt;/blockquote>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#!/usr/bin/env bash
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">set&lt;/span> -ex
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># working directory&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># change to /opt, /usr/share or something else if you like&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">WK_DIR&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;/root/data&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mkdir -p &lt;span class="nv">$WK_DIR&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> &lt;span class="nv">$WK_DIR&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># download&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">wget &lt;span class="s2">&amp;#34;https://github.com/KumaTea/blog/releases/download/221003/glibc.tar.gz&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># decompress&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tar -xzf glibc.tar.gz
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># link&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ln -s &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$WK_DIR&lt;/span>&lt;span class="s2">/x86_64-linux-gnu&amp;#34;&lt;/span> /lib/x86_64-linux-gnu &lt;span class="o">||&lt;/span> &lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;Link already exists.&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ln -s &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$WK_DIR&lt;/span>&lt;span class="s2">/x86_64-linux-gnu/ld-linux-x86-64.so.2&amp;#34;&lt;/span> /lib/ld-linux-x86-64.so.2 &lt;span class="o">||&lt;/span> &lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;Link already exists.&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># cleanup&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">rm -f glibc.tar.gz
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;hr>
+&lt;p>After these instructions the program can be run successfully.&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/221003-glibc-openwrt/img/02-done.jpg"
+loading="lazy"
+alt="Done"
+>&lt;/p></description></item><item><title>向 OpenWrt 添加 glibc</title><link>https://blog.kmtea.eu/p/221003-glibc-openwrt/</link><pubDate>Mon, 03 Oct 2022 15:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/221003-glibc-openwrt/</guid><description>&lt;img src="https://blog.kmtea.eu/p/221003-glibc-openwrt/img/cover.jpg" alt="Featured image of post 向 OpenWrt 添加 glibc" />&lt;h1 id="向-openwrt-添加-glibc">向 OpenWrt 添加 glibc
+&lt;/h1>&lt;blockquote>
+&lt;p>&lt;a class="link" href="https://blog.kmtea.eu/p/221003-glibc-openwrt-en/" >English version&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;p>今天试图在 OpenWrt 软路由上使用
+&lt;a class="link" href="https://www.ipip.net/download.html" target="_blank" rel="noopener"
+>BestTrace&lt;/a> 替换 &lt;code>traceroute&lt;/code>，
+但下载完成后运行却出现了错误：&lt;/p>
+&lt;blockquote>
+&lt;p>Failed to execute process &amp;lsquo;./besttrace&amp;rsquo;. Reason:&lt;/p>
+&lt;p>The file &amp;lsquo;./besttrace&amp;rsquo; does not exist or could not be executed.&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/221003-glibc-openwrt/img/01-error.jpg"
+width="1188"
+height="791"
+srcset="https://blog.kmtea.eu/p/221003-glibc-openwrt/img/01-error_hu12802751493199395495.jpg 480w, https://blog.kmtea.eu/p/221003-glibc-openwrt/img/01-error_hu4136735399156841092.jpg 1024w"
+loading="lazy"
+alt="Error"
+class="gallery-image"
+data-flex-grow="150"
+data-flex-basis="360px"
+>&lt;/p>
+&lt;p>使用 &lt;code>file&lt;/code> 检查文件：&lt;/p>
+&lt;blockquote>
+&lt;p>besttrace: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), dynamically linked, &lt;strong>interpreter /lib64/ld-linux-x86-64.so.2&lt;/strong>, Go BuildID=1c1dnBC1TKT-wnm6J_Ek/Csaj2Jrm0niZmmJ8paMZ/_hoguDO-XKYO0IWEnHWa/H2kGhpM-teit7NepUJE5, not stripped&lt;/p>
+&lt;/blockquote>
+&lt;p>注意到 &lt;code>interpreter /lib64/ld-linux-x86-64.so.2&lt;/code>，
+说明架构 &lt;code>x86-64&lt;/code> 无误，但缺少了 &lt;code>glibc&lt;/code> 运行库。&lt;/p>
+&lt;p>自 2015 以后，&lt;a class="link" href="https://news.ycombinator.com/item?id=9941076" target="_blank" rel="noopener"
+>为了嵌入式设备的体积及运行速度考虑&lt;/a> ，
+OpenWrt 使用 &lt;a class="link" href="https://musl.libc.org/" target="_blank" rel="noopener"
+>musl&lt;/a> 作为 C 运行库。&lt;/p>
+&lt;p>然而现在大部分软件都使用 &lt;code>glibc&lt;/code>，在 OpenWrt 上就不能运行了。&lt;/p>
+&lt;h2 id="解决方案">解决方案
+&lt;/h2>&lt;p>只要把 &lt;code>ld-linux-x86-64.so.2&lt;/code> 复制进来就好了！&lt;/p>
+&lt;h3 id="docker">Docker
+&lt;/h3>&lt;p>如果安装了 Docker
+可以使用如下脚本：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#!/usr/bin/env bash
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">set&lt;/span> -ex
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># working directory&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># change to /opt, /usr/share or something else if you like&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">WK_DIR&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;/root/data&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mkdir -p &lt;span class="nv">$WK_DIR&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> &lt;span class="nv">$WK_DIR&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># pull Ubuntu&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker pull ubuntu:jammy
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># start a container&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker run -itd --name glibc ubuntu:jammy
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># copy libs&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker cp -a glibc:/lib/x86_64-linux-gnu .
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># link&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ln -s &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$WK_DIR&lt;/span>&lt;span class="s2">/x86_64-linux-gnu&amp;#34;&lt;/span> /lib/x86_64-linux-gnu &lt;span class="o">||&lt;/span> &lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;Link already exists.&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ln -s &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$WK_DIR&lt;/span>&lt;span class="s2">/x86_64-linux-gnu/ld-linux-x86-64.so.2&amp;#34;&lt;/span> /lib/ld-linux-x86-64.so.2 &lt;span class="o">||&lt;/span> &lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;Link already exists.&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># cleanup&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker stop glibc
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker rm glibc
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker rmi ubuntu:jammy
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>你也可以换用 Debian 或者任意你喜欢的发行版&lt;/p>
+&lt;h3 id="直装">直装
+&lt;/h3>&lt;blockquote>
+&lt;p>注：于 2022-10-03 打包的 glibc v2.35，可能过时&lt;/p>
+&lt;/blockquote>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#!/usr/bin/env bash
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">set&lt;/span> -ex
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># working directory&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># change to /opt, /usr/share or something else if you like&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">WK_DIR&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;/root/data&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mkdir -p &lt;span class="nv">$WK_DIR&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> &lt;span class="nv">$WK_DIR&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># download&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">wget &lt;span class="s2">&amp;#34;https://github.com/KumaTea/blog/releases/download/221003/glibc.tar.gz&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># decompress&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tar -xzf glibc.tar.gz
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># link&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ln -s &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$WK_DIR&lt;/span>&lt;span class="s2">/x86_64-linux-gnu&amp;#34;&lt;/span> /lib/x86_64-linux-gnu &lt;span class="o">||&lt;/span> &lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;Link already exists.&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ln -s &lt;span class="s2">&amp;#34;&lt;/span>&lt;span class="nv">$WK_DIR&lt;/span>&lt;span class="s2">/x86_64-linux-gnu/ld-linux-x86-64.so.2&amp;#34;&lt;/span> /lib/ld-linux-x86-64.so.2 &lt;span class="o">||&lt;/span> &lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;Link already exists.&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># cleanup&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">rm -f glibc.tar.gz
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;hr>
+&lt;p>操作完成后程序已可成功运行。&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/221003-glibc-openwrt/img/02-done.jpg"
+width="1188"
+height="463"
+srcset="https://blog.kmtea.eu/p/221003-glibc-openwrt/img/02-done_hu8674374802999508881.jpg 480w, https://blog.kmtea.eu/p/221003-glibc-openwrt/img/02-done_hu7316029174057343438.jpg 1024w"
+loading="lazy"
+alt="Done"
+class="gallery-image"
+data-flex-grow="256"
+data-flex-basis="615px"
+>&lt;/p></description></item><item><title>树莓派安装 RHEL</title><link>https://blog.kmtea.eu/p/220710-pi-rhel/</link><pubDate>Sun, 10 Jul 2022 04:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/220710-pi-rhel/</guid><description>&lt;img src="https://blog.kmtea.eu/p/220710-pi-rhel/img/cover.jpg" alt="Featured image of post 树莓派安装 RHEL" />&lt;h1 id="树莓派安装-rhel">树莓派安装 RHEL
+&lt;/h1>&lt;blockquote>
+&lt;p>This tutorial is &lt;a class="link" href="https://github.com/KumaTea/pi-rhel" target="_blank" rel="noopener"
+>originally written in English here&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="这个想法怎么来的">这个想法怎么来的
+&lt;/h2>&lt;p>大概是 &lt;a class="link" href="https://the-report.cloud/ibms-red-hat-just-killed-centos-as-we-know-it-with-centos-stream-stability-goes-out-of-the-door" target="_blank" rel="noopener"
+>鲨了 CentOS&lt;/a> 的良心不安，
+Red Hat 去年宣布 &lt;a class="link" href="https://developers.redhat.com/articles/faqs-no-cost-red-hat-enterprise-linux" target="_blank" rel="noopener"
+>RHEL 个人订阅白送了&lt;/a> 。
+也就是现在家用红帽 Linux 不要钱了！&lt;/p>
+&lt;p>我囸，有 RHEL 用，谁还玩 CentOS?&lt;/p>
+&lt;p>但是我没机器来玩 (P.S. 写的时候有了嘿嘿)，
+手头就剩下一块树莓派 4B 🥺&lt;/p>
+&lt;p>于是开始搜索教程，但 Bing 直接给我当头一棒：&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/220710-pi-rhel/img/002-bing.jpg"
+width="1920"
+height="1080"
+srcset="https://blog.kmtea.eu/p/220710-pi-rhel/img/002-bing_hu4187749245200644103.jpg 480w, https://blog.kmtea.eu/p/220710-pi-rhel/img/002-bing_hu10618287912619382763.jpg 1024w"
+loading="lazy"
+alt="Bing"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p>
+&lt;p>本来准备放弃了， 结果意外发现，
+&lt;a class="link" href="https://www.oracle.com/linux" target="_blank" rel="noopener"
+>Oracle Linux&lt;/a> ，
+一个红帽Linux的衍生版本，
+(&lt;del>对，就那个拒了我100多次注册云服务的万恶的 Oracle&lt;/del>)
+有发布 &lt;a class="link" href="https://www.oracle.com/linux/downloads/linux-arm-downloads.html" target="_blank" rel="noopener"
+>适用于树莓派 4B、400和3B/+ 的固件&lt;/a> 耶！&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/220710-pi-rhel/img/003-oracle.jpg"
+width="1920"
+height="1080"
+srcset="https://blog.kmtea.eu/p/220710-pi-rhel/img/003-oracle_hu1310995644547889850.jpg 480w, https://blog.kmtea.eu/p/220710-pi-rhel/img/003-oracle_hu7336570223556942167.jpg 1024w"
+loading="lazy"
+alt="Oracle Linux for Pi"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p>
+&lt;p>搜了下，大概是唯一支持树莓派的 RHEL 发行版了。&lt;/p>
+&lt;p>花了几天摸索出一个奇技淫巧，玩一波偷梁换柱，
+达到在树莓派上安装 RHEL 的方法，简述一下。&lt;/p>
+&lt;h2 id="需求">需求
+&lt;/h2>&lt;ul>
+&lt;li>Raspberry Pi 4B, 400或3B/+
+&lt;ul>
+&lt;li>仅在4B上测试成功&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>一个系统盘
+&lt;ul>
+&lt;li>强烈建议使用硬盘盒转接 SSD!!!&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Red Hat 个人订阅&lt;/li>
+&lt;li>科学或者魔法上网&lt;/li>
+&lt;/ul>
+&lt;h2 id="注册-red-hat-个人订阅">注册 Red Hat 个人订阅
+&lt;/h2>&lt;p>来这里 &lt;a class="link" href="https://developers.redhat.com/register" target="_blank" rel="noopener"
+>注册 Red Hat Individual Subscription&lt;/a> 。&lt;/p>
+&lt;p>注册完了记得看下 &lt;a class="link" href="https://access.redhat.com/management/subscriptions" target="_blank" rel="noopener"
+>你的管理页面&lt;/a> 有没有东西：&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/220710-pi-rhel/img/004-rh-sub.jpg"
+width="1920"
+height="1080"
+srcset="https://blog.kmtea.eu/p/220710-pi-rhel/img/004-rh-sub_hu12512997653311270821.jpg 480w, https://blog.kmtea.eu/p/220710-pi-rhel/img/004-rh-sub_hu740179764067273685.jpg 1024w"
+loading="lazy"
+alt="订阅"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p>
+&lt;p>等下要从 RHEL 的 repo 中更新软件包，所以这步不能省。&lt;/p>
+&lt;h2 id="安装-oracle-linux">安装 Oracle Linux
+&lt;/h2>&lt;p>首先 &lt;a class="link" href="https://www.oracle.com/linux/downloads/linux-arm-downloads.html" target="_blank" rel="noopener"
+>下载 Oracle Linux&lt;/a> 。&lt;/p>
+&lt;p>然后找个你喜欢的刷写工具。
+一般 &lt;a class="link" href="https://www.raspberrypi.com/software/#:~:text=Pi%20OS%20using-,Raspberry%C2%A0Pi%C2%A0Imager,-Raspberry%20Pi%20Imager" target="_blank" rel="noopener"
+>Raspberry Pi Imager&lt;/a>
+就好了，但我更喜欢 &lt;a class="link" href="https://etcher.io" target="_blank" rel="noopener"
+>Etcher&lt;/a> 。&lt;/p>
+&lt;p>下载的图像压缩成 &lt;code>xz&lt;/code> 格式了，但不用解压，直接开刷！&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/220710-pi-rhel/img/005-flash.jpg"
+width="1205"
+height="759"
+srcset="https://blog.kmtea.eu/p/220710-pi-rhel/img/005-flash_hu13389795366323027242.jpg 480w, https://blog.kmtea.eu/p/220710-pi-rhel/img/005-flash_hu12512930340848070130.jpg 1024w"
+loading="lazy"
+alt="Flashing"
+class="gallery-image"
+data-flex-grow="158"
+data-flex-basis="381px"
+>&lt;/p>
+&lt;h3 id="ssd-与-sd卡">SSD 与 SD卡
+&lt;/h3>&lt;p>Oracle Linux 的根文件系统 (rootfs) 是 &lt;code>btrfs&lt;/code> ，
+卡得出奇，卡的批爆！合起来写炸了我5个内存卡和U盘！就为了这篇！
+所以别用内存卡！用固态！！！&lt;/p>
+&lt;p>或者可以考虑下换成 &lt;code>f2fs&lt;/code> 。&lt;/p>
+&lt;p>然后接上树莓派，插电，开机！&lt;/p>
+&lt;p>进入路由的 DHCP 客户端页面，找到 IP 地址，刚出来那个。&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/220710-pi-rhel/img/006-dhcp.jpg"
+width="1920"
+height="1080"
+srcset="https://blog.kmtea.eu/p/220710-pi-rhel/img/006-dhcp_hu8937156537661020807.jpg 480w, https://blog.kmtea.eu/p/220710-pi-rhel/img/006-dhcp_hu15354072122913167441.jpg 1024w"
+loading="lazy"
+alt="DHCP"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p>
+&lt;p>&lt;code>ssh&lt;/code> 连上，用户名 &lt;code>root&lt;/code> ，密码 &lt;code>oracle&lt;/code> 。&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/220710-pi-rhel/img/007-first-ssh.jpg"
+width="1920"
+height="1080"
+srcset="https://blog.kmtea.eu/p/220710-pi-rhel/img/007-first-ssh_hu14178920614799465915.jpg 480w, https://blog.kmtea.eu/p/220710-pi-rhel/img/007-first-ssh_hu1951245337448371721.jpg 1024w"
+loading="lazy"
+alt="SSH"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p>
+&lt;h2 id="系统准备">系统准备
+&lt;/h2>&lt;p>###扩展分区&lt;/p>
+&lt;p>解压缩后的固件大小约为 3.89GB ，装完了剩下大约300MB。
+这点地方塞牙缝 (&lt;code>dnf update&lt;/code>) 都不够，先要用 &lt;code>parted&lt;/code> 扩展分区。&lt;/p>
+&lt;p>没自带，先安装：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">dnf install -y parted
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;blockquote>
+&lt;p>不用先&lt;code>dnf update&lt;/code>&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/220710-pi-rhel/img/008-install-parted.jpg"
+width="1920"
+height="1080"
+srcset="https://blog.kmtea.eu/p/220710-pi-rhel/img/008-install-parted_hu5207693564955177257.jpg 480w, https://blog.kmtea.eu/p/220710-pi-rhel/img/008-install-parted_hu10631101428582925.jpg 1024w"
+loading="lazy"
+alt="安装parted"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p>
+&lt;p>然后开搞：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">parted /dev/sda
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># print&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># resizepart 3&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># q&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">btrfs filesystem resize max /
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://blog.kmtea.eu/p/220710-pi-rhel/img/009-parted.jpg"
+width="1920"
+height="1080"
+srcset="https://blog.kmtea.eu/p/220710-pi-rhel/img/009-parted_hu13701817593991210849.jpg 480w, https://blog.kmtea.eu/p/220710-pi-rhel/img/009-parted_hu4589021976099417915.jpg 1024w"
+loading="lazy"
+alt="parted"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p>
+&lt;h3 id="更新-kernel-uek">更新 &lt;code>kernel-uek&lt;/code>
+&lt;/h3>&lt;p>要留的唯一一个软件包是 &lt;code>kernel-uek&lt;/code> 。
+全称 &lt;a class="link" href="https://docs.oracle.com/en/operating-systems/uek/" target="_blank" rel="noopener"
+>Unbreakable Enterprise Kernel&lt;/a> ，
+是 Oracle 搞的 Linux 内核。&lt;/p>
+&lt;p>为什么留，因为只有 Oracle Linux 支持树莓派，当然只有它的内核能用。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">dnf update -y kernel-uek
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://blog.kmtea.eu/p/220710-pi-rhel/img/010-kernel-uek.jpg"
+width="1092"
+height="482"
+srcset="https://blog.kmtea.eu/p/220710-pi-rhel/img/010-kernel-uek_hu1564037860825087909.jpg 480w, https://blog.kmtea.eu/p/220710-pi-rhel/img/010-kernel-uek_hu376291727850212066.jpg 1024w"
+loading="lazy"
+alt="更新kernel-uek"
+class="gallery-image"
+data-flex-grow="226"
+data-flex-basis="543px"
+>&lt;/p>
+&lt;h2 id="补丁和运行-convert2rhel">补丁和运行 &amp;ldquo;convert2rhel&amp;rdquo;。
+&lt;/h2>&lt;p>开始偷梁换柱之前先看看 &lt;code>os-release&lt;/code> 怀念一下：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">cat /etc/os-release
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://blog.kmtea.eu/p/220710-pi-rhel/img/011-os-release.jpg"
+width="1920"
+height="1080"
+srcset="https://blog.kmtea.eu/p/220710-pi-rhel/img/011-os-release_hu13435812536028462588.jpg 480w, https://blog.kmtea.eu/p/220710-pi-rhel/img/011-os-release_hu4588500816581348398.jpg 1024w"
+loading="lazy"
+alt="os-release"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p>
+&lt;p>###安装&lt;code>convert2rhel&lt;/code>。&lt;/p>
+&lt;p>参照 &lt;a class="link" href="https://www.redhat.com/en/blog/introduction-convert2rhel-now-officially-supported-convert-rhel-systems-rhel" target="_blank" rel="noopener"
+>换到 Red Hat 吧&lt;/a> ，
+第一步是添加证书和仓库。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># ref: https://www.redhat.com/en/blog/introduction-convert2rhel-now-officially-supported-convert-rhel-systems-rhel&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">curl -o /etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release https://www.redhat.com/security/data/fd431d51.txt
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">curl --create-dirs -o /etc/rhsm/ca/redhat-uep.pem https://ftp.redhat.com/redhat/convert2rhel/redhat-uep.pem
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">curl -o /etc/yum.repos.d/convert2rhel.repo https://ftp.redhat.com/redhat/convert2rhel/8/convert2rhel.repo
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>然后安装 &lt;code>convert2rhel&lt;/code> ：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">dnf install -y convert2rhel
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://blog.kmtea.eu/p/220710-pi-rhel/img/012-install-c2r.jpg"
+width="1920"
+height="1080"
+srcset="https://blog.kmtea.eu/p/220710-pi-rhel/img/012-install-c2r_hu17009358479545452837.jpg 480w, https://blog.kmtea.eu/p/220710-pi-rhel/img/012-install-c2r_hu6330780863614337692.jpg 1024w"
+loading="lazy"
+alt="安装 convert2rhel"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p>
+&lt;h3 id="修改配置">修改配置
+&lt;/h3>&lt;p>由于 RHEL 没有正式支持树莓派，它的转换工具也不会包含我们要用的配置。
+硬转就会。。。&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/220710-pi-rhel/img/013-c2r-errors.jpg"
+width="1920"
+height="1080"
+srcset="https://blog.kmtea.eu/p/220710-pi-rhel/img/013-c2r-errors_hu10703312131011667165.jpg 480w, https://blog.kmtea.eu/p/220710-pi-rhel/img/013-c2r-errors_hu2848217106774378017.jpg 1024w"
+loading="lazy"
+alt="convert2rhel errors"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p>
+&lt;p>但是可以偷懒，只要改下 &lt;code>x86_64&lt;/code> 的配置就行。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">cp /usr/share/convert2rhel/configs/oracle-8-x86_64.cfg /usr/share/convert2rhel/configs/oracle-8-aarch64.cfg
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sed -i &lt;span class="s1">&amp;#39;s/rhel-8-for-x86_64/rhel-8-for-aarch64/g&amp;#39;&lt;/span> /usr/share/convert2rhel/configs/oracle-8-aarch64.cfg
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># sed -i &amp;#39;s/-rpms/-beta-rpms/g&amp;#39; /usr/share/convert2rhel/configs/oracle-8-aarch64.cfg&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># sed -i &amp;#34;s/checks.perform_pre_checks()/loggerinst.task(&amp;#39;SKIP CHECKS&amp;#39;) # checks.perform_pre_checks()/g&amp;#34; /usr/lib/python3.6/site-packages/convert2rhel/main.py&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sed -i &lt;span class="s1">&amp;#39;s/json-c.x86_64/json-c.aarch64/g&amp;#39;&lt;/span> /usr/lib/python3.6/site-packages/convert2rhel/subscription.py
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>x86 上 &lt;code>convert2rhel&lt;/code> 会搞定证书，
+但是因为是树莓派，我们要自己搞。&lt;/p>
+&lt;p>&lt;a class="link" href="https://access.redhat.com/labs/rhpc/" target="_blank" rel="noopener"
+>&lt;strong>红帽产品证书&lt;/strong>&lt;/a>&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/220710-pi-rhel/img/014-rhel-cert.jpg"
+width="1920"
+height="1080"
+srcset="https://blog.kmtea.eu/p/220710-pi-rhel/img/014-rhel-cert_hu8189658533864635216.jpg 480w, https://blog.kmtea.eu/p/220710-pi-rhel/img/014-rhel-cert_hu11105748061584004165.jpg 1024w"
+loading="lazy"
+alt="RHEL证书"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p>
+&lt;p>在 &lt;em>Choose your product&lt;/em> 中选择 &lt;code>Red Hat Enterprise Linux&lt;/code>,
+找到 &lt;strong>&lt;code>Red Hat Enterprise Linux for ARM 64&lt;/code>&lt;/strong>,
+选好版本和架构并下载，把证书传到树莓上运行。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># cp /path/to/cert/script /tmp/Red_Hat_Product_Certificate.sh&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">chmod +x /tmp/Red_Hat_Product_Certificate.sh
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">bash /tmp/Red_Hat_Product_Certificate.sh
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://blog.kmtea.eu/p/220710-pi-rhel/img/015-add-cert.jpg"
+width="1070"
+height="583"
+srcset="https://blog.kmtea.eu/p/220710-pi-rhel/img/015-add-cert_hu2742102655417445067.jpg 480w, https://blog.kmtea.eu/p/220710-pi-rhel/img/015-add-cert_hu5338873449909566625.jpg 1024w"
+loading="lazy"
+alt="add cert"
+class="gallery-image"
+data-flex-grow="183"
+data-flex-basis="440px"
+>&lt;/p>
+&lt;h3 id="手动运行-convert2rhel">手动运行 &lt;code>convert2rhel&lt;/code>
+&lt;/h3>&lt;p>不能直接运行 &lt;code>convert2rhel&lt;/code> ，
+因为它写的时候也没想到会有人在树莓派上跑。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">source&lt;/span> /etc/os-release &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> python3 -c &lt;span class="s2">&amp;#34;from convert2rhel import main, subscription, systeminfo; main.initialize_logger(&amp;#39;convert2rhel.log&amp;#39;, &amp;#39;/var/log/convert2rhel&amp;#39;); systeminfo.RELEASE_VER_MAPPING[&amp;#39;&lt;/span>&lt;span class="nv">$VERSION&lt;/span>&lt;span class="s2">&amp;#39;] = &amp;#39;&lt;/span>&lt;span class="nv">$VERSION&lt;/span>&lt;span class="s2">&amp;#39;; systeminfo.system_info.resolve_system_info(); subscription.download_rhsm_pkgs()&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>成功了大概会是这样：&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/220710-pi-rhel/img/016-manual-c2r.jpg"
+width="1920"
+height="1080"
+srcset="https://blog.kmtea.eu/p/220710-pi-rhel/img/016-manual-c2r_hu1810655070508596706.jpg 480w, https://blog.kmtea.eu/p/220710-pi-rhel/img/016-manual-c2r_hu4082655484075891782.jpg 1024w"
+loading="lazy"
+alt="手动运行"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p>
+&lt;p>然后安装刚刚下载的软件包：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> /usr/share/convert2rhel/subscription-manager
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dnf install -y &lt;span class="k">$(&lt;/span>ls &lt;span class="p">|&lt;/span> tr &lt;span class="s1">&amp;#39;\n&amp;#39;&lt;/span> &lt;span class="s1">&amp;#39; &amp;#39;&lt;/span>&lt;span class="k">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://blog.kmtea.eu/p/220710-pi-rhel/img/019-local-pkgs.jpg"
+width="1920"
+height="1080"
+srcset="https://blog.kmtea.eu/p/220710-pi-rhel/img/019-local-pkgs_hu10995528343921044997.jpg 480w, https://blog.kmtea.eu/p/220710-pi-rhel/img/019-local-pkgs_hu27621339995449315.jpg 1024w"
+loading="lazy"
+alt="安装本地软件包"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p>
+&lt;h2 id="绑定订阅">绑定订阅
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">subscription-manager register
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="替换-repo">替换 repo
+&lt;/h2>&lt;p>先鸟尽弓藏兔死狗烹。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">mv /etc/yum.repos.d/convert2rhel.repo /etc/yum.repos.d/convert2rhel.repo.bak
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mv /etc/yum.repos.d/oracle-linux-ol8.repo /etc/yum.repos.d/oracle-linux-ol8.repo.bak
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dnf clean all
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://blog.kmtea.eu/p/220710-pi-rhel/img/020-disable-repos.jpg"
+width="1920"
+height="613"
+srcset="https://blog.kmtea.eu/p/220710-pi-rhel/img/020-disable-repos_hu11467044364867005342.jpg 480w, https://blog.kmtea.eu/p/220710-pi-rhel/img/020-disable-repos_hu14057844473503772981.jpg 1024w"
+loading="lazy"
+alt="禁用 repos"
+class="gallery-image"
+data-flex-grow="313"
+data-flex-basis="751px"
+>&lt;/p>
+&lt;h3 id="删除不需要的软件包">删除不需要的软件包
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">subscription-manager repos --enable &lt;span class="s2">&amp;#34;codeready-builder-for-rhel-8-&lt;/span>&lt;span class="k">$(&lt;/span>arch&lt;span class="k">)&lt;/span>&lt;span class="s2">-rpms&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dnf remove convert2rhel -y
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dnf remove oraclelinux-release oraclelinux-release-el8 &lt;span class="o">||&lt;/span> rpm -e --nodeps oraclelinux-release oraclelinux-release-el8
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>###重新安装本地安装的软件包&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> /usr/share/convert2rhel/subscription-manager
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dnf reinstall -y &lt;span class="k">$(&lt;/span>ls &lt;span class="p">|&lt;/span> tr &lt;span class="s1">&amp;#39;\n&amp;#39;&lt;/span> &lt;span class="s1">&amp;#39; &amp;#39;&lt;/span> &lt;span class="p">|&lt;/span> sed &lt;span class="s1">&amp;#39;s/.rpm//g&amp;#39;&lt;/span>&lt;span class="k">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> ~
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">rm -rvf /usr/share/convert2rhel
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://blog.kmtea.eu/p/220710-pi-rhel/img/022-reinst-local-pkgs.jpg"
+width="1920"
+height="1080"
+srcset="https://blog.kmtea.eu/p/220710-pi-rhel/img/022-reinst-local-pkgs_hu12275859147026032524.jpg 480w, https://blog.kmtea.eu/p/220710-pi-rhel/img/022-reinst-local-pkgs_hu6677338322834051770.jpg 1024w"
+loading="lazy"
+alt="替换本地软件包"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p>
+&lt;h3 id="替换非-rhel-软件包">替换非 RHEL 软件包
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">dnf install -y redhat-lsb
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://blog.kmtea.eu/p/220710-pi-rhel/img/023-install-lsb.jpg"
+width="1920"
+height="1080"
+srcset="https://blog.kmtea.eu/p/220710-pi-rhel/img/023-install-lsb_hu13117682190591541302.jpg 480w, https://blog.kmtea.eu/p/220710-pi-rhel/img/023-install-lsb_hu10632756663617555158.jpg 1024w"
+loading="lazy"
+alt="redhat-lsb"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">dnf reinstall setup
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dnf distro-sync
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dnf update -y
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dnf reinstall &lt;span class="k">$(&lt;/span>dnf list --installed &lt;span class="p">|&lt;/span> grep ol8 &lt;span class="p">|&lt;/span> awk &lt;span class="s1">&amp;#39;{print $1}&amp;#39;&lt;/span> &lt;span class="p">|&lt;/span> tr &lt;span class="s1">&amp;#39;\n&amp;#39;&lt;/span> &lt;span class="s1">&amp;#39; &amp;#39;&lt;/span>&lt;span class="k">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dnf reinstall &lt;span class="k">$(&lt;/span>dnf list --installed &lt;span class="p">|&lt;/span> grep anaconda &lt;span class="p">|&lt;/span> awk &lt;span class="s1">&amp;#39;{print $1}&amp;#39;&lt;/span> &lt;span class="p">|&lt;/span> tr &lt;span class="s1">&amp;#39;\n&amp;#39;&lt;/span> &lt;span class="s1">&amp;#39; &amp;#39;&lt;/span>&lt;span class="k">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">dnf reinstall &lt;span class="k">$(&lt;/span>dnf list --installed &lt;span class="p">|&lt;/span> grep commandline &lt;span class="p">|&lt;/span> awk &lt;span class="s1">&amp;#39;{print $1}&amp;#39;&lt;/span> &lt;span class="p">|&lt;/span> tr &lt;span class="s1">&amp;#39;\n&amp;#39;&lt;/span> &lt;span class="s1">&amp;#39; &amp;#39;&lt;/span>&lt;span class="k">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;img src="https://blog.kmtea.eu/p/220710-pi-rhel/img/024-replace-ol8.jpg"
+width="1920"
+height="1080"
+srcset="https://blog.kmtea.eu/p/220710-pi-rhel/img/024-replace-ol8_hu14524174624314717612.jpg 480w, https://blog.kmtea.eu/p/220710-pi-rhel/img/024-replace-ol8_hu12943821428187734468.jpg 1024w"
+loading="lazy"
+alt="替换非rhel软件包"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p>
+&lt;h2 id="结论">结论
+&lt;/h2>&lt;p>家人们看看 &lt;code>neofetch&lt;/code> 吧&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/220710-pi-rhel/img/001-neofetch.jpg"
+width="1920"
+height="1080"
+srcset="https://blog.kmtea.eu/p/220710-pi-rhel/img/001-neofetch_hu3050901057392358198.jpg 480w, https://blog.kmtea.eu/p/220710-pi-rhel/img/001-neofetch_hu10450840209072808351.jpg 1024w"
+loading="lazy"
+alt="neofetch"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p>
+&lt;h2 id="后记">后记
+&lt;/h2>&lt;p>RHEL 9 出了，但是懒得折腾了，教程写了开摆。&lt;/p>
+&lt;p>不会真的有人会有和我一样的脑洞吧？？？&lt;/p>
+&lt;p>以及这篇尽量口语化了，如果你英语很彳亍，真想搞还是建议看看上面的英文链接。
+虽然我英语是工地水平，但是大概还是比看这篇好理解一点。&lt;/p></description></item><item><title>Nexmo 虚拟手机号浅探</title><link>https://blog.kmtea.eu/p/220623-nexmo/</link><pubDate>Thu, 23 Jun 2022 18:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/220623-nexmo/</guid><description>&lt;img src="https://blog.kmtea.eu/p/220623-nexmo/img/cover.jpg" alt="Featured image of post Nexmo 虚拟手机号浅探" />&lt;h1 id="nexmo-虚拟手机号浅探">Nexmo 虚拟手机号浅探
+&lt;/h1>&lt;blockquote>
+&lt;p>最低成本：6.5元&lt;/p>
+&lt;/blockquote>
+&lt;h3 id="前情提要">前情提要
+&lt;/h3>&lt;p>5月，我的 Telegram 被误封了。众所周知，Telegram
+和微信一样不存在客服，因此我只能重新注册一个账号。&lt;/p>
+&lt;p>想起来18年似乎注册过一个叫 &lt;a class="link" href="https://www.nexmo.com" target="_blank" rel="noopener"
+>Nexmo&lt;/a>
+的虚拟号码平台，还充值了10欧元，
+但当时因为需要编程才能使用，就放置了。&lt;/p>
+&lt;p>这次重新登录，发现已经可以不用写代码，于是欣然注册，分享如下。&lt;/p>
+&lt;h3 id="0-准备工作">0. 准备工作
+&lt;/h3>&lt;p>注册及充值略（因为是四年前 😩&lt;/p>
+&lt;p>&lt;a class="link" href="https://dashboard.nexmo.com/sign-up" target="_blank" rel="noopener"
+>sign up&lt;/a>&lt;/p>
+&lt;ul>
+&lt;li>支持 支付宝 / 微信 / 银联&lt;/li>
+&lt;li>&lt;strong>Nexmo 最低充值金额为 10 欧元&lt;/strong>，建议拼车&lt;/li>
+&lt;/ul>
+&lt;h2 id="1-选用号码">1. 选用号码
+&lt;/h2>&lt;p>注册完毕并充值后，进入
+&lt;a class="link" href="https://dashboard.nexmo.com/" target="_blank" rel="noopener"
+>主页&lt;/a>&lt;/p>
+&lt;img alt="dashboard" src="img/001-dashboard.jpg" width="640"/>
+&lt;p>点击左侧 &lt;strong>构建和管理&lt;/strong> - &lt;strong>号码&lt;/strong> - &lt;strong>&lt;a class="link" href="https://dashboard.nexmo.com/buy-numbers" target="_blank" rel="noopener"
+>购买号码&lt;/a>&lt;/strong>&lt;/p>
+&lt;img alt="number" src="img/002-number.jpg" width="640"/>
+&lt;p>选择 &lt;code>国家/地区&lt;/code> 为 &lt;strong>United States (+1)&lt;/strong>，
+&lt;code>功能&lt;/code> 为 &lt;strong>SMS&lt;/strong>，
+类型为 &lt;strong>Any&lt;/strong>&lt;/p>
+&lt;p>下方的 &lt;code>Number&lt;/code> 如果有想要的数字可以填写，
+临时号码留空即可&lt;/p>
+&lt;img alt="select" src="img/003-select.jpg" width="640"/>
+&lt;p>选择一个你喜欢的号码，点击 &lt;strong>购买&lt;/strong>&lt;/p>
+&lt;img alt="confirm" src="img/004-confirm.jpg" width="640"/>
+&lt;p>你应该能在 &lt;strong>构建和管理&lt;/strong> - &lt;strong>号码&lt;/strong> - &lt;strong>&lt;a class="link" href="https://dashboard.nexmo.com/your-numbers" target="_blank" rel="noopener"
+>您的号码&lt;/a>&lt;/strong>
+看见刚刚购买的号码&lt;/p>
+&lt;img alt="status" src="img/005-status.jpg" width="640"/>
+&lt;h2 id="2-注册-google-voice">2. 注册 Google Voice
+&lt;/h2>&lt;p>打开 &lt;a class="link" href="https://voice.google.com" target="_blank" rel="noopener"
+>Google Voice&lt;/a> ，
+进入 &lt;a class="link" href="https://voice.google.com/u/0/settings" target="_blank" rel="noopener"
+>设置&lt;/a> ，
+点击 &lt;strong>New linked number&lt;/strong> 按钮&lt;/p>
+&lt;img alt="gv" src="img/006-gv.jpg" width="640"/>
+&lt;p>填入刚才购买的号码，点击 &lt;strong>Send code&lt;/strong>&lt;/p>
+&lt;p>回到 &lt;strong>日志&lt;/strong> - &lt;strong>&lt;a class="link" href="https://dashboard.nexmo.com/sms/logs" target="_blank" rel="noopener"
+>短信日志&lt;/a>&lt;/strong>&lt;/p>
+&lt;img alt="log" src="img/007-log.jpg" width="640"/>
+&lt;p>更改 &lt;code>指示&lt;/code> 为 &lt;strong>入站&lt;/strong>，点击 &lt;strong>搜索&lt;/strong>&lt;/p>
+&lt;img alt="query" src="img/008-query.jpg" width="640"/>
+&lt;p>再把验证码填入 Google Voice，完成验证&lt;/p>
+&lt;hr>
+&lt;h3 id="后记">后记
+&lt;/h3>&lt;p>正如前文所述，
+Nexmo 的正规用法是编程和使用 API，
+因此如果有能力，可以搭建 Webhook，
+甚至可以实现转发到 Telegram 的效果&lt;/p>
+&lt;img alt="flask" src="img/009-flask.jpg" width="640"/>
+&lt;img alt="response" src="img/010-response.jpg" width="640"/>
+&lt;h3 id="discussion">Discussion
+&lt;/h3>&lt;ul>
+&lt;li>「全网最低成本」指每个虚拟手机号每月租用成本为 0.9 欧元，约合人民币 6.5 元&lt;/li>
+&lt;li>作者申明没有收到任何资助，且无利益相关（废话）&lt;/li>
+&lt;/ul></description></item><item><title>Wallpaper Engine 刷时长</title><link>https://blog.kmtea.eu/p/220616-we-in-game/</link><pubDate>Thu, 16 Jun 2022 20:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/220616-we-in-game/</guid><description>&lt;img src="https://blog.kmtea.eu/p/220616-we-in-game/img/cover.jpg" alt="Featured image of post Wallpaper Engine 刷时长" />&lt;h1 id="wallpaper-engine-刷时长">Wallpaper Engine 刷时长
+&lt;/h1>&lt;p>我一直是个游戏时长爱好者，喜欢看自己主页上游戏时间一点点多起来（哪怕没有真的在玩）。&lt;/p>
+&lt;p>以前用过 &lt;a class="link" href="https://github.com/JustArchiNET/ArchiSteamFarm" target="_blank" rel="noopener"
+>ArchiSteamFarm&lt;/a>
+来挂游戏，但是因为它会强制加群就弃用了。&lt;/p>
+&lt;hr>
+&lt;p>于是带着这个需求我去 Steam 社区提问了下：&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/220616-we-in-game/img/01-q.jpg"
+width="1920"
+height="969"
+srcset="https://blog.kmtea.eu/p/220616-we-in-game/img/01-q_hu9811271704172321438.jpg 480w, https://blog.kmtea.eu/p/220616-we-in-game/img/01-q_hu17408764079071010689.jpg 1024w"
+loading="lazy"
+alt="Question"
+class="gallery-image"
+data-flex-grow="198"
+data-flex-basis="475px"
+>&lt;/p>
+&lt;p>提问前遵循了 issue 的基本规则（先搜索提问列表以及查阅文档那些）。&lt;/p>
+&lt;p>开发者一开始说对不起做不到，但是很快就修改了：&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/220616-we-in-game/img/02-a.jpg"
+width="1452"
+height="779"
+srcset="https://blog.kmtea.eu/p/220616-we-in-game/img/02-a_hu11304488077078063130.jpg 480w, https://blog.kmtea.eu/p/220616-we-in-game/img/02-a_hu12359973234619255513.jpg 1024w"
+loading="lazy"
+alt="Answer"
+class="gallery-image"
+data-flex-grow="186"
+data-flex-basis="447px"
+>&lt;/p>
+&lt;p>我把参数加粗放在这里：&lt;/p>
+&lt;div style="text-align: center">&lt;h1>&lt;code>-steamtrackhours&lt;/code>&lt;/h1>&lt;/div>
+&lt;hr>
+&lt;p>原帖链接：&lt;a class="link" href="https://steamcommunity.com/app/431960/discussions/2/3418809548706728583/" target="_blank" rel="noopener"
+>社区帖子&lt;/a>&lt;/p></description></item></channel></rss>

@@ -1,0 +1,849 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Cards on 酷玛阁 | KumaTea's Blog</title><link>https://blog.kmtea.eu/tags/cards/</link><description>Recent content in Cards on 酷玛阁 | KumaTea's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Mon, 27 Oct 2025 01:11:18 +0800</lastBuildDate><atom:link href="https://blog.kmtea.eu/tags/cards/index.xml" rel="self" type="application/rss+xml"/><item><title>Apple Pay 绑卡失败原因速查</title><link>https://blog.kmtea.eu/p/230617-apple-pay/</link><pubDate>Sat, 17 Jun 2023 15:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/230617-apple-pay/</guid><description>&lt;img src="https://blog.kmtea.eu/p/230617-apple-pay/img/err-invalid.jpg" alt="Featured image of post Apple Pay 绑卡失败原因速查" />&lt;h1 id="apple-pay-绑卡失败原因速查">Apple Pay 绑卡失败原因速查
+&lt;/h1>&lt;p>先上目前绑卡截图镇楼&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230617-apple-pay/img/apple-wallet.jpg"
+width="1125"
+height="1125"
+srcset="https://blog.kmtea.eu/p/230617-apple-pay/img/apple-wallet_hu5420112030158952658.jpg 480w, https://blog.kmtea.eu/p/230617-apple-pay/img/apple-wallet_hu8692666644540611903.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="100"
+data-flex-basis="240px"
+>&lt;/p>
+&lt;h2 id="常见错误">常见错误
+&lt;/h2>&lt;h3 id="你的发卡机构尚不支持此卡片">你的发卡机构尚不支持此卡片
+&lt;/h3>&lt;blockquote>
+&lt;p>Your issuer does not yet offer support for this card&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230617-apple-pay/img/err-not-support.jpg"
+width="1125"
+height="633"
+srcset="https://blog.kmtea.eu/p/230617-apple-pay/img/err-not-support_hu2622680311613782345.jpg 480w, https://blog.kmtea.eu/p/230617-apple-pay/img/err-not-support_hu12809086854046664361.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p>
+&lt;ul>
+&lt;li>正在绑定的是中国大陆发行的非银联卡&lt;/li>
+&lt;/ul>
+&lt;h3 id="卡的设备限制">卡的设备限制
+&lt;/h3>&lt;blockquote>
+&lt;p>Card device limit&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230617-apple-pay/img/err-limit.jpg"
+width="1125"
+height="1125"
+srcset="https://blog.kmtea.eu/p/230617-apple-pay/img/err-limit_hu2519429187341502823.jpg 480w, https://blog.kmtea.eu/p/230617-apple-pay/img/err-limit_hu7898690086682181278.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="100"
+data-flex-basis="240px"
+>&lt;/p>
+&lt;ul>
+&lt;li>已经在其他手机绑定了改卡，需解绑
+&lt;ul>
+&lt;li>如果确认已解绑多余设备， &lt;a class="link" href="https://discussionschinese.apple.com/thread/253116288?answerId=255886195322#255886195322" target="_blank" rel="noopener"
+>可尝试等待3天&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="卡信息无效">卡信息无效
+&lt;/h3>&lt;blockquote>
+&lt;p>Invalid card&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230617-apple-pay/img/err-invalid.jpg"
+width="1125"
+height="632"
+srcset="https://blog.kmtea.eu/p/230617-apple-pay/img/err-invalid_hu13772476769742826098.jpg 480w, https://blog.kmtea.eu/p/230617-apple-pay/img/err-invalid_hu4797876000260811269.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="178"
+data-flex-basis="427px"
+>&lt;/p>
+&lt;ul>
+&lt;li>卡片未激活
+&lt;ul>
+&lt;li>有些卡，如农行的信用卡，面签完还要在手机银行再激活一次，尚未激活就会出现这个错误信息，可以进入手机银行查看卡片激活状态&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>该卡号今日 &lt;a class="link" href="https://www.jimmytian.com/archives/solve-apple-pay-cant-add-boc-card.html#0x03-%E5%86%8D%E6%AC%A1%E6%89%93%E7%94%B5%E8%AF%9D%E5%88%B0%E9%93%B6%E8%81%94" target="_blank" rel="noopener"
+>已失败5次&lt;/a> ，明日再试&lt;/li>
+&lt;/ul>
+&lt;h3 id="未添加此卡">未添加此卡
+&lt;/h3>&lt;blockquote>
+&lt;p>Could not add card&lt;/p>
+&lt;p>Card not added&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230617-apple-pay/img/err-could-not-add.jpg"
+width="1125"
+height="633"
+srcset="https://blog.kmtea.eu/p/230617-apple-pay/img/err-could-not-add_hu8949949586356617866.jpg 480w, https://blog.kmtea.eu/p/230617-apple-pay/img/err-could-not-add_hu4129613947161002301.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230617-apple-pay/img/err-not-added.jpg"
+width="1125"
+height="633"
+srcset="https://blog.kmtea.eu/p/230617-apple-pay/img/err-not-added_hu2844446966229037161.jpg 480w, https://blog.kmtea.eu/p/230617-apple-pay/img/err-not-added_hu500894717378275067.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p>
+&lt;ul>
+&lt;li>原因不明，建议跟客服对线
+&lt;ul>
+&lt;li>关于中行疑难杂症，请见下文&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="客服聊天记录">客服聊天记录
+&lt;/h2>&lt;p>建议：先找银联问错误代码，再找对应银行；&lt;/p>
+&lt;p>银联首选云闪付线上客服，银行首选电话客服。&lt;/p>
+&lt;h3 id="银联">银联
+&lt;/h3>&lt;blockquote>
+&lt;p>碰到绑不上的问题可以先向银联咨询错误代码&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230617-apple-pay/img/chat-up-agent.jpg"
+width="1125"
+height="1784"
+srcset="https://blog.kmtea.eu/p/230617-apple-pay/img/chat-up-agent_hu13803390019213436697.jpg 480w, https://blog.kmtea.eu/p/230617-apple-pay/img/chat-up-agent_hu9471337518595277760.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="63"
+data-flex-basis="151px"
+>&lt;/p>
+&lt;h3 id="中国银行">中国银行
+&lt;/h3>&lt;blockquote>
+&lt;p>中行电话客服才有足够权限，在线客服只能问到通用信息&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230617-apple-pay/img/chat-boc-bot.jpg"
+width="1125"
+height="1150"
+srcset="https://blog.kmtea.eu/p/230617-apple-pay/img/chat-boc-bot_hu3486262929792448961.jpg 480w, https://blog.kmtea.eu/p/230617-apple-pay/img/chat-boc-bot_hu17655990256990057958.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="97"
+data-flex-basis="234px"
+>&lt;/p>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230617-apple-pay/img/chat-boc-agent.jpg"
+width="1125"
+height="1536"
+srcset="https://blog.kmtea.eu/p/230617-apple-pay/img/chat-boc-agent_hu14881700640159230012.jpg 480w, https://blog.kmtea.eu/p/230617-apple-pay/img/chat-boc-agent_hu17038483677419125381.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="73"
+data-flex-basis="175px"
+>&lt;/p>
+&lt;ul>
+&lt;li>每人无论单个或多个设备，最多存在 &lt;strong>3张&lt;/strong> 已绑定的中行借记卡 (即包含 &lt;a class="link" href="https://www.jimmytian.com/archives/solve-apple-pay-cant-add-boc-card.html#comment-201" target="_blank" rel="noopener"
+>同一张卡绑定3台设备的情况&lt;/a>)&lt;/li>
+&lt;li>&lt;a class="link" href="https://www.jimmytian.com/archives/solve-apple-pay-cant-add-boc-card.html#comment-212" target="_blank" rel="noopener"
+>有评论&lt;/a> 称，中行最多绑定两张卡。 &lt;strong>我自己的情况正是这样&lt;/strong>&lt;/li>
+&lt;li>所有银行卡合计超出上限 (iOS 17 以上 &lt;a class="link" href="https://t.me/DocOfCard/2019" target="_blank" rel="noopener"
+>移除了&lt;/a> 这个上限)&lt;/li>
+&lt;/ul>
+&lt;h2 id="参考资料">参考资料
+&lt;/h2>&lt;ul>
+&lt;li>&lt;a class="link" href="https://www.jimmytian.com/archives/solve-apple-pay-cant-add-boc-card.html" target="_blank" rel="noopener"
+>中国银行绑定 Apple Pay 失败的解决方法&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;blockquote>
+&lt;p>我与该博主相似的地方有：&lt;/p>
+&lt;ul>
+&lt;li>第一次绑卡时收到了银联的风控电话&lt;/li>
+&lt;li>绑卡失败代码都是 93608&lt;/li>
+&lt;/ul>
+&lt;/blockquote>
+&lt;ul>
+&lt;li>&lt;a class="link" href="https://discussionschinese.apple.com/thread/253116288" target="_blank" rel="noopener"
+>钱包解绑银行卡后无法再重新绑定，提示设备限制&lt;/a>&lt;/li>
+&lt;/ul></description></item><item><title>办卡列表</title><link>https://blog.kmtea.eu/p/230603-bank-cards/</link><pubDate>Sat, 03 Jun 2023 15:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/230603-bank-cards/</guid><description>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/img/cover.jpg" alt="Featured image of post 办卡列表" />&lt;h1 id="办卡列表">办卡列表
+&lt;/h1>&lt;ul>
+&lt;li>年份代表办卡时间而非卡片推出时间&lt;/li>
+&lt;li>图片下方的数字是 Tweet ID&lt;/li>
+&lt;/ul>
+&lt;h2 id="汇总">汇总
+&lt;/h2>&lt;ol>
+&lt;li>该表格为现有卡统计&lt;/li>
+&lt;li>双标卡每张计数 0.5&lt;/li>
+&lt;li>到期换卡、更换卡面均计入销卡&lt;/li>
+&lt;/ol>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>&lt;/th>
+&lt;th>银联&lt;/th>
+&lt;th>VISA&lt;/th>
+&lt;th>MC&lt;/th>
+&lt;th>AE&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>中行&lt;/td>
+&lt;td>储2 信0.5&lt;/td>
+&lt;td>信0.5&lt;/td>
+&lt;td>储1&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>农行&lt;/td>
+&lt;td>信1&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>工行&lt;/td>
+&lt;td>储2 信1&lt;/td>
+&lt;td>信1&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>建行&lt;/td>
+&lt;td>储1&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>招行&lt;/td>
+&lt;td>储1&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>兴业&lt;/td>
+&lt;td>储1&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>浦发&lt;/td>
+&lt;td>储1&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>中信&lt;/td>
+&lt;td>储2&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>储1&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>港中&lt;/td>
+&lt;td>储1&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>储1&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>港汇&lt;/td>
+&lt;td>储1&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>储1&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>众安&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>储1&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>总计&lt;/td>
+&lt;td>储12 信2.5&lt;/td>
+&lt;td>储1信1.5&lt;/td>
+&lt;td>储3&lt;/td>
+&lt;td>储1&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>已销&lt;/td>
+&lt;td>储8 信4&lt;/td>
+&lt;td>储1 信1&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>储2&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h2 id="2025">2025
+&lt;/h2>&lt;h3 id="中国工商银行---星座卡">中国工商银行 - 星座卡
+&lt;/h3>&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/img/2510-icbc-c.webp"
+width="4096"
+height="3072"
+srcset="https://blog.kmtea.eu/p/230603-bank-cards/img/2510-icbc-c_hu6273006404114653159.webp 480w, https://blog.kmtea.eu/p/230603-bank-cards/img/2510-icbc-c_hu10238487626833702992.webp 1024w"
+loading="lazy"
+alt="1980665404210180447"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>&lt;/p>
+&lt;ul>
+&lt;li>卡组织：银联 + VISA&lt;/li>
+&lt;li>分类：信用卡&lt;/li>
+&lt;li>等级：白金卡&lt;/li>
+&lt;li>途径：线下&lt;/li>
+&lt;li>现状：在用&lt;/li>
+&lt;li>Apple Pay：✅&lt;/li>
+&lt;/ul>
+&lt;h3 id="兴业银行---寰宇人生卡">兴业银行 - 寰宇人生卡
+&lt;/h3>&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/img/2508-cib-d.webp"
+width="4096"
+height="3072"
+srcset="https://blog.kmtea.eu/p/230603-bank-cards/img/2508-cib-d_hu17865826750079730638.webp 480w, https://blog.kmtea.eu/p/230603-bank-cards/img/2508-cib-d_hu16206162339460618465.webp 1024w"
+loading="lazy"
+alt="1954753417664139496"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>&lt;/p>
+&lt;ul>
+&lt;li>卡组织：银联&lt;/li>
+&lt;li>分类：借记卡&lt;/li>
+&lt;li>等级：普卡&lt;/li>
+&lt;li>途径：网申&lt;/li>
+&lt;li>现状：在用&lt;/li>
+&lt;li>Apple Pay：✅&lt;/li>
+&lt;/ul>
+&lt;h2 id="2024">2024
+&lt;/h2>&lt;h3 id="中银香港---扣账卡">中银香港 - 扣账卡
+&lt;/h3>&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/img/2411-bochk-d.webp"
+width="3072"
+height="4096"
+srcset="https://blog.kmtea.eu/p/230603-bank-cards/img/2411-bochk-d_hu831395473532598399.webp 480w, https://blog.kmtea.eu/p/230603-bank-cards/img/2411-bochk-d_hu3270277721898317515.webp 1024w"
+loading="lazy"
+alt="1860293559599136938"
+class="gallery-image"
+data-flex-grow="75"
+data-flex-basis="180px"
+>&lt;/p>
+&lt;ul>
+&lt;li>卡组织：Mastercard&lt;/li>
+&lt;li>分类：借记卡&lt;/li>
+&lt;li>等级：Platinum&lt;/li>
+&lt;li>途径：网申&lt;/li>
+&lt;li>现状：在用&lt;/li>
+&lt;li>Apple Pay：✅&lt;/li>
+&lt;/ul>
+&lt;h3 id="汇丰香港---扣账卡">汇丰香港 - 扣账卡
+&lt;/h3>&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/img/2410-hsbc-d.webp"
+width="3000"
+height="4000"
+srcset="https://blog.kmtea.eu/p/230603-bank-cards/img/2410-hsbc-d_hu17670301731399833013.webp 480w, https://blog.kmtea.eu/p/230603-bank-cards/img/2410-hsbc-d_hu7848529672941420055.webp 1024w"
+loading="lazy"
+alt="1843209773816348696"
+class="gallery-image"
+data-flex-grow="75"
+data-flex-basis="180px"
+>&lt;/p>
+&lt;ul>
+&lt;li>卡组织：Mastercard&lt;/li>
+&lt;li>分类：借记卡&lt;/li>
+&lt;li>等级：World&lt;/li>
+&lt;li>途径：网申&lt;/li>
+&lt;li>现状：在用&lt;/li>
+&lt;li>Apple Pay：✅&lt;/li>
+&lt;/ul>
+&lt;h3 id="中信银行---崩坏星穹铁道联动卡">中信银行 - 崩坏星穹铁道联动卡
+&lt;/h3>&lt;blockquote>
+&lt;p>68可以买非接触无芯片卡+周边&lt;/p>
+&lt;p>但是不是二次元所以免费的就够了&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/img/2409-citic-d.webp"
+width="1440"
+height="1920"
+srcset="https://blog.kmtea.eu/p/230603-bank-cards/img/2409-citic-d_hu13527362994730426561.webp 480w, https://blog.kmtea.eu/p/230603-bank-cards/img/2409-citic-d_hu2417661309785731067.webp 1024w"
+loading="lazy"
+alt="1833837931016183924"
+class="gallery-image"
+data-flex-grow="75"
+data-flex-basis="180px"
+>&lt;/p>
+&lt;ul>
+&lt;li>卡组织：银联&lt;/li>
+&lt;li>分类：借记卡&lt;/li>
+&lt;li>等级：普卡&lt;/li>
+&lt;li>途径：网申&lt;/li>
+&lt;li>现状：在用&lt;/li>
+&lt;li>Apple Pay：⚠️ 默认卡面&lt;/li>
+&lt;/ul>
+&lt;h3 id="za-bank---za-card">ZA Bank - ZA Card
+&lt;/h3>&lt;blockquote>
+&lt;p>实体卡寄送非香港地址收费 HKD 25&lt;/p>
+&lt;p>另：8月15日起涨价至 HKD 35&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/img/2408-za-d.webp"
+width="3072"
+height="1728"
+srcset="https://blog.kmtea.eu/p/230603-bank-cards/img/2408-za-d_hu10691433967776042750.webp 480w, https://blog.kmtea.eu/p/230603-bank-cards/img/2408-za-d_hu6410759854421969125.webp 1024w"
+loading="lazy"
+alt="1835239765689684393"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p>
+&lt;ul>
+&lt;li>卡组织：VISA&lt;/li>
+&lt;li>分类：借记卡&lt;/li>
+&lt;li>等级：普卡&lt;/li>
+&lt;li>途径：网申&lt;/li>
+&lt;li>现状：在用&lt;/li>
+&lt;li>Apple Pay：✅&lt;/li>
+&lt;/ul>
+&lt;h3 id="中国农业银行---悦卡">中国农业银行 - 悦卡
+&lt;/h3>&lt;blockquote>
+&lt;p>趁学信网不在籍的空档办的信用卡&lt;/p>
+&lt;p>因为有信用卡了，申的白金，没想到竟然批了&lt;/p>
+&lt;p>而且自查征信，发现&lt;a class="link" href="https://t.me/KumaSpace/1777" target="_blank" rel="noopener"
+>农行根本不查&lt;/a>就批了&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/img/2408-abc-c.webp"
+width="1080"
+height="1440"
+srcset="https://blog.kmtea.eu/p/230603-bank-cards/img/2408-abc-c_hu15338864239758864722.webp 480w, https://blog.kmtea.eu/p/230603-bank-cards/img/2408-abc-c_hu8419302822314335589.webp 1024w"
+loading="lazy"
+alt="1821758460641554718"
+class="gallery-image"
+data-flex-grow="75"
+data-flex-basis="180px"
+>&lt;/p>
+&lt;ul>
+&lt;li>卡组织：银联&lt;/li>
+&lt;li>分类：信用卡&lt;/li>
+&lt;li>等级：白金卡&lt;/li>
+&lt;li>途径：网申&lt;/li>
+&lt;li>现状：在用&lt;/li>
+&lt;li>Apple Pay：✅&lt;/li>
+&lt;/ul>
+&lt;h3 id="中信银行---校园卡">中信银行 - 校园卡
+&lt;/h3>&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/img/2407-citic-d.jpg"
+width="3840"
+height="2160"
+srcset="https://blog.kmtea.eu/p/230603-bank-cards/img/2407-citic-d_hu16857816060121594180.jpg 480w, https://blog.kmtea.eu/p/230603-bank-cards/img/2407-citic-d_hu10872828715934013375.jpg 1024w"
+loading="lazy"
+alt="1813042301914259882"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+>&lt;/p>
+&lt;ul>
+&lt;li>卡组织：银联&lt;/li>
+&lt;li>分类：借记卡&lt;/li>
+&lt;li>等级：白金卡&lt;/li>
+&lt;li>途径：统一办理&lt;/li>
+&lt;li>现状：在用&lt;/li>
+&lt;li>Apple Pay：⚠️ 默认卡面&lt;/li>
+&lt;/ul>
+&lt;h3 id="中国银行---国航联名卡">中国银行 - 国航联名卡
+&lt;/h3>&lt;blockquote>
+&lt;p>凤凰知音国航中银信用卡&lt;/p>
+&lt;p>&lt;a class="link" href="https://www.boc.cn/bcservice/bc1/201401/t20140128_2873166.html" target="_blank" rel="noopener"
+>介绍1&lt;/a>
+&lt;a class="link" href="https://ffp.airchina.com.cn/app/activity/detail?activity_id=25" target="_blank" rel="noopener"
+>介绍2&lt;/a>
+&lt;a class="link" href="https://apply.mcard.boc.cn/apply/Izeiim" target="_blank" rel="noopener"
+>申请&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/img/2407-boc-c.jpg"
+width="4000"
+height="3000"
+srcset="https://blog.kmtea.eu/p/230603-bank-cards/img/2407-boc-c_hu4743958083146779551.jpg 480w, https://blog.kmtea.eu/p/230603-bank-cards/img/2407-boc-c_hu5208646432424545155.jpg 1024w"
+loading="lazy"
+alt="1808386649392566297"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>&lt;/p>
+&lt;ul>
+&lt;li>卡组织：银联 + VISA&lt;/li>
+&lt;li>分类：信用卡&lt;/li>
+&lt;li>等级：普卡&lt;/li>
+&lt;li>途径：网申&lt;/li>
+&lt;li>现状：在用&lt;/li>
+&lt;li>Apple Pay：✅&lt;/li>
+&lt;/ul>
+&lt;h3 id="中银香港---中银卡">中银香港 - 中银卡
+&lt;/h3>&lt;blockquote>
+&lt;p>无门槛开户默认卡&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/img/2406-bochk-d.jpg"
+width="4000"
+height="3000"
+srcset="https://blog.kmtea.eu/p/230603-bank-cards/img/2406-bochk-d_hu5247233678676497573.jpg 480w, https://blog.kmtea.eu/p/230603-bank-cards/img/2406-bochk-d_hu3839471811481187956.jpg 1024w"
+loading="lazy"
+alt="1806900479625982267"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>&lt;/p>
+&lt;ul>
+&lt;li>卡组织：银联&lt;/li>
+&lt;li>分类：借记卡&lt;/li>
+&lt;li>等级：普卡&lt;/li>
+&lt;li>途径：线下&lt;/li>
+&lt;li>现状：在用&lt;/li>
+&lt;li>Apple Pay：✅&lt;/li>
+&lt;/ul>
+&lt;h3 id="汇丰香港---提款卡">汇丰香港 - 提款卡
+&lt;/h3>&lt;blockquote>
+&lt;p>无门槛开户默认卡&lt;/p>
+&lt;p>俗称「红狮子」&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/img/2406-hsbc-d.jpg"
+width="4000"
+height="3000"
+srcset="https://blog.kmtea.eu/p/230603-bank-cards/img/2406-hsbc-d_hu17046092412948624460.jpg 480w, https://blog.kmtea.eu/p/230603-bank-cards/img/2406-hsbc-d_hu10675753598147983163.jpg 1024w"
+loading="lazy"
+alt="1806900479625982267"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>&lt;/p>
+&lt;ul>
+&lt;li>卡组织：银联&lt;/li>
+&lt;li>分类：借记卡&lt;/li>
+&lt;li>等级：普卡&lt;/li>
+&lt;li>途径：线下&lt;/li>
+&lt;li>现状：在用&lt;/li>
+&lt;li>Apple Pay：✅&lt;/li>
+&lt;/ul>
+&lt;h2 id="2023">2023
+&lt;/h2>&lt;h3 id="中信银行---运通">中信银行 - 运通
+&lt;/h3>&lt;blockquote>
+&lt;p>金卡借记卡&lt;/p>
+&lt;p>&lt;a class="link" href="https://mp.weixin.qq.com/s/M41ymLbZ6keXToz0nXjJ8w" target="_blank" rel="noopener"
+>介绍页&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/ext/13.jpg"
+width="1200"
+height="900"
+srcset="https://blog.kmtea.eu/p/230603-bank-cards/ext/13_hu12079390795797975243.jpg 480w, https://blog.kmtea.eu/p/230603-bank-cards/ext/13_hu6660134889882236579.jpg 1024w"
+loading="lazy"
+alt="1670009918416646146"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>&lt;/p>
+&lt;ul>
+&lt;li>卡组织：American Express&lt;/li>
+&lt;li>分类：借记卡&lt;/li>
+&lt;li>等级：金卡&lt;/li>
+&lt;li>途径：网申&lt;/li>
+&lt;li>现状：在用&lt;/li>
+&lt;li>Apple Pay：❌ 非银联卡&lt;/li>
+&lt;/ul>
+&lt;h3 id="中国建设银行---line-friends">中国建设银行 - Line Friends
+&lt;/h3>&lt;blockquote>
+&lt;p>同样是大学生信用卡。毕业那年再申。&lt;/p>
+&lt;p>&lt;a class="link" href="https://mp.weixin.qq.com/s/lK5YVyHvWqv94tDLY8zIiQ" target="_blank" rel="noopener"
+>介绍页&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/ext/12.jpg"
+width="1200"
+height="900"
+srcset="https://blog.kmtea.eu/p/230603-bank-cards/ext/12_hu13707821180416635169.jpg 480w, https://blog.kmtea.eu/p/230603-bank-cards/ext/12_hu14318265816868254291.jpg 1024w"
+loading="lazy"
+alt="1664817220600606720"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>&lt;/p>
+&lt;ul>
+&lt;li>卡组织：银联&lt;/li>
+&lt;li>分类：信用卡&lt;/li>
+&lt;li>等级：金卡&lt;/li>
+&lt;li>途径：网申&lt;/li>
+&lt;li>现状：销卡&lt;/li>
+&lt;li>Apple Pay：✅&lt;/li>
+&lt;/ul>
+&lt;h3 id="中国银行---冰雪卡">中国银行 - 冰雪卡
+&lt;/h3>&lt;blockquote>
+&lt;p>全世界门槛最低的银联白金卡&lt;/p>
+&lt;p>&lt;a class="link" href="https://mp.weixin.qq.com/s/Fys02dfBD4fVJqHROKUbbg" target="_blank" rel="noopener"
+>介绍页&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/ext/11.jpg"
+width="1200"
+height="900"
+srcset="https://blog.kmtea.eu/p/230603-bank-cards/ext/11_hu18442408231317851068.jpg 480w, https://blog.kmtea.eu/p/230603-bank-cards/ext/11_hu2797855570970713715.jpg 1024w"
+loading="lazy"
+alt="1662440558978269186"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>&lt;/p>
+&lt;ul>
+&lt;li>卡组织：银联&lt;/li>
+&lt;li>分类：借记卡&lt;/li>
+&lt;li>等级：白金卡&lt;/li>
+&lt;li>途径：线下&lt;/li>
+&lt;li>现状：在用&lt;/li>
+&lt;li>Apple Pay：✅&lt;/li>
+&lt;/ul>
+&lt;h3 id="中国工商银行---星座卡-学生">中国工商银行 - 星座卡 (学生)
+&lt;/h3>&lt;blockquote>
+&lt;p>大学生信用卡&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/ext/10.jpg"
+width="1200"
+height="900"
+srcset="https://blog.kmtea.eu/p/230603-bank-cards/ext/10_hu4970505534732596490.jpg 480w, https://blog.kmtea.eu/p/230603-bank-cards/ext/10_hu16431917921124418901.jpg 1024w"
+loading="lazy"
+alt="1634766718001373185"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>&lt;/p>
+&lt;ul>
+&lt;li>卡组织：银联 + VISA&lt;/li>
+&lt;li>分类：信用卡&lt;/li>
+&lt;li>等级：普卡&lt;/li>
+&lt;li>途径：网申&lt;/li>
+&lt;li>现状：销卡&lt;/li>
+&lt;li>Apple Pay：✅&lt;/li>
+&lt;/ul>
+&lt;h3 id="浦发银行---30周年">浦发银行 - 30周年
+&lt;/h3>&lt;blockquote>
+&lt;p>办卡理由：好看&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/ext/09.jpg"
+width="1200"
+height="900"
+srcset="https://blog.kmtea.eu/p/230603-bank-cards/ext/09_hu3400201440986946903.jpg 480w, https://blog.kmtea.eu/p/230603-bank-cards/ext/09_hu16962576999967575365.jpg 1024w"
+loading="lazy"
+alt="1629747032079630341"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>&lt;/p>
+&lt;ul>
+&lt;li>卡组织：银联&lt;/li>
+&lt;li>分类：借记卡&lt;/li>
+&lt;li>等级：金卡&lt;/li>
+&lt;li>途径：网申&lt;/li>
+&lt;li>现状：在用&lt;/li>
+&lt;li>Apple Pay：✅&lt;/li>
+&lt;/ul>
+&lt;h3 id="广发银行---运通-lucky">广发银行 - 运通 Lucky
+&lt;/h3>&lt;blockquote>
+&lt;p>第二张……&lt;/p>
+&lt;p>&lt;a class="link" href="https://mp.weixin.qq.com/s/jCxtroVSV0lLwXx9-CLvFQ" target="_blank" rel="noopener"
+>介绍页&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/ext/08.jpg"
+width="1200"
+height="900"
+srcset="https://blog.kmtea.eu/p/230603-bank-cards/ext/08_hu13191850352905610553.jpg 480w, https://blog.kmtea.eu/p/230603-bank-cards/ext/08_hu14941420215449191414.jpg 1024w"
+loading="lazy"
+alt="1627148237521178627"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>&lt;/p>
+&lt;ul>
+&lt;li>卡组织：American Express&lt;/li>
+&lt;li>分类：借记卡&lt;/li>
+&lt;li>等级：普卡&lt;/li>
+&lt;li>途径：网申&lt;/li>
+&lt;li>现状：销卡&lt;/li>
+&lt;li>Apple Pay：❌ 非银联卡&lt;/li>
+&lt;/ul>
+&lt;h3 id="兴业银行---运通">兴业银行 - 运通
+&lt;/h3>&lt;blockquote>
+&lt;p>第一张运通卡&lt;/p>
+&lt;p>&lt;a class="link" href="https://mp.weixin.qq.com/s/AElhzWDBxycWqVV3q1mIow" target="_blank" rel="noopener"
+>介绍页&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/ext/07.jpg"
+width="1200"
+height="900"
+srcset="https://blog.kmtea.eu/p/230603-bank-cards/ext/07_hu11519210984389624236.jpg 480w, https://blog.kmtea.eu/p/230603-bank-cards/ext/07_hu13945084749639233583.jpg 1024w"
+loading="lazy"
+alt="1624381848246976512"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>&lt;/p>
+&lt;ul>
+&lt;li>卡组织：American Express&lt;/li>
+&lt;li>分类：借记卡&lt;/li>
+&lt;li>等级：普卡&lt;/li>
+&lt;li>途径：网申&lt;/li>
+&lt;li>现状：销卡&lt;/li>
+&lt;li>Apple Pay：❌ 非银联卡&lt;/li>
+&lt;/ul>
+&lt;h2 id="2022">2022
+&lt;/h2>&lt;h3 id="中国银行---低碳">中国银行 - 低碳
+&lt;/h3>&lt;blockquote>
+&lt;p>数字人民币实体卡&lt;/p>
+&lt;p>&lt;a class="link" href="https://mp.weixin.qq.com/s/VzOcKbzK8t9295mGkGKj9Q" target="_blank" rel="noopener"
+>介绍页&lt;/a>&lt;/p>
+&lt;p>不属于银行卡，但是因为长得像所以放上来&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/ext/06.jpg"
+width="1200"
+height="900"
+srcset="https://blog.kmtea.eu/p/230603-bank-cards/ext/06_hu13583642781456379324.jpg 480w, https://blog.kmtea.eu/p/230603-bank-cards/ext/06_hu12215192974150748512.jpg 1024w"
+loading="lazy"
+alt="1604371906672480257"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>&lt;/p>
+&lt;ul>
+&lt;li>分类：借记卡&lt;/li>
+&lt;li>途径：网申&lt;/li>
+&lt;li>现状：在用&lt;/li>
+&lt;/ul>
+&lt;h3 id="中国工商银行---如意凤凰">中国工商银行 - 如意凤凰
+&lt;/h3>&lt;blockquote>
+&lt;p>之前自己办的那张卡学校不让用&lt;/p>
+&lt;p>&lt;a class="link" href="https://mp.weixin.qq.com/s/b77jB6411xp0EHkfTj3rSw" target="_blank" rel="noopener"
+>介绍页&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/ext/05.jpg"
+width="900"
+height="1200"
+srcset="https://blog.kmtea.eu/p/230603-bank-cards/ext/05_hu16189650693916912900.jpg 480w, https://blog.kmtea.eu/p/230603-bank-cards/ext/05_hu9296132030897771760.jpg 1024w"
+loading="lazy"
+alt="1601484014342508545"
+class="gallery-image"
+data-flex-grow="75"
+data-flex-basis="180px"
+>&lt;/p>
+&lt;ul>
+&lt;li>卡组织：银联&lt;/li>
+&lt;li>分类：借记卡&lt;/li>
+&lt;li>等级：普卡&lt;/li>
+&lt;li>途径：统一办理&lt;/li>
+&lt;li>现状：销卡&lt;/li>
+&lt;li>Apple Pay：⚠️ 默认卡面&lt;/li>
+&lt;/ul>
+&lt;h3 id="中国银行---莫奈">中国银行 - 莫奈
+&lt;/h3>&lt;blockquote>
+&lt;p>年轻人的第一张世界卡&lt;/p>
+&lt;p>&lt;a class="link" href="https://mp.weixin.qq.com/s/FWi1ipqVJ3zQe_bQU7qDIw" target="_blank" rel="noopener"
+>介绍页&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/ext/04.jpg"
+width="1200"
+height="900"
+srcset="https://blog.kmtea.eu/p/230603-bank-cards/ext/04_hu13434138631751074820.jpg 480w, https://blog.kmtea.eu/p/230603-bank-cards/ext/04_hu8507200438961222508.jpg 1024w"
+loading="lazy"
+alt="1596406571638362112"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>&lt;/p>
+&lt;ul>
+&lt;li>卡组织：Mastercard&lt;/li>
+&lt;li>分类：借记卡&lt;/li>
+&lt;li>等级：World&lt;/li>
+&lt;li>途径：网申&lt;/li>
+&lt;li>现状：在用&lt;/li>
+&lt;li>Apple Pay：❌ 非银联卡&lt;/li>
+&lt;/ul>
+&lt;h3 id="中国工商银行---故宫">中国工商银行 - 故宫
+&lt;/h3>&lt;blockquote>
+&lt;p>当时需要一张工行卡收补贴，觉得这张好看就办了&lt;/p>
+&lt;p>&lt;a class="link" href="https://m.icbc.com.cn/page/721854058468884500.html" target="_blank" rel="noopener"
+>介绍页&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/ext/03.jpg"
+width="900"
+height="1200"
+srcset="https://blog.kmtea.eu/p/230603-bank-cards/ext/03_hu5075135862389373047.jpg 480w, https://blog.kmtea.eu/p/230603-bank-cards/ext/03_hu17613938939091785184.jpg 1024w"
+loading="lazy"
+alt="1594586679129800704"
+class="gallery-image"
+data-flex-grow="75"
+data-flex-basis="180px"
+>&lt;/p>
+&lt;ul>
+&lt;li>卡组织：银联&lt;/li>
+&lt;li>分类：借记卡&lt;/li>
+&lt;li>等级：普卡&lt;/li>
+&lt;li>途径：线下&lt;/li>
+&lt;li>现状：销卡&lt;/li>
+&lt;li>Apple Pay：⚠️ 默认卡面&lt;/li>
+&lt;/ul>
+&lt;h3 id="中国银行---洛天依">中国银行 - 洛天依
+&lt;/h3>&lt;blockquote>
+&lt;p>我去，洛天依！&lt;/p>
+&lt;p>&lt;a class="link" href="https://mp.weixin.qq.com/s/VSC1UwiY0ET_hjZ8cdC_LA" target="_blank" rel="noopener"
+>介绍页&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/ext/02.jpg"
+width="1200"
+height="900"
+srcset="https://blog.kmtea.eu/p/230603-bank-cards/ext/02_hu12404304810665563179.jpg 480w, https://blog.kmtea.eu/p/230603-bank-cards/ext/02_hu16879575207069759936.jpg 1024w"
+loading="lazy"
+alt="1584155173731303428"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>&lt;/p>
+&lt;ul>
+&lt;li>卡组织：银联&lt;/li>
+&lt;li>分类：借记卡&lt;/li>
+&lt;li>等级：普卡&lt;/li>
+&lt;li>途径：网申&lt;/li>
+&lt;li>现状：在用&lt;/li>
+&lt;li>Apple Pay：✅&lt;/li>
+&lt;/ul>
+&lt;h2 id="2021">2021
+&lt;/h2>&lt;h3 id="招商银行---明日方舟">招商银行 - 明日方舟
+&lt;/h3>&lt;blockquote>
+&lt;p>我超，舟！&lt;/p>
+&lt;p>&lt;a class="link" href="https://ak.hypergryph.com/special/cmb/" target="_blank" rel="noopener"
+>介绍页&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/ext/01.jpg"
+width="1200"
+height="900"
+srcset="https://blog.kmtea.eu/p/230603-bank-cards/ext/01_hu8454489921610079075.jpg 480w, https://blog.kmtea.eu/p/230603-bank-cards/ext/01_hu3281969393200060558.jpg 1024w"
+loading="lazy"
+alt="1397771013132197889"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>&lt;/p>
+&lt;ul>
+&lt;li>卡组织：银联&lt;/li>
+&lt;li>分类：借记卡&lt;/li>
+&lt;li>等级：普卡&lt;/li>
+&lt;li>途径：线下&lt;/li>
+&lt;li>现状：在用&lt;/li>
+&lt;li>Apple Pay：✅&lt;/li>
+&lt;/ul>
+&lt;h2 id="2020">2020
+&lt;/h2>&lt;h3 id="招商银行---young">招商银行 - Young
+&lt;/h3>&lt;blockquote>
+&lt;p>第一张学生信用卡&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/img/2020-cmb-c.jpg"
+width="2000"
+height="1500"
+srcset="https://blog.kmtea.eu/p/230603-bank-cards/img/2020-cmb-c_hu15099226721288031699.jpg 480w, https://blog.kmtea.eu/p/230603-bank-cards/img/2020-cmb-c_hu9770215969772125892.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+>&lt;/p>
+&lt;ul>
+&lt;li>卡组织：银联&lt;/li>
+&lt;li>分类：信用卡&lt;/li>
+&lt;li>等级：普卡&lt;/li>
+&lt;li>途径：网申&lt;/li>
+&lt;li>现状：销卡&lt;/li>
+&lt;li>Apple Pay：✅&lt;/li>
+&lt;/ul></description></item></channel></rss>
