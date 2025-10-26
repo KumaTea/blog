@@ -50,6 +50,8 @@ if __name__ == '__main__':
         exit(0)
 
     if any(img_file.endswith('.HEIC') for img_file in img_files) or any(img_file.endswith('.HEIF') for img_file in img_files):
+        # from pillow_heif import register_heif_opener
+        # pi_heif is a light version of Pillow-Heif ... includes only HEIF decoder and does not support save operations.
         from pi_heif import register_heif_opener
 
         register_heif_opener()
