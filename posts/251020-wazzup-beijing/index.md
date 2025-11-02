@@ -2,6 +2,10 @@
 
 Wazzup Beijing
 
+<div id="top">
+ <a href="#bottom">回到最旧</a>
+</div>
+
 ## 2025
 
 ![蓝调](img/IMG_20251020_225305.webp)
@@ -16,10 +20,7 @@ Wazzup Beijing
 
 ![天安门](img/IMG_20250810_115658.webp)
 
-<video width=100% controls autoplay>
-  <source src="vid/VID_20250717_194517.webm" type="video/webm">
-  鲨鱼
-</video>
+{{< video src="vid/VID_20250717_194517.webm" caption="鲨鱼" >}}
 
 ![夜景](img/IMG_20250504_224132.webp)
 
@@ -29,10 +30,7 @@ Wazzup Beijing
 
 ![国博](img/IMG_20250323_134727.webp)
 
-<video width=100% controls autoplay>
-  <source src="vid/VID_20250315_165441.webm" type="video/webm">
-  初雪
-</video>
+{{< video src="vid/VID_20250315_165441.webm" caption="初雪" >}}
 
 ![连续可导](img/IMG_20250207_074908.webp)
 
@@ -53,3 +51,7 @@ Wazzup Beijing
 ![天坛](img/IMG_20240825_084120.webp)
 
 ![上京](img/IMG_20240823_120758.webp)
+
+<div id="bottom">
+ <a href="#top">回到最新</a>
+</div>
