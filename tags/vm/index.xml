@@ -1,287 +1,287 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>VM on 酷玛阁 | KumaTea's Blog</title><link>https://blog.kmtea.eu/tags/vm/</link><description>Recent content in VM on 酷玛阁 | KumaTea's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Tue, 20 Jun 2023 23:01:21 +0800</lastBuildDate><atom:link href="https://blog.kmtea.eu/tags/vm/index.xml" rel="self" type="application/rss+xml"/><item><title>PVE 更新 OpenWrt 教程</title><link>https://blog.kmtea.eu/p/221227-pve-openwrt/</link><pubDate>Tue, 27 Dec 2022 17:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/221227-pve-openwrt/</guid><description>&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/cover.jpg" alt="Featured image of post PVE 更新 OpenWrt 教程" />&lt;h1 id="pve-更新-openwrt">PVE 更新 OpenWrt
-&lt;/h1>&lt;h2 id="准备工作">准备工作
-&lt;/h2>&lt;ul>
-&lt;li>
-&lt;p>OpenWrt 固件
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>VM on 酷玛阁 | KumaTea's Blog</title><link>https://blog.kmtea.eu/tags/vm/</link><description>Recent content in VM on 酷玛阁 | KumaTea's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Tue, 20 Jun 2023 23:01:21 +0800</lastBuildDate><atom:link href="https://blog.kmtea.eu/tags/vm/index.xml" rel="self" type="application/rss+xml"/><item><title>PVE 更新 OpenWrt 教程</title><link>https://blog.kmtea.eu/p/221227-pve-openwrt/</link><pubDate>Tue, 27 Dec 2022 17:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/221227-pve-openwrt/</guid><description>&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/cover.jpg" alt="Featured image of post PVE 更新 OpenWrt 教程" /&gt;&lt;h1 id="pve-更新-openwrt"&gt;PVE 更新 OpenWrt
+&lt;/h1&gt;&lt;h2 id="准备工作"&gt;准备工作
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;OpenWrt 固件
 &lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/01-firmware.jpg"
 width="933"
 height="373"
-srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/01-firmware_hu3684993626857845922.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/01-firmware_hu12184372201458040583.jpg 1024w"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/01-firmware_hu_28f4cfd312b7c141.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/01-firmware_hu_fb66a3d9a0df7f40.jpg 1024w"
 loading="lazy"
 alt="Firmware"
 class="gallery-image"
 data-flex-grow="250"
 data-flex-basis="600px"
->&lt;/p>
-&lt;ul>
-&lt;li>建议编译时 &lt;strong>不要&lt;/strong> 选中 &lt;code>gzip&lt;/code> 压缩，否则容易出现各种奇妙的问题&lt;/li>
-&lt;li>一般情况下不选用名称带有 &lt;code>rootfs&lt;/code> 的固件&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>
-&lt;p>USB 网卡 (可选)
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;建议编译时 &lt;strong&gt;不要&lt;/strong&gt; 选中 &lt;code&gt;gzip&lt;/code&gt; 压缩，否则容易出现各种奇妙的问题&lt;/li&gt;
+&lt;li&gt;一般情况下不选用名称带有 &lt;code&gt;rootfs&lt;/code&gt; 的固件&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;USB 网卡 (可选)
 &lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/02-usb.jpg"
 width="1280"
 height="720"
-srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/02-usb_hu14365218610408004565.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/02-usb_hu15200987922660455573.jpg 1024w"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/02-usb_hu_8257097c6a8f926c.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/02-usb_hu_4e360941ae0b9cd2.jpg 1024w"
 loading="lazy"
 alt="USB Ethernet"
 class="gallery-image"
 data-flex-grow="177"
 data-flex-basis="426px"
->&lt;/p>
-&lt;ul>
-&lt;li>如果你和我一样把全部网口都直通了，则需要在更新时使用其他的方式连接到 PVE&lt;/li>
-&lt;li>PVE 默认不会自动启用新插入的网卡，你可能需要
-&lt;code>ifup enx00xxxxxxxxxx &amp;amp;&amp;amp; ip link set dev enx00xxxxxxxxxx up&lt;/code>
-其中网卡名 &lt;code>enx00xxxxxxxxxx&lt;/code> 可以在 &lt;code>ifconfig&lt;/code> 查询
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;如果你和我一样把全部网口都直通了，则需要在更新时使用其他的方式连接到 PVE&lt;/li&gt;
+&lt;li&gt;PVE 默认不会自动启用新插入的网卡，你可能需要
+&lt;code&gt;ifup enx00xxxxxxxxxx &amp;amp;&amp;amp; ip link set dev enx00xxxxxxxxxx up&lt;/code&gt;
+其中网卡名 &lt;code&gt;enx00xxxxxxxxxx&lt;/code&gt; 可以在 &lt;code&gt;ifconfig&lt;/code&gt; 查询
 &lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/03-ifup.jpg"
 width="1920"
 height="1080"
-srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/03-ifup_hu9283212728005004216.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/03-ifup_hu14871536508727084156.jpg 1024w"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/03-ifup_hu_13d83a3402d5caf4.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/03-ifup_hu_2db6f7ab58b76b5f.jpg 1024w"
 loading="lazy"
 alt="ifup"
 class="gallery-image"
 data-flex-grow="177"
 data-flex-basis="426px"
->&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;h2 id="为什么不能用正常方式升级">为什么不能用正常方式升级？
-&lt;/h2>&lt;p>众所周知，OpenWrt 正常升级方式是在 &lt;code>系统&lt;/code> - &lt;code>备份升级&lt;/code> 中升级：&lt;/p>
-&lt;p>&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/04-upgrade.jpg"
+&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="为什么不能用正常方式升级"&gt;为什么不能用正常方式升级？
+&lt;/h2&gt;&lt;p&gt;众所周知，OpenWrt 正常升级方式是在 &lt;code&gt;系统&lt;/code&gt; - &lt;code&gt;备份升级&lt;/code&gt; 中升级：&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/04-upgrade.jpg"
 width="1892"
 height="934"
-srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/04-upgrade_hu13731751324325279455.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/04-upgrade_hu8066154239109757646.jpg 1024w"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/04-upgrade_hu_ca3182f8d0ded447.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/04-upgrade_hu_55476a8233c58890.jpg 1024w"
 loading="lazy"
 alt="Upgrade"
 class="gallery-image"
 data-flex-grow="202"
 data-flex-basis="486px"
->&lt;/p>
-&lt;p>但你会发现 x86 固件是不包含 &lt;code>sysupgrade&lt;/code> 固件的：&lt;/p>
-&lt;p>&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/05-checksum.jpg"
+&gt;&lt;/p&gt;
+&lt;p&gt;但你会发现 x86 固件是不包含 &lt;code&gt;sysupgrade&lt;/code&gt; 固件的：&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/05-checksum.jpg"
 width="1313"
 height="535"
-srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/05-checksum_hu17035834986181581408.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/05-checksum_hu4795543418893992679.jpg 1024w"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/05-checksum_hu_c6b932d4f715437d.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/05-checksum_hu_745701ca79b4a348.jpg 1024w"
 loading="lazy"
 alt="Checksum"
 class="gallery-image"
 data-flex-grow="245"
 data-flex-basis="589px"
->&lt;/p>
-&lt;p>所以，对于运行在 Proxmox VE 中的 OpenWrt 虚拟机，我们只能通过手动方式升级&lt;/p>
-&lt;hr>
-&lt;p>在开始之前，请确保你划分了一块虚拟硬盘作为 &lt;code>overlay&lt;/code> 分区放置配置。&lt;/p>
-&lt;p>&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/06-overlay.jpg"
+&gt;&lt;/p&gt;
+&lt;p&gt;所以，对于运行在 Proxmox VE 中的 OpenWrt 虚拟机，我们只能通过手动方式升级&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;在开始之前，请确保你划分了一块虚拟硬盘作为 &lt;code&gt;overlay&lt;/code&gt; 分区放置配置。&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/06-overlay.jpg"
 width="1920"
 height="1080"
-srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/06-overlay_hu4287680519010368640.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/06-overlay_hu4890147517305287344.jpg 1024w"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/06-overlay_hu_a5c81d36f3d109f5.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/06-overlay_hu_31177aecbb804dac.jpg 1024w"
 loading="lazy"
 alt="overlay"
 class="gallery-image"
 data-flex-grow="177"
 data-flex-basis="426px"
->&lt;/p>
-&lt;p>如果没有，我强烈建议你花十分钟搜下教程
-(关键词 &lt;code>extroot overlay&lt;/code>)
-完成这件事， &lt;strong>功在当代利在千秋&lt;/strong>&lt;/p>
-&lt;h2 id="上传新固件">上传新固件
-&lt;/h2>&lt;p>上传到 &lt;code>local&lt;/code> - &lt;code>ISO&lt;/code>&lt;/p>
-&lt;p>&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/07-upload.jpg"
+&gt;&lt;/p&gt;
+&lt;p&gt;如果没有，我强烈建议你花十分钟搜下教程
+(关键词 &lt;code&gt;extroot overlay&lt;/code&gt;)
+完成这件事， &lt;strong&gt;功在当代利在千秋&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id="上传新固件"&gt;上传新固件
+&lt;/h2&gt;&lt;p&gt;上传到 &lt;code&gt;local&lt;/code&gt; - &lt;code&gt;ISO&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/07-upload.jpg"
 width="1920"
 height="1080"
-srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/07-upload_hu10530922004001403288.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/07-upload_hu17554082633598377553.jpg 1024w"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/07-upload_hu_e0a0a6d1dd9c800b.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/07-upload_hu_69a9963316ce47bc.jpg 1024w"
 loading="lazy"
 alt="Upload firmware"
 class="gallery-image"
 data-flex-grow="177"
 data-flex-basis="426px"
->&lt;/p>
-&lt;p>推荐检查 &lt;code>sha256sum&lt;/code>&lt;/p>
-&lt;h2 id="更换系统固件">更换系统固件
-&lt;/h2>&lt;ol>
-&lt;li>在以非目标 OpenWrt 内网的方式连接 PVE 的情况下，关闭虚拟机 &lt;br>
+&gt;&lt;/p&gt;
+&lt;p&gt;推荐检查 &lt;code&gt;sha256sum&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id="更换系统固件"&gt;更换系统固件
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;在以非目标 OpenWrt 内网的方式连接 PVE 的情况下，关闭虚拟机 &lt;br&gt;
 &lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/08-shutdown.jpg"
 width="1920"
 height="1080"
-srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/08-shutdown_hu3414183044140269345.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/08-shutdown_hu6426689447371247691.jpg 1024w"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/08-shutdown_hu_8e4daadcb1fff57b.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/08-shutdown_hu_4f5d434e583ba66c.jpg 1024w"
 loading="lazy"
 alt="Shutdown"
 class="gallery-image"
 data-flex-grow="177"
 data-flex-basis="426px"
->
-可以用 PVE 的 &lt;code>Shutdown&lt;/code> 按钮，也可以在 Console 输入 &lt;code>poweroff&lt;/code> &lt;br>&lt;/li>
-&lt;li>选中系统盘 &lt;br>
+&gt;
+可以用 PVE 的 &lt;code&gt;Shutdown&lt;/code&gt; 按钮，也可以在 Console 输入 &lt;code&gt;poweroff&lt;/code&gt; &lt;br&gt;&lt;/li&gt;
+&lt;li&gt;选中系统盘 &lt;br&gt;
 &lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/09-select.jpg"
 width="1085"
 height="434"
-srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/09-select_hu7425090129346221759.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/09-select_hu14935486778802004537.jpg 1024w"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/09-select_hu_e595adc03c1f26ae.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/09-select_hu_f1614b26e82b25a7.jpg 1024w"
 loading="lazy"
 alt="Select"
 class="gallery-image"
 data-flex-grow="250"
 data-flex-basis="600px"
->
-点击 &lt;code>Detach&lt;/code> 并确认 &lt;br>
+&gt;
+点击 &lt;code&gt;Detach&lt;/code&gt; 并确认 &lt;br&gt;
 &lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/10-detach.jpg"
 width="939"
 height="387"
-srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/10-detach_hu7121527017138036411.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/10-detach_hu6546929375853196017.jpg 1024w"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/10-detach_hu_3c8a507c62ad8d1c.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/10-detach_hu_126e45a010f46a78.jpg 1024w"
 loading="lazy"
 alt="Detach"
 class="gallery-image"
 data-flex-grow="242"
 data-flex-basis="582px"
->
-再在下方找到 &lt;code>Unused Disk 0&lt;/code> 并 &lt;code>Remove&lt;/code> 删除 &lt;br>
+&gt;
+再在下方找到 &lt;code&gt;Unused Disk 0&lt;/code&gt; 并 &lt;code&gt;Remove&lt;/code&gt; 删除 &lt;br&gt;
 &lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/11-remove.jpg"
 width="1288"
 height="730"
-srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/11-remove_hu15499373015671742573.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/11-remove_hu15256187519116002043.jpg 1024w"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/11-remove_hu_54b67f85cd4ecf01.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/11-remove_hu_af4614e2a215e235.jpg 1024w"
 loading="lazy"
 alt="Remove"
 class="gallery-image"
 data-flex-grow="176"
 data-flex-basis="423px"
->&lt;/li>
-&lt;li>导入新固件 &lt;br>
-来到 &lt;strong>PVE 的 Console&lt;/strong> 输入： &lt;br>
-&lt;code>qm importdisk 101 /var/lib/vz/template/iso/openwrt-x86-64-generic-squashfs-combined-efi.img local-lvm&lt;/code> &lt;br>
-其中 &lt;code>101&lt;/code> 是你的 OpenWrt 虚拟机 ID
+&gt;&lt;/li&gt;
+&lt;li&gt;导入新固件 &lt;br&gt;
+来到 &lt;strong&gt;PVE 的 Console&lt;/strong&gt; 输入： &lt;br&gt;
+&lt;code&gt;qm importdisk 101 /var/lib/vz/template/iso/openwrt-x86-64-generic-squashfs-combined-efi.img local-lvm&lt;/code&gt; &lt;br&gt;
+其中 &lt;code&gt;101&lt;/code&gt; 是你的 OpenWrt 虚拟机 ID
 &lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/12-import.jpg"
 width="1920"
 height="1080"
-srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/12-import_hu13644731743820045478.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/12-import_hu9714558287040861448.jpg 1024w"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/12-import_hu_21f54b78ed3a5e2c.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/12-import_hu_20318e1157954a72.jpg 1024w"
 loading="lazy"
 alt="Import"
 class="gallery-image"
 data-flex-grow="177"
 data-flex-basis="426px"
->
-随后一个新的 &lt;code>Unused Disk 0&lt;/code> 出现了
+&gt;
+随后一个新的 &lt;code&gt;Unused Disk 0&lt;/code&gt; 出现了
 &lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/13-disk.jpg"
 width="1576"
 height="819"
-srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/13-disk_hu4158831284465213893.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/13-disk_hu17077438990791742524.jpg 1024w"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/13-disk_hu_5ccbabea1507706a.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/13-disk_hu_8062308808b1e032.jpg 1024w"
 loading="lazy"
 alt="Found new Unused"
 class="gallery-image"
 data-flex-grow="192"
 data-flex-basis="461px"
->&lt;/li>
-&lt;li>启用新系统盘 &lt;br>
-选中新的 &lt;code>Unused Disk 0&lt;/code> 并点击 &lt;code>Edit&lt;/code>，确认即可 &lt;br>
+&gt;&lt;/li&gt;
+&lt;li&gt;启用新系统盘 &lt;br&gt;
+选中新的 &lt;code&gt;Unused Disk 0&lt;/code&gt; 并点击 &lt;code&gt;Edit&lt;/code&gt;，确认即可 &lt;br&gt;
 &lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/14-edit.jpg"
 width="1398"
 height="562"
-srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/14-edit_hu17179194852447571470.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/14-edit_hu13070773696696002333.jpg 1024w"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/14-edit_hu_26288914f5c28f5f.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/14-edit_hu_a52abca7bd3c5984.jpg 1024w"
 loading="lazy"
 alt="Attach Unused Disk 0"
 class="gallery-image"
 data-flex-grow="248"
 data-flex-basis="597px"
->&lt;/li>
-&lt;li>启动虚拟机&lt;/li>
-&lt;/ol>
-&lt;h2 id="恢复配置">恢复配置
-&lt;/h2>&lt;ol>
-&lt;li>按一下回车激活 Console &lt;br>
+&gt;&lt;/li&gt;
+&lt;li&gt;启动虚拟机&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="恢复配置"&gt;恢复配置
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;按一下回车激活 Console &lt;br&gt;
 &lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/15-console.jpg"
 width="1920"
 height="1080"
-srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/15-console_hu13073367240651235252.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/15-console_hu106401981101595447.jpg 1024w"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/15-console_hu_64af28bd89b51cee.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/15-console_hu_c692763d5adc3fd8.jpg 1024w"
 loading="lazy"
 alt="Activate console"
 class="gallery-image"
 data-flex-grow="177"
 data-flex-basis="426px"
->&lt;/li>
-&lt;li>此时，原先的 &lt;code>overlay&lt;/code> 会被自动挂载为 &lt;code>/mnt/sda1&lt;/code> (有时是 &lt;code>sdb1&lt;/code>) &lt;br>
-我们可以发现，该目录下 &lt;code>etc&lt;/code> 内含有一 &lt;code>.extroot-uuid&lt;/code> 文件。 &lt;br>
+&gt;&lt;/li&gt;
+&lt;li&gt;此时，原先的 &lt;code&gt;overlay&lt;/code&gt; 会被自动挂载为 &lt;code&gt;/mnt/sda1&lt;/code&gt; (有时是 &lt;code&gt;sdb1&lt;/code&gt;) &lt;br&gt;
+我们可以发现，该目录下 &lt;code&gt;etc&lt;/code&gt; 内含有一 &lt;code&gt;.extroot-uuid&lt;/code&gt; 文件。 &lt;br&gt;
 &lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/16-cleanup.jpg"
 width="977"
 height="445"
-srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/16-cleanup_hu11787118656573084975.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/16-cleanup_hu779702130513511148.jpg 1024w"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/16-cleanup_hu_94923cce5e84f17.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/16-cleanup_hu_39781f793bc157f2.jpg 1024w"
 loading="lazy"
 alt="Cleanup"
 class="gallery-image"
 data-flex-grow="219"
 data-flex-basis="526px"
->
-这一文件会误导系统读取正确的 UUID 并导致无法挂载！ &lt;br>
-使用 &lt;code>rm -rf /mnt/sda1/etc&lt;/code> 将之删除。 &lt;br>
-&lt;code>/etc/fstab&lt;/code> 也是没用的： &lt;code>rm -f /etc/fstab&lt;/code>&lt;/li>
-&lt;li>查看自动生成的 &lt;code>/etc/config/fstab&lt;/code> &lt;br>
+&gt;
+这一文件会误导系统读取正确的 UUID 并导致无法挂载！ &lt;br&gt;
+使用 &lt;code&gt;rm -rf /mnt/sda1/etc&lt;/code&gt; 将之删除。 &lt;br&gt;
+&lt;code&gt;/etc/fstab&lt;/code&gt; 也是没用的： &lt;code&gt;rm -f /etc/fstab&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;查看自动生成的 &lt;code&gt;/etc/config/fstab&lt;/code&gt; &lt;br&gt;
 &lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/17-old-fstab.jpg"
 width="912"
 height="724"
-srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/17-old-fstab_hu12568787855695136956.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/17-old-fstab_hu15795182380311537493.jpg 1024w"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/17-old-fstab_hu_41ce61fdc6e6d0f1.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/17-old-fstab_hu_3b649c61131f5658.jpg 1024w"
 loading="lazy"
 alt="Old fstab"
 class="gallery-image"
 data-flex-grow="125"
 data-flex-basis="302px"
->&lt;/li>
-&lt;/ol>
-&lt;ul>
-&lt;li>去掉用不到的 &lt;code>boot&lt;/code> 挂载&lt;/li>
-&lt;li>把 &lt;code>sda1&lt;/code> 的 UUID 移动到 &lt;code>overlay&lt;/code> 配置下
+&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;去掉用不到的 &lt;code&gt;boot&lt;/code&gt; 挂载&lt;/li&gt;
+&lt;li&gt;把 &lt;code&gt;sda1&lt;/code&gt; 的 UUID 移动到 &lt;code&gt;overlay&lt;/code&gt; 配置下
 &lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/18-new-fstab.jpg"
 width="1250"
 height="838"
-srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/18-new-fstab_hu17255174197867113286.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/18-new-fstab_hu11188476266266322756.jpg 1024w"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/18-new-fstab_hu_dcf1ea170ffef235.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/18-new-fstab_hu_16a89f5fe9cf4cb8.jpg 1024w"
 loading="lazy"
 alt="New fstab"
 class="gallery-image"
 data-flex-grow="149"
 data-flex-basis="357px"
->
-保存后重启&lt;/li>
-&lt;/ul>
-&lt;ol start="4">
-&lt;li>把修改的 &lt;code>/etc/config/fstab&lt;/code> 同步到配置分区 &lt;br>
-&lt;code>cp -a /etc/config/fstab /mnt/sda1/upper/etc/config/&lt;/code>
+&gt;
+保存后重启&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="4"&gt;
+&lt;li&gt;把修改的 &lt;code&gt;/etc/config/fstab&lt;/code&gt; 同步到配置分区 &lt;br&gt;
+&lt;code&gt;cp -a /etc/config/fstab /mnt/sda1/upper/etc/config/&lt;/code&gt;
 &lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/19-sync-fstab.jpg"
 width="1297"
 height="331"
-srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/19-sync-fstab_hu6347967584544174724.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/19-sync-fstab_hu1552554199808078177.jpg 1024w"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/19-sync-fstab_hu_e2514bacee2195a0.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/19-sync-fstab_hu_617e7bd6b7ea9632.jpg 1024w"
 loading="lazy"
 alt="Sync config"
 class="gallery-image"
 data-flex-grow="391"
 data-flex-basis="940px"
->&lt;/li>
-&lt;/ol>
-&lt;h2 id="完成">完成
-&lt;/h2>&lt;ol>
-&lt;li>重启&lt;/li>
-&lt;li>检查 &lt;code>df -h&lt;/code>，可发现配置分区已成功挂载！
+&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="完成"&gt;完成
+&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;重启&lt;/li&gt;
+&lt;li&gt;检查 &lt;code&gt;df -h&lt;/code&gt;，可发现配置分区已成功挂载！
 &lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/20-reboot.jpg"
 width="1920"
 height="1080"
-srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/20-reboot_hu1567392751597700654.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/20-reboot_hu15991633569798779988.jpg 1024w"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/20-reboot_hu_b9988dbbaa974883.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/20-reboot_hu_de874acf793503be.jpg 1024w"
 loading="lazy"
 alt="Reboot"
 class="gallery-image"
 data-flex-grow="177"
 data-flex-basis="426px"
->&lt;/li>
-&lt;/ol>
-&lt;h2 id="references">References
-&lt;/h2>&lt;p>我被万恶的 &lt;code>.extroot-uuid&lt;/code> 困扰了几个月之久，直到看到了
+&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id="references"&gt;References
+&lt;/h2&gt;&lt;p&gt;我被万恶的 &lt;code&gt;.extroot-uuid&lt;/code&gt; 困扰了几个月之久，直到看到了
 &lt;a class="link" href="https://forum.openwrt.org/t/solved-extroot-not-working-on-18-06/16723/2" target="_blank" rel="noopener"
->这篇帖子&lt;/a>&lt;/p>
-&lt;p>&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/21-forum.jpg"
+&gt;这篇帖子&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://blog.kmtea.eu/p/221227-pve-openwrt/img/21-forum.jpg"
 width="1077"
 height="1280"
-srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/21-forum_hu12109506352435954598.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/21-forum_hu14791087120285901643.jpg 1024w"
+srcset="https://blog.kmtea.eu/p/221227-pve-openwrt/img/21-forum_hu_c72fa9d6fde2f9d0.jpg 480w, https://blog.kmtea.eu/p/221227-pve-openwrt/img/21-forum_hu_1df4d73f83be847d.jpg 1024w"
 loading="lazy"
 alt="Solution"
 class="gallery-image"
 data-flex-grow="84"
 data-flex-basis="201px"
->&lt;/p>
-&lt;p>因此写这篇教程广而告之。&lt;/p></description></item></channel></rss>
+&gt;&lt;/p&gt;
+&lt;p&gt;因此写这篇教程广而告之。&lt;/p&gt;</description></item></channel></rss>
