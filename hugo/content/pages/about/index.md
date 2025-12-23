@@ -29,3 +29,7 @@ comments: false
 * 最后文章 LAST_POST_DATE
 * 最后更新 COMMIT_DATE
 * 构建日期 BUILD_DATE
+
+## 其他
+
+如果你在本站看到了广告，说明你需要安装广告屏蔽插件或设置DNS过滤规则。
