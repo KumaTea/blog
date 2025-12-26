@@ -61,7 +61,7 @@ OpenWrt has swutched to &lt;a class="link" href="https://musl.libc.org/" target=
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;#!/usr/bin/env bash
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;set&lt;/span&gt; -ex
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# working directory&lt;/span&gt;
@@ -122,7 +122,7 @@ and switch to other distros you like.&lt;/p&gt;
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;#!/usr/bin/env bash
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;set&lt;/span&gt; -ex
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# working directory&lt;/span&gt;
@@ -165,7 +165,7 @@ alt="Done"
 &lt;p&gt;&lt;img src="https://blog.kmtea.eu/p/221003-glibc-openwrt/img/01-error.jpg"
 width="1188"
 height="791"
-srcset="https://blog.kmtea.eu/p/221003-glibc-openwrt/img/01-error_hu_f383f46b27ea55f5.jpg 480w, https://blog.kmtea.eu/p/221003-glibc-openwrt/img/01-error_hu_4f74635370ed4708.jpg 1024w"
+srcset="https://blog.kmtea.eu/p/221003-glibc-openwrt/img/01-error_hu_5498139f67ea2469.jpg 480w, https://blog.kmtea.eu/p/221003-glibc-openwrt/img/01-error_hu_aec71af5da64326.jpg 1024w"
 loading="lazy"
 alt="Error"
 class="gallery-image"
@@ -220,7 +220,7 @@ OpenWrt 使用 &lt;a class="link" href="https://musl.libc.org/" target="_blank" 
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;#!/usr/bin/env bash
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;set&lt;/span&gt; -ex
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# working directory&lt;/span&gt;
@@ -280,7 +280,7 @@ OpenWrt 使用 &lt;a class="link" href="https://musl.libc.org/" target="_blank" 
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-shell" data-lang="shell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;#!/usr/bin/env bash
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;set&lt;/span&gt; -ex
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# working directory&lt;/span&gt;
@@ -308,7 +308,7 @@ OpenWrt 使用 &lt;a class="link" href="https://musl.libc.org/" target="_blank" 
 &lt;p&gt;&lt;img src="https://blog.kmtea.eu/p/221003-glibc-openwrt/img/02-done.jpg"
 width="1188"
 height="463"
-srcset="https://blog.kmtea.eu/p/221003-glibc-openwrt/img/02-done_hu_47fe4c9ddf5db29.jpg 480w, https://blog.kmtea.eu/p/221003-glibc-openwrt/img/02-done_hu_c90e60872ce12e64.jpg 1024w"
+srcset="https://blog.kmtea.eu/p/221003-glibc-openwrt/img/02-done_hu_b84bce5c6d4e1184.jpg 480w, https://blog.kmtea.eu/p/221003-glibc-openwrt/img/02-done_hu_821e725212cfd52e.jpg 1024w"
 loading="lazy"
 alt="Done"
 class="gallery-image"
