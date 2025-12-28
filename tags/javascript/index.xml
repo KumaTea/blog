@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>JavaScript on 酷玛阁 | KumaTea's Blog</title><link>https://blog.kmtea.eu/tags/javascript/</link><description>Recent content in JavaScript on 酷玛阁 | KumaTea's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 24 Mar 2024 19:33:39 +0800</lastBuildDate><atom:link href="https://blog.kmtea.eu/tags/javascript/index.xml" rel="self" type="application/rss+xml"/><item><title>考公报名，但是 JS &amp; Python 赋能</title><link>https://blog.kmtea.eu/p/240323-civil-exam-sign/</link><pubDate>Sat, 23 Mar 2024 01:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/240323-civil-exam-sign/</guid><description>&lt;img src="https://blog.kmtea.eu/p/240323-civil-exam-sign/img/cover.jpg" alt="Featured image of post 考公报名，但是 JS &amp; Python 赋能" /&gt;&lt;h1 id="考公报名但是-js--python-赋能"&gt;考公报名，但是 JS &amp;amp; Python 赋能
+&lt;/h1&gt;&lt;h2 id="前言"&gt;前言
+&lt;/h2&gt;&lt;p&gt;去年3月，我第一次报考广东省公务员，
+人生地不熟，也没有进面；
+今年1月，我&lt;del&gt;闲着也是闲着&lt;/del&gt;又报了一次，
+这次在报名阶段加入了一些自己的小技巧，
+现分享给大家。&lt;/p&gt;
+&lt;p&gt;另外，本次报考依然没有任何准备，
+如果硬要说有就是&lt;strong&gt;考前1天花1元重金&lt;/strong&gt;买了2套冲刺卷，
+但只是看了一眼题型。&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://blog.kmtea.eu/p/240323-civil-exam-sign/img/01-pay.jpg"
+width="1080"
+height="678"
+srcset="https://blog.kmtea.eu/p/240323-civil-exam-sign/img/01-pay_hu_b10e0dcdff00acf2.jpg 480w, https://blog.kmtea.eu/p/240323-civil-exam-sign/img/01-pay_hu_73b490091f52eca1.jpg 1024w"
+loading="lazy"
+alt="pay"
+class="gallery-image"
+data-flex-grow="159"
+data-flex-basis="382px"
+&gt;&lt;/p&gt;
+&lt;p&gt;不对考试结果抱任何希望，
+但一旦有幸进入面试就会厚着脸皮去，
+然后写(笔试)速通经验以及面试速通失败经验。&lt;/p&gt;
+&lt;h2 id="职位筛选"&gt;职位筛选
+&lt;/h2&gt;&lt;p&gt;报名的第一步是从公告最下方附件下载职位表：&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://blog.kmtea.eu/p/240323-civil-exam-sign/img/02-main.jpg"
+width="1600"
+height="900"
+srcset="https://blog.kmtea.eu/p/240323-civil-exam-sign/img/02-main_hu_de61e26bbebfc180.jpg 480w, https://blog.kmtea.eu/p/240323-civil-exam-sign/img/02-main_hu_e4284220b685fb68.jpg 1024w"
+loading="lazy"
+alt="main"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://blog.kmtea.eu/p/240323-civil-exam-sign/img/03-attach.jpg"
+width="727"
+height="376"
+srcset="https://blog.kmtea.eu/p/240323-civil-exam-sign/img/03-attach_hu_682b407012f3ee62.jpg 480w, https://blog.kmtea.eu/p/240323-civil-exam-sign/img/03-attach_hu_4ee1c84dee5ad1af.jpg 1024w"
+loading="lazy"
+alt="attach"
+class="gallery-image"
+data-flex-grow="193"
+data-flex-basis="464px"
+&gt;&lt;/p&gt;
+&lt;h3 id="初筛"&gt;初筛
+&lt;/h3&gt;&lt;p&gt;打开 Excel, 启用编辑，以启用接下来的筛选功能。操作简单，不再赘述。&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://blog.kmtea.eu/p/240323-civil-exam-sign/img/04-filter.jpg"
+width="1580"
+height="864"
+srcset="https://blog.kmtea.eu/p/240323-civil-exam-sign/img/04-filter_hu_f0733b65c4980e31.jpg 480w, https://blog.kmtea.eu/p/240323-civil-exam-sign/img/04-filter_hu_4c9e00bc2846e22e.jpg 1024w"
+loading="lazy"
+alt="filter"
+class="gallery-image"
+data-flex-grow="182"
+data-flex-basis="438px"
+&gt;&lt;/p&gt;
+&lt;h3 id="相对难度"&gt;相对难度
+&lt;/h3&gt;&lt;p&gt;本节通过 Excel 公式，计算每个职位的相对难度。&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://blog.kmtea.eu/p/240323-civil-exam-sign/img/05-difficulty.jpg"
+width="1097"
+height="536"
+srcset="https://blog.kmtea.eu/p/240323-civil-exam-sign/img/05-difficulty_hu_c01832c3141a9190.jpg 480w, https://blog.kmtea.eu/p/240323-civil-exam-sign/img/05-difficulty_hu_426e3518b9e25c5a.jpg 1024w"
+loading="lazy"
+alt="difficulty"
+class="gallery-image"
+data-flex-grow="204"
+data-flex-basis="491px"
+&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;span class="lnt"&gt;16
+&lt;/span&gt;&lt;span class="lnt"&gt;17
+&lt;/span&gt;&lt;span class="lnt"&gt;18
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;# 总分
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Rn = Sn + Tn + Un + Vn + Wn + Xn + Yn
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;# 综合类比执法类难度更大
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Sn = IF(Fn=&amp;#34;综合管理类职位&amp;#34;,1,0)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;# 竞争人数，拿最大值3减
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Tn = MAX(0, 3-Gn)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;# 限制专业则报名人数少，竞争小
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Un = IF(Kn=&amp;#34;不限&amp;#34;,2,0)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;# 当年应届 &amp;lt; 应届 &amp;lt; 非应届
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Vn = IF(Nn=&amp;#34;2024届高校毕业生&amp;#34;,0,IF(Nn=&amp;#34;否&amp;#34;, 2, 1))
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;# 本科 &amp;lt; 本科以上
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;# 本科就是只能本科，本科以上则硕士博士也能来报名
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Wn = IF(Hn=&amp;#34;本科&amp;#34;,0,1)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;# 是否限制性别
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Xn = IF(ISNUMBER(SEARCH(X$3,En)),0,1)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;# 是否要求夜班
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Yn = IF(OR(ISNUMBER(SEARCH(&amp;#34;夜&amp;#34;, En)), ISNUMBER(SEARCH(&amp;#34;24&amp;#34;, En))),0,1)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;这样，就可以根据难度排序，选出理论上最容易考的职位了&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://blog.kmtea.eu/p/240323-civil-exam-sign/img/06-rank.jpg"
+width="972"
+height="1126"
+srcset="https://blog.kmtea.eu/p/240323-civil-exam-sign/img/06-rank_hu_97627a7f511dc45d.jpg 480w, https://blog.kmtea.eu/p/240323-civil-exam-sign/img/06-rank_hu_b6937e3cf0b938a1.jpg 1024w"
+loading="lazy"
+alt="rank"
+class="gallery-image"
+data-flex-grow="86"
+data-flex-basis="207px"
+&gt;&lt;/p&gt;
+&lt;h2 id="人数监视"&gt;人数监视
+&lt;/h2&gt;&lt;p&gt;筛选出可以报名的职位，
+正式报名之前，
+最重要的参考依据就是每天下午 16:00 公布的已报名人数。&lt;/p&gt;
+&lt;p&gt;毕竟相对难度只是理论值，
+而一个难度拉满的职位如果只有1人报考，
+那么就等于保送。&lt;/p&gt;
+&lt;h3 id="official-approach"&gt;Official Approach
+&lt;/h3&gt;&lt;p&gt;查询报名人数，首先打开左侧职位报名统计页面：&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://blog.kmtea.eu/p/240323-civil-exam-sign/img/07-population.jpg"
+width="1600"
+height="900"
+srcset="https://blog.kmtea.eu/p/240323-civil-exam-sign/img/07-population_hu_9266eb1ccbe0e8b6.jpg 480w, https://blog.kmtea.eu/p/240323-civil-exam-sign/img/07-population_hu_74ebf4575417fe94.jpg 1024w"
+loading="lazy"
+alt="population"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+&gt;&lt;/p&gt;
+&lt;p&gt;然而，每页最多显示 50 条数据，
+寻找目标职位需要通过职位代码定位，
+也就是说需要多次翻页：&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://blog.kmtea.eu/p/240323-civil-exam-sign/img/08-query.jpg"
+width="1600"
+height="900"
+srcset="https://blog.kmtea.eu/p/240323-civil-exam-sign/img/08-query_hu_be6adf799fa9022d.jpg 480w, https://blog.kmtea.eu/p/240323-civil-exam-sign/img/08-query_hu_7c98f5d56646b326.jpg 1024w"
+loading="lazy"
+alt="query"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+&gt;&lt;/p&gt;
+&lt;p&gt;而且，如果翻页过于频繁还会弹窗拒绝：&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://blog.kmtea.eu/p/240323-civil-exam-sign/img/09-rate-limit.jpg"
+width="1600"
+height="900"
+srcset="https://blog.kmtea.eu/p/240323-civil-exam-sign/img/09-rate-limit_hu_93b6bc63e81b2b92.jpg 480w, https://blog.kmtea.eu/p/240323-civil-exam-sign/img/09-rate-limit_hu_5715f1972d0e573e.jpg 1024w"
+loading="lazy"
+alt="rate limit"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+&gt;&lt;/p&gt;
+&lt;p&gt;也就是说，如果筛选了60个职位，
+每次查询至少需要1分钟，
+则完成一轮查询需要1小时！&lt;/p&gt;
+&lt;h3 id="自动化查询"&gt;自动化查询
+&lt;/h3&gt;&lt;h4 id="获取--javascript"&gt;获取 / JavaScript
+&lt;/h4&gt;&lt;p&gt;首先开启开发者工具，
+进行一次查询，查看请求：&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://blog.kmtea.eu/p/240323-civil-exam-sign/img/10-dev-tools.jpg"
+width="1843"
+height="1157"
+srcset="https://blog.kmtea.eu/p/240323-civil-exam-sign/img/10-dev-tools_hu_99dc63e1edc69d06.jpg 480w, https://blog.kmtea.eu/p/240323-civil-exam-sign/img/10-dev-tools_hu_3e5eb4c19bb93255.jpg 1024w"
+loading="lazy"
+alt="DevTools"
+class="gallery-image"
+data-flex-grow="159"
+data-flex-basis="382px"
+&gt;&lt;/p&gt;
+&lt;p&gt;右键请求，点击 &lt;code&gt;copy as fetch&lt;/code&gt;
+(复制为 JavaScript, 可以直接在控制台运行)，
+然后稍加修改，包装为 Function:&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://blog.kmtea.eu/p/240323-civil-exam-sign/img/11-func.jpg"
+width="1600"
+height="900"
+srcset="https://blog.kmtea.eu/p/240323-civil-exam-sign/img/11-func_hu_8ea31b31aae81013.jpg 480w, https://blog.kmtea.eu/p/240323-civil-exam-sign/img/11-func_hu_27db6ccfeede084c.jpg 1024w"
+loading="lazy"
+alt="func"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;span class="lnt"&gt;16
+&lt;/span&gt;&lt;span class="lnt"&gt;17
+&lt;/span&gt;&lt;span class="lnt"&gt;18
+&lt;/span&gt;&lt;span class="lnt"&gt;19
+&lt;/span&gt;&lt;span class="lnt"&gt;20
+&lt;/span&gt;&lt;span class="lnt"&gt;21
+&lt;/span&gt;&lt;span class="lnt"&gt;22
+&lt;/span&gt;&lt;span class="lnt"&gt;23
+&lt;/span&gt;&lt;span class="lnt"&gt;24
+&lt;/span&gt;&lt;span class="lnt"&gt;25
+&lt;/span&gt;&lt;span class="lnt"&gt;26
+&lt;/span&gt;&lt;span class="lnt"&gt;27
+&lt;/span&gt;&lt;span class="lnt"&gt;28
+&lt;/span&gt;&lt;span class="lnt"&gt;29
+&lt;/span&gt;&lt;span class="lnt"&gt;30
+&lt;/span&gt;&lt;span class="lnt"&gt;31
+&lt;/span&gt;&lt;span class="lnt"&gt;32
+&lt;/span&gt;&lt;span class="lnt"&gt;33
+&lt;/span&gt;&lt;span class="lnt"&gt;34
+&lt;/span&gt;&lt;span class="lnt"&gt;35
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-javascript" data-lang="javascript"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;HEADERS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;accept&amp;#34;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;application/json, text/javascript, */*; q=0.01&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;accept-language&amp;#34;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;content-type&amp;#34;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;application/x-www-form-urlencoded; charset=UTF-8&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;sec-ch-ua&amp;#34;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;\&amp;#34;Not_A Brand\&amp;#34;;v=\&amp;#34;8\&amp;#34;, \&amp;#34;Chromium\&amp;#34;;v=\&amp;#34;120\&amp;#34;, \&amp;#34;Google Chrome\&amp;#34;;v=\&amp;#34;120\&amp;#34;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;sec-ch-ua-mobile&amp;#34;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;?0&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;sec-ch-ua-platform&amp;#34;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;\&amp;#34;Windows\&amp;#34;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;sec-fetch-dest&amp;#34;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;empty&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;sec-fetch-mode&amp;#34;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;cors&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;sec-fetch-site&amp;#34;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;same-origin&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;x-requested-with&amp;#34;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;XMLHttpRequest&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;};&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;URL&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;https://ggfw.hrss.gd.gov.cn/gwyks/exam/details/spQuery.do&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;REF&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;https://ggfw.hrss.gd.gov.cn/gwyks/center.do?nvt=1&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kr"&gt;async&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;stat&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;cityCode&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;totalPages&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="kd"&gt;let&lt;/span&gt; &lt;span class="nx"&gt;res&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[];&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;let&lt;/span&gt; &lt;span class="nx"&gt;page&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nx"&gt;page&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;=&lt;/span&gt; &lt;span class="nx"&gt;totalPages&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nx"&gt;page&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="kd"&gt;let&lt;/span&gt; &lt;span class="nx"&gt;rawData&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kr"&gt;await&lt;/span&gt; &lt;span class="nx"&gt;fetch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;URL&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;headers&amp;#34;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;HEADERS&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;referrer&amp;#34;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;REF&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;referrerPolicy&amp;#34;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;strict-origin-when-cross-origin&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;body&amp;#34;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="sb"&gt;`bfa001=202401&amp;amp;bab301=&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nx"&gt;cityCode&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="sb"&gt;&amp;amp;page=&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nx"&gt;page&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="sb"&gt;&amp;amp;rows=50`&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;method&amp;#34;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;POST&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;mode&amp;#34;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;cors&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="s2"&gt;&amp;#34;credentials&amp;#34;&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;include&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;});&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="kd"&gt;let&lt;/span&gt; &lt;span class="nx"&gt;data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kr"&gt;await&lt;/span&gt; &lt;span class="nx"&gt;rawData&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;json&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nx"&gt;res&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;res&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;concat&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;rows&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sb"&gt;`page &lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nx"&gt;page&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="sb"&gt; done, &lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;rows&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;length&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="sb"&gt; items added, total &lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nx"&gt;res&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;length&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="sb"&gt; items`&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="kr"&gt;await&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="nb"&gt;Promise&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;r&lt;/span&gt; &lt;span class="p"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="nx"&gt;setTimeout&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;r&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2000&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nx"&gt;res&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;查询城市代码后调用：&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://blog.kmtea.eu/p/240323-civil-exam-sign/img/12-running.jpg"
+width="1600"
+height="900"
+srcset="https://blog.kmtea.eu/p/240323-civil-exam-sign/img/12-running_hu_4fc69f74044b134d.jpg 480w, https://blog.kmtea.eu/p/240323-civil-exam-sign/img/12-running_hu_99c5d4ebba0e7822.jpg 1024w"
+loading="lazy"
+alt="running"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-javascript" data-lang="javascript"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kd"&gt;let&lt;/span&gt; &lt;span class="nx"&gt;gz&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kr"&gt;await&lt;/span&gt; &lt;span class="nx"&gt;stat&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;01&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;JSON&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;stringify&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;gz&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;点击右下角 Copy 按钮即可复制：&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://blog.kmtea.eu/p/240323-civil-exam-sign/img/13-copy.jpg"
+width="1600"
+height="900"
+srcset="https://blog.kmtea.eu/p/240323-civil-exam-sign/img/13-copy_hu_a196c48f9f70fd43.jpg 480w, https://blog.kmtea.eu/p/240323-civil-exam-sign/img/13-copy_hu_bec48ef386fcc28f.jpg 1024w"
+loading="lazy"
+alt="copy"
+class="gallery-image"
+data-flex-grow="177"
+data-flex-basis="426px"
+&gt;&lt;/p&gt;
+&lt;h4 id="处理--python"&gt;处理 / Python
+&lt;/h4&gt;&lt;p&gt;先将筛选出的职位代码保存到 &lt;code&gt;query.txt&lt;/code&gt;，
+随后即可编写代码，打印职位对应的报名人数：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;span class="lnt"&gt;16
+&lt;/span&gt;&lt;span class="lnt"&gt;17
+&lt;/span&gt;&lt;span class="lnt"&gt;18
+&lt;/span&gt;&lt;span class="lnt"&gt;19
+&lt;/span&gt;&lt;span class="lnt"&gt;20
+&lt;/span&gt;&lt;span class="lnt"&gt;21
+&lt;/span&gt;&lt;span class="lnt"&gt;22
+&lt;/span&gt;&lt;span class="lnt"&gt;23
+&lt;/span&gt;&lt;span class="lnt"&gt;24
+&lt;/span&gt;&lt;span class="lnt"&gt;25
+&lt;/span&gt;&lt;span class="lnt"&gt;26
+&lt;/span&gt;&lt;span class="lnt"&gt;27
+&lt;/span&gt;&lt;span class="lnt"&gt;28
+&lt;/span&gt;&lt;span class="lnt"&gt;29
+&lt;/span&gt;&lt;span class="lnt"&gt;30
+&lt;/span&gt;&lt;span class="lnt"&gt;31
+&lt;/span&gt;&lt;span class="lnt"&gt;32
+&lt;/span&gt;&lt;span class="lnt"&gt;33
+&lt;/span&gt;&lt;span class="lnt"&gt;34
+&lt;/span&gt;&lt;span class="lnt"&gt;35
+&lt;/span&gt;&lt;span class="lnt"&gt;36
+&lt;/span&gt;&lt;span class="lnt"&gt;37
+&lt;/span&gt;&lt;span class="lnt"&gt;38
+&lt;/span&gt;&lt;span class="lnt"&gt;39
+&lt;/span&gt;&lt;span class="lnt"&gt;40
+&lt;/span&gt;&lt;span class="lnt"&gt;41
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;json&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;JOB_KEY&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;bfe301&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;POP_KEY&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;aab119&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;save_all&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;gz&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;json&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;loads&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;eval&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;input&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;gz: &amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;sz&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;json&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;loads&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;eval&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;input&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;sz: &amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;gz&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;sz&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;all.json&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;w&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;json&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dump&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;data&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;get_fmt_data&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;fmt&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;fmt&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;JOB_KEY&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;fmt&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;get_query&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;query.txt&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;r&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;query&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;readlines&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;query&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;strip&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;query&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;query&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="vm"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;__main__&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;all_data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;save_all&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;fmt_data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;get_fmt_data&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;all_data&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;to_query&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;get_query&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Total: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;to_query&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;to_query&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;fmt_data&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fmt_data&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="n"&gt;POP_KEY&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;?&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;运行后，输入数据，控制台就会按照顺序打印出职位代码对应的人数。&lt;/p&gt;
+&lt;p&gt;粘贴到 Excel 中，就可以直观查看与比较两者：&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://blog.kmtea.eu/p/240323-civil-exam-sign/img/14-result.jpg"
+width="693"
+height="1109"
+srcset="https://blog.kmtea.eu/p/240323-civil-exam-sign/img/14-result_hu_1e8dfa631ac854dc.jpg 480w, https://blog.kmtea.eu/p/240323-civil-exam-sign/img/14-result_hu_6679c3c8565d94a4.jpg 1024w"
+loading="lazy"
+alt="result"
+class="gallery-image"
+data-flex-grow="62"
+data-flex-basis="149px"
+&gt;&lt;/p&gt;
+&lt;h2 id="其他技巧"&gt;其他技巧
+&lt;/h2&gt;&lt;p&gt;本文所述技巧基于越迟报名，获取信息越多的前提，
+但是需要审核个人信息通过后才能成功报名。&lt;/p&gt;
+&lt;p&gt;因此，&lt;strong&gt;一定要&lt;/strong&gt;先点击左侧 &lt;code&gt;个人信息&lt;/code&gt; 按钮，填好保存！！！
+提交之后就会上报审核，与报名分开，
+这样最后一天报名，提交后就直接通过，不用再等待审核。&lt;/p&gt;
+&lt;h2 id="结语"&gt;结语
+&lt;/h2&gt;&lt;p&gt;报名阶段自动化，最多只是筛选出相对容易上岸的职位，
+美其名曰赢在起跑线上，但最终能否冲线还要看自己的体能。&lt;/p&gt;
+&lt;p&gt;另外，本文只是提供了一种减少重复操作的思路，
+数据一天只会更新一次，请勿频繁查询，&lt;strong&gt;以免违反相关法律规定。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;虽然机构应该有自己的编程大手子，
+看不上我的这些蹩脚代码，但还是声明，严禁商用。&lt;/p&gt;</description></item></channel></rss>

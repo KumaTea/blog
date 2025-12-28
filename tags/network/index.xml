@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Network on 酷玛阁 | KumaTea's Blog</title><link>https://blog.kmtea.eu/tags/network/</link><description>Recent content in Network on 酷玛阁 | KumaTea's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 13 Oct 2023 15:51:56 +0800</lastBuildDate><atom:link href="https://blog.kmtea.eu/tags/network/index.xml" rel="self" type="application/rss+xml"/><item><title>诺基亚贝尔光猫宽带密码破解提取</title><link>https://blog.kmtea.eu/p/230718-modem-decrypt/</link><pubDate>Tue, 18 Jul 2023 21:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/230718-modem-decrypt/</guid><description>&lt;img src="https://blog.kmtea.eu/p/230718-modem-decrypt/img/cover.jpg" alt="Featured image of post 诺基亚贝尔光猫宽带密码破解提取" /&gt;&lt;h1 id="诺基亚贝尔光猫宽带密码破解提取"&gt;诺基亚贝尔光猫宽带密码破解提取
+&lt;/h1&gt;&lt;h2 id="前言"&gt;前言
+&lt;/h2&gt;&lt;p&gt;本教程适用于诺基亚贝尔光猫，型号 &lt;code&gt;HGW&lt;/code&gt; 或 &lt;code&gt;G-140W-**&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://blog.kmtea.eu/p/230718-modem-decrypt/img/02-info.jpg"
+width="1440"
+height="1106"
+srcset="https://blog.kmtea.eu/p/230718-modem-decrypt/img/02-info_hu_e5ad0a1bd8a18196.jpg 480w, https://blog.kmtea.eu/p/230718-modem-decrypt/img/02-info_hu_d2d57631b6017a93.jpg 1024w"
+loading="lazy"
+alt="设备信息"
+class="gallery-image"
+data-flex-grow="130"
+data-flex-basis="312px"
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;此型号的光猫不可开启 &lt;code&gt;telnet&lt;/code&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;http://192.168.1.1/getpage.gch?pid=1002&amp;amp;nextpage=tele_sec_tserver_t.gch&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;http://192.168.1.1/cgi-bin/telnetenable.cgi?telnetenable=1&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;以上地址均无效。&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;F12 大法无效：&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://blog.kmtea.eu/p/230718-modem-decrypt/img/03-net-config.jpg"
+width="1440"
+height="1106"
+srcset="https://blog.kmtea.eu/p/230718-modem-decrypt/img/03-net-config_hu_6879eb31807f9306.jpg 480w, https://blog.kmtea.eu/p/230718-modem-decrypt/img/03-net-config_hu_2c598076751c71fa.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="130"
+data-flex-basis="312px"
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;密码&lt;/code&gt; 文本框一经选中内容就会消失；&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://blog.kmtea.eu/p/230718-modem-decrypt/img/04-net-inspect.jpg"
+width="1490"
+height="1119"
+srcset="https://blog.kmtea.eu/p/230718-modem-decrypt/img/04-net-inspect_hu_79d14d913ce6ec9c.jpg 480w, https://blog.kmtea.eu/p/230718-modem-decrypt/img/04-net-inspect_hu_7337a476835da745.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="319px"
+&gt;&lt;/p&gt;
+&lt;p&gt;使用 &lt;code&gt;F12&lt;/code&gt; 审查元素，会发现该处明文为 &lt;code&gt;!!!@@@&lt;/code&gt;
+，不是合法的宽带拨号密码。&lt;/p&gt;
+&lt;h2 id="教程"&gt;教程
+&lt;/h2&gt;&lt;h3 id="1-登录"&gt;1. 登录
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;username: CMCCAdmin
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;password: aDm8H%MdA
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src="https://blog.kmtea.eu/p/230718-modem-decrypt/img/01-login.jpg"
+width="1440"
+height="702"
+srcset="https://blog.kmtea.eu/p/230718-modem-decrypt/img/01-login_hu_e9ba1d945d220137.jpg 480w, https://blog.kmtea.eu/p/230718-modem-decrypt/img/01-login_hu_cda42ece2e4b17c8.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="205"
+data-flex-basis="492px"
+&gt;&lt;/p&gt;
+&lt;h3 id="2-打开如下地址"&gt;2. 打开如下地址
+&lt;/h3&gt;&lt;p&gt;&lt;code&gt;http://192.168.1.1/dumpdatamodel.cgi&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://blog.kmtea.eu/p/230718-modem-decrypt/img/05-dump.jpg"
+width="1380"
+height="633"
+srcset="https://blog.kmtea.eu/p/230718-modem-decrypt/img/05-dump_hu_ae4c4921968d0d7c.jpg 480w, https://blog.kmtea.eu/p/230718-modem-decrypt/img/05-dump_hu_fa23f3c05b4460ba.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="218"
+data-flex-basis="523px"
+&gt;&lt;/p&gt;
+&lt;p&gt;搜索宽带账号
+(如 &lt;code&gt;139.gd&lt;/code&gt;)
+在下方找到密码字段。&lt;/p&gt;
+&lt;h3 id="3-提取密码"&gt;3. 提取密码
+&lt;/h3&gt;&lt;p&gt;Ref:
+&lt;a class="link" href="https://gist.github.com/thedroidgeek/80c379aa43b71015d71da130f85a435a" target="_blank" rel="noopener"
+&gt;thedroidgeek / nokia-router-cfg-tool.py&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;首先安装依赖&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;conda install pycryptodome &lt;span class="o"&gt;||&lt;/span&gt; pip install pycryptodome
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;随后运行：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;span class="lnt"&gt;16
+&lt;/span&gt;&lt;span class="lnt"&gt;17
+&lt;/span&gt;&lt;span class="lnt"&gt;18
+&lt;/span&gt;&lt;span class="lnt"&gt;19
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-python" data-lang="python"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;base64&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;RouterCrypto&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="fm"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;Crypto.Cipher&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;AES&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# key and IV for AES&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;key&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;3D A3 73 D7 DC 82 2E 2A 47 0D EC 37 89 6E 80 D7 2C 49 B3 16 29 DD C9 97 35 4B 84 03 91 77 9E A4&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;iv&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;D0 E6 DC CD A7 4A 00 DF 76 0F C0 85 11 CB 05 EA&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# create AES-128-CBC cipher&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cipher&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;AES&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;new&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;bytes&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;bytearray&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fromhex&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="p"&gt;)),&lt;/span&gt; &lt;span class="n"&gt;AES&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;MODE_CBC&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;bytes&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;bytearray&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fromhex&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;iv&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;decrypt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;output&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cipher&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;decrypt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# remove PKCS#7 padding&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;output&lt;/span&gt;&lt;span class="p"&gt;[:&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nb"&gt;ord&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;output&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;:])]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;encrypted&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;input&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;请输入密码字串：&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;解密密码为：&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;RouterCrypto&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;decrypt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;base64&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;b64decode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;encrypted&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;decode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;UTF-8&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src="https://blog.kmtea.eu/p/230718-modem-decrypt/img/06-decrypt.jpg"
+width="960"
+height="332"
+srcset="https://blog.kmtea.eu/p/230718-modem-decrypt/img/06-decrypt_hu_d001962612288ec7.jpg 480w, https://blog.kmtea.eu/p/230718-modem-decrypt/img/06-decrypt_hu_fe1de106be45c0aa.jpg 1024w"
+loading="lazy"
+class="gallery-image"
+data-flex-grow="289"
+data-flex-basis="693px"
+&gt;&lt;/p&gt;
+&lt;p&gt;运行上述代码，即可解密密码 (一般为6位数字)。&lt;/p&gt;</description></item></channel></rss>
