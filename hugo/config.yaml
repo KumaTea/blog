@@ -8,8 +8,8 @@ title: "酷玛阁 | KumaTea's Blog"
 pagination:
   pagerSize: 5
 
-# build:  duration 1m56s
-timeout: 240s
+# recent versions take about 5 minutes to build
+timeout: 600s
 
 #languages:
 #  zh-cn:
