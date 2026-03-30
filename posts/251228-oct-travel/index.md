@@ -10,9 +10,7 @@
 
 10月1号晚上蹲到便宜机票直接决定出发
 
-![机票价格](img/ss_ticket_1.webp)
-
-![行程](img/ss_ticket_2.webp)
+![行程](img/ss_ticket.webp)
 
 ## 10月3日
 
