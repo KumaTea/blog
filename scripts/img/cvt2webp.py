@@ -17,7 +17,7 @@ def get_img_files(path='.'):
     files = []
     for filename in os.listdir(path):
         # if filename.endswith('.png') or filename.endswith('.jpg') ...
-        if any(filename.endswith(ext) for ext in accepted_ext):
+        if any(filename.lower().endswith(ext.lower()) for ext in accepted_ext):
             files.append(os.path.join(path, filename))
     return files
 
@@ -89,7 +89,7 @@ if __name__ == '__main__':
     if not img_files:
         exit(0)
 
-    if any(f.endswith(('.HEIC', '.HEIF')) for f in img_files):
+    if any(f.upper().endswith(('.HEIC', '.HEIF')) for f in img_files):
         # from pillow_heif import register_heif_opener
         # pi_heif is a light version of Pillow-Heif ... includes only HEIF decoder and does not support save operations.
         from pi_heif import register_heif_opener
