@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Apple on 酷玛阁 | KumaTea's Blog</title><link>https://blog.kmtea.eu/tags/apple/</link><description>Recent content in Apple on 酷玛阁 | KumaTea's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 09 Aug 2024 16:57:36 +0800</lastBuildDate><atom:link href="https://blog.kmtea.eu/tags/apple/index.xml" rel="self" type="application/rss+xml"/><item><title>Apple Pay 绑卡失败原因速查</title><link>https://blog.kmtea.eu/p/230617-apple-pay/</link><pubDate>Sat, 17 Jun 2023 15:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/230617-apple-pay/</guid><description>&lt;img src="https://blog.kmtea.eu/p/230617-apple-pay/img/err-invalid.jpg" alt="Featured image of post Apple Pay 绑卡失败原因速查" /&gt;&lt;h1 id="apple-pay-绑卡失败原因速查"&gt;Apple Pay 绑卡失败原因速查
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Apple on 酷玛阁 | KumaTea's Blog</title><link>https://blog.kmtea.eu/tags/apple/</link><description>Recent content in Apple on 酷玛阁 | KumaTea's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Mon, 30 Mar 2026 22:54:35 +0800</lastBuildDate><atom:link href="https://blog.kmtea.eu/tags/apple/index.xml" rel="self" type="application/rss+xml"/><item><title>Apple Pay 绑卡失败原因速查</title><link>https://blog.kmtea.eu/p/230617-apple-pay/</link><pubDate>Sat, 17 Jun 2023 15:00:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/230617-apple-pay/</guid><description>&lt;img src="https://blog.kmtea.eu/p/230617-apple-pay/img/err-invalid.jpg" alt="Featured image of post Apple Pay 绑卡失败原因速查" /&gt;&lt;h1 id="apple-pay-绑卡失败原因速查"&gt;Apple Pay 绑卡失败原因速查
 &lt;/h1&gt;&lt;p&gt;先上目前绑卡截图镇楼&lt;/p&gt;
 &lt;p&gt;&lt;img src="https://blog.kmtea.eu/p/230617-apple-pay/img/apple-wallet.jpg"
 width="1125"
@@ -68,6 +68,11 @@ data-flex-basis="427px"
 &lt;/li&gt;
 &lt;li&gt;该卡号今日 &lt;a class="link" href="https://www.jimmytian.com/archives/solve-apple-pay-cant-add-boc-card.html#0x03-%E5%86%8D%E6%AC%A1%E6%89%93%E7%94%B5%E8%AF%9D%E5%88%B0%E9%93%B6%E8%81%94" target="_blank" rel="noopener"
 &gt;已失败5次&lt;/a&gt; ，明日再试&lt;/li&gt;
+&lt;li&gt;未插卡
+&lt;ul&gt;
+&lt;li&gt;部分银行（如工商银行）要求添加银联信用卡时，手机插入并启用银行账户绑定的手机号SIM卡，可能在绑定过程中验证SIM卡信息&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id="未添加此卡"&gt;未添加此卡
 &lt;/h3&gt;&lt;blockquote&gt;

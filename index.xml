@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>酷玛阁 | KumaTea's Blog</title><link>https://blog.kmtea.eu/</link><description>Recent content on 酷玛阁 | KumaTea's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 28 Dec 2025 21:30:00 +0800</lastBuildDate><atom:link href="https://blog.kmtea.eu/index.xml" rel="self" type="application/rss+xml"/><item><title>国庆游记</title><link>https://blog.kmtea.eu/p/251228-oct-travel/</link><pubDate>Sun, 28 Dec 2025 21:30:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/251228-oct-travel/</guid><description>&lt;img src="https://blog.kmtea.eu/p/251228-oct-travel/img/cover.webp" alt="Featured image of post 国庆游记" /&gt;&lt;h1 id="国庆游记"&gt;国庆游记
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>酷玛阁 | KumaTea's Blog</title><link>https://blog.kmtea.eu/</link><description>Recent content on 酷玛阁 | KumaTea's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sat, 30 May 2026 23:17:24 +0800</lastBuildDate><atom:link href="https://blog.kmtea.eu/index.xml" rel="self" type="application/rss+xml"/><item><title>国庆游记</title><link>https://blog.kmtea.eu/p/251228-oct-travel/</link><pubDate>Sun, 28 Dec 2025 21:30:00 +0800</pubDate><guid>https://blog.kmtea.eu/p/251228-oct-travel/</guid><description>&lt;img src="https://blog.kmtea.eu/p/251228-oct-travel/img/cover.webp" alt="Featured image of post 国庆游记" /&gt;&lt;h1 id="国庆游记"&gt;国庆游记
 &lt;/h1&gt;&lt;p&gt;2025年国庆成都及上海旅游记录&lt;/p&gt;
 &lt;h2 id="准备"&gt;准备
 &lt;/h2&gt;&lt;p&gt;&lt;img src="https://blog.kmtea.eu/p/251228-oct-travel/img/ss_xhs.webp"
@@ -13,20 +13,10 @@ data-flex-basis="135px"
 &gt;&lt;/p&gt;
 &lt;p&gt;9月30号晚上还没任何计划&lt;/p&gt;
 &lt;p&gt;10月1号晚上蹲到便宜机票直接决定出发&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://blog.kmtea.eu/p/251228-oct-travel/img/ss_ticket_1.webp"
-width="1200"
-height="1200"
-srcset="https://blog.kmtea.eu/p/251228-oct-travel/img/ss_ticket_1_hu_6d0f661dd72c35c3.webp 480w, https://blog.kmtea.eu/p/251228-oct-travel/img/ss_ticket_1_hu_bc06eddc13cb9ff7.webp 1024w"
-loading="lazy"
-alt="机票价格"
-class="gallery-image"
-data-flex-grow="100"
-data-flex-basis="240px"
-&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://blog.kmtea.eu/p/251228-oct-travel/img/ss_ticket_2.webp"
+&lt;p&gt;&lt;img src="https://blog.kmtea.eu/p/251228-oct-travel/img/ss_ticket.webp"
 width="1200"
 height="2560"
-srcset="https://blog.kmtea.eu/p/251228-oct-travel/img/ss_ticket_2_hu_31d238ef73b62e6e.webp 480w, https://blog.kmtea.eu/p/251228-oct-travel/img/ss_ticket_2_hu_51892620f9928a84.webp 1024w"
+srcset="https://blog.kmtea.eu/p/251228-oct-travel/img/ss_ticket_hu_31d238ef73b62e6e.webp 480w, https://blog.kmtea.eu/p/251228-oct-travel/img/ss_ticket_hu_51892620f9928a84.webp 1024w"
 loading="lazy"
 alt="行程"
 class="gallery-image"
@@ -4585,6 +4575,11 @@ data-flex-basis="427px"
 &lt;/li&gt;
 &lt;li&gt;该卡号今日 &lt;a class="link" href="https://www.jimmytian.com/archives/solve-apple-pay-cant-add-boc-card.html#0x03-%E5%86%8D%E6%AC%A1%E6%89%93%E7%94%B5%E8%AF%9D%E5%88%B0%E9%93%B6%E8%81%94" target="_blank" rel="noopener"
 &gt;已失败5次&lt;/a&gt; ，明日再试&lt;/li&gt;
+&lt;li&gt;未插卡
+&lt;ul&gt;
+&lt;li&gt;部分银行（如工商银行）要求添加银联信用卡时，手机插入并启用银行账户绑定的手机号SIM卡，可能在绑定过程中验证SIM卡信息&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id="未添加此卡"&gt;未添加此卡
 &lt;/h3&gt;&lt;blockquote&gt;
@@ -4701,7 +4696,7 @@ data-flex-basis="175px"
 &lt;tbody&gt;
 &lt;tr&gt;
 &lt;td&gt;中行&lt;/td&gt;
-&lt;td&gt;储2 信0.5&lt;/td&gt;
+&lt;td&gt;储3 信0.5&lt;/td&gt;
 &lt;td&gt;信0.5&lt;/td&gt;
 &lt;td&gt;储1&lt;/td&gt;
 &lt;td&gt;&lt;/td&gt;
@@ -4715,9 +4710,9 @@ data-flex-basis="175px"
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;工行&lt;/td&gt;
-&lt;td&gt;储2 信1&lt;/td&gt;
+&lt;td&gt;储3 信1&lt;/td&gt;
 &lt;td&gt;信1&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;信1&lt;/td&gt;
 &lt;td&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -4778,20 +4773,43 @@ data-flex-basis="175px"
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;总计&lt;/td&gt;
-&lt;td&gt;储12 信2.5&lt;/td&gt;
+&lt;td&gt;储14 信2.5&lt;/td&gt;
 &lt;td&gt;储1信1.5&lt;/td&gt;
-&lt;td&gt;储3&lt;/td&gt;
+&lt;td&gt;储3 信1&lt;/td&gt;
 &lt;td&gt;储1&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;已销&lt;/td&gt;
-&lt;td&gt;储8 信4&lt;/td&gt;
+&lt;td&gt;储6 信4&lt;/td&gt;
 &lt;td&gt;储1 信1&lt;/td&gt;
 &lt;td&gt;&lt;/td&gt;
 &lt;td&gt;储2&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
+&lt;h2 id="2026"&gt;2026
+&lt;/h2&gt;&lt;h3 id="中国工商银行---牡丹万事达白金卡"&gt;中国工商银行 - 牡丹万事达白金卡
+&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;俗称黑白菜，大白金，北京地区有刷免，大放水，秒批&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/img/2605-icbc-c.webp"
+width="4096"
+height="3072"
+srcset="https://blog.kmtea.eu/p/230603-bank-cards/img/2605-icbc-c_hu_94d52f085c223038.webp 480w, https://blog.kmtea.eu/p/230603-bank-cards/img/2605-icbc-c_hu_5de7a9079a1e272e.webp 1024w"
+loading="lazy"
+alt="2057757291919859894"
+class="gallery-image"
+data-flex-grow="133"
+data-flex-basis="320px"
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;卡组织：Mastercard&lt;/li&gt;
+&lt;li&gt;分类：信用卡&lt;/li&gt;
+&lt;li&gt;等级：白金卡&lt;/li&gt;
+&lt;li&gt;途径：线上&lt;/li&gt;
+&lt;li&gt;现状：在用&lt;/li&gt;
+&lt;li&gt;Apple Pay：❌&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h2 id="2025"&gt;2025
 &lt;/h2&gt;&lt;h3 id="中国工商银行---星座卡"&gt;中国工商银行 - 星座卡
 &lt;/h3&gt;&lt;p&gt;&lt;img src="https://blog.kmtea.eu/p/230603-bank-cards/img/2510-icbc-c.webp"
@@ -6586,9 +6604,9 @@ data-flex-basis="447px"
 &lt;p&gt;所有时间均为 UTC+8&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;ul&gt;
-&lt;li&gt;最后文章 2025-12-28 22:33:54&lt;/li&gt;
-&lt;li&gt;最后更新 2025-12-28 22:33:54&lt;/li&gt;
-&lt;li&gt;构建日期 2025-12-28 22:34:33&lt;/li&gt;
+&lt;li&gt;最后文章 2026-05-30 23:17:24&lt;/li&gt;
+&lt;li&gt;最后更新 2026-05-30 23:17:24&lt;/li&gt;
+&lt;li&gt;构建日期 2026-05-30 23:18:31&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="其他"&gt;其他
 &lt;/h2&gt;&lt;p&gt;如果你在本站看到了广告，说明你需要安装广告屏蔽插件或设置DNS过滤规则。&lt;/p&gt;</description></item><item><title>联系</title><link>https://blog.kmtea.eu/links/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://blog.kmtea.eu/links/</guid><description>&lt;h2 id="友链区"&gt;友链区
