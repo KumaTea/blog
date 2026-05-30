@@ -62,7 +62,7 @@
 
 ![汕头街](img/IMG_20260322_122421.webp)
 
-[活力大湾区](../251102-swatow-everywhere/)
+[活力大湾区](../251102-swatow-everywhere/#香港)
 
 ---
 
