@@ -9,28 +9,43 @@
 2. 双标卡每张计数 0.5
 3. 到期换卡、更换卡面均计入销卡
 
-|    | 银联       | VISA   | MC | AE |
+| | 银联 | VISA | MC | AE |
 |----|----------|--------|----|----|
-| 中行 | 储2 信0.5  | 信0.5   | 储1 |    |
-| 农行 | 信1       |        |    |    |
-| 工行 | 储2   信1  | 信1     |    |    |
-| 建行 | 储1       |        |    |    |
-| 招行 | 储1       |        |    |    |
-| 兴业 | 储1       |        |    |    |
-| 浦发 | 储1       |        |    |    |
-| 中信 | 储2       |        |    | 储1 |
-| 港中 | 储1       |        | 储1 |    |
-| 港汇 | 储1       |        | 储1 |    |
-| 众安 |          | 储1     |    |    |
-| 总计 | 储12 信2.5 | 储1信1.5 | 储3 | 储1 |
-| 已销 | 储8 信4    | 储1 信1  |    | 储2 |
+| 中行 | 储3 信0.5 | 信0.5 | 储1 | |
+| 农行 | 信1 | | | |
+| 工行 | 储3 信1 | 信1 | 信1 | |
+| 建行 | 储1 | | | |
+| 招行 | 储1 | | | |
+| 兴业 | 储1 | | | |
+| 浦发 | 储1 | | | |
+| 中信 | 储2 | | | 储1 |
+| 港中 | 储1 | | 储1 | |
+| 港汇 | 储1 | | 储1 | |
+| 众安 | | 储1 | | |
+| 总计 | 储14 信2.5 | 储1信1.5 | 储3 信1 | 储1 |
+| 已销 | 储6 信4 | 储1 信1 | | 储2 |
 
+
+## 2026
+
+### 中国工商银行 - 牡丹万事达白金卡
+
+> 俗称黑白菜，大白金，北京地区有刷免，大放水，秒批
+
+![2057757291919859894](img/2605-icbc-c.webp "https://pbs.twimg.com/media/HI6fWeUagAERNeD?format=jpg&name=large")
+
+* 卡组织：Mastercard
+* 分类：信用卡
+* 等级：白金卡
+* 途径：线上
+* 现状：在用
+* Apple Pay：❌
 
 ## 2025
 
 ### 中国工商银行 - 星座卡
 
-![1980665404210180447](img/2510-icbc-c.webp "https://pbs.twimg.com/media/G3y8r-rXUAAj9An.jpg")
+![1980665404210180447](img/2510-icbc-c.webp "https://pbs.twimg.com/media/G3y8r-rXUAAj9An?format=jpg&name=large")
 
 * 卡组织：银联 + VISA
 * 分类：信用卡
@@ -41,7 +56,7 @@
 
 ### 兴业银行 - 寰宇人生卡
 
-![1954753417664139496](img/2508-cib-d.webp "https://pbs.twimg.com/media/GyCt35abcAAVJmG.jpg")
+![1954753417664139496](img/2508-cib-d.webp "https://pbs.twimg.com/media/GyCt35abcAAVJmG?format=jpg&name=large")
 
 * 卡组织：银联
 * 分类：借记卡
@@ -54,7 +69,7 @@
 
 ### 中银香港 - 扣账卡
 
-![1860293559599136938](img/2411-bochk-d.webp "https://pbs.twimg.com/media/GdEXIe9agAQWX_o.jpg")
+![1860293559599136938](img/2411-bochk-d.webp "https://pbs.twimg.com/media/GdEXIe9agAQWX_o?format=jpg&name=large")
 
 * 卡组织：Mastercard
 * 分类：借记卡
@@ -66,7 +81,7 @@
 
 ### 汇丰香港 - 扣账卡
 
-![1843209773816348696](img/2410-hsbc-d.webp "https://pbs.twimg.com/media/GZRlhVHaIAAOPXb.jpg")
+![1843209773816348696](img/2410-hsbc-d.webp "https://pbs.twimg.com/media/GZRlhVHaIAAOPXb?format=jpg&name=large")
 
 * 卡组织：Mastercard
 * 分类：借记卡
@@ -81,7 +96,7 @@
 > 
 > 但是不是二次元所以免费的就够了
 
-![1833837931016183924](img/2409-citic-d.webp "https://pbs.twimg.com/media/GXMZ4PIasAAvQhy.jpg")
+![1833837931016183924](img/2409-citic-d.webp "https://pbs.twimg.com/media/GXMZ4PIasAAvQhy?format=jpg&name=large")
 
 * 卡组织：银联
 * 分类：借记卡
@@ -96,7 +111,7 @@
 > 
 > 另：8月15日起涨价至 HKD 35
 
-![1835239765689684393](img/2408-za-d.webp "https://pbs.twimg.com/media/GXgU10ZaIAAFAFs.jpg")
+![1835239765689684393](img/2408-za-d.webp "https://pbs.twimg.com/media/GXgU10ZaIAAFAFs?format=jpg&name=large")
 
 * 卡组织：VISA
 * 分类：借记卡
@@ -113,7 +128,7 @@
 > 
 > 而且自查征信，发现[农行根本不查](https://t.me/KumaSpace/1777)就批了
 
-![1821758460641554718](img/2408-abc-c.webp "https://pbs.twimg.com/media/GUgvqd0acAAKS1u.jpg")
+![1821758460641554718](img/2408-abc-c.webp "https://pbs.twimg.com/media/GUgvqd0acAAKS1u?format=jpg&name=large")
 
 * 卡组织：银联
 * 分类：信用卡
@@ -124,7 +139,7 @@
 
 ### 中信银行 - 校园卡
 
-![1813042301914259882](img/2407-citic-d.jpg "https://pbs.twimg.com/media/GSk4XRWacAIQsN4.jpg")
+![1813042301914259882](img/2407-citic-d.jpg "https://pbs.twimg.com/media/GSk4XRWacAIQsN4?format=jpg&name=large")
 
 * 卡组织：银联
 * 分类：借记卡
@@ -141,7 +156,7 @@
 > [介绍2](https://ffp.airchina.com.cn/app/activity/detail?activity_id=25)
 > [申请](https://apply.mcard.boc.cn/apply/Izeiim)
 
-![1808386649392566297](img/2407-boc-c.jpg "https://pbs.twimg.com/media/GRiuEjTb0AE-LXy.jpg")
+![1808386649392566297](img/2407-boc-c.jpg "https://pbs.twimg.com/media/GRiuEjTb0AE-LXy?format=jpg&name=large")
 
 * 卡组织：银联 + VISA
 * 分类：信用卡
@@ -187,7 +202,7 @@
 > 
 > [介绍页](https://mp.weixin.qq.com/s/M41ymLbZ6keXToz0nXjJ8w)
 
-![1670009918416646146](ext/13.jpg "https://pbs.twimg.com/media/Fy0RKqVaAAAmLks.jpg")
+![1670009918416646146](ext/13.jpg "https://pbs.twimg.com/media/Fy0RKqVaAAAmLks?format=jpg&name=large")
 
 * 卡组织：American Express
 * 分类：借记卡
@@ -202,7 +217,7 @@
 >
 > [介绍页](https://mp.weixin.qq.com/s/lK5YVyHvWqv94tDLY8zIiQ)
 
-![1664817220600606720](ext/12.jpg "https://pbs.twimg.com/media/FxqecAjaEAEfLgF.jpg")
+![1664817220600606720](ext/12.jpg "https://pbs.twimg.com/media/FxqecAjaEAEfLgF?format=jpg&name=large")
 
 * 卡组织：银联
 * 分类：信用卡
@@ -217,7 +232,7 @@
 >
 > [介绍页](https://mp.weixin.qq.com/s/Fys02dfBD4fVJqHROKUbbg)
 
-![1662440558978269186](ext/11.jpg "https://pbs.twimg.com/media/FxIs39sakAAfmYf.jpg")
+![1662440558978269186](ext/11.jpg "https://pbs.twimg.com/media/FxIs39sakAAfmYf?format=jpg&name=large")
 
 * 卡组织：银联
 * 分类：借记卡
@@ -230,7 +245,7 @@
 
 > 大学生信用卡
 
-![1634766718001373185](ext/10.jpg "https://pbs.twimg.com/media/Fq_bqgCaAAABymU.jpg")
+![1634766718001373185](ext/10.jpg "https://pbs.twimg.com/media/Fq_bqgCaAAABymU?format=jpg&name=large")
 
 * 卡组织：银联 + VISA
 * 分类：信用卡
@@ -243,7 +258,7 @@
 
 > 办卡理由：好看
 
-![1629747032079630341](ext/09.jpg "https://pbs.twimg.com/media/Fp4GKo1akAIv1LC.jpg")
+![1629747032079630341](ext/09.jpg "https://pbs.twimg.com/media/Fp4GKo1akAIv1LC?format=jpg&name=large")
 
 * 卡组织：银联
 * 分类：借记卡
@@ -258,7 +273,7 @@
 >
 > [介绍页](https://mp.weixin.qq.com/s/jCxtroVSV0lLwXx9-CLvFQ)
 
-![1627148237521178627](ext/08.jpg "https://pbs.twimg.com/media/FpTKrnfacAIyqCF.jpg")
+![1627148237521178627](ext/08.jpg "https://pbs.twimg.com/media/FpTKrnfacAIyqCF?format=jpg&name=large")
 
 * 卡组织：American Express
 * 分类：借记卡
@@ -273,7 +288,7 @@
 >
 > [介绍页](https://mp.weixin.qq.com/s/AElhzWDBxycWqVV3q1mIow)
 
-![1624381848246976512](ext/07.jpg "https://pbs.twimg.com/media/For2rSzaYAAQW5Q.jpg")
+![1624381848246976512](ext/07.jpg "https://pbs.twimg.com/media/For2rSzaYAAQW5Q?format=jpg&name=large")
 
 * 卡组织：American Express
 * 分类：借记卡
@@ -293,7 +308,7 @@
 > 
 > 不属于银行卡，但是因为长得像所以放上来
 
-![1604371906672480257](ext/06.jpg "https://pbs.twimg.com/media/FkPfuqfaUAAwrN6.jpg")
+![1604371906672480257](ext/06.jpg "https://pbs.twimg.com/media/FkPfuqfaUAAwrN6?format=jpg&name=large")
 
 * 分类：借记卡
 * 途径：网申
@@ -305,7 +320,7 @@
 >
 > [介绍页](https://mp.weixin.qq.com/s/b77jB6411xp0EHkfTj3rSw)
 
-![1601484014342508545](ext/05.jpg "https://pbs.twimg.com/media/FjmdOHkaAAAZiWT.jpg")
+![1601484014342508545](ext/05.jpg "https://pbs.twimg.com/media/FjmdOHkaAAAZiWT?format=jpg&name=large")
 
 * 卡组织：银联
 * 分类：借记卡
@@ -320,7 +335,7 @@
 >
 > [介绍页](https://mp.weixin.qq.com/s/FWi1ipqVJ3zQe_bQU7qDIw)
 
-![1596406571638362112](ext/04.jpg "https://pbs.twimg.com/media/FieTT_takAI4sMJ.jpg")
+![1596406571638362112](ext/04.jpg "https://pbs.twimg.com/media/FieTT_takAI4sMJ?format=jpg&name=large")
 
 * 卡组织：Mastercard
 * 分类：借记卡
@@ -335,7 +350,7 @@
 >
 > [介绍页](https://m.icbc.com.cn/page/721854058468884500.html)
 
-![1594586679129800704](ext/03.jpg "https://pbs.twimg.com/media/FiEcIXsagAA0cZb.jpg")
+![1594586679129800704](ext/03.jpg "https://pbs.twimg.com/media/FiEcIXsagAA0cZb?format=jpg&name=large")
 
 * 卡组织：银联
 * 分类：借记卡
@@ -350,7 +365,7 @@
 >
 > [介绍页](https://mp.weixin.qq.com/s/VSC1UwiY0ET_hjZ8cdC_LA)
 
-![1584155173731303428](ext/02.jpg "https://pbs.twimg.com/media/FfwMu4PakAA_meS.jpg")
+![1584155173731303428](ext/02.jpg "https://pbs.twimg.com/media/FfwMu4PakAA_meS?format=jpg&name=large")
 
 * 卡组织：银联
 * 分类：借记卡
@@ -368,7 +383,7 @@
 >
 > [介绍页](https://ak.hypergryph.com/special/cmb/)
 
-![1397771013132197889](ext/01.jpg "https://pbs.twimg.com/media/E2XhUwGVIAc3IH2.jpg")
+![1397771013132197889](ext/01.jpg "https://pbs.twimg.com/media/E2XhUwGVIAc3IH2?format=jpg&name=large")
 
 * 卡组织：银联
 * 分类：借记卡
