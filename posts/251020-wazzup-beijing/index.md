@@ -6,6 +6,28 @@ Wazzup Beijing
  <a href="#bottom">回到最旧</a>
 </div>
 
+## 2026
+
+![[原神](https://t.me/s/KumaSpace/2370)](img/IMG_20260525_184538.webp)
+
+![中央礼品](img/IMG_20260423_154655.webp)
+
+![影博](img/IMG_20260410_152456.webp)
+
+![国图](img/IMG_20260329_170842.webp)
+
+![潦草](img/IMG_20260329_145915.webp)
+
+![春色](img/IMG_20260329_145915.webp)
+
+![地铁](img/IMG_20260326_215119.webp)
+
+![雪夜](img/IMG_20260305_074024.webp)
+
+![月食](img/IMG_20260303_193748.webp)
+
+![卧铺](img/IMG_20260214_175437.webp)
+
 ## 2025
 
 ![初雪](img/IMG_20251223_233417.webp)
