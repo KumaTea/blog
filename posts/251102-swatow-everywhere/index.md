@@ -105,7 +105,7 @@
 
 ![Map](img/map-hk.webp)
 
-![打卡](../260531-hk-trip/img/IMG_20260322_122326.webp)
+![打卡](../p/260531-hk-trip/img/IMG_20260322_122326.webp)
 
 ### 桃园
 

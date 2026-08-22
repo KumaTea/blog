@@ -21,6 +21,20 @@ jobs:
 #        with:
 #          python-version: '3.9'
 
+      # Hugo re-encodes every image (resize + webp) on each build, which is
+      # ~95% of the build time. Its output is content-hash keyed and cached in
+      # resources/_gen, so restoring that cache means only new or changed
+      # images get processed.
+      - name: Cache Hugo resources
+        uses: actions/cache@v4
+        with:
+          path: |
+            resources/_gen
+            /tmp/hugo_cache
+          key: hugo-resources-${{ github.run_id }}
+          restore-keys: |
+            hugo-resources-
+
       - name: Build site
         run: bash scripts/build.sh
 
@@ -31,7 +45,7 @@ jobs:
           extended: true
 
       - name: Build
-        run: hugo --minify --logLevel debug
+        run: hugo --minify --cacheDir /tmp/hugo_cache
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4

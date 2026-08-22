@@ -1,1 +1,3 @@
+# Build-time dependencies (GitHub Actions, scripts/build.sh).
+# Everything else in scripts/ runs on the standard library alone.
 requests

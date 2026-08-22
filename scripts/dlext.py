@@ -5,11 +5,9 @@ import re
 import logging
 import requests
 from tqdm import tqdm
-from data import posts
+from data import posts, pwd
 from media import get_content_type
 
-
-pwd = r'D:\GitHub\blog'
 
 # media in markdown: ![description](link)
 media_regex = r'!\[.*\]\((.*)\)'
@@ -38,8 +36,7 @@ def download(url: str, chunk_size: int = 1024 * 128) -> bytes:
     return content
 
 
-def dl_ext_media(post_id):
-    post_name = '{post_id}-{title}'.format(post_id=post_id, title=posts[post_id]['name'])
+def dl_ext_media(post_name):
     post_file = os.path.join(pwd, 'posts', post_name, 'index.md')
     ext_media_path = os.path.join(pwd, 'posts', post_name, 'ext')
 
@@ -84,11 +81,12 @@ def dl_ext_media(post_id):
     if edited:
         with open(post_file, 'w', encoding='utf-8') as f:
             f.writelines(lines)
-        return logging.info(f'[media]\tpost {post_id} media replaced')
+        return logging.info(f'[media]\tpost {post_name} media replaced')
     else:
         return None
 
 
 if __name__ == '__main__':
-    for pid in posts:
-        dl_ext_media(pid)
+    for info in posts.values():
+        for post_dir in info['dirs']:
+            dl_ext_media(post_dir)

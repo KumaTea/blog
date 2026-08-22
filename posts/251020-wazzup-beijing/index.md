@@ -8,15 +8,15 @@ Wazzup Beijing
 
 ## 2026
 
+![城图](img/IMG_20260809_134319.webp)
+
 ![[原神](https://t.me/s/KumaSpace/2370)](img/IMG_20260525_184538.webp)
 
-![中央礼品](img/IMG_20260423_154655.webp)
+![礼品](img/IMG_20260423_154655.webp)
 
 ![影博](img/IMG_20260410_152456.webp)
 
 ![国图](img/IMG_20260329_170842.webp)
-
-![潦草](img/IMG_20260329_145915.webp)
 
 ![春色](img/IMG_20260329_145915.webp)
 
@@ -38,9 +38,7 @@ Wazzup Beijing
 
 ![蓝调](img/IMG_20251020_225305.webp)
 
-![施工完毕](img/IMG_20250820_185855.webp)
-
-![施工中](img/IMG_20250813_184326.webp)
+![盆景](img/IMG_20250820_185855.webp)
 
 ![大会堂](img/IMG_20250810_123753.webp)
 

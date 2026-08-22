@@ -8,11 +8,22 @@ from datetime import datetime, timezone, timedelta
 
 logging.basicConfig(level=logging.INFO)
 
-pwd = os.getcwd()
+pwd = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 posts_path = os.path.join(pwd, 'posts')
 # about_page_path = 'content/pages/about/index.md'
 about_page_path = os.path.join(pwd, 'content', 'pages', 'about', 'index.md')
 git_date_fmt = '%a %b %d %H:%M:%S %Y %z'
+
+
+def git_last_commit_date(*paths):
+    """Committer date of the last commit touching paths, as a git-format str.
+
+    -C pins git to the repository this script lives in, so the result does not
+    depend on the directory the build happens to be launched from.
+    """
+    out = subprocess.check_output(
+        ['git', '-C', pwd, 'log', '-1', '--format=%cd', *paths])
+    return out.decode('utf-8').strip()
 preferred_date_fmt = '%Y-%m-%d %H:%M:%S'
 metadata_date_fmt = '%Y-%m-%d %H:%M:%S%z'
 
@@ -25,17 +36,13 @@ def set_about_info():
     """
     # git log -1 --format=%cd posts
     # Sun Jun 4 02:42:49 2023 +0800
-    git_command = subprocess.check_output(
-        ['git', 'log', '-1', '--format=%cd', posts_path])
-    git_last_post_date = git_command.decode('utf-8')[:-1]  # ends with \n
+    git_last_post_date = git_last_commit_date(posts_path)
     last_post_date = datetime.strptime(
         git_last_post_date, git_date_fmt)
     last_post_date = last_post_date.astimezone(timezone(timedelta(hours=8)))
     last_post_date_str = last_post_date.strftime(preferred_date_fmt)
 
-    git_command = subprocess.check_output(
-        ['git', 'log', '-1', '--format=%cd']).decode('utf-8')
-    git_commit_date = git_command[:-1]
+    git_commit_date = git_last_commit_date()
     commit_date = datetime.strptime(
         git_commit_date, git_date_fmt)
     commit_date = commit_date.astimezone(timezone(timedelta(hours=8)))
@@ -78,13 +85,17 @@ def set_post_modified_date(post_path):
     post_date = datetime.strptime(post_date_str, '%y%m%d').astimezone(timezone(timedelta(hours=8)))
 
     post_text_path = os.path.join(posts_path, post_path, 'index.md')
-    git_command = subprocess.check_output(
-        ['git', 'log', '-1', '--format=%cd', post_text_path])
-    git_commit_date = git_command.decode('utf-8')[:-1]
+    # Merge meta.md in first: the front matter has to be there whether or not
+    # a lastmod ends up being added below.
+    add_metadata_to_post(post_path)
+
+    git_commit_date = git_last_commit_date(post_text_path)
+    if not git_commit_date:
+        # never committed: a draft added since the last commit
+        return logging.info(f'[date]\t{post_path} not in git yet, no lastmod')
     commit_date = datetime.strptime(
         git_commit_date, git_date_fmt).astimezone(timezone(timedelta(hours=8)))
 
-    add_metadata_to_post(post_path)
     if post_date.day != commit_date.day or post_date.month != commit_date.month or post_date.year != commit_date.year:
         logging.info(f'[date]\t{post_path} modified date changed')
         # 2023-06-03T15:00:00+0800
@@ -107,16 +118,22 @@ def set_post_modified_date(post_path):
         return None
 
 
+def list_posts():
+    return sorted(
+        d for d in os.listdir(posts_path)
+        if os.path.isdir(os.path.join(posts_path, d))
+        and os.path.isfile(os.path.join(posts_path, d, 'index.md'))
+    )
+
+
 def set_posts_modified_date():
-    posts_list = os.listdir(posts_path)
-    for post_path in posts_list:
+    for post_path in list_posts():
         set_post_modified_date(post_path)
     return logging.info('[date]\tset posts modified date')
 
 
 def remove_meta_file():
-    posts_list = os.listdir(posts_path)
-    for post_path in posts_list:
+    for post_path in list_posts():
         meta_file_path = os.path.join(posts_path, post_path, 'meta.md')
         if os.path.isfile(meta_file_path):
             os.remove(meta_file_path)
