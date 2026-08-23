@@ -25,4 +25,7 @@ comments: false
 
 ## 友链区
 
+后续会移到重写后的[主页](https://kmtea.eu)
+
 * [桑批](https://libra.wiki)
+* [图批](https://atlasnow.xyz)

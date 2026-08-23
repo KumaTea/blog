@@ -22,3 +22,4 @@ media.zip.tmp
 *.webm
 __pycache__
 .idea
+.vscode

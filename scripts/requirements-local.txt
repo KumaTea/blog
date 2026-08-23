@@ -1,0 +1,9 @@
+# Extra dependencies for the scripts that only ever run on your own machine.
+# With uv there is no need to install these by hand:
+#     uv run --with-requirements scripts/requirements-local.txt scripts/img/cvt2webp.py
+#
+# scripts/media_sync.py needs none of them, only the gh CLI.
+requests
+pillow      # cvt2webp.py
+pi-heif     # cvt2webp.py, HEIC/HEIF input from iPhones
+tqdm        # dlext.py
