@@ -1,5 +1,5 @@
 baseurl: https://blog.kmtea.eu
-languageCode: zh-cn
+locale: zh-cn
 theme: stack
 title: "酷玛阁 | KumaTea's Blog"
 
@@ -44,7 +44,7 @@ params:
     - posts
   featuredImageField: image
   rssFullContent: true
-  favicon: //kmtea.eu/res/2206/avatar.png
+  favicon: "https://kmtea.eu/res/2206/avatar.png"
 
   footer:
     since: 2022
@@ -65,7 +65,7 @@ params:
     avatar:
       enabled: true
       local: false
-      src: //kmtea.eu/res/2206/avatar.png
+      src: "https://kmtea.eu/res/2206/avatar.png"
 
   article:
     math: false

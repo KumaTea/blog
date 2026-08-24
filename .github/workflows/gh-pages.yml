@@ -9,24 +9,24 @@ on:
 jobs:
   deploy:
     if: ${{ contains(github.event.head_commit.message, 'build') || github.event_name == 'workflow_dispatch' }}
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0  # we need fetch all to get modified (committed) date
 
 #      - name: Setup Python
-#        uses: actions/setup-python@v4
+#        uses: actions/setup-python@v7
 #        with:
-#          python-version: '3.9'
+#          python-version: '3.14'
 
       # Hugo re-encodes every image (resize + webp) on each build, which is
       # ~95% of the build time. Its output is content-hash keyed and cached in
       # resources/_gen, so restoring that cache means only new or changed
       # images get processed.
       - name: Cache Hugo resources
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: |
             resources/_gen
