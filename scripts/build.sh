@@ -21,6 +21,9 @@ git submodule add https://github.com/KumaTea/hugo-theme-stack themes/stack
 # git apply ../../scripts/patches/stack/*.patch
 # cd ../../
 
+echo "fetching site assets..."
+python3 scripts/assets.py
+
 echo "setting post modified date..."
 python3 scripts/meta.py
 

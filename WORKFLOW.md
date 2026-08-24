@@ -109,9 +109,10 @@ uv run scripts/media_sync.py <post> --local
 | `img/cvt2webp.py` | your machine | Converts jpg/png/HEIC to webp, named from EXIF capture time, orientation applied. |
 | `img/video.sh` | your machine | Re-encodes a video to 1080p HEVC. |
 | `dlext.py` | your machine | Downloads externally hosted images into `ext/` and rewrites the links. |
-| `build.sh` | CI | Lays out the Hugo tree, then runs the three below. |
+| `build.sh` | CI | Lays out the Hugo tree, then runs the four below. |
+| `assets.py` | CI | Fetches the favicon and sidebar avatar into `assets/`. |
 | `meta.py` | CI | Merges `meta.md` into `index.md`, adds `lastmod` from git history, fills the about page dates. |
-| `media.py` | CI | Downloads every release's `media.zip` and unpacks it into its post. |
+| `media.py` | CI | Unpacks every release's `media.zip` into its post, downloading only the ones that changed. |
 | `slug.py` | CI | Adds `slug:` to the front matter so URLs stay `/p/<directory name>/`. |
 
 `meta.py` rewrites `index.md` in place and deletes `meta.md`, so it is only
@@ -133,3 +134,15 @@ does need its own media, give it a longer tag — a release tagged
 Hugo resizes and re-encodes every image on every build, which was almost all of
 a four-minute build. The workflow now caches `resources/_gen`, where that output
 is stored under content hashes, so only new or changed images cost anything.
+
+The release archives are cached the same way. `media.py` asks the API what each
+release currently publishes (a sha256 digest where GitHub has one, the asset id
+and mtime otherwise) and keeps the zips in `/tmp/blog_media` between runs, so a
+build only pulls down the posts whose media actually moved instead of all
+~180 MB. The cache is stored under a hash of those fingerprints, which means an
+unchanged set of releases reuses the entry it already has rather than uploading
+a fresh copy every build.
+
+If the API is unreachable or rate limited, `media.py` says so and downloads
+everything, which is what it always did. Set `GITHUB_TOKEN` to keep that from
+happening (the workflow already does).

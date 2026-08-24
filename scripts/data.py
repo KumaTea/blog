@@ -21,6 +21,20 @@ posts_path = os.path.join(pwd, 'posts')
 tags_api = f'https://api.github.com/repos/{repo}/git/refs/tags'
 
 
+def api_headers():
+    """Authenticated whenever a token is in the environment.
+
+    The anonymous API allows 60 calls an hour per IP, and a hosted runner's
+    IP is shared with every other build on it, so the budget can be gone
+    before this build even starts.
+    """
+    headers = {'Accept': 'application/vnd.github+json'}
+    token = os.environ.get('GITHUB_TOKEN') or os.environ.get('GH_TOKEN')
+    if token:
+        headers['Authorization'] = f'Bearer {token}'
+    return headers
+
+
 def get_tags():
     """Every tag in the repository.
 
@@ -30,8 +44,8 @@ def get_tags():
     tags = []
     page = 1
     while True:
-        r = requests.get(tags_api, params={'per_page': 100, 'page': page},
-                         timeout=30)
+        r = requests.get(tags_api, headers=api_headers(),
+                         params={'per_page': 100, 'page': page}, timeout=30)
         if r.status_code == 404:
             break  # repository has no tags at all
         r.raise_for_status()

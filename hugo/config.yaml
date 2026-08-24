@@ -44,7 +44,10 @@ params:
     - posts
   featuredImageField: image
   rssFullContent: true
-  favicon: "https://kmtea.eu/res/2206/avatar.png"
+  # Resolved against assets/, not static/. scripts/assets.py fetches the file
+  # there at build time, so Hugo treats it as a local resource instead of
+  # pulling it over the network on every build.
+  favicon: img/avatar.png
 
   footer:
     since: 2022
@@ -62,10 +65,9 @@ params:
   sidebar:
     emoji:
     subtitle:
-    avatar:
-      enabled: true
-      local: false
-      src: "https://kmtea.eu/res/2206/avatar.png"
+    # The theme takes a plain path now; the old enabled/local/src map is fed
+    # straight into urls.Parse and blows the build up.
+    avatar: img/avatar.png
 
   article:
     math: false
@@ -125,12 +127,6 @@ params:
       # Available values: summary, summary_large_image
       card: summary_large_image
 
-  defaultImage:
-    opengraph:
-      enabled: false
-      local: false
-      src:
-
   colorScheme:
     # Display toggle
     toggle: true
@@ -139,10 +135,11 @@ params:
     default: auto
 
   imageProcessing:
-    cover:
-      enabled: true
-    content:
-      enabled: true
+    # cover/content are gone; these two are all the theme still reads. The
+    # timeout only applies to images a post still links to off-site.
+    autoOrient: false
+    external:
+      timeout: 10s
 
 ### Custom menu
 ### See https://docs.stack.jimmycai.com/configuration/custom-menu.html

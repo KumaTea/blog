@@ -35,8 +35,35 @@ jobs:
           restore-keys: |
             hugo-resources-
 
+      # ~180 MB of release archives that mostly do not change from one build
+      # to the next. media.py keys the cache on what GitHub publishes for each
+      # release, so an untouched post is never fetched twice, and the entry is
+      # only re-uploaded when some post's media actually moved.
+      - name: Restore media cache
+        id: media_cache
+        uses: actions/cache/restore@v6
+        with:
+          path: /tmp/blog_media
+          key: media-${{ github.run_id }}
+          restore-keys: |
+            media-
+
       - name: Build site
+        id: build
         run: bash scripts/build.sh
+        env:
+          MEDIA_CACHE_DIR: /tmp/blog_media
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Save media cache
+        if: >-
+          steps.build.outputs.media_key != ''
+          && steps.media_cache.outputs.cache-matched-key
+          != format('media-{0}', steps.build.outputs.media_key)
+        uses: actions/cache/save@v6
+        with:
+          path: /tmp/blog_media
+          key: media-${{ steps.build.outputs.media_key }}
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
