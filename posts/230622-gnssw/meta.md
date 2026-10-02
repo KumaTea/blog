@@ -9,5 +9,6 @@ tags:
   - Twitter
   - Repost
   - Collection
-hidden: true
+build:
+  list: never
 ---
