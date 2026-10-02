@@ -259,9 +259,13 @@ if __name__ == '__main__':
     prune(cached, posts)
     reused = 0
     for pid, info in sorted(posts.items()):
-        archive, from_cache = get_media(pid, fingerprints.get(pid), cached)
-        reused += from_cache
-        unzip_media(pid, archive, info['dirs'])
+        try:
+            archive, from_cache = get_media(pid, fingerprints.get(pid), cached)
+            reused += from_cache
+            unzip_media(pid, archive, info['dirs'])
+        except requests.exceptions.HTTPError as e:
+            if e.response.status_code == 404:
+                continue  # no media.zip, just a placeholder tag
 
     save_manifest(cached)
     publish_cache_key(cached)
