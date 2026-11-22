@@ -7,6 +7,10 @@ somewhere with --dir:
     cd posts/260531-hk-trip/raw && uv run ../../../scripts/img/cvt2webp.py
     uv run scripts/img/cvt2webp.py --dir posts/260531-hk-trip/raw
 
+Outputs are named after each photo's EXIF capture time. Pass --keep-names
+when you renamed the sources yourself and a post already links to those
+names.
+
 Sources are left in place; only the .webp files are new.
 """
 
@@ -75,22 +79,29 @@ def unique_path(path, taken):
     return path
 
 
-def plan(files):
+def plan(files, keep_names=False):
     """Decide every output name up front, in one process.
 
     Naming has to be sequential anyway (two photos taken in the same second
     would otherwise race for the same name), and reading EXIF is cheap because
     Pillow does not decode pixels for it.
+
+    keep_names reuses each source basename and skips EXIF entirely: a file you
+    renamed by hand already carries the name the post links to, and rewriting
+    it from EXIF would only break that link.
     """
     tasks = []
     taken = set()
     for file in files:
-        if file.lower().endswith(HEIF_EXT):
-            register_heif()
-        with Image.open(file) as image:
-            dt = get_exif_datetime(image)
-        name = (dt.strftime('IMG_%Y%m%d_%H%M%S') if dt
-                else os.path.splitext(os.path.basename(file))[0])
+        stem = os.path.splitext(os.path.basename(file))[0]
+        if keep_names:
+            name = stem
+        else:
+            if file.lower().endswith(HEIF_EXT):
+                register_heif()
+            with Image.open(file) as image:
+                dt = get_exif_datetime(image)
+            name = dt.strftime('IMG_%Y%m%d_%H%M%S') if dt else stem
         new_file = unique_path(
             os.path.join(os.path.dirname(file), f'{name}.webp'), taken)
         taken.add(new_file)
@@ -138,6 +149,9 @@ def main():
                         help='longest edge in pixels, 0 to keep original')
     parser.add_argument('--workers', type=int, default=os.cpu_count(),
                         help='parallel encoders')
+    parser.add_argument('--keep-names', action='store_true',
+                        help='keep each source filename instead of naming '
+                             'from EXIF capture time')
     args = parser.parse_args()
 
     img_files = get_img_files(args.dir)
@@ -145,7 +159,7 @@ def main():
         print('nothing to convert')
         return 0
 
-    tasks = plan(img_files)
+    tasks = plan(img_files, keep_names=args.keep_names)
     before = sum(os.path.getsize(f) for f, _ in tasks)
 
     payload = [(t, args.quality, args.max_size) for t in tasks]

@@ -30,8 +30,13 @@ you decide to `git add .`.
    then:
 
    ```bash
-   uv run --with-requirements scripts/requirements-local.txt scripts/img/cvt2webp.py --dir posts/<post>/raw
+   uv run --python 3.12 --with-requirements scripts/requirements-local.txt scripts/img/cvt2webp.py --dir posts/<post>/raw
    ```
+
+   `--python 3.12` is load-bearing: `pi-heif` has no wheel for the 3.14 on
+   PATH, and uv's source-build fallback needs MSYS2. Add `--keep-names` when
+   you renamed the originals yourself and the post already links to those
+   names; without it every output is renamed from EXIF capture time.
 
    Move the resulting `.webp` files into `posts/<post>/img/`. Videos go through
    `scripts/img/video.sh <input>` into `posts/<post>/vid/`.
@@ -106,7 +111,7 @@ uv run scripts/media_sync.py <post> --local
 | Script | Runs | Does |
 | --- | --- | --- |
 | `media_sync.py` | your machine | Compares disk against `media.zip` against the release, rebuilds and re-uploads whatever drifted. Never touches git. |
-| `img/cvt2webp.py` | your machine | Converts jpg/png/HEIC to webp, named from EXIF capture time, orientation applied. |
+| `img/cvt2webp.py` | your machine | Converts jpg/png/HEIC to webp, named from EXIF capture time (or kept as-is with `--keep-names`), orientation applied. |
 | `img/video.sh` | your machine | Re-encodes a video to 1080p HEVC. |
 | `dlext.py` | your machine | Downloads externally hosted images into `ext/` and rewrites the links. |
 | `build.sh` | CI | Lays out the Hugo tree, then runs the four below. |

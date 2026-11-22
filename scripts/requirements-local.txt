@@ -1,6 +1,9 @@
 # Extra dependencies for the scripts that only ever run on your own machine.
 # With uv there is no need to install these by hand:
-#     uv run --with-requirements scripts/requirements-local.txt scripts/img/cvt2webp.py
+#     uv run --python 3.12 --with-requirements scripts/requirements-local.txt scripts/img/cvt2webp.py
+#
+# Pin 3.12: pi-heif ships no wheel for 3.14, and building it from source
+# on Windows wants MSYS2.
 #
 # scripts/media_sync.py needs none of them, only the gh CLI.
 requests

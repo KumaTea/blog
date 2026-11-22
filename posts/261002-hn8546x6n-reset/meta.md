@@ -5,7 +5,7 @@ date: "2026-10-02 01:00:00+0800"
 image: "img/cover.webp"
 categories:
   - Records
-  - Tutorials
+  - Guides
 tags:
   - Networking
   - Modem
