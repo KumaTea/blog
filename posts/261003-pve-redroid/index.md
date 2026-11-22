@@ -14,6 +14,8 @@
 
 ![Intel GPU Top](img/redroid-intel.webp)
 
+如果你想看 Claude 写的英文完整版，[请点击此处](https://github.com/KumaTea/blog/blob/main/posts/261003-pve-redroid/claude.md)。
+
 ## 环境要求
 
 * PVE 9.1+

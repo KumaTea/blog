@@ -70,6 +70,7 @@ jobs:
         with:
           hugo-version: 'latest'
           extended: true
+          dart-sass-version: '1.108.2'
 
       - name: Build
         run: hugo --minify --cacheDir /tmp/hugo_cache
